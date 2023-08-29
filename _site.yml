@@ -1,7 +1,6 @@
 name: "GEOG-364: Lab Book 23/24"  
 author: "Dr Helen Greatrex"  
 output_dir: "docs"
-exclude: ["*.xls", "*.csv","*.R"]
 output:
   html_document:
     toc: true
@@ -20,7 +19,7 @@ navbar:
     - text: "What is R?"
       href: in_Tutorial01WhatisR.html
     - text: "Basics"
-      href: in_Tutorial03RBasics.html
+      href: in_Tutorial03Basics.html
   - text: "Labs"  
     menu: 
     - text: "Lab 1"
