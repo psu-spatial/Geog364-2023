@@ -1,11 +1,85 @@
 ---
-title: "Tutorial 1: What is R?"
-subtitle: 'Getting started'
+title: "Tutorial 1: What are R & R-studio?"
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
+# OPTIONS -----------------------------------------------
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning=FALSE, 
+                      message = FALSE)
 ```
 
-asdafdfdw nsdndsalk
-sfsf
+```{r, include=FALSE}
+
+# PACKAGES-----------------------------------------------
+# Tutorial packages
+library(vembedr)
+library(skimr)
+library(yarrr)
+library(RColorBrewer)
+library(GGally) 
+library(tidyverse)
+library(plotly)
+library(readxl)
+library(rvest)
+library(biscale)
+library(tidycensus)
+library(cowplot)
+library(units)
+
+# FUNCTIONS -----------------------------------------------
+# Get R version
+GetRLatest <- function(Website="https://cran.r-project.org/banner.shtml"){
+   require(rvest)
+   
+   #scrape the text from the website
+   RWebsite <- read_html("https://cran.r-project.org/banner.shtml") %>%
+            html_nodes("li") %>%
+            html_text()
+   
+   # get the line that includes latest release and get rid of the stuff after
+   RLatest <- base::strsplit(RWebsite[grep("latest release",
+                                     tolower(RWebsite))],"\n")[[1]][1]
+   return(RLatest)
+}
+
+```
+
+# What are R and R studio?
+
+First, watch this 1 minute video on R-Studio: <https://www.rstudio.com/products/rstudio/>
+
+Or, if you prefer, this 5 minute video
+
+```{r,echo=FALSE,fig.align='center'}
+embed_url("https://www.youtube.com/watch?v=SdMPh5uphO0")
+```
+
+### R is a LANGUAGE {.unnumbered}
+
+**R** is a free, open source statistical programming language.
+
+It contains millions of commands that are useful for dataset cleaning, analysis, and visualization.
+
+By a "programming language", I mean it is a collection of commands that you can type into the computer in order to analyse and visualise data. The easiest way I find to think about R is that it is literally a language, like Spanish, English or Hindi.
+
+Learning R means learning vocabulary and grammar in order to communicate. It also means it gets easier with experience and practice..
+
+If you open "R" on your computer (DON'T DO THIS), you will see a simple window with a cursor ready to hear commands. There is no help or support. This is how I learned to programme in R. It's not fun!
+
+```{r, Tut_Fig1, echo=FALSE, fig.cap = "*Basic R*",fig.align='center'}
+knitr::include_graphics('./Figures/fig1_RConsole.png')
+```
+
+### R-STUDIO/POSIT is a Software App {.unnumbered}
+
+**R-studio** is a *software program/app*, like Microsoft Word, or the Chrome Web-browser. It's has recently been rebranded to Posit. There is a version you can download onto your own computer, and a version that runs on a website called 'R-Studio Cloud'.
+
+<https://posit.co/blog/announcing-rstudio-1-4/>
+
+It's a program that's designed to make it easy to write R-commands. RStudio has many useful features. For example, you can easily see help files, run code, see your results and create outputs like this lab book! R-Studio also allows us to make interactive documents called R-Markdown files.
+
+```{r, Tut_Fig2, echo=FALSE, fig.cap = "*R-studio is much more sophisticated*",fig.align='center'}
+knitr::include_graphics('./Figures/fig2_RStudioIntro.png')
+```
+

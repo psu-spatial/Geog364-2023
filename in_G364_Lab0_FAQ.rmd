@@ -1,0 +1,78 @@
+---
+title: "Lab FAQ"
+---
+
+```{r, warning=FALSE, include=FALSE, message=FALSE}
+library(tidyverse)
+library(kableExtra)
+```
+
+## Q&A
+
+<br>
+
+### What do I submit?
+
+You will be creating two files; an Rmd file containing your code and a .html file for viewing your finished document.
+
+You need to submit both of these files on the relevant Canvas assignment page. 
+
+Remember you can also add comments to your submission as/if needed on the canvas page, or message Dr G.
+
+<br>
+
+### How am I graded?
+
+There are 100 points available for each of the 5 labs. Remember you can drop your lowest lab or exam 
+(e.g. you can skip one)
+
+You can see the SPECIFIC RUBRIC we use for this lab on the canvas page. It's literally how we will award the marks.
+
+We will also provide as much feedback as possible, so please remember to click the rubric button to take a look.
+
+<br>
+
+### What your grade means
+
+Overall, here is what your lab should correspond to:
+
+```{r, echo=FALSE}
+rubric <- readxl::read_excel("in_G364_Lab0Rubric.xlsx")
+knitr::kable(rubric) %>%   
+  kable_classic_2() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
+
+
+```
+
+<br>
+
+### What's the late policy?
+
+If you have technical problems & have sent me canvas message with our code and a screenshot of the issue BEFORE THE DEADLINE, all late penalties go away until we have fixed it.
+
+**Submitting late is a risk.** The lab might be graded at any time past the deadline with no notice given. If worked answers are released then that is too late.
+
+But.. I would prefer you submit late than not at all. If you're going to be late for any reason (you don't need to explain why), send Dr G a canvas message.
+
+**I will only start penalizing if you're consistently late and I have sent a written warning.** See the course syllabus for more info. <https://psu.instructure.com/courses/2243429/assignments/syllabus>
+
+<br>
+
+### Can I work with friends/my lab partner? What counts as cheating?
+
+You can talk with each other to help during these labs e.g. you can see each others screens and work out answers together. I will try as much as possible to provide alternate datasets.
+
+BUT NEVER SHARE CODE/SEND SCRIPTS.
+
+ALL TEXT SHOULD BE IN YOUR OWN WORDS.
+
+For example:
+
+-   Working out together the right way to apply the `seq()` function, then each independently adding it to your own scripts is OK.
+
+-   **Copy/pasting your friend's code/text is not.**.
+
+-   So DISCUSS with friends, but then turn away to your own screen and write your own code and text.
+
+I will be randomly running lab reports through plagiarism software.

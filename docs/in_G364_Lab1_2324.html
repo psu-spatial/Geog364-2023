@@ -11,7 +11,7 @@
 
 
 
-<title>Lab 1</title>
+<title>Lab 1: R intro</title>
 
 <script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -35,6 +35,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -420,10 +422,10 @@ div.tocify {
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="in_Tutorial01WhatisR.html">What is R?</a>
+      <a href="in_Tutorial01WhatisR.html">1. What is R?</a>
     </li>
     <li>
-      <a href="in_Tutorial03Basics.html">Basics</a>
+      <a href="in_Tutorial02SetUp.html">2. SetUp IMPORTANT</a>
     </li>
   </ul>
 </li>
@@ -451,39 +453,287 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Lab 1</h1>
+<h1 class="title toc-ignore">Lab 1: R intro</h1>
 <h3 class="subtitle">Getting comfortable</h3>
 
 </div>
 
 
-<div id="r-markdown" class="section level2">
-<h2>R Markdown</h2>
-<p>asdafsasfdasd This is an R Markdown document. Markdown is a simple
-formatting syntax for authoring HTML, PDF, and MS Word documents. For
-more details on using R Markdown see <a
-href="http://rmarkdown.rstudio.com"
-class="uri">http://rmarkdown.rstudio.com</a>.</p>
-<p>When you click the <strong>Knit</strong> button a document will be
-generated that includes both content as well as the output of any
-embedded R code chunks within the document. You can embed an R code
-chunk like this:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">summary</span>(cars)</span></code></pre></div>
-<pre><code>##      speed           dist       
-##  Min.   : 4.0   Min.   :  2.00  
-##  1st Qu.:12.0   1st Qu.: 26.00  
-##  Median :15.0   Median : 36.00  
-##  Mean   :15.4   Mean   : 42.98  
-##  3rd Qu.:19.0   3rd Qu.: 56.00  
-##  Max.   :25.0   Max.   :120.00</code></pre>
+<p><br></p>
+<p>The aim of this lab is to get comfortable in R and in R-Markdown. Lab
+instructions will be here, linking to relevant tutorials in the
+tutorials tab. The Canvas page for this lab is here <a
+href="https://psu.instructure.com/courses/2260204/assignments/15455191"
+class="uri">https://psu.instructure.com/courses/2260204/assignments/15455191</a></p>
+<p><br></p>
+<p><strong>If the labs are causing major problems with your computer or
+your computer hardware is struggling (or you have any other software
+issue), Talk to Dr Greatrex</strong>.</p>
+<p><strong>What do I mean by struggling? More than 20 minutes without
+any progress..</strong></p>
+<p><br></p>
+<div id="my-main-hint" class="section level4">
+<h4>MY MAIN HINT</h4>
+<p>Please follow ALL THE STEPS.</p>
+<p>I <em>literally</em> give the answers to the final section in these
+tutorials and it will only take an experienced R user a few minutes. IT
+IS FASTER THAN SKIPPING TO THE END!</p>
+<p><br> <br></p>
 </div>
-<div id="including-plots" class="section level2">
-<h2>Including Plots</h2>
-<p>You can also embed plots, for example:</p>
-<p><img src="in_G364_Lab1_2324_files/figure-html/pressure-1.png" width="672" /></p>
-<p>Note that the <code>echo = FALSE</code> parameter was added to the
-code chunk to prevent printing of the R code that generated the
-plot.</p>
+<div id="choosing-a-lab-partner." class="section level2">
+<h2>1. Choosing a lab partner.</h2>
+<div id="we-will-be-doing-an-in-class-exercise-to-choose-lab-groups"
+class="section level4">
+<h4>We will be doing an in-class exercise to choose lab groups</h4>
+<p>TUESDAY LAB: Please fill in this survey: <a
+href="https://forms.gle/Uf7T5Hh7895Y7G6DA"
+class="uri">https://forms.gle/Uf7T5Hh7895Y7G6DA</a></p>
+<p>(Don’t touch wed/fri lab)</p>
+<p>We will do an in-class exercise to self select smaller groups for
+Labs. You will choose your lab partner from these.</p>
+<p><br> <br></p>
+</div>
+</div>
+<div id="review-the-lab-qa" class="section level2">
+<h2>2. Review the Lab Q&amp;A</h2>
+<p>First, please review the lab Q&amp;A: <a
+href="in_G364_Lab0_FAQ.rmd"><strong>CLICK HERE</strong></a>. It
+explains</p>
+<ul>
+<li>What you need to submit</li>
+<li>How you are graded and where the rubric is</li>
+<li>The late policy</li>
+<li>What counts as cheating</li>
+<li>You’re going to be asked about this below, so may as well read
+it.</li>
+</ul>
+<p><br> <br></p>
+</div>
+<div id="follow-tutorial-1-what-are-r-r-studio-and-markdown"
+class="section level2">
+<h2>2. Follow Tutorial 1, what are R, R-studio and Markdown?</h2>
+<p>Review <a href="in_Tutorial1WhatisR.rmd" title="Tutorial 1">TUTORIAL
+1</a>to learn about R, R-studio and Markdown</p>
+<p>You’re going to be asked about this below, so may as well read
+it.</p>
+<p><br> <br></p>
+</div>
+<div id="initial-lab-set-up" class="section level2 unnumbered">
+<h2 class="unnumbered">3. Initial Lab set-up</h2>
+<p>Review <a href="in_Tutorial02SetUp.rmd" title="Tutorial 2">TUTORIAL
+2</a>to learn about R, R-studio and Markdown</p>
+<p>Create a new <strong>RMarkdown document</strong> called
+<code>STAT462-Lab1-PSUID.Rmd</code>. e.g. for me
+<em>STAT462-Lab1-hlg5155.Rmd</em>. <br></p>
+<p>Delete any friendly welcome text so you have a blank space.</p>
+<p><br></p>
+<div id="a-adding-paragraphs-course-late-policy"
+class="section level3 unnumbered">
+<h3 class="unnumbered">2a: Adding paragraphs &amp; course late
+policy</h3>
+<p>You might find it easier to use the markdown visual text editor. <br>
+<a
+href="https://quarto.org/docs/get-started/hello/images/rstudio-source-visual.png">Click
+the “Visual” symbol at the top left of the document to switch.</a></p>
+<ul>
+<li><p>In the white text area, create a level 1 Header called
+<em>“Introduction to STAT-462”</em>.</p></li>
+<li><p>Leave a blank line, then use the STAT-462 syllabus to describe
+the course late policy in your own words (e.g. you’re writing about this
+in the white space).</p></li>
+<li><p>Press “knit” at the top of the screen. If you haven’t made a
+mistake a pop up should appear with a html file and your edits. If you
+have a made a mistake, stop and fix before continuing or talk to a
+teacher.</p></li>
+</ul>
+<p><br></p>
+</div>
+</div>
+<div id="code-showcase" class="section level2">
+<h2>3: Code showcase</h2>
+<p>&lt;br&lt;</p>
+<p>Leave another blank line and add a new Level 1 Header called
+<em>“Code Showcase”</em>. Add a blank line afterwards too - the reason
+for all the blank lines is that R formatting often gets messed up with
+not enough blank lines, but it will ignore excess ones.</p>
+<p>Create a code chunk. Inside <strong>use R code</strong> to calculate
+the following. You HAVE to show the code! <br><br></p>
+<ul>
+<li>103<sup>3</sup> (e.g <code>103*103*103</code>, or
+<code>103^3</code>) <br></li>
+</ul>
+<p>_ The co-sine of your age (google is your friend, google R function
+for cosine) <br></p>
+<ul>
+<li>Use R code to work out how many characters are in <a
+href="https://www.bbcamerica.com/anglophenia/2015/09/how-to-pronounce-the-longest-place-name-in-the-u-k">the
+longest town name in Wales</a>
+<em>Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch</em>.
+<br><br />
+
+<ul>
+<li>Hint 1, remember you can copy paste this into your code. <br></li>
+<li>Hint 2.. your tutorials and quote marks!<br></li>
+<li>Hint 3.. you can google any R command, try googling the <em>“R
+command for number of characters in a word”</em>.<br><br></li>
+</ul></li>
+</ul>
+<p>Press “knit” at the top of the screen. If you haven’t made a mistake
+a pop up should appear with a html file and your edits. If you have a
+made a mistake, stop and fix before continuing.</p>
+<p><br></p>
+</div>
+<div id="packages" class="section level2">
+<h2>4. Packages</h2>
+<p>Today we will be using commands from several packages. Somewhere near
+the top of your script, make a new code chunk and add this code. We will
+probably have to install them first (see the tutorial)</p>
+<p>Remember to run the code chunk! <a
+href="https://www.pipinghotdata.com/posts/2020-09-07-introducing-the-rstudio-ide-and-r-markdown/gifs/run-chunk.gif">(pressing
+the green arrow, or go to the run button on the top right and press Run
+All</a>)</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span></code></pre></div>
+<p><br></p>
+</div>
+<div id="submitting-your-lab" class="section level2">
+<h2>6. Submitting your Lab</h2>
+<p>Remember to save your work throughout and to spell check your writing
+(next to the save button). Now, press the knit button again. If you have
+not made any mistakes in the code then R should create a html file in
+your lab 1 folder which includes your answers. If you look at your lab 1
+folder, you should see this there - complete with a very recent
+time-stamp.</p>
+<p>In that folder, double click on the html file. This will open it in
+your web-browser.<br />
+CHECK THAT THIS IS WHAT YOU WANT TO SUBMIT.</p>
+<p>If you are on R studio cloud, see Tutorial 1 for how to download your
+files</p>
+<p>Now go to Canvas and submit BOTH your html and your .Rmd file in Lab
+1.</p>
+<p><img src="Figures/LabFig_WhatToSubmit.png" width="1673" /></p>
+<p><br></p>
+</div>
+<div id="how-am-i-graded" class="section level2">
+<h2>7. How am I graded?</h2>
+<p>Look on Canvas, there will be a SPECIFIC RUBRIC that we use to grade
+your lab. USE IT!!! It should allow you to predict your grade. We will
+also include comments with our feedback in every lab.</p>
+<p>Overall, here is what your lab should correspond to:</p>
+<table class=" lightable-classic-2 table table-striped table-hover table-responsive" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+POINTS
+</th>
+<th style="text-align:left;">
+Approx grade
+</th>
+<th style="text-align:left;">
+What it means
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+98-100
+</td>
+<td style="text-align:left;">
+A*
+</td>
+<td style="text-align:left;">
+Exceptional.  Above and beyond.  THIS IS HARD TO GET.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+93-98
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+Everything asked for with high quality.   Class example
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+85-93
+</td>
+<td style="text-align:left;">
+B+/A-
+</td>
+<td style="text-align:left;">
+Solid work but the odd mistake or missing answer in either the code or
+interpretation
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+70-85
+</td>
+<td style="text-align:left;">
+B-/B
+</td>
+<td style="text-align:left;">
+Starting to miss entire/questions sections, or multiple larger mistakes.
+Still a solid attempt. 
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+60-70
+</td>
+<td style="text-align:left;">
+C/C+
+</td>
+<td style="text-align:left;">
+It’s clear you tried and learned something.  Just attending labs will
+get you this much as we can help you get to this stage
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+40-60
+</td>
+<td style="text-align:left;">
+D
+</td>
+<td style="text-align:left;">
+You submit a single word AND have reached out to Dr G or Aish for help
+before the deadline (make sure to comment you did this so we can check)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+30-40
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+You submit a single word……. ANYTHING.. Think, that’s 30-40 marks towards
+your total….
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0+
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+Didn’t submit, or incredibly limited attempt. 
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 

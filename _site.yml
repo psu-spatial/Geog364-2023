@@ -16,11 +16,12 @@ navbar:
     href: /
   - text: "Tutorials"  
     menu: 
-    - text: "What is R?"
+    - text: "1. What is R?"
       href: in_Tutorial01WhatisR.html
-    - text: "Basics"
-      href: in_Tutorial03Basics.html
+    - text: "2. SetUp IMPORTANT"
+      href: in_Tutorial02SetUp.html
   - text: "Labs"  
+    href: in_G364_Lab0_FAQ.html
     menu: 
     - text: "Lab 1"
       href: in_G364_Lab1_2324.html
