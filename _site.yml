@@ -1,0 +1,9 @@
+name: "GEOG-364: Lab Book 23/24"  
+author: "Dr Helen Greatrex"  
+output_dir: "docs"  
+output:  
+  html_document:  
+    self_contained: no  
+    theme: flatly  
+navbar:  
+  title: "Websites with R Markdown" 
