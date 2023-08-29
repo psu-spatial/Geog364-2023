@@ -1,7 +1,6 @@
 ---
-title: "STAT-462 Lab Book"
+title: "GEOG-364 Lab Book FA23"
 author: "Dr Helen Greatrex"
-date: "1/2/2023"
 ---
 
 <br>
