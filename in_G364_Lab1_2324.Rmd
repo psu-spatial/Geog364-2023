@@ -69,8 +69,8 @@ HERE**](in_G364_Lab0_FAQ.rmd). It explains
 ## C. What are R, R-studio and Markdown? (Tutorial 3)
 
 Follow [TUTORIAL
-1](https://psu-spatial.github.io/Geog364-2023/in_Tutorial01WhatisR.html)to
-learn about R, R-studio and Markdown. You're going to be asked about
+1](https://psu-spatial.github.io/Geog364-2023/in_Tutorial01WhatisR.html)
+to learn about R, R-studio and Markdown. You're going to be asked about
 this below, so you may as well read it now.
 
 <br> <br>
@@ -80,41 +80,62 @@ this below, so you may as well read it now.
 Follow [TUTORIAL
 2](https://psu-spatial.github.io/Geog364-2023/in_Tutorial02SetUp.html)
 to install everything needed for the GEOG-364 this semester. **WE WILL
-DO THIS IN CLASS TOGETHER**
+DO THIS IN CLASS TOGETHER.** You're going to be asked about this below,
+so you may as well read it now.
 
-You're going to be asked about this below, so you may as well read it
-now.
+<br> <br>
 
-## E.  Lab set-up (Tutorial 4)
+## E. Lab set-up (Tutorial 3)
 
-We will cover projects, opening files, saving, themes and markdown
-visual model. Tutorial to be updated. **WE WILL DO THIS IN CLASS
-TOGETHER**
+As discussed in
 
-## F. Paragraph questions
+### Paragraph questions 
 
-Please copy each these questions into your markdown text. Make them
-"heading 3" format.
+### Paragraph questions 
 
-Underneath each one in a new paragraph, answer the question. At least 3
-or 4 sentences for each <br><br>
+You might find it easier to use the markdown visual text editor. Here's
+the difference between writing your reports in 'source' mode (near the
+top left) vs 'visual' mode.
 
-1.  In your own words, explain the course late policy (hint, see FAQs)
-    <br><br>
+![](https://quarto.org/docs/get-started/hello/images/rstudio-source-visual.png)
 
-2.  When are Dr G's office hours? (hint, see Canvas)<br><br>
+**OK - now you should have an empty report, other than the 'YAML' code
+at the top.**
 
-3.  Can you copy/paste each others report code or text? <br><br>
+**Copy each of the questions below into your report. Make each one
+"heading 3" format.**
 
-4.  Use something like spotify (a programme that plays music) to explain
-    the difference between R and R-Studio. <br><br> (hint, tutorial 1)
+**Underneath each question in a new paragraph ("Normal" format), answer
+it! At least 3 or 4 sentences for each one.** <br><br>
 
-5.  5\. Explain the range of different formats a markdown document can
-    be made into <br><br> (hint, tutorial 1)
+[**QUESTION 1:**]{.underline} In your own words, explain the course late
+policy (hint, see [Lab
+FAQs](https://psu-spatial.github.io/Geog364-2023/in_G364_Lab0_FAQ.html))
+<br>
+
+[**QUESTION 2:**]{.underline} When are Dr G's office hours? (hint, see
+[Canvas](https://psu.instructure.com/courses/2260204))<br>
+
+[**QUESTION 3:**]{.underline} Can you copy/paste each others report code
+or text? (Hint, [Lab
+FAQs](https://psu-spatial.github.io/Geog364-2023/in_G364_Lab0_FAQ.html))
+<br>
+
+[**QUESTION 4:**]{.underline} Use something like spotify (a programme
+that plays music) to explain the difference between R and R-Studio.
+(hint, [TUTORIAL
+1](https://psu-spatial.github.io/Geog364-2023/in_Tutorial01WhatisR.html))
+<br\>
+
+[**QUESTION 5:**]{.underline} Explain the range of different formats a
+markdown document can be made into <br> (hint, [TUTORIAL
+1](https://psu-spatial.github.io/Geog364-2023/in_Tutorial01WhatisR.html))
 
 ## F. Tutorial 4, Basic Maths
 
 to be added
+
+## \#
 
 ## H. Submitting your Lab
 

@@ -12,14 +12,14 @@ output:
 navbar:
   title: "GEOG 364 Lab Book"
   left:
-  - text: "Hello"
-    href: /
   - text: "Tutorials"  
     menu: 
     - text: "1. What is R?"
       href: in_Tutorial01WhatisR.html
-    - text: "2. SetUp IMPORTANT"
+    - text: "2. General Set-Up"
       href: in_Tutorial02SetUp.html
+    - text: "3. Lab Set-Up"
+      href: in_Tutorial03LabSetUp.html
   - text: "Labs"  
     menu: 
     - text: "Lab FAQ"

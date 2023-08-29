@@ -98,7 +98,7 @@ PSU computers are so out of date that we will NOT be using the versions of R ins
 
 This is an website based version of R-Studio. <br><br>
 
-#### [EVERYONE]{.underline} SHOULD SIGN UP FOR AN ACCOUNT HERE:  <https://posit.cloud/>
+#### [EVERYONE]{.underline} SHOULD SIGN UP FOR AN ACCOUNT HERE: <https://posit.cloud/>
 
 I believe it's free for the first 25hrs each month then a few dollars a month. Sadly there is no student pricing right now. If you run out of free time, you can make a new account, or pay for one month, or move to your desktop.
 
@@ -112,7 +112,7 @@ I believe it's free for the first 25hrs each month then a few dollars a month. S
 
 <br><br>
 
-## RStudio Desktop 
+## RStudio Desktop
 
 Here need to do two things. <br>
 
@@ -197,4 +197,4 @@ If you are on a MAC:
 knitr::include_graphics('./Figures/fig5b_RstudioMacinstall.png')
 ```
 
-### Congrats!  You have all the software needed
+### Congrats! You have all the software needed
