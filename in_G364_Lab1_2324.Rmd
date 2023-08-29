@@ -39,7 +39,7 @@ THAN SKIPPING TO THE END!
 
 <br> <br>
 
-## 1. Choosing a lab partner. 
+## A. Choosing a lab partner. 
 
 #### We will be doing an in-class exercise to choose lab groups
 
@@ -49,11 +49,11 @@ TUESDAY LAB: Please fill in this survey:
 (Don't touch wed/fri lab)
 
 We will do an in-class exercise to self select smaller groups for Labs.
-You will choose your lab partner from these.
+After the exercuse, Introduce yourselves and name your team!
 
 <br> <br>
 
-## 2. Review the Lab Q&A
+## B. Review the Lab Q&A
 
 First, please review the lab Q&A: [**CLICK
 HERE**](in_G364_Lab0_FAQ.rmd). It explains
@@ -66,105 +66,32 @@ HERE**](in_G364_Lab0_FAQ.rmd). It explains
 
 <br> <br>
 
-## 2. Follow Tutorial 1, what are R, R-studio and Markdown?
+## C. Tutorial 1, what are R, R-studio and Markdown?
 
-Review [TUTORIAL 1](in_Tutorial1WhatisR.rmd "Tutorial 1")to learn about
-R, R-studio and Markdown
-
-You're going to be asked about this below, so may as well read it.
+Follow [TUTORIAL 1](https://psu-spatial.github.io/Geog364-2023/in_Tutorial01WhatisR.html )to learn about R, R-studio and Markdown.  You're going to be asked about this below, so you may as well read it now.
 
 <br> <br>
 
-## 3. Initial Lab set-up {.unnumbered}
+## D. Tutorial 2, Initial Semester set-up
 
-Review [TUTORIAL 2](in_Tutorial02SetUp.rmd "Tutorial 2")to learn about
-R, R-studio and Markdown
+Follow [TUTORIAL 2](https://psu-spatial.github.io/Geog364-2023/in_Tutorial02SetUp.html)to install everything needed for the labs. You're going to be asked about this below, so you may as well read it now.
 
-Create a new **RMarkdown document** called `STAT462-Lab1-PSUID.Rmd`.
-e.g. for me *STAT462-Lab1-hlg5155.Rmd*. <br>
 
-Delete any friendly welcome text so you have a blank space.
+## E. Tutorial 3, Lab set-up 
 
-<br>
+Follow [TUTORIAL 3](to be added) to get started on today's lab.
 
-### 2a: Adding paragraphs & course late policy {.unnumbered}
 
-You might find it easier to use the markdown visual text editor. <br>
-[Click the "Visual" symbol at the top left of the document to
-switch.](https://quarto.org/docs/get-started/hello/images/rstudio-source-visual.png)
+## F. Tutorial 4, Basic Maths
+to be added
 
--   In the white text area, create a level 1 Header called
-    *"Introduction to STAT-462"*.
 
--   Leave a blank line, then use the STAT-462 syllabus to describe the
-    course late policy in your own words (e.g. you're writing about this
-    in the white space).
+## G. Tutorial 5, Follow up questions
+to be added
 
--   Press "knit" at the top of the screen. If you haven't made a mistake
-    a pop up should appear with a html file and your edits. If you have
-    a made a mistake, stop and fix before continuing or talk to a
-    teacher.
 
-<br>
 
-## 3: Code showcase
-
-```{r, echo=FALSE}
-#knitr::include_graphics("./Figures/Lab1_Basics_CodeChunk.png")
-```
-
-\<br\<
-
-Leave another blank line and add a new Level 1 Header called *"Code
-Showcase"*. Add a blank line afterwards too - the reason for all the
-blank lines is that R formatting often gets messed up with not enough
-blank lines, but it will ignore excess ones.
-
-Create a code chunk. Inside **use R code** to calculate the following.
-You HAVE to show the code! <br><br>
-
--   103^3^ (e.g `103*103*103`, or `103^3`) <br>
-
-\_ The co-sine of your age (google is your friend, google R function for
-cosine) <br>
-
--   Use R code to work out how many characters are in [the longest town
-    name in
-    Wales](https://www.bbcamerica.com/anglophenia/2015/09/how-to-pronounce-the-longest-place-name-in-the-u-k)
-    *Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch*. <br>\
-    -   Hint 1, remember you can copy paste this into your code. <br>
-    -   Hint 2.. your tutorials and quote marks!<br>
-    -   Hint 3.. you can google any R command, try googling the *"R
-        command for number of characters in a word"*.<br><br>
-
-Press "knit" at the top of the screen. If you haven't made a mistake a
-pop up should appear with a html file and your edits. If you have a made
-a mistake, stop and fix before continuing.
-
-<br>
-
-## 4. Packages
-
-Today we will be using commands from several packages. Somewhere near
-the top of your script, make a new code chunk and add this code. We will
-probably have to install them first (see the tutorial)
-
-Remember to run the code chunk! [(pressing the green arrow, or go to the
-run button on the top right and press Run
-All](https://www.pipinghotdata.com/posts/2020-09-07-introducing-the-rstudio-ide-and-r-markdown/gifs/run-chunk.gif))
-
-```{r,warnings=FALSE, message=FALSE, eval=FALSE}
-library(tidyverse)
-library(skimr)
-library(ggplot2)
-library(plotly)
-library(ggpubr)
-library(palmerpenguins)
-```
-
-<br>
-
-## 6. Submitting your Lab
+## H. Submitting your Lab
 
 Remember to save your work throughout and to spell check your writing
 (next to the save button). Now, press the knit button again. If you have

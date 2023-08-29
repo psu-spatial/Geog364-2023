@@ -21,7 +21,8 @@ navbar:
     - text: "2. SetUp IMPORTANT"
       href: in_Tutorial02SetUp.html
   - text: "Labs"  
-    href: in_G364_Lab0_FAQ.html
     menu: 
+    - text: "Lab FAQ"
+      href: in_G364_Lab0_FAQ.html
     - text: "Lab 1"
       href: in_G364_Lab1_2324.html

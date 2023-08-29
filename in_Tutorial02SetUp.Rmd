@@ -45,10 +45,13 @@ GetRLatest <- function(Website="https://cran.r-project.org/banner.shtml"){
 
 ```
 
+# Overview
 
-# Other internet accounts
+There are a number of software and internet accounts you will need. This tutorial takes you through them. DO NOT SKIP
 
-## GitHub
+<br>
+
+# GitHub
 
 We will likely be using github for downloading labs. Please make an account here: <https://github.com/>.
 
@@ -56,21 +59,21 @@ We will likely be using github for downloading labs. Please make an account here
 
 -   *As a sidenote, you can easily make a quick website/CV using github! Here's one of many examples and we will do this together later in the semester: <https://github.com/EmilyMarkowitz-NOAA/template_website_cv>)*
 
-<br> 
+<br><br>
 
-## DataCamp
+# DataCamp
 
-I will get you free access to coding support in DataCamp.  For now, please sign up here using your PSU ADDRESS : <https://www.datacamp.com/>
+I will get you free access to coding support in DataCamp. For now, please sign up here using your PSU ADDRESS : <https://www.datacamp.com/>
 
-<br>
+<br><br>
 
-## Khan Academy
+# Khan Academy
 
-We will also use Khan Academy for code support.  Please make an account here, again using your PSU address. https://www.khanacademy.org/signup 
+We will also use Khan Academy for code support. Please make an account here, again using your PSU address. <https://www.khanacademy.org/signup>
 
-<br> <br> 
+<br> <br>
 
-# Getting set up in R & R studio 
+# R and R-Studio
 
 There are two ways to do the labs, either on your own computer or on the R studio Cloud website. You can switch between them easily as you need.
 
@@ -79,12 +82,25 @@ There are two ways to do the labs, either on your own computer or on the R studi
 
 PSU computers are so out of date that we will NOT be using the versions of R installed on the PSU computers (instead you will use the website/cloud)
 
+**EVERYONE SHOULD MAKE A CLOUD ACCOUNT (see below)**
 
-<br> 
+<br>
 
-## Posit/R-Studio Cloud - EVERYONE DO THIS
+#### ["I already have R and R studio on my laptop"]{.underline}
 
-This is an website based version of R-Studio. and I believe it's free for the first 25hrs each month. If you need more time, you can make a new account, or pay for one month, or move to your desktop.
+-   IT IS VERY IMPORTANT THAT EVERYONE IS RUNNING THE MOST UP-TO-DATE VERSION OF R AND RStudio. <br>
+
+-   The easiest way to update is to re install. You will not lose access to old work. Follow these instructions verbatim.
+
+<br><br>
+
+## Posit/R-Studio Cloud Website
+
+This is an website based version of R-Studio. <br><br>
+
+#### [EVERYONE]{.underline} SHOULD SIGN UP FOR AN ACCOUNT HERE:  <https://posit.cloud/>
+
+I believe it's free for the first 25hrs each month then a few dollars a month. Sadly there is no student pricing right now. If you run out of free time, you can make a new account, or pay for one month, or move to your desktop.
 
 -   Advantages:
     -   It's always up to date
@@ -94,53 +110,91 @@ This is an website based version of R-Studio. and I believe it's free for the fi
     -   You have to be online; bad internet connections make it harder
     -   It's weirdly 'buggy'. Things like you will need to install packages every lab
 
-**EVERYONE SHOULD SIGN UP FOR AN ACCOUNT HERE: <https://posit.cloud/>** Sadly there is no student pricing right now.
+<br><br>
 
-<br><br> 
+## RStudio Desktop 
 
-## RStudio Desktop - DO THIS EVEN IF YOU ALREADY HAVE RSTUDIO
+Here need to do two things. <br>
 
-If you wish to use your own computer, we need to do two things. First, teach the computer to 'speak R'. Secondly download the RStudio software.
+-   First, teach the computer to 'speak R'.
 
-IT IS VERY IMPORTANT THAT EVERYONE IS RUNNING THE MOST UP-TO-DATE VERSION OF R AND RStudio. The easiest way to update is to re install. You will not lose access to old work.
+-   Secondly download the RStudio software.<br><br>
 
-**So follow these instructions: even if you already have R/Rstudio on your computer.**
+**The version number matters.**
 
-1.  Go here: <https://posit.co/download/rstudio-desktop/>
-2.  First, click the Install R button
+**Follow these instructions exactly, even if you already have R/Rstudio on your computer.**<br><br>
+
+### 1. Installing R.
+
+First, we teach the computer to 'speak R'.
+
+Go here: <https://posit.co/download/rstudio-desktop/>. Click the Install R button <br>
 
 ```{r, Tut_Fig3, echo=FALSE, fig.cap = "Click here!",fig.align='center'}
 knitr::include_graphics('./Figures/fig3_InstallR.png')
 ```
 
-3.  Click the link and you will go to a terrifying website called CRAN R.
+<br><br>
 
-```{r, Tut_Fig4a, echo=FALSE, fig.cap = "*Choose your computer type*",fig.align='center'}
+Click the link and you will go to a terrifying website called CRAN R.
+
+```{r, Tut_Fig4, echo=FALSE, fig.cap = "*Choose your computer type*",fig.align='center'}
 knitr::include_graphics('./Figures/fig4_CranR.png')
 ```
 
-a)  If you are on a WINDOWS/PC computer, click this link and follow through to install R. Harman is an R Windows user. Now, move to part 4 to install R studio.
+<br><br>
 
-```{r, Tut_Fig4b, echo=FALSE, fig.cap = "*Choose your computer type*",fig.align='center'}
-knitr::include_graphics('./Figures/fig4a_InstallR MAC.png')
+#### If you are on a WINDOWS/PC computer
+
+```{r, Tut_Fig4a, echo=FALSE, fig.cap = "*Choose your computer type*",fig.align='center'}
+knitr::include_graphics('./Figures/fig4a_InstallR WINDOWS.png')
 ```
 
-b) If you are a Mac user, you will need EITHER one of these two files. (if your computer is new, try the first one, if it's older try the second - the wrong one simply won't work).
+Click the "install for the first time" link and follow through to install R - EVEN IF YOU ALREADY HAVE R AND R STUDIO INSTALLED. <br><br>
 
-   i. Click the filename to download
-   ii. Open the download and follow the instructions.
-   iii. Now, move to part 4 to install R studio.
-   
-4. Go back here: <https://posit.co/download/rstudio-desktop/>.  Click the Install R-Studio button
-   
-```{r, Tut_Fig5, echo=FALSE, fig.cap = "*Will look different for windows*",fig.align='center'}
+Say yes to all the default options. Harman is an R Windows user if you need help. <br> **Now, move to part 4 to install R studio.**
+
+<br> <br>
+
+#### If you are on a MAC/AppleMac
+
+If you are a MAC user, you will need [EITHER]{.underline} one of these two files. If your computer is new, try the top one, if it's older try the second - the wrong one simply won't work.
+
+```{r, Tut_Fig4b, echo=FALSE, fig.cap = "*Choose your computer type*",fig.align='center'}
+knitr::include_graphics('./Figures/fig4b_InstallR MAC.png')
+```
+
+1.  Click the filename to download <br><br>
+2.  MOVE THE DOWNLOAD OUTSIDE YOUR DOWNLOAD FOLDER (they have a weird bug.) Put it on your desktop <br><br>
+3.  Open the download and follow the instructions. <br><br>
+4.  **Now, move to part 4 to install R studio.**
+
+<br> <br>
+
+### 2. Installing R studio
+
+Go back here: <https://posit.co/download/rstudio-desktop/>. Click the Install R-Studio button
+
+```{r, Tut_Fig5, echo=FALSE, fig.align='center'}
 knitr::include_graphics('./Figures/fig5_InstallRstudio.png')
-```   
-a) If you are on a windows computer, install the same way you install any new software
+```
 
-b) If you are on a MAC, download the file, click to open, then DRAG it over to applications. If it asks to overwrite, say yes.
+<br> <br>
+
+**If you are on a WINDOWS computer**, install the same way you install any new software
+
+<br> <br>
+
+If you are on a MAC:
+
+-   Download the dmg file, click to open, then DRAG it over to applications.
+
+-   If it asks to overwrite, say yes.
+
+-   It might get angry at this stage if your mac is very out of date.
 
 ```{r, Tut_Fig5b, echo=FALSE, fig.cap = "*Will look different for windows*",fig.align='center'}
 knitr::include_graphics('./Figures/fig5b_RstudioMacinstall.png')
-```   
+```
 
+### Congrats!  You have all the software needed
