@@ -1,9 +1,27 @@
 name: "GEOG-364: Lab Book 23/24"  
 author: "Dr Helen Greatrex"  
-output_dir: "docs"  
-output:  
-  html_document:  
-    self_contained: no  
-    theme: flatly  
-navbar:  
-  title: "Websites with R Markdown" 
+output_dir: "docs"
+exclude: ["*.xls", "*.csv","*.R"]
+output:
+  html_document:
+    toc: true
+    toc_float: yes
+    toc_depth: 2
+    df_print: paged
+    theme: flatly
+    highlight: tango
+navbar:
+  title: "GEOG 364 Lab Book"
+  left:
+  - text: "Hello"
+    href: /
+  - text: "Tutorials"  
+    menu: 
+    - text: "What is R?"
+      href: in_Tutorial01WhatisR.html
+    - text: "Basics"
+      href: in_Tutorial03RBasics.html
+  - text: "Labs"  
+    menu: 
+    - text: "Lab 1"
+      href: in_G364_Lab1_2324.html

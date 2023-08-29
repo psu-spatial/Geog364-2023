@@ -1,3 +1,21 @@
 ---
-title: "GEOG-364 Lab Book: 23/24"
+title: "STAT-462 Lab Book"
+author: "Dr Helen Greatrex"
+date: "1/2/2023"
 ---
+
+<br>
+
+# Welcome!
+
+This is your home for all your instructions, labs, tutorials and projects.
+
+You can find the class syllabus here: <https://psu.instructure.com/courses/2260204>
+
+Look at the tabs to find:
+
+-   [Tutorials (constantly updated)]
+-   [Your Lab Overview & Labs]
+-   [Project Space] (to be added)
+
+This book is made using R-Markdown and the flatly theme
