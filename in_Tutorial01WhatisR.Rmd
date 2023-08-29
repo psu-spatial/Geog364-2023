@@ -97,7 +97,7 @@ embed_url("https://www.youtube.com/watch?v=SdMPh5uphO0")
 
 <br><br>
 
-# What is R-Markdown?
+# 3. What is R-Markdown?
 
 <br>
 
@@ -112,3 +112,33 @@ knitr::include_graphics('./Figures/fig6_AboutMarkdown.png')
 ```
 
 <br>
+
+R Markdown is a document format that blends the capabilities of R (a programming language primarily used for statistical computing and data analysis) with the formatting and layout capabilities of Markdown (a lightweight markup language). It allows you to create dynamic documents that combine narrative text, code, and the output of that code (such as tables, plots, and figures) in a single document. <br>
+
+Here's how R Markdown works:
+
+1.  **Narrative Text**: You can write your document using plain text, using Markdown syntax to format your text, add headings, lists, links, and more.
+
+2.  **Code Chunks**: You can embed R code chunks within your Markdown document. These chunks are demarcated by triple backticks or by the "\`\`\`{r}" syntax, and they allow you to execute R code directly within your document.
+
+3.  **Output Display**: When you knit (compile) the R Markdown document, the R code within the code chunks is executed, and the output is dynamically displayed in the final document. This output can include tables, plots, statistical summaries, and more.
+
+4.  **Knitting**: The process of converting an R Markdown document into a final, formatted document is called "knitting." When you knit an R Markdown document, R code is executed, the output is generated, and the Markdown text and the output are combined into a single document.
+
+5.  **Flexibility**: R Markdown supports various output formats, including HTML, PDF, Word, presentations, and more. This means you can easily create different types of documents from the same source.<br><br>
+
+R Markdown is widely used for creating reports, documents, tutorials, and presentations that involve data analysis and visualization. It is a powerful tool for reproducible research because it allows you to document your analysis process, code, and results in a single document. Changes to the code or data can be easily updated and reflected in the final document without manually reformatting everything.
+
+To use R Markdown, you typically need to have R and a few additional packages installed. You write your document in a plain text file with the **`.Rmd`** extension, and then use an R Markdown "knitting" process to generate the final document in your desired format. We will cover this in the next tutorial.
+
+<br><br>
+
+## Some examples?
+
+1.  **R Markdown Gallery**: The official R Markdown Gallery showcases a variety of R Markdown examples, including interactive visualizations, reports, presentations, and more. You can find this gallery on the R Markdown website.
+
+    Website: [**R Markdown Gallery**](https://rmarkdown.rstudio.com/gallery.html)
+
+2.  **R Bloggers**: R Bloggers is a community-driven site that aggregates blog posts related to R programming. Many R bloggers share their R Markdown examples, tutorials, and creative outputs on this platform.
+
+    Website: [**R Bloggers**](https://www.r-bloggers.com/)

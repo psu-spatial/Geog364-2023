@@ -39,7 +39,7 @@ THAN SKIPPING TO THE END!
 
 <br> <br>
 
-## A. Choosing a lab partner. 
+## A. Choosing a lab partner.
 
 #### We will be doing an in-class exercise to choose lab groups
 
@@ -66,30 +66,55 @@ HERE**](in_G364_Lab0_FAQ.rmd). It explains
 
 <br> <br>
 
-## C. Tutorial 1, what are R, R-studio and Markdown?
+## C. What are R, R-studio and Markdown? (Tutorial 3)
 
-Follow [TUTORIAL 1](https://psu-spatial.github.io/Geog364-2023/in_Tutorial01WhatisR.html )to learn about R, R-studio and Markdown.  You're going to be asked about this below, so you may as well read it now.
+Follow [TUTORIAL
+1](https://psu-spatial.github.io/Geog364-2023/in_Tutorial01WhatisR.html)to
+learn about R, R-studio and Markdown. You're going to be asked about
+this below, so you may as well read it now.
 
 <br> <br>
 
-## D. Tutorial 2, Initial Semester set-up
+## D. Initial Semester set-up (Tutorial 2)
 
-Follow [TUTORIAL 2](https://psu-spatial.github.io/Geog364-2023/in_Tutorial02SetUp.html)to install everything needed for the labs. You're going to be asked about this below, so you may as well read it now.
+Follow [TUTORIAL
+2](https://psu-spatial.github.io/Geog364-2023/in_Tutorial02SetUp.html)
+to install everything needed for the GEOG-364 this semester. **WE WILL
+DO THIS IN CLASS TOGETHER**
 
+You're going to be asked about this below, so you may as well read it
+now.
 
-## E. Tutorial 3, Lab set-up 
+## E.  Lab set-up (Tutorial 4)
 
-Follow [TUTORIAL 3](to be added) to get started on today's lab.
+We will cover projects, opening files, saving, themes and markdown
+visual model. Tutorial to be updated. **WE WILL DO THIS IN CLASS
+TOGETHER**
 
+## F. Paragraph questions
+
+Please copy each these questions into your markdown text. Make them
+"heading 3" format.
+
+Underneath each one in a new paragraph, answer the question. At least 3
+or 4 sentences for each <br><br>
+
+1.  In your own words, explain the course late policy (hint, see FAQs)
+    <br><br>
+
+2.  When are Dr G's office hours? (hint, see Canvas)<br><br>
+
+3.  Can you copy/paste each others report code or text? <br><br>
+
+4.  Use something like spotify (a programme that plays music) to explain
+    the difference between R and R-Studio. <br><br> (hint, tutorial 1)
+
+5.  5\. Explain the range of different formats a markdown document can
+    be made into <br><br> (hint, tutorial 1)
 
 ## F. Tutorial 4, Basic Maths
+
 to be added
-
-
-## G. Tutorial 5, Follow up questions
-to be added
-
-
 
 ## H. Submitting your Lab
 
