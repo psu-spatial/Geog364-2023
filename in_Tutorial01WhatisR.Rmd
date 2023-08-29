@@ -45,25 +45,15 @@ GetRLatest <- function(Website="https://cran.r-project.org/banner.shtml"){
 
 ```
 
-# What are R and R studio?
+# R is a LANGUAGE
 
-First, watch this 1 minute video on R-Studio: <https://www.rstudio.com/products/rstudio/>
+**R** is a free, open source statistical programming language. It contains millions of words/commands that are useful for dataset cleaning, analysis, and visualization.
 
-Or, if you prefer, this 5 minute video
-
-```{r,echo=FALSE,fig.align='center'}
-embed_url("https://www.youtube.com/watch?v=SdMPh5uphO0")
-```
-
-### R is a LANGUAGE {.unnumbered}
-
-**R** is a free, open source statistical programming language.
-
-It contains millions of commands that are useful for dataset cleaning, analysis, and visualization.
-
-By a "programming language", I mean it is a collection of commands that you can type into the computer in order to analyse and visualise data. The easiest way I find to think about R is that it is literally a language, like Spanish, English or Hindi.
+By a "programming language", I mean it is a collection of commands that you can type into the computer in order to analyse and visualise data.  The easiest way I find to think about R is that it is literally a language, like Spanish, English or Hindi.  Or like a set of magic commands in a fantasy novel.
 
 Learning R means learning vocabulary and grammar in order to communicate. It also means it gets easier with experience and practice..
+
+<br>
 
 If you open "R" on your computer (DON'T DO THIS), you will see a simple window with a cursor ready to hear commands. There is no help or support. This is how I learned to programme in R. It's not fun!
 
@@ -71,7 +61,9 @@ If you open "R" on your computer (DON'T DO THIS), you will see a simple window w
 knitr::include_graphics('./Figures/fig1_RConsole.png')
 ```
 
-### R-STUDIO/POSIT is a Software App {.unnumbered}
+<br><br>
+
+# R-STUDIO/POSIT is a Software App 
 
 **R-studio** is a *software program/app*, like Microsoft Word, or the Chrome Web-browser. It's has recently been rebranded to Posit. There is a version you can download onto your own computer, and a version that runs on a website called 'R-Studio Cloud'.
 
@@ -79,7 +71,23 @@ knitr::include_graphics('./Figures/fig1_RConsole.png')
 
 It's a program that's designed to make it easy to write R-commands. RStudio has many useful features. For example, you can easily see help files, run code, see your results and create outputs like this lab book! R-Studio also allows us to make interactive documents called R-Markdown files.
 
+<br>
+
 ```{r, Tut_Fig2, echo=FALSE, fig.cap = "*R-studio is much more sophisticated*",fig.align='center'}
 knitr::include_graphics('./Figures/fig2_RStudioIntro.png')
 ```
+
+<br> 
+
+Watch this 5 min video on the newest version of R studio.
+
+```{r,echo=FALSE,fig.align='center'}
+embed_url("https://www.youtube.com/watch?v=SdMPh5uphO0")
+```
+
+<br><br>
+
+# MARKDOWN is a way to publish your output 
+
+Add across from Stat462
 
