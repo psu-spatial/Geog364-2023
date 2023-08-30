@@ -32,7 +32,9 @@ library(units)
 
 In this tutorial we are going to cover setting up each lab. This involves making projects, packages and R Markdown documents.
 
-# Projects
+# Starting a new lab
+
+## About Projects
 
 In this class, we will be using R-Projects:
 
@@ -47,9 +49,7 @@ Learn more here.
 
 We will cover how to make projects for R studio cloud and desktop in the set up below.
 
-# Lab Set-Up: Projects
-
-## Using desktop
+## Projects using Desktop
 
 Everything should now be installed. If not, go back to Tutorial 2.
 
@@ -73,7 +73,7 @@ Steps 3-7 are shown graphically in the figure below.
 knitr::include_graphics('./Figures/fig11_projectcreation.png')
 ```
 
-#### How to check you are in a project {.unnumbered}
+### How to check you are in a project {.unnumbered}
 
 R will change slightly. If you look at the top of the screen in the title bar, it should say something like *GEOG364-Lab1-PROJECT - R Studio*.
 
@@ -93,7 +93,7 @@ getwd()
 
 <br><br>
 
-#### Returning to your lab project
+### Returning to your lab project
 
 OK, let's imagine that you get halfway through your lab and your computer dies. How do you get back to your Lab work? Try this now. Close down R-Studio.
 
@@ -113,7 +113,7 @@ knitr::include_graphics('./Figures/fig13_projectopen.png')
 
 <br><br>
 
-## Using R-Studio Cloud
+## Projects using Rstudio/posit Cloud
 
 Go to this webpage. <https://login.posit.cloud/login> You can get here from any web-browser, You do not need a special computer.
 
@@ -165,11 +165,7 @@ Make a project for the lab on the cloud as above, then click the `upload` button
 knitr::include_graphics('./Figures/fig16_import.png')
 ```
 
-# What is the R screen showing me?
-
-Want to understand more about what the screens do, or change the appearance?
-
-## The screen
+# The RStudio screen
 
 You will be greeted by three panels:
 
@@ -183,21 +179,18 @@ knitr::include_graphics('./Figures/fig17_quadrants.png')
 
 If you wish to learn more about what these windows do, have a look at this resource, from the Pirates Guide to R: <https://bookdown.org/ndphillips/YaRrr/the-four-rstudio-windows.html>.
 
-If you have used R before, you might see that there are variables and plots etc already loaded. It is always good to clear these before you start a new analysis. To do this, click the little broom symbol in your environment tab
+If you have used R before, you might see that there are variables and plots etc already loaded. It is always good to clear these before you start a new analysis. To do this, click the little broom symbol in your environment tab. <br><br>
 
+# Global Settings
 
-# Lab Set-Up: Global options
-
-## Accessing global settings
+## Changing global settings
 
 Some of the default R settings are worth changing to make life smoother. We do this in global settings. There are two places you might find this menu
 
 1.  Click on the tools menu button on the top right of the screen,-\> Global Options OR
 2.  Click on the R-studio menu button on the top left of the screen, then click Preferences.
 
-## Changing annoying options
-
-I suggest:
+On the main options screen, I suggest:
 
 -   UNCLICK "Restore most recently opened project at startup"
 
@@ -205,32 +198,124 @@ I suggest:
 
 -   Set "Save workspace to .RData on" exit to Never
 
--   UNCLICK "Restore previously open source documents on startup"
+-   UNCLICK "Restore previously open source documents on startup"<br><br>
 
 ## Changing the appearance
 
-You can also click the appearances menu item to change how the screen looks. For example, maybe you concentrate better with a dark background.
+You can also click the appearances menu item to change how the screen looks. For example, maybe you concentrate better with a dark background.<br><br>
 
 ## Moving the windows around
 
 Like me, you might find you like the different quadrants in a different order. To change this, look at the Panes layout menu item (you can also get here via the `View` menu,then `/Panes/Pane Layout`)
 
-I tend to like the console to be top left and scripts to be top right, with the plots and environment on the bottom - but this is personal choice.
+I tend to like the console to be top left and scripts to be top right, with the plots and environment on the bottom - but this is personal choice.<br>
 
 ```{r, Tut_Fig18, echo=FALSE, fig.cap = "My preferred set up",fig.align='center'}
 knitr::include_graphics('./Figures/fig18_panes.png')
 ```
 
+<br><br>
 
+# R-Packages/libraries
 
+<br>
 
+## What are packages?
 
+As described earlier, we program in R by typing a series of commands. R is open source and anyone can create a new command. Over the last 20 years,tens of millions of new custom commands have been created.
 
+Commands tend to be grouped together into collections called `Packages` or `Libraries` (two names for the same thing). For example, one package contains the complete works of Shakespeare; another allows interactive website design; another allows advanced Bayesian statistics. There is a package for literally everything and there are now over 20,000 packages available. You can see a selection here: <https://cran.r-project.org/web/packages/available_packages_by_name.html> <br>
 
-First watch this 5 min video below for some pointers. We will also go through the video more slowly below:
+**A close analogy is your phone:** There are millions of apps available from banking, to 50 different calendar apps. You don't have every app in the world installed on your phone - and you don't have every app you *do* download running at the same time. Instead you download the apps that you think you will need (occasionally downloading a new one on the fly) - and when you need to use an app, you click on it to open.<br>
 
-```{r,echo=FALSE,fig.align='center'}
-embed_url("https://youtu.be/SWxoJqTqo08?t=41")
+This is exactly the same in R. To access the commands in a package we need these two steps:
+
+1.  ONCE ONLY: Download the package from the internet, in the way you download an app from the app store
+2.  EVERY TIME: Load the packages you want, like clicking an app icon to open it. <br><br>
+
+## Downloading a new package
+
+### Manually click
+
+This is like going to the app store to get a new app. Just like you only go to the app store once, this is a one-off for each package. NOTE! For R studio cloud online, you might have to do this for each project.
+
+-   Look for the quadrant with the packages tab in it.
+    -   You will see a list of packages/apps that have already been installed.
+    -   Click the INSTALL button in the Packages tab menu (on the left)
+    -   Start typing the package name and it will show up (check the include dependencies box). Install the package.
+
+### Little yellow banner
+
+-   R will sometime tell you that you are missing a package (sometimes a little yellow ribbon), click yes to install!
+
+```{r, Fig19, echo=FALSE, fig.align='center',out.width="100%"}
+knitr::include_graphics('./Figures/fig19_yellowbanner.png')
+```
+
+### Using the console
+
+You can also use a command to install a new package:
+
+```{r, eval=FALSE}
+install.packages("bardr")
+```
+
+DO NOT INCLUDE THIS IN YOUR FINAL SCRIPT. The command means "go to the app store" and download a package. You don't want to do this when pressing knit. <br><br>
+
+### Problem solving
+
+#### WHY IS MY PACKAGE NOT DOWNLOADING?
+
+Sometimes R will ask you if you want to install binaries or other things. IT WILL ASK THIS IN THE CONSOLE. It expects you to type yes or no, and to press enter to continue. Try yes, if it doesn't work (esp xfun), try no. <br><br>
+
+#### R KEEPS ASKING TO RESTART!
+
+Sometimes R-Studio might want to restart when downloading packages and occasionally gets confused. If it keeps asking, press cancel, close R-studio, reopen and try again. If it really doesn't want to work, open the R program itself and run in the console there (or talk to Dr G) <br><br>
+
+## Loading/Using the commands inside a package
+
+Just as going to the app store doesn't check your credit-card balance or make an Instagram post, simply *downloading* a package from the app-store doesn't make the commands immediately available. For that you need to load it (just as you click on a phone app to open it).
+
+**I will tell you which packages you need for each lab, but if R tells you it wants a package, then install it AND load it.**
+
+This can be done with the `library()` command.
+
+For example, this command loads the full works of Shakespeare from the the bardr package. (<https://www.rdocumentation.org/packages/bardr/versions/0.0.9>). If you want to try this, you might need to first install bardr using the instructions above.
+
+```{r, eval=FALSE}
+library(bardr)
 ```
 
 <br>
+
+### Problem Solving
+
+#### NOTHING HAPPENED!
+
+If you have managed to load a package successfully, often nothing happens - this is great! It means it loaded the package without errors.
+
+#### THERE WAS A LOAD OF TEXT OUTPUT. AN ERROR?
+
+Hard to tell. So I suggest running the library command TWICE! This is because many packages will print "friendly messages" or "welcome text" the first time you load them.
+
+For example, this is what shows up when you install the tidyverse package. The welcome text is indicating the sub-packages that tidyverse downloaded and also that some commands now have a different meaning.
+
+```{r, fig20, echo=FALSE, fig.cap = "Tidyverse install messages",fig.align='center',out.width="100%"}
+knitr::include_graphics('./Figures/fig20_friendlytext.png')
+```
+
+**To find out if what you are seeing is a friendly message or an error, run the command again. If you run it a second time and and nothing happens, then you're fine.**
+
+<br>
+
+## Using a single command from a package
+
+ADVANCED: Sometimes several packages name a command the same word and you want to specify which package you want to use.
+
+You can do this using the :: symbol. For example, this command *forces* the computer to use the 'dplyr package' version of filter.
+
+```{r, eval=FALSE}
+dplyr::filter(mydata)
+```
+
+<br><br>
