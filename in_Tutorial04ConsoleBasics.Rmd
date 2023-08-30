@@ -30,292 +30,432 @@ library(units)
 
 ```
 
-In this tutorial we are going to cover setting up each lab. This involves making projects, packages and R Markdown documents.
 
-# Starting a new lab
+# Getting started
 
-## About Projects
+First watch this 5 min video above for some pointers. We will also go through the video more slowly below:
 
-In this class, we will be using R-Projects:
-
--   On Rstudio cloud, this is how you set up each lab.
--   On the desktop, this is a folder that will store everything to do with each lab in one place on your computer. Each lab will be its own project.
-
-This is incredibly useful - it means that if you switch from R-Cloud, to the lab computers, to your laptop, all you have to do is to move the folder and everything will just work. Equally, its easy to compare labs.
-
-Learn more here.
-
-[![](./Figures/Fig9_ProjectVideo.png)](https://www.linkedin.com/learning/learning-the-r-tidyverse/why-should-you-use-projects-in-rstudio?u=76811570)
-
-We will cover how to make projects for R studio cloud and desktop in the set up below.
-
-## Projects using Desktop
-
-Everything should now be installed. If not, go back to Tutorial 2.
-
-```{r,Tut_Fig10, echo=FALSE, out.width="80%",fig.align='center'}
-knitr::include_graphics('./Figures/fig10_Startup_Logos.png')
-```
-
-1.  IMPORTANT! If you haven't already, on an easy to access place on your computer, make a folder called GEOG364. This is where ALL your labs are going to live. <br>
-
-2.  Now everything is installed, open R-studio (NOT R!). <br>
-
-Steps 3-7 are shown graphically in the figure below.
-
-3.  Go to the Main File menu at the [very top left]{.underline} and click `New Project` <br>\
-4.  Select `New Directory`, then `New Project`<br>\
-5.  Name your project *GEOG364-Lab1-PROJECT* (or whatever lab it us) <br>\
-6.  Under "create project as a subdirectory of", hit the browse button and find your GEOG364 folder (you just need to be in the folder, you don't need to have selected anything). Press open <br>\
-7.  Finally, press `Create Project`<br>
-
-```{r, Tut_Fig11, echo=FALSE}
-knitr::include_graphics('./Figures/fig11_projectcreation.png')
-```
-
-### How to check you are in a project {.unnumbered}
-
-R will change slightly. If you look at the top of the screen in the title bar, it should say something like *GEOG364-Lab1-PROJECT - R Studio*.
-
-The Files tab should have gone to your project folder. Essentially, R-Studio is now "looking" inside your Lab 1 folder, making it easier to find your data and output your results.
-
-```{r, Tut_Fig12, echo=FALSE, fig.cap="How to check you are in a project"}
-knitr::include_graphics('./Figures/fig12_projectcheck.png')
+```{r,echo=FALSE,fig.align='center'}
+embed_url("https://youtu.be/SWxoJqTqo08?t=41")
 ```
 
 <br>
 
-If you want one, final check, try typing this into the console (INCLUDING THE EMPTY PARANTHESES/BRACKETS), press enter and see if it prints out the location of Lab 1 on your computer. If not, talk to an instructor.
+# The Console
+
+The console window is essentially a phone call with your computer, where you "speak" in R.
+
+-   The computer has a little `>` symbol to say it is listening/waiting for your command
+-   You type in a command
+-   The computer tries to carry it out and will print the answer directly onto the screen
+
+Let's start by the simplest command possible. Type this command into your R console and press enter to run.
 
 ```{r, eval=FALSE}
-getwd()
+1+1
 ```
 
-<br><br>
+When you press enter, it should give you the answer.... 2
 
-### Returning to your lab project
-
-OK, let's imagine that you get halfway through your lab and your computer dies. How do you get back to your Lab work? Try this now. Close down R-Studio.
-
-To reopen a lab:
-
-1.  **DO NOT RE-OPEN R-STUDIO!**
-
-2.  Instead navigate on your computer to your *GEOG364/GEOG364-Lab1-PROJECT* folder.
-
-3.  Double click on the *GEOG364-Lab1-PROJECT*.RProj file.
-
-This will reopen R for that specific lab, so you can continue where you left off. It means you can also open several versions of R studio for multiple labs, which can be very useful in staying sane
-
-```{r, Tut_Fig13, echo=FALSE}
-knitr::include_graphics('./Figures/fig13_projectopen.png')
-```
-
-<br><br>
-
-## Projects using Rstudio/posit Cloud
-
-Go to this webpage. <https://login.posit.cloud/login> You can get here from any web-browser, You do not need a special computer.
-
-When you log in, you should see a dashboard like this.
-
-```{r, Tut_Fig14, echo=FALSE, fig.cap = "*The Cloud dashboard*",fig.align='center'}
-knitr::include_graphics('./Figures/fig14_clouddash.png')
-```
-
-YOU SHOULD MAKE A NEW PROJECT FOR EACH LAB.
-
-You make a new project by clicking the button on the top right. You can open different projects in different tabs on your browser. You can also go back to the work-space at any time.
-
-### Returning to your lab project
-
-On the cloud this is very easy, just go back to <https://posit.cloud/content/yours>
-
-### Downloading files or switching to desktop
-
-Let's say you want to switch to the desktop but save your progress. Or you want to submit your work to Canvas!
-
-To switch to desktop, download/install the desktop version using the tutorials here. Then make a new project using the instructions above.
-
-Either way:
-
-1.  On the R-Studio Cloud website; inside your project, go to the files tab (next to Projects/Help in one quadrant. You will see a list of files, one with the file type .Rmd (your code) and one with .html(the website you made when you pressed knit). Look at the red circle in the pic below
-
-2.  Click the check-box to the left of the .RmD file
-
-3.  Look just above at the Files quadrant settings menu. Click the blue "more" cogwheel icon. (see diagram). You might need to make R-Studio full screen to see it, it cuts off if the window is too small.
-
-4.  Now click Export This will download the file
-
-5.  REPEAT FOR THE HTML (you can do them together but it exports as a zip)
-
-6.  Submit both files on Canvas or put them in your project file.
-
-```{r, Tut_Fig15, echo=FALSE, fig.cap = "*Downloading the files*",fig.align='center'}
-knitr::include_graphics('./Figures/fig15_export.png')
-```
-
-### Uploading files {.unnumbered}
-
-Sometimes you want to put your code into R-Studio Cloud, for example if for one week you don't want to bring your laptop.
-
-Make a project for the lab on the cloud as above, then click the `upload` button inside your project in the files tab and upload your files. You will only need the .RmD file and any data files.
-
-```{r, Tut_Fig16, echo=FALSE, fig.cap = "This is zoomed in to your files quadrant",fig.align='center'}
-knitr::include_graphics('./Figures/fig16_import.png')
-```
-
-# The RStudio screen
-
-You will be greeted by three panels:
-
--   The interactive R console (entire left)
--   Environment/History (tabbed in upper right)
--   Files/Plots/Packages/Help/Viewer (tabbed in lower right)
-
-```{r, Tut_Fig17, echo=FALSE, fig.align='center'}
-knitr::include_graphics('./Figures/fig17_quadrants.png')
-```
-
-If you wish to learn more about what these windows do, have a look at this resource, from the Pirates Guide to R: <https://bookdown.org/ndphillips/YaRrr/the-four-rstudio-windows.html>.
-
-If you have used R before, you might see that there are variables and plots etc already loaded. It is always good to clear these before you start a new analysis. To do this, click the little broom symbol in your environment tab. <br><br>
-
-# Global Settings
-
-## Changing global settings
-
-Some of the default R settings are worth changing to make life smoother. We do this in global settings. There are two places you might find this menu
-
-1.  Click on the tools menu button on the top right of the screen,-\> Global Options OR
-2.  Click on the R-studio menu button on the top left of the screen, then click Preferences.
-
-On the main options screen, I suggest:
-
--   UNCLICK "Restore most recently opened project at startup"
-
--   UNCLICK "Restore .RData into workspace on startup"
-
--   Set "Save workspace to .RData on" exit to Never
-
--   UNCLICK "Restore previously open source documents on startup"<br><br>
-
-## Changing the appearance
-
-You can also click the appearances menu item to change how the screen looks. For example, maybe you concentrate better with a dark background.<br><br>
-
-## Moving the windows around
-
-Like me, you might find you like the different quadrants in a different order. To change this, look at the Panes layout menu item (you can also get here via the `View` menu,then `/Panes/Pane Layout`)
-
-I tend to like the console to be top left and scripts to be top right, with the plots and environment on the bottom - but this is personal choice.<br>
-
-```{r, Tut_Fig18, echo=FALSE, fig.cap = "My preferred set up",fig.align='center'}
-knitr::include_graphics('./Figures/fig18_panes.png')
-```
-
-<br><br>
-
-# R-Packages/libraries
-
-<br>
-
-## What are packages?
-
-As described earlier, we program in R by typing a series of commands. R is open source and anyone can create a new command. Over the last 20 years,tens of millions of new custom commands have been created.
-
-Commands tend to be grouped together into collections called `Packages` or `Libraries` (two names for the same thing). For example, one package contains the complete works of Shakespeare; another allows interactive website design; another allows advanced Bayesian statistics. There is a package for literally everything and there are now over 20,000 packages available. You can see a selection here: <https://cran.r-project.org/web/packages/available_packages_by_name.html> <br>
-
-**A close analogy is your phone:** There are millions of apps available from banking, to 50 different calendar apps. You don't have every app in the world installed on your phone - and you don't have every app you *do* download running at the same time. Instead you download the apps that you think you will need (occasionally downloading a new one on the fly) - and when you need to use an app, you click on it to open.<br>
-
-This is exactly the same in R. To access the commands in a package we need these two steps:
-
-1.  ONCE ONLY: Download the package from the internet, in the way you download an app from the app store
-2.  EVERY TIME: Load the packages you want, like clicking an app icon to open it. <br><br>
-
-## Downloading a new package
-
-### Manually click
-
-This is like going to the app store to get a new app. Just like you only go to the app store once, this is a one-off for each package. NOTE! For R studio cloud online, you might have to do this for each project.
-
--   Look for the quadrant with the packages tab in it.
-    -   You will see a list of packages/apps that have already been installed.
-    -   Click the INSTALL button in the Packages tab menu (on the left)
-    -   Start typing the package name and it will show up (check the include dependencies box). Install the package.
-
-### Little yellow banner
-
--   R will sometime tell you that you are missing a package (sometimes a little yellow ribbon), click yes to install!
-
-```{r, Fig19, echo=FALSE, fig.align='center',out.width="100%"}
-knitr::include_graphics('./Figures/fig19_yellowbanner.png')
-```
-
-### Using the console
-
-You can also use a command to install a new package:
-
-```{r, eval=FALSE}
-install.packages("bardr")
-```
-
-DO NOT INCLUDE THIS IN YOUR FINAL SCRIPT. The command means "go to the app store" and download a package. You don't want to do this when pressing knit. <br><br>
-
-### Problem solving
-
-#### WHY IS MY PACKAGE NOT DOWNLOADING?
-
-Sometimes R will ask you if you want to install binaries or other things. IT WILL ASK THIS IN THE CONSOLE. It expects you to type yes or no, and to press enter to continue. Try yes, if it doesn't work (esp xfun), try no. <br><br>
-
-#### R KEEPS ASKING TO RESTART!
-
-Sometimes R-Studio might want to restart when downloading packages and occasionally gets confused. If it keeps asking, press cancel, close R-studio, reopen and try again. If it really doesn't want to work, open the R program itself and run in the console there (or talk to Dr G) <br><br>
-
-## Loading/Using the commands inside a package
-
-Just as going to the app store doesn't check your credit-card balance or make an Instagram post, simply *downloading* a package from the app-store doesn't make the commands immediately available. For that you need to load it (just as you click on a phone app to open it).
-
-**I will tell you which packages you need for each lab, but if R tells you it wants a package, then install it AND load it.**
-
-This can be done with the `library()` command.
-
-For example, this command loads the full works of Shakespeare from the the bardr package. (<https://www.rdocumentation.org/packages/bardr/versions/0.0.9>). If you want to try this, you might need to first install bardr using the instructions above.
-
-```{r, eval=FALSE}
-library(bardr)
+```{r}
+1+1
 ```
 
 <br>
 
-### Problem Solving
+Type this command into your R console and press enter to run.
 
-#### NOTHING HAPPENED!
-
-If you have managed to load a package successfully, often nothing happens - this is great! It means it loaded the package without errors.
-
-#### THERE WAS A LOAD OF TEXT OUTPUT. AN ERROR?
-
-Hard to tell. So I suggest running the library command TWICE! This is because many packages will print "friendly messages" or "welcome text" the first time you load them.
-
-For example, this is what shows up when you install the tidyverse package. The welcome text is indicating the sub-packages that tidyverse downloaded and also that some commands now have a different meaning.
-
-```{r, fig20, echo=FALSE, fig.cap = "Tidyverse install messages",fig.align='center',out.width="100%"}
-knitr::include_graphics('./Figures/fig20_friendlytext.png')
+```{r, eval=FALSE}
+# Take the sine function of the number 2, like sin(2) on your calculator
+sin(2)
 ```
 
-**To find out if what you are seeing is a friendly message or an error, run the command again. If you run it a second time and and nothing happens, then you're fine.**
+Here we have a **command** `sin()` applied to the number 2. We also have a **comment** in green, which the computer ignores.
 
 <br>
 
-## Using a single command from a package
+## Spacing and Capital Letters
 
-ADVANCED: Sometimes several packages name a command the same word and you want to specify which package you want to use.
+-   Spacing *mostly* does not matter: `1+1` will generate the same answer as `1      +       1`.
 
-You can do this using the :: symbol. For example, this command *forces* the computer to use the 'dplyr package' version of filter.
+    -   Exception: you cannot have a space between a command name and its ( ) e.g `sin (2)` will fail\`
+
+-   Capital letters DO matter. R is case sensitive.
+
+-   To see previous commands, you can click the history tab (Environment quadrant) or press the up/down arrows on your keyboard, but when you close R, all record of these commands will be lost.
+
+<br>
+
+<br> \
+
+## R as a calculator {#Tut3B_Calc}
+
+When using R as a calculator, the order of operations is the same as you would have learned back in school, so use brackets to force a different order. For example, in either the console or a script, try running these two commands
 
 ```{r, eval=FALSE}
-dplyr::filter(mydata)
+3 + 5 * 2
 ```
 
-<br><br>
+and
+
+```{r, eval=FALSE}
+(3 + 5) * 2
+```
+
+<br>
+
+We can also take shortcuts with our numbers. For example `1:5` means take all the numbers `1 2 3 4 5` (e.g. increment the integers one - to - five). Try typing this command and make sure you understand the result.
+
+```{r}
+(1 + 2) * 5:3
+```
+
+<br>
+
+We can use this trick to make our first plot! Try entering this command and see what happens. It should plot these numbers against each other
+
+```{r, echo=FALSE}
+print(data.frame(x=1:5,y=6:10))
+```
+
+```{r, eval=FALSE,fig.show=FALSE}
+plot(x= 1:5, y= 6:10,xlab="x-axis",ylab="y-axis")
+```
+
+<br> <br>
+
+## Asking questions/comparisons
+
+We can also do comparisons in R - using the special symbols TRUE or FALSE (no quote marks, they are special).
+
+Here we are asking R whether 1 is equal to 1.
+
+```{r}
+# note two equals signs is read as "is equal to"
+1 == 1  
+```
+
+We could also have used
+
+-   `!=` "Not equal to"
+-   `<` "Less than"
+-   `<=` "Less than or equal to\`
+-   `>` "Greater than"
+-   `>=` "Greater than or equal to"
+
+Now ask the computer if the number 12 is less than or equal to the number 10.
+
+<br> <br>
+
+## The + symbol in the console {#Tut3C_plus}
+
+If you type in an incomplete command, R will understand and wait for you to complete it. For example, if you type `1 +` and press enter, R will know that you are not finished typing. So it will move onto the next line but the `>` will have changed into a `+`, which means its waiting for you to complete your command.
+
+**If you want to cancel a command you can simply hit the "Esc" key or press the little stop symbol and R studio will reset.**
+
+Pressing escape isn't only useful for killing incomplete commands: you can also use it to tell R to stop running code (for example if it's taking much longer than you expect), or to get rid of the code you're currently writing.
+
+<br> <br>
+
+## Functions/Commands {#Tut3D_functions}
+
+Watch this short video to learn three important facts about functions:
+
+```{r,echo=FALSE,fig.align='center'}
+embed_url("http://vimeo.com/220490105 ")
+
+```
+
+The power of R lies in its many thousands of these built in commands, or *functions*. In fact, we have already come across one - the plot command. A function, or command is simply an action you can take - like pressing the square root button on a calculator.
+
+**A command is *always* followed by parentheses ( ), inside which you put your "arguments"** (e.g. the thing you want to take the square root of)
+
+Try typing these EXACTLY into the console.
+
+-   `nchar("hello")`
+    -   This will count the number of letters in the word "hello" (e.g.
+        5)  
+-   `file.choose()`
+    -   This will open up an interactive window (sometimes behind the studio screen), choose any file and it will print the location in the console. NOTE WE STILL NEED THE PARENTHESES, but there are no arguments so they are empty.
+
+To understand what I mean about parentheses, try typing each of these commands exactly and see what happens.
+
+```{r, eval=FALSE}
+# Typing this into the console will print out the underlying code
+file.choose 
+
+# Typing it WITH parentheses will run the command. Note for this command, the parentheses are empty!  
+file.choose()
+
+# Typing a ? in front will open the help file for that command in the help quadrant
+?file.choose
+```
+
+Sometimes we need to give the command some additional information as an argument. Anything we wish to tell the command should be included inside the inside the parentheses (separated by commas). The command literally only knows about the stuff inside the parentheses.
+
+```{r, eval=FALSE}
+sin(1) # trigonometry functions.  Apply the sine function to the number 1. 
+
+log(10) # natural logarithm.  Take the natural logarithm of the number 10. 
+
+nchar("hello") # Count the letters in the word hello
+```
+
+We can also add optional extra arguments. For example let's improve our plot. This following command will plot the number 1 to 10 against the numbers 12 to 20, along with some axis labels. When you run this, the plot will show up in the plots tab.
+
+```{r}
+# plot the numbers 1 to 10 against the numbers 11 to 20
+plot(1:10,11:20,col="dark blue", xlab="x values",ylab="GEOG-364 is the best") 
+```
+
+If you are feeling lost, <https://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro/> is a good website which goes over a lot of this in more detail.
+
+<br> <br>
+
+## Dealing with text {#Tut3E_text}
+
+In R, the computer interprets most words as commands. But sometimes we need to actually input text, for example for a plot title. **For the computer to understand text, you need quote marks**. The computer will see anything without quote marks as a command.
+
+For example, try typing `print("Hello World")` into the console and the computer should just repeat it back to you.Forget about the quotes and this happens..
+
+```{r, fig26, echo=FALSE, fig.cap = "Your screen after running the project"}
+knitr::include_graphics('./Figures/fig26_UnexpectedSymbol.png')
+```
+
+Your first error. The "unexpected symbol" it's talking about is the computer thinking that "Hello" and "world" must be two different commands, then getting confused by the space between Hello and World..
+
+<br> <br>
+
+## Variables {#Tut3F_vars}
+
+So now we can use R as a calculator and even add a few more complex commands. What we need to be able to do now is to save the results, or load in data so we can run more complex commands. We do this through assigning our results to a variable. By this I mean we save the results and give them a name, then in the future, instead of retyping the whole command, we simply type that name and R will recall the answer.
+
+The symbol to store data into a variable is using the assignment arrow `<-`, which is made up of the left arrow and a dash. You can also use the equals sign, but it can cause complications later on. Try typing this command into the console:
+
+```{r, eval=FALSE}
+x <- 1/50
+```
+
+Notice that pressing enter did not print a value onto your screen as it did earlier. Instead, look down at the environment tab, you should notice that an x has turned up, with the result next to it.
+
+So our variable `x` is now associated with the value 0.02, or 1/50. You can print a variable on screen by typing its name, no quotes, or by using the print command. Try printing out your variable.
+
+```{r, eval=FALSE}
+x
+
+# or
+
+print(x)
+
+# see what happens when you do this
+
+print("x")
+
+```
+
+This 'x' variable can be used in place of a number in any calculation that expects a number. Try typing
+
+```{r, eval=FALSE}
+log(x)
+
+# this is now the same as 
+log(1/50)
+```
+
+The way R works is that first it looks for the commands on the right of the arrow. It runs all of them, calculates the result, then saves that result with the name on the left of the arrow. **It does not save the command itself, just the answer.** For example, in this case, R has no idea that `x` was created using maths, it just knows that it is equal to the number 0.02.
+
+Notice also that variables can be reassigned. Type this into your console.
+
+```{r, eval=FALSE}
+x <- 100
+print(x)
+```
+
+x used to contain the value 0.025 and and now it has the value 100.
+
+*Note, the letter x isn't special in any way, it's just a variable name. You can replace it with any word you like as long as it contains no spaces and doesn't begin with a number*.
+
+for example
+
+```{r, eval=FALSE}
+vlogbrothers.DFTBA <- "Dont forget to be awesome"
+print(vlogbrothers.DFTBA)
+```
+
+How you name stuff is up to you, , but be consistent. Different people use different conventions for long variable names, these include
+
+ - periods.between.words.1 (as you can see, I like this)
+ - underscores_between_words
+ - camelCaseToSeparateWords
+
+Finally, R IS CASE SENSITIVE. X and x are different variables! Try these and you will see both appear separately in your environment tab.
+
+```{r, eval=FALSE}
+h <- 1
+H <- 2
+
+ans <- h+H
+print(ans)
+```
+
+```{r, eval=FALSE}
+print(h)
+```
+
+```{r, eval=FALSE}
+print(H)
+```
+
+To delete a variable, you can use the `rm()` command e.g.
+
+```{r, eval=FALSE}
+rm(x)
+```
+
+and to clear everything, type
+
+```{r, eval=FALSE}
+rm(list=ls())
+```
+
+### Combining variables
+
+As I showed above, you can now use multiple variables together in more complex commands. For example, try these commands:
+
+```{r, eval=FALSE}
+x <- 2
+
+#Take the variable x, add 1 then save it to a new variable called y
+y <- x + 1 
+
+# print the multiple of 2yx onto the screen
+print(2*y*x)
+```
+
+Now you can see that there are two variables in your environment tab, x and y. Where y is the sum of the contents of x plus 1.
+
+You can even use this to change your original variable . Try typing the code below in a few times into the console and see what happens.
+
+**A short cut to do this is to type the commands the first time, then use the up-arrow on your keyboard to cycle back through previous commands you have typed**
+
+```{r, eval=FALSE}
+x <- x + 1 # notice how RStudio updates its description of x in the environment tab
+x          # print the contents of "x" onto the screen
+```
+
+Our variables don't have to be numbers. They could refer to tables of data, or a spatial map, or any other complex thing. We will cover this more in future labs.
+
+<br> <br>
+
+<br> \
+
+
+# Getting help 
+
+First, take a look here to learn about help - <https://www.r-project.org/help.html>
+
+When programming in R, someone often tells you about a "cool new command". I want you to feel comfortable working out how to use them. Equally, sometimes R crashes because it can't find a command. So this helps you find what you need to install.
+
+## How to use the R help files 
+
+Here's how I approach it
+
+1.  The only info we NEED to know about a new command is its name and the library/package/app it is stored in. <br>\
+
+-   If you don't know, you can often google the command, and go to one of the websites with an online helpfile
+
+-   Different websites have different ways of writing the things. For example, here are four common files you might see when looking at the mutate command which is a part of the dplyr package.
+
+```{r, fig27A, echo=FALSE, fig.cap = "COMMAND=mutate, PACKAGE=dplyr",fig.align='center',out.width="100%"}
+knitr::include_graphics('./Figures/fig27A_PackageNamesInternet.png')
+```
+
+```{r, fig27B, echo=FALSE, fig.cap = "COMMAND=mutate, PACKAGE=dplyr",fig.align='center',out.width="100%"}
+knitr::include_graphics('./Figures/fig27B_PackageNamesInternet.png')
+```
+
+```{r, fig27C, echo=FALSE, fig.cap = "COMMAND=mutate, PACKAGE=dplyr",fig.align='center',out.width="100%"}
+knitr::include_graphics('./Figures/fig27C_PackageNamesInternet.png')
+```
+
+
+
+<br>
+
+2.  If you need to install the package, go to the Packages menu in the quadrant and click install.
+
+<br>
+
+3.  Add the `library(PACKAGENAME)` command to your library code chunk and run to load the package.
+
+<br>
+
+4.  Immediately go to the help file for the command you want to run. You can do this in the help menu next to the packages menu, or using a ? in the CONSOLE e.g. `?skim`. This will not work if you have not loaded the library.
+
+<br>
+
+5.  Inside every help file you will see this structure (SKIM THIS EXTERNAL: TUTORIAL)\[<https://bcgov.github.io/ds-cop-intro-to-r/seeking-help-in-r.html>\].
+
+<br>
+
+6.  FINALLY, **Scroll to the bottom of the helpfile** for some worked examples that you can literally copy and paste into your console or your code to understand how it works.
+
+<p class="comment">
+
+HINT FOR LAB 2, SCROLL ALL THE WAY TO THE VERY BOTTOM OF THE HELP FILE
+
+</p>
+
+## EXAMPLE! Understanding `skim` {.unnumbered}
+
+**I was told last year about a new summary command, skim. Here's how it ended up in your lab instructions**
+
+1.  I googled 'skim r command'. This took me quickly to the R documentation page
+
+```{r, Tut_Fig13, echo=FALSE, fig.cap = "Look for Rdocumentation, search-R-Project, or Rdrr",fig.align='center'}
+knitr::include_graphics('./Figures/fig28_HelpFile_skimrgoogle.png')
+```
+
+2.  I ended up at this website: <https://search.r-project.org/CRAN/refmans/skimr/html/skim.html>. From this I saw that the `skim()` command is in the `skimr` package\*
+
+```{r, fig28, echo=FALSE, fig.cap = "*The skim command is in the skimr package (red circle)*",fig.align='center'}
+knitr::include_graphics('./Figures/fig29_HelpFile_skimr.png')
+```
+
+3.  I added the `skimr` package to my library code chunk and re-ran
+
+```{r, eval=FALSE}
+# LIBRARIES
+library(tidyverse)
+library(dplyr)
+library(ggpubr)
+library(ggplot2)
+library(plotly)
+
+library(skimr) 
+```
+
+4.  In the console, I FIRST typed `> ?skimr` to read about the package itself (e.g. ?PACKAGENAME). This doesn't work if you didn't run the library code chunk first.
+
+<br>
+
+5.  In the console, I THEN typed `> ?skim` to bring up the help file and scrolled to the bottom. This doesn't work if you didn't run the library code chunk first. Inside every R help file you will see this structure: <https://bcgov.github.io/ds-cop-intro-to-r/seeking-help-in-r.html> but for now, I scrolled to the bottom.
+
+    <br>
+
+6.  I then ran the help file worked examples in the console to understand the command. It looks like skim is a nice summary command I can apply to a table (in their case the iris table). And that's how it ended up here..
+
+```{r}
+ skim(iris)
+ 
+ # Use tidyselect
+ skim(iris, Species)
+ skim(iris, starts_with("Sepal"))
+ skim(iris, where(is.numeric))
+```
+
+<br>
+
+7.  Finally, I googled tutorials to see if there was a friendlier way of looking: <https://docs.ropensci.org/skimr/reference/skim.html>
+
+<br> <br>

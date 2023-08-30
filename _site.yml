@@ -20,6 +20,8 @@ navbar:
       href: in_Tutorial02SetUp.html
     - text: "3. Lab Set-Up"
       href: in_Tutorial03LabSetUp.html
+    - text: "4. Console Basics"
+      href: in_Tutorial04ConsoleBasics.html
   - text: "Labs"  
     menu: 
     - text: "Lab FAQ"

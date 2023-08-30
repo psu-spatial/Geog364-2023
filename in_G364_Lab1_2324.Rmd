@@ -151,6 +151,9 @@ code** to calculate the answers. You HAVE to show the code! <br><br>
 knitr::include_graphics("./Figures/LabFig1_CodeChunk.png")
 ```
 
+IF YOU DON'T IMMEDIATELY KNOW HOW TO DO THESE, FOLLOW [Tutorial
+4](https://psu-spatial.github.io/Geog364-2023/in_Tutorial04ConsoleBasics.html)
+
 1.  103^3^ (e.g `103*103*103`, or `103^3`) <br>\
 2.  The co-sine of your age (google is your friend, google R function or
     example for cosine) <br>\
