@@ -1,5 +1,5 @@
 ---
-title: "Tutorial 4: Console Basics"
+title: "Tutorial 3: Setting up each lab"
 ---
 
 ```{r setup, include=FALSE}
@@ -288,18 +288,6 @@ library(bardr)
 
 <br>
 
-### Using a single command from a package
-
-ADVANCED: Sometimes several packages name a command the same word and you want to specify which package you want to use.
-
-You can do this using the :: symbol. For example, this command *forces* the computer to use the 'dplyr package' version of filter.
-
-```{r, eval=FALSE}
-dplyr::filter(mydata)
-```
-
-<br><br>
-
 ### Problem Solving
 
 #### NOTHING HAPPENED!
@@ -320,93 +308,14 @@ knitr::include_graphics('./Figures/fig20_friendlytext.png')
 
 <br>
 
-# Creating a Markdown document
+## Using a single command from a package
 
-This will be your lab report. Remind yourself of what Rmarkdown is using Tutorial 1, here <https://rmarkdown.rstudio.com>, or via this short video
+ADVANCED: Sometimes several packages name a command the same word and you want to specify which package you want to use.
 
-```{r,echo=FALSE,fig.align='center'}
-embed_url("https://vimeo.com/178485416?embedded=true&source=video_title&owner=22717988")
+You can do this using the :: symbol. For example, this command *forces* the computer to use the 'dplyr package' version of filter.
+
+```{r, eval=FALSE}
+dplyr::filter(mydata)
 ```
 
-## Templates
-
-In the past, you used to have to know a lot of computer commands to get markdown documents to work. Every month it seems to get easier, and there are now a load of professional templates available.
-
-The ones we are going to use are from the package `rmdformats`. Have a look at the templates here: <https://juba.github.io/rmdformats/>. If none of these appeal, google RMarkdown templates for more.
-
-Install the package `rmdformats` using the packages tutorial above.
-
-## Making your Markdown file
-
-Go to the File menu on the top left, then click New File - **R-Markdown**. If this is your first time ever, it might ask to download some packages to be able to do this. Say yes. Eventually a window will open up:
-
-```{r, fig21a, echo=FALSE,fig.align='center',out.width="80%"}
-knitr::include_graphics('./Figures/fig21a_Markdown.png')
-```
-
-Click "From Template" and **select a template of your choice**. Click here to see what different templates look like:
-
-<https://juba.github.io/rmdformats/>
-
-It will ask you to name your file. Give it a relevant name including your email ID, like Lab-2_hlg5155.
-
-```{r, fig21b, echo=FALSE,fig.align='center',out.width="80%"}
-knitr::include_graphics('./Figures/fig21b_Markdown.png')
-```
-
-Press OK. A new file should appear on your screen.
-
-```{r, fig21d, echo=FALSE,fig.align='center',out.width="80%"}
-knitr::include_graphics('./Figures/fig21d_Markdown.png')
-```
-
-Essentially, we have some space for text, some space for code, and a space at the top of the file where we can add information about themes/styles etc called "YAML".
-
-Each grey code area is called a "code chunk". To run the code inside it, click the little green arrow on the top right.
-
-Depending on the template, your file might contain some friendly text to explain what is going on. Read through it, then you are welcome to delete it from the after the lower --- onwards.
-
-```{r, fig21c, echo=FALSE,fig.align='center'}
-knitr::include_graphics('./Figures/fig21c_Markdown.png')
-```
-
-## THREE IMPORTANT BUTTONS - READ THIS
-
-## Visual mode
-
-It is MUCH easier to edit markdown documents in the new visual mode. Essentially instead of having to remember text short cuts like \* for bold, you can edit the text part as though you were using a word processor. NOTE HEADERS where it says "Normal", this allows you to make auto tables of contents.
-
-![](https://quarto.org/docs/get-started/hello/images/rstudio-source-visual.png)
-
-### Creating a new code chunk.
-
-Code chunks are mini consoles where you can run R commands.  We will talk more about them in the next tutorial.
-
-```{r, Fig22, echo=FALSE,fig.align='center'}
-knitr::include_graphics('./Figures/fig22_CodeChunk.png')
-```
-
-On the top right there are a suite of buttons for adding a new code chunk, running code etc. The green one adds a new code chunk. To run an individual code chunk you will press the green arrow on its top right e.g.
-
-```{r, Fig23 ,echo=FALSE,fig.align='center'}
-knitr::include_graphics('./Figures/fig23_RunCodeChunk.png')
-```
-
-### Knitting
-
-```{r, fig24, echo=FALSE,fig.align='center'}
-knitr::include_graphics('./Figures/fig24_knit.png')
-```
-
-The file on your screen isn't the finished article. To see how it will look as a final version, we need to "knit" it. Go to the top of the .Rmd file, find the `knit` button. Press it (you might have to first save your script if you haven't already, then press it again)
-
-You should see that the Markdown tab "builds" your document and you get an output as a website. The html should also be saved into your project folder. 
-
-For example, from my other class, here is a file with markdown and knitted output.
-
-```{r, fig25, echo=FALSE,fig.align='center'}
-knitr::include_graphics('./Figures/fig25_AllMarkdownElements.png')
-```
-
-
-<br> <br>
+<br><br>

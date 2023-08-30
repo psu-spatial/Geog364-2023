@@ -11,7 +11,7 @@
 
 
 
-<title>Tutorial 4: Console Basics</title>
+<title>Tutorial 3: Setting up each lab</title>
 
 <script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -35,7 +35,6 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
-<link href="site_libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -455,7 +454,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Tutorial 4: Console Basics</h1>
+<h1 class="title toc-ignore">Tutorial 3: Setting up each lab</h1>
 
 </div>
 
@@ -801,16 +800,6 @@ If you want to try this, you might need to first install bardr using the
 instructions above.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">library</span>(bardr)</span></code></pre></div>
 <p><br></p>
-<div id="using-a-single-command-from-a-package" class="section level3">
-<h3>Using a single command from a package</h3>
-<p>ADVANCED: Sometimes several packages name a command the same word and
-you want to specify which package you want to use.</p>
-<p>You can do this using the :: symbol. For example, this command
-<em>forces</em> the computer to use the ‘dplyr package’ version of
-filter.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">filter</span>(mydata)</span></code></pre></div>
-<p><br><br></p>
-</div>
 <div id="problem-solving-1" class="section level3">
 <h3>Problem Solving</h3>
 <div id="nothing-happened" class="section level4">
@@ -841,97 +830,15 @@ nothing happens, then you’re fine.</strong></p>
 </div>
 </div>
 </div>
-</div>
-<div id="creating-a-markdown-document" class="section level1">
-<h1>Creating a Markdown document</h1>
-<p>This will be your lab report. Remind yourself of what Rmarkdown is
-using Tutorial 1, here <a href="https://rmarkdown.rstudio.com"
-class="uri">https://rmarkdown.rstudio.com</a>, or via this short
-video</p>
-<div class="vembedr">
-<div>
-<iframe class="vimeo-embed" src="https://player.vimeo.com/video/178485416" width="533" height="300" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" data-external="1"></iframe>
-</div>
-</div>
-<div id="templates" class="section level2">
-<h2>Templates</h2>
-<p>In the past, you used to have to know a lot of computer commands to
-get markdown documents to work. Every month it seems to get easier, and
-there are now a load of professional templates available.</p>
-<p>The ones we are going to use are from the package
-<code>rmdformats</code>. Have a look at the templates here: <a
-href="https://juba.github.io/rmdformats/"
-class="uri">https://juba.github.io/rmdformats/</a>. If none of these
-appeal, google RMarkdown templates for more.</p>
-<p>Install the package <code>rmdformats</code> using the packages
-tutorial above.</p>
-</div>
-<div id="making-your-markdown-file" class="section level2">
-<h2>Making your Markdown file</h2>
-<p>Go to the File menu on the top left, then click New File -
-<strong>R-Markdown</strong>. If this is your first time ever, it might
-ask to download some packages to be able to do this. Say yes. Eventually
-a window will open up:</p>
-<p><img src="Figures/fig21a_Markdown.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>Click “From Template” and <strong>select a template of your
-choice</strong>. Click here to see what different templates look
-like:</p>
-<p><a href="https://juba.github.io/rmdformats/"
-class="uri">https://juba.github.io/rmdformats/</a></p>
-<p>It will ask you to name your file. Give it a relevant name including
-your email ID, like Lab-2_hlg5155.</p>
-<p><img src="Figures/fig21b_Markdown.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>Press OK. A new file should appear on your screen.</p>
-<p><img src="Figures/fig21d_Markdown.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>Essentially, we have some space for text, some space for code, and a
-space at the top of the file where we can add information about
-themes/styles etc called “YAML”.</p>
-<p>Each grey code area is called a “code chunk”. To run the code inside
-it, click the little green arrow on the top right.</p>
-<p>Depending on the template, your file might contain some friendly text
-to explain what is going on. Read through it, then you are welcome to
-delete it from the after the lower — onwards.</p>
-<p><img src="Figures/fig21c_Markdown.png" width="1070" style="display: block; margin: auto;" /></p>
-</div>
-<div id="three-important-buttons---read-this" class="section level2">
-<h2>THREE IMPORTANT BUTTONS - READ THIS</h2>
-</div>
-<div id="visual-mode" class="section level2">
-<h2>Visual mode</h2>
-<p>It is MUCH easier to edit markdown documents in the new visual mode.
-Essentially instead of having to remember text short cuts like * for
-bold, you can edit the text part as though you were using a word
-processor. NOTE HEADERS where it says “Normal”, this allows you to make
-auto tables of contents.</p>
-<p><img
-src="https://quarto.org/docs/get-started/hello/images/rstudio-source-visual.png" /></p>
-<div id="creating-a-new-code-chunk." class="section level3">
-<h3>Creating a new code chunk.</h3>
-<p>Code chunks are mini consoles where you can run R commands. We will
-talk more about them in the next tutorial.</p>
-<p><img src="Figures/fig22_CodeChunk.png" width="1062" style="display: block; margin: auto;" /></p>
-<p>On the top right there are a suite of buttons for adding a new code
-chunk, running code etc. The green one adds a new code chunk. To run an
-individual code chunk you will press the green arrow on its top right
-e.g.</p>
-<p><img src="Figures/fig23_RunCodeChunk.png" width="774" style="display: block; margin: auto;" /></p>
-</div>
-<div id="knitting" class="section level3">
-<h3>Knitting</h3>
-<p><img src="Figures/fig24_knit.png" width="1072" style="display: block; margin: auto;" /></p>
-<p>The file on your screen isn’t the finished article. To see how it
-will look as a final version, we need to “knit” it. Go to the top of the
-.Rmd file, find the <code>knit</code> button. Press it (you might have
-to first save your script if you haven’t already, then press it
-again)</p>
-<p>You should see that the Markdown tab “builds” your document and you
-get an output as a website. The html should also be saved into your
-project folder.</p>
-<p>For example, from my other class, here is a file with markdown and
-knitted output.</p>
-<p><img src="Figures/fig25_AllMarkdownElements.png" width="1652" style="display: block; margin: auto;" /></p>
-<p><br> <br></p>
-</div>
+<div id="using-a-single-command-from-a-package" class="section level2">
+<h2>Using a single command from a package</h2>
+<p>ADVANCED: Sometimes several packages name a command the same word and
+you want to specify which package you want to use.</p>
+<p>You can do this using the :: symbol. For example, this command
+<em>forces</em> the computer to use the ‘dplyr package’ version of
+filter.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">filter</span>(mydata)</span></code></pre></div>
+<p><br><br></p>
 </div>
 </div>
 
