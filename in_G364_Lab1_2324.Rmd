@@ -1,6 +1,5 @@
 ---
-title: "Lab 1: R intro"
-subtitle: "Getting comfortable"
+title: "Lab 1: R Introduction"
 editor_options: 
   markdown: 
     wrap: 72
@@ -11,129 +10,169 @@ library(tidyverse)
 library(kableExtra)
 ```
 
-<br>
-
-The aim of this lab is to get comfortable in R and in R-Markdown. Lab
-instructions will be here, linking to relevant tutorials in the
-tutorials tab. The Canvas page for this lab is here
+The aim of Lab 1 is to get comfortable in R and in R-Markdown and to
+make sure that both are installed properly. It is a "one week lab" and
+you can find the Canvas page here:
 <https://psu.instructure.com/courses/2260204/assignments/15455191>
 
-<br>
+Instructions are below, linking to relevant tutorials in the tutorials
+tab. If I suggest using a tutorial, the answers WILL be there.
 
-**If the labs are causing major problems with your computer or your
-computer hardware is struggling (or you have any other software issue),
-Talk to Dr Greatrex**.
-
-**What do I mean by struggling? More than 20 minutes without any
-progress..**
+Finally, if the labs are causing major problems or you have any other
+software issue, talk to Dr Greatrex or Harman. What do I mean by
+struggling? More than 15-20 minutes without progress.
 
 <br>
 
-#### MY MAIN HINT
+# Lab instructions
 
-Please follow ALL THE STEPS.
+## A. Select Lab Groups
 
-I *literally* give the answers to the final section in these tutorials
-and it will only take an experienced R user a few minutes. IT IS FASTER
-THAN SKIPPING TO THE END!
+We will be doing an in-class exercise to choose lab groups
 
-<br> <br>
+-   TUESDAY LAB: Please fill in this survey:
+    <https://forms.gle/Uf7T5Hh7895Y7G6DA> \
+    (Don't touch wed/fri lab)
 
-## A. Choosing a lab partner.
+<br>
 
-#### We will be doing an in-class exercise to choose lab groups
+## B. Review FAQ
 
-TUESDAY LAB: Please fill in this survey:
-<https://forms.gle/Uf7T5Hh7895Y7G6DA>
-
-(Don't touch wed/fri lab)
-
-We will do an in-class exercise to self select smaller groups for Labs.
-After the exercuse, Introduce yourselves and name your team!
-
-<br> <br>
-
-## B. Review the Lab Q&A
-
-First, please review the lab Q&A: [**CLICK
-HERE**](in_G364_Lab0_FAQ.rmd). It explains
+Review [The LAB FAQ](in_G364_Lab0_FAQ.rmd) - you can find it in the Labs
+menu at the top of the page. It explains
 
 -   What you need to submit
 -   How you are graded and where the rubric is
 -   The late policy
 -   What counts as cheating
--   You're going to be asked about this below, so may as well read it.
 
-<br> <br>
+<br>
 
-## C. What are R, R-studio and Markdown? (Tutorial 3)
+## C. Learn about R, R-studio and Markdown
 
 Follow [TUTORIAL
 1](https://psu-spatial.github.io/Geog364-2023/in_Tutorial01WhatisR.html)
-to learn about R, R-studio and Markdown. You're going to be asked about
-this below, so you may as well read it now.
+to learn about R, R-studio and Markdown.
 
-<br> <br>
+<br>
 
-## D. Initial Semester set-up (Tutorial 2)
+## D. Initial Semester set-up
 
 Follow [TUTORIAL
 2](https://psu-spatial.github.io/Geog364-2023/in_Tutorial02SetUp.html)
-to install everything needed for the GEOG-364 this semester. **WE WILL
-DO THIS IN CLASS TOGETHER.** You're going to be asked about this below,
-so you may as well read it now.
+to install everything needed for the GEOG-364 this semester.
 
-<br> <br>
+<br>
 
-## E. Lab set-up (Tutorial 3)
+## E. Lab 1 set-up
 
-### 
+I strongly suggest you CLOSELY follow [TUTORIAL
+3](https://psu-spatial.github.io/Geog364-2023/in_Tutorial02SetUp.html)
+to install everything needed for lab 1. This means you will: <br>
 
-### E1. Comprehension questions 
+-   Create a GEOG364 folder somewhere easy on your computer
 
-You might find it easier to use the markdown visual text editor. Here's
-the difference between writing your reports in 'source' mode (near the
-top left) vs 'visual' mode.
+-   Create a project for lab 1, saving it within that GEOG364 folder.
+
+-   Change your global settings as requested in the tutorial.
+
+-   Use the instructions to download/install a package called
+    `rmdformats`
+
+-   Create a markdown file using a template of your choice.
+
+-   Save as GEOG364_Lab1_USERID.Rmd e.g. for me,
+    GEOG364_Lab1_hlg5155.Rmd
+
+-   Press knit to check it works (you may get a message asking you to
+    install more packages)
+
+-   Finally, remove all the 'friendly welcome text' below the YAML code,
+    change the title to Lab 1 and press knit .<br>
+
+You should now have a blank file in front of you, other than the YAML
+code. If not, ask for help.
+
+<br>
+
+## F. Comprehension questions
+
+1.  Write the word *Introduction* in the main body of the text - make it
+    a Header 1 format. Leave a few blank lines above and below it. Press
+    knit, check it worked.
+
+2.  Now copy each of the questions below into your report. Make each one
+    "Header 3" format.
+
+3.  Underneath each question write your answer. At least 3 or 4
+    sentences for each one. <br>
+
+    1.  QUESTION 1: <br>In your own words, explain the course late
+        policy<br> *Hint, [Lab
+        FAQs](https://psu-spatial.github.io/Geog364-2023/in_G364_Lab0_FAQ.html))*
+        <br>
+
+    2.  QUESTION 2: <br>When are Dr G's office hours? Should I email or
+        Canvas Message to get help fast? *Hint, see
+        [Canvas](https://psu.instructure.com/courses/2260204)* <br>
+
+    3.  QUESTION 3: <br>Are you allowed to copy/paste anyone else's code
+        or text in your submission? Explain your answer. *Hint, [Lab
+        FAQs](https://psu-spatial.github.io/Geog364-2023/in_G364_Lab0_FAQ.html))*
+        <br>
+
+    4.  QUESTION 4: <br>Use something like Spotify (a computer programme
+        that plays custom playlists of music) to explain the difference
+        between R and R-Studio. *Hint, [Tutorial
+        1](https://psu-spatial.github.io/Geog364-2023/in_Tutorial01WhatisR.html))*
+        <br>
+
+    5.  QUESTION 5: <br>Explain the range of different formats a
+        markdown document can be made into. *Hint, [Tutorial
+        1](https://psu-spatial.github.io/Geog364-2023/in_Tutorial01WhatisR.html))*<br>
+
+To help with formatting, you might find it easier to use the markdown
+visual text editor. Here's the difference between writing your reports
+in 'source' mode (near the top left) vs 'visual' mode.
 
 ![](https://quarto.org/docs/get-started/hello/images/rstudio-source-visual.png)
 
-**OK - now you should have an empty report, other than the 'YAML' code
-at the top.**
+## F. Code showcase
 
-**Copy each of the questions below into your report. Make each one
-"heading 3" format.**
+Now, leave another new blank line and add a new Level 1 Header called
+*"Code Showcase"*. Add a blank line afterwards too - the reason for all
+the blank lines is that R formatting often gets messed up with not
+enough blank lines, but it will ignore excess ones.
 
-**Underneath each question in a new paragraph ("Normal" format), answer
-it! At least 3 or 4 sentences for each one.** <br><br>
+Now create a code chunk:
 
--   [**QUESTION 1:**]{.underline} In your own words, explain the course
-    late policy (hint, see [Lab
-    FAQs](https://psu-spatial.github.io/Geog364-2023/in_G364_Lab0_FAQ.html))
-    <br>
+```{r, echo=FALSE}
+knitr::include_graphics("./Figures/LabFig1_CodeChunk.png")
+```
 
--   [**QUESTION 2:**]{.underline} When are Dr G's office hours? (hint,
-    see [Canvas](https://psu.instructure.com/courses/2260204))<br>
+Inside **use R code** to calculate the answers to the following
+questions.
 
--   [**QUESTION 3:**]{.underline} Can you copy/paste each others report
-    code or text? (Hint, [Lab
-    FAQs](https://psu-spatial.github.io/Geog364-2023/in_G364_Lab0_FAQ.html))
-    <br>
+You HAVE to show the code! <br><br>
 
--   [**QUESTION 4:**]{.underline} Use something like spotify (a
-    programme that plays music) to explain the difference between R and
-    R-Studio. (hint, [TUTORIAL
-    1](https://psu-spatial.github.io/Geog364-2023/in_Tutorial01WhatisR.html))
-    <br\>
+-   103^3^ (e.g `103*103*103`, or `103^3`) <br>\
+-   The co-sine of your age (google is your friend, google R function
+    for cosine) <br>\
+-   Use R code to work out how many characters are in [the longest town
+    name in
+    Wales](https://www.bbcamerica.com/anglophenia/2015/09/how-to-pronounce-the-longest-place-name-in-the-u-k)
+    *Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch*. <br>\
+    -   Hint 1, remember you can copy paste this name into your code.
+        <br>
+    -   Hint 2, the command is available in the tutorials..
+    -   Hint 3, you can google any R command, try googling the *"R
+        command for number of characters in a word"*.<br><br>
 
--   [**QUESTION 5:**]{.underline} Explain the range of different formats
-    a markdown document can be made into <br> (hint, [TUTORIAL
-    1](https://psu-spatial.github.io/Geog364-2023/in_Tutorial01WhatisR.html))
+Press "knit" at the top of the screen. If you haven't made a mistake a
+pop up should appear with a html file and your answers. If you have a
+made a mistake, stop and fix before continuing.
 
-## F. Tutorial 4, Basic Maths
-
-to be added
-
-## \#
+<br>
 
 ## H. Submitting your Lab
 
@@ -159,7 +198,7 @@ knitr::include_graphics("./Figures/LabFig_WhatToSubmit.png")
 
 <br>
 
-## 7. How am I graded?
+### How am I graded?
 
 Look on Canvas, there will be a SPECIFIC RUBRIC that we use to grade
 your lab. USE IT!!! It should allow you to predict your grade. We will
