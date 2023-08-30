@@ -11,7 +11,7 @@
 
 
 
-<title>Tutorial 3: Basics</title>
+<title>Tutorial 3: Setting up each lab</title>
 
 <script src="site_libs/header-attrs-2.24/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -35,6 +35,7 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="site_libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -47,6 +48,107 @@
 
 
 
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #204a87; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
 
 
 
@@ -353,13 +455,260 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Tutorial 3: Basics</h1>
-<h3 class="subtitle">Console and maths</h3>
+<h1 class="title toc-ignore">Tutorial 3: Setting up each lab</h1>
 
 </div>
 
 
-<p>lalalal lalalal</p>
+<p>In this tutorial we are going to cover setting up each lab. This
+involves making projects, packages and R Markdown documents.</p>
+<div id="projects" class="section level1">
+<h1>Projects</h1>
+<p>In this class, we will be using R-Projects:</p>
+<ul>
+<li>On Rstudio cloud, this is how you set up each lab.</li>
+<li>On the desktop, this is a folder that will store everything to do
+with each lab in one place on your computer. Each lab will be its own
+project.</li>
+</ul>
+<p>This is incredibly useful - it means that if you switch from R-Cloud,
+to the lab computers, to your laptop, all you have to do is to move the
+folder and everything will just work. Equally, its easy to compare
+labs.</p>
+<p>Learn more here.</p>
+<p><a
+href="https://www.linkedin.com/learning/learning-the-r-tidyverse/why-should-you-use-projects-in-rstudio?u=76811570"><img
+src="Figures/fig9_ProjectVideo.png" /></a></p>
+<p>We will cover how to make projects for R studio cloud and desktop in
+the set up below.</p>
+</div>
+<div id="lab-set-up-projects" class="section level1">
+<h1>Lab Set-Up: Projects</h1>
+<div id="using-desktop" class="section level2">
+<h2>Using desktop</h2>
+<p>Everything should now be installed. If not, go back to Tutorial
+2.</p>
+<p><img src="Figures/fig10_Startup_Logos.png" width="80%" style="display: block; margin: auto;" /></p>
+<ol style="list-style-type: decimal">
+<li><p>IMPORTANT! If you haven’t already, on an easy to access place on
+your computer, make a folder called GEOG364. This is where ALL your labs
+are going to live. <br></p></li>
+<li><p>Now everything is installed, open R-studio (NOT R!).
+<br></p></li>
+</ol>
+<p>Steps 3-7 are shown graphically in the figure below.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Go to the Main File menu at the <u>very top left</u> and click
+<code>New Project</code> <br><br />
+</li>
+<li>Select <code>New Directory</code>, then
+<code>New Project</code><br><br />
+</li>
+<li>Name your project <em>GEOG364-Lab1-PROJECT</em> (or whatever lab it
+us) <br><br />
+</li>
+<li>Under “create project as a subdirectory of”, hit the browse button
+and find your GEOG364 folder (you just need to be in the folder, you
+don’t need to have selected anything). Press open <br><br />
+</li>
+<li>Finally, press <code>Create Project</code><br></li>
+</ol>
+<p><img src="Figures/fig11_projectcreation.png" width="660" /></p>
+<div id="how-to-check-you-are-in-a-project"
+class="section level4 unnumbered">
+<h4 class="unnumbered">How to check you are in a project</h4>
+<p>R will change slightly. If you look at the top of the screen in the
+title bar, it should say something like <em>GEOG364-Lab1-PROJECT - R
+Studio</em>.</p>
+<p>The Files tab should have gone to your project folder. Essentially,
+R-Studio is now “looking” inside your Lab 1 folder, making it easier to
+find your data and output your results.</p>
+<div class="figure">
+<img src="Figures/fig12_projectcheck.png" alt="How to check you are in a project" width="845" />
+<p class="caption">
+How to check you are in a project
+</p>
+</div>
+<p><br></p>
+<p>If you want one, final check, try typing this into the console
+(INCLUDING THE EMPTY PARANTHESES/BRACKETS), press enter and see if it
+prints out the location of Lab 1 on your computer. If not, talk to an
+instructor.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
+<p><br><br></p>
+</div>
+<div id="returning-to-your-lab-project" class="section level4">
+<h4>Returning to your lab project</h4>
+<p>OK, let’s imagine that you get halfway through your lab and your
+computer dies. How do you get back to your Lab work? Try this now. Close
+down R-Studio.</p>
+<p>To reopen a lab:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>DO NOT RE-OPEN R-STUDIO!</strong></p></li>
+<li><p>Instead navigate on your computer to your
+<em>GEOG364/GEOG364-Lab1-PROJECT</em> folder.</p></li>
+<li><p>Double click on the <em>GEOG364-Lab1-PROJECT</em>.RProj
+file.</p></li>
+</ol>
+<p>This will reopen R for that specific lab, so you can continue where
+you left off. It means you can also open several versions of R studio
+for multiple labs, which can be very useful in staying sane</p>
+<p><img src="Figures/fig13_projectopen.png" width="961" /></p>
+<p><br><br></p>
+</div>
+</div>
+<div id="using-r-studio-cloud" class="section level2">
+<h2>Using R-Studio Cloud</h2>
+<p>Go to this webpage. <a href="https://login.posit.cloud/login"
+class="uri">https://login.posit.cloud/login</a> You can get here from
+any web-browser, You do not need a special computer.</p>
+<p>When you log in, you should see a dashboard like this.</p>
+<div class="figure" style="text-align: center">
+<img src="Figures/fig14_clouddash.png" alt="*The Cloud dashboard*" width="1003" />
+<p class="caption">
+<em>The Cloud dashboard</em>
+</p>
+</div>
+<p>YOU SHOULD MAKE A NEW PROJECT FOR EACH LAB.</p>
+<p>You make a new project by clicking the button on the top right. You
+can open different projects in different tabs on your browser. You can
+also go back to the work-space at any time.</p>
+<div id="returning-to-your-lab-project-1" class="section level3">
+<h3>Returning to your lab project</h3>
+<p>On the cloud this is very easy, just go back to <a
+href="https://posit.cloud/content/yours"
+class="uri">https://posit.cloud/content/yours</a></p>
+</div>
+<div id="downloading-files-or-switching-to-desktop"
+class="section level3">
+<h3>Downloading files or switching to desktop</h3>
+<p>Let’s say you want to switch to the desktop but save your progress.
+Or you want to submit your work to Canvas!</p>
+<p>To switch to desktop, download/install the desktop version using the
+tutorials here. Then make a new project using the instructions
+above.</p>
+<p>Either way:</p>
+<ol style="list-style-type: decimal">
+<li><p>On the R-Studio Cloud website; inside your project, go to the
+files tab (next to Projects/Help in one quadrant. You will see a list of
+files, one with the file type .Rmd (your code) and one with .html(the
+website you made when you pressed knit). Look at the red circle in the
+pic below</p></li>
+<li><p>Click the check-box to the left of the .RmD file</p></li>
+<li><p>Look just above at the Files quadrant settings menu. Click the
+blue “more” cogwheel icon. (see diagram). You might need to make
+R-Studio full screen to see it, it cuts off if the window is too
+small.</p></li>
+<li><p>Now click Export This will download the file</p></li>
+<li><p>REPEAT FOR THE HTML (you can do them together but it exports as a
+zip)</p></li>
+<li><p>Submit both files on Canvas or put them in your project
+file.</p></li>
+</ol>
+<div class="figure" style="text-align: center">
+<img src="Figures/fig15_export.png" alt="*Downloading the files*" width="1363" />
+<p class="caption">
+<em>Downloading the files</em>
+</p>
+</div>
+</div>
+<div id="uploading-files" class="section level3 unnumbered">
+<h3 class="unnumbered">Uploading files</h3>
+<p>Sometimes you want to put your code into R-Studio Cloud, for example
+if for one week you don’t want to bring your laptop.</p>
+<p>Make a project for the lab on the cloud as above, then click the
+<code>upload</code> button inside your project in the files tab and
+upload your files. You will only need the .RmD file and any data
+files.</p>
+<div class="figure" style="text-align: center">
+<img src="Figures/fig16_import.png" alt="This is zoomed in to your files quadrant" width="764" />
+<p class="caption">
+This is zoomed in to your files quadrant
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="what-is-the-r-screen-showing-me" class="section level1">
+<h1>What is the R screen showing me?</h1>
+<p>Want to understand more about what the screens do, or change the
+appearance?</p>
+<div id="the-screen" class="section level2">
+<h2>The screen</h2>
+<p>You will be greeted by three panels:</p>
+<ul>
+<li>The interactive R console (entire left)</li>
+<li>Environment/History (tabbed in upper right)</li>
+<li>Files/Plots/Packages/Help/Viewer (tabbed in lower right)</li>
+</ul>
+<p><img src="Figures/fig17_quadrants.png" width="889" style="display: block; margin: auto;" /></p>
+<p>If you wish to learn more about what these windows do, have a look at
+this resource, from the Pirates Guide to R: <a
+href="https://bookdown.org/ndphillips/YaRrr/the-four-rstudio-windows.html"
+class="uri">https://bookdown.org/ndphillips/YaRrr/the-four-rstudio-windows.html</a>.</p>
+<p>If you have used R before, you might see that there are variables and
+plots etc already loaded. It is always good to clear these before you
+start a new analysis. To do this, click the little broom symbol in your
+environment tab</p>
+</div>
+</div>
+<div id="lab-set-up-global-options" class="section level1">
+<h1>Lab Set-Up: Global options</h1>
+<div id="accessing-global-settings" class="section level2">
+<h2>Accessing global settings</h2>
+<p>Some of the default R settings are worth changing to make life
+smoother. We do this in global settings. There are two places you might
+find this menu</p>
+<ol style="list-style-type: decimal">
+<li>Click on the tools menu button on the top right of the screen,-&gt;
+Global Options OR</li>
+<li>Click on the R-studio menu button on the top left of the screen,
+then click Preferences.</li>
+</ol>
+</div>
+<div id="changing-annoying-options" class="section level2">
+<h2>Changing annoying options</h2>
+<p>I suggest:</p>
+<ul>
+<li><p>UNCLICK “Restore most recently opened project at
+startup”</p></li>
+<li><p>UNCLICK “Restore .RData into workspace on startup”</p></li>
+<li><p>Set “Save workspace to .RData on” exit to Never</p></li>
+<li><p>UNCLICK “Restore previously open source documents on
+startup”</p></li>
+</ul>
+</div>
+<div id="changing-the-appearance" class="section level2">
+<h2>Changing the appearance</h2>
+<p>You can also click the appearances menu item to change how the screen
+looks. For example, maybe you concentrate better with a dark
+background.</p>
+</div>
+<div id="moving-the-windows-around" class="section level2">
+<h2>Moving the windows around</h2>
+<p>Like me, you might find you like the different quadrants in a
+different order. To change this, look at the Panes layout menu item (you
+can also get here via the <code>View</code> menu,then
+<code>/Panes/Pane Layout</code>)</p>
+<p>I tend to like the console to be top left and scripts to be top
+right, with the plots and environment on the bottom - but this is
+personal choice.</p>
+<div class="figure" style="text-align: center">
+<img src="Figures/fig18_panes.png" alt="My preferred set up" width="610" />
+<p class="caption">
+My preferred set up
+</p>
+</div>
+<p>First watch this 5 min video below for some pointers. We will also go
+through the video more slowly below:</p>
+<div class="vembedr">
+<div>
+<iframe src="https://www.youtube.com/embed/SWxoJqTqo08?start=41" width="533" height="300" frameborder="0" allowfullscreen="" data-external="1"></iframe>
+</div>
+</div>
+<p><br></p>
+</div>
+</div>
 
 
 

@@ -49,7 +49,7 @@ GetRLatest <- function(Website="https://cran.r-project.org/banner.shtml"){
 
 # 1. What is R??
 
-#### **R IS A LANGUAGE SPOKEN BY YOUR COMPUTER** 
+#### **R IS A LANGUAGE SPOKEN BY YOUR COMPUTER**
 
 **R** is a free, open source statistical programming language. It contains millions of words/commands that are useful for dataset cleaning, analysis, and visualization.
 
@@ -71,7 +71,7 @@ knitr::include_graphics('./Figures/fig1_RConsole.png')
 
 <br>
 
-#### **R-STUDIO/POSIT is a Software Application like Word, Chrome or Spotify** 
+#### **R-STUDIO/POSIT is a Software Application like Word, Chrome or Spotify**
 
 <br>
 
@@ -101,7 +101,7 @@ embed_url("https://www.youtube.com/watch?v=SdMPh5uphO0")
 
 <br>
 
-#### Markdown is a way of writing documents with computer code embedded into them. 
+#### Markdown is a way of writing documents with computer code embedded into them.
 
 #### R-Markdown is a markdown file that uses R code
 
@@ -114,6 +114,13 @@ knitr::include_graphics('./Figures/fig6_AboutMarkdown.png')
 <br>
 
 R Markdown is a document format that blends the capabilities of R (a programming language primarily used for statistical computing and data analysis) with the formatting and layout capabilities of Markdown (a lightweight markup language). It allows you to create dynamic documents that combine narrative text, code, and the output of that code (such as tables, plots, and figures) in a single document. <br>
+
+Read more here: <https://rmarkdown.rstudio.com> or watch this short video
+
+```{r,echo=FALSE,fig.align='center'}
+embed_url("https://vimeo.com/178485416?embedded=true&source=video_title&owner=22717988")
+```
+
 
 Here's how R Markdown works:
 

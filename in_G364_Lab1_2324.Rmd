@@ -87,11 +87,9 @@ so you may as well read it now.
 
 ## E. Lab set-up (Tutorial 3)
 
-As discussed in
+### 
 
-### Paragraph questions 
-
-### Paragraph questions 
+### E1. Comprehension questions 
 
 You might find it easier to use the markdown visual text editor. Here's
 the difference between writing your reports in 'source' mode (near the
@@ -108,28 +106,28 @@ at the top.**
 **Underneath each question in a new paragraph ("Normal" format), answer
 it! At least 3 or 4 sentences for each one.** <br><br>
 
-[**QUESTION 1:**]{.underline} In your own words, explain the course late
-policy (hint, see [Lab
-FAQs](https://psu-spatial.github.io/Geog364-2023/in_G364_Lab0_FAQ.html))
-<br>
+-   [**QUESTION 1:**]{.underline} In your own words, explain the course
+    late policy (hint, see [Lab
+    FAQs](https://psu-spatial.github.io/Geog364-2023/in_G364_Lab0_FAQ.html))
+    <br>
 
-[**QUESTION 2:**]{.underline} When are Dr G's office hours? (hint, see
-[Canvas](https://psu.instructure.com/courses/2260204))<br>
+-   [**QUESTION 2:**]{.underline} When are Dr G's office hours? (hint,
+    see [Canvas](https://psu.instructure.com/courses/2260204))<br>
 
-[**QUESTION 3:**]{.underline} Can you copy/paste each others report code
-or text? (Hint, [Lab
-FAQs](https://psu-spatial.github.io/Geog364-2023/in_G364_Lab0_FAQ.html))
-<br>
+-   [**QUESTION 3:**]{.underline} Can you copy/paste each others report
+    code or text? (Hint, [Lab
+    FAQs](https://psu-spatial.github.io/Geog364-2023/in_G364_Lab0_FAQ.html))
+    <br>
 
-[**QUESTION 4:**]{.underline} Use something like spotify (a programme
-that plays music) to explain the difference between R and R-Studio.
-(hint, [TUTORIAL
-1](https://psu-spatial.github.io/Geog364-2023/in_Tutorial01WhatisR.html))
-<br\>
+-   [**QUESTION 4:**]{.underline} Use something like spotify (a
+    programme that plays music) to explain the difference between R and
+    R-Studio. (hint, [TUTORIAL
+    1](https://psu-spatial.github.io/Geog364-2023/in_Tutorial01WhatisR.html))
+    <br\>
 
-[**QUESTION 5:**]{.underline} Explain the range of different formats a
-markdown document can be made into <br> (hint, [TUTORIAL
-1](https://psu-spatial.github.io/Geog364-2023/in_Tutorial01WhatisR.html))
+-   [**QUESTION 5:**]{.underline} Explain the range of different formats
+    a markdown document can be made into <br> (hint, [TUTORIAL
+    1](https://psu-spatial.github.io/Geog364-2023/in_Tutorial01WhatisR.html))
 
 ## F. Tutorial 4, Basic Maths
 
