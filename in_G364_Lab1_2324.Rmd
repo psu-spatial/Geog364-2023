@@ -144,22 +144,17 @@ Now, leave another new blank line and add a new Level 1 Header called
 the blank lines is that R formatting often gets messed up with not
 enough blank lines, but it will ignore excess ones.
 
-Now create a code chunk:
+Create a separate code chunk for each problem below. Inside **use R
+code** to calculate the answers. You HAVE to show the code! <br><br>
 
 ```{r, echo=FALSE}
 knitr::include_graphics("./Figures/LabFig1_CodeChunk.png")
 ```
 
-Inside **use R code** to calculate the answers to the following
-questions.
-
-You HAVE to show the code! <br><br>
-
--   103^3^ (e.g `103*103*103`, or `103^3`) <br>\
--   The co-sine of your age (google is your friend, google R function
-    for cosine) <br>\
--   Use R code to work out how many characters are in [the longest town
-    name in
+1.  103^3^ (e.g `103*103*103`, or `103^3`) <br>\
+2.  The co-sine of your age (google is your friend, google R function or
+    example for cosine) <br>\
+3.  How many characters are in [the longest town name in
     Wales](https://www.bbcamerica.com/anglophenia/2015/09/how-to-pronounce-the-longest-place-name-in-the-u-k)
     *Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch*. <br>\
     -   Hint 1, remember you can copy paste this name into your code.
@@ -168,29 +163,34 @@ You HAVE to show the code! <br><br>
     -   Hint 3, you can google any R command, try googling the *"R
         command for number of characters in a word"*.<br><br>
 
-Press "knit" at the top of the screen. If you haven't made a mistake a
-pop up should appear with a html file and your answers. If you have a
-made a mistake, stop and fix before continuing.
+Press "knit" at the top of the screen . If you have a made a mistake and
+it doesn't knit, stop and fix before continuing.
 
 <br>
 
 ## H. Submitting your Lab
 
-Remember to save your work throughout and to spell check your writing
-(next to the save button). Now, press the knit button again. If you have
-not made any mistakes in the code then R should create a html file in
-your lab 1 folder which includes your answers. If you look at your lab 1
-folder, you should see this there - complete with a very recent
-time-stamp.
+Remember to save your work throughout and to spell check! (next to the
+save button). Now, press the knit button one final time.
 
-In that folder, double click on the html file. This will open it in your
-web-browser.\
-CHECK THAT THIS IS WHAT YOU WANT TO SUBMIT.
+On R-Desktop
 
-If you are on R studio cloud, see Tutorial 1 for how to download your
-files
+-   If you have not made any mistakes in the code then R should create a
+    html file in your lab 1 folder which includes your answers.
 
-Now go to Canvas and submit BOTH your html and your .Rmd file in Lab 1.
+-   If you look at your lab 1 folder on your computer, you should see
+    this there - complete with a very recent time-stamp. Double click on
+    the html file. This will open it in your web-browser.\
+    CHECK THAT THIS IS WHAT YOU WANT TO SUBMIT.<br>
+
+On Rstudio cloud,
+
+-   See [TUTORIAL
+    3](https://psu-spatial.github.io/Geog364-2023/in_Tutorial02SetUp.html)
+    for how to download your files <br>
+
+Finally, go to Canvas and submit BOTH your html and your .Rmd file in
+Lab 1.
 
 ```{r, echo=FALSE}
 knitr::include_graphics("./Figures/LabFig_WhatToSubmit.png")
