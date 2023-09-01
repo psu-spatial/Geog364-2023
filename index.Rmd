@@ -21,6 +21,7 @@ If I suggest working through a tutorial, please do - I promise the answers are t
 
 
 
-<br><br><br><br><br><br>s
+<br><br><br><br><br><br>
+
 #### Website
 This book is made using R-Markdown and the flatly theme

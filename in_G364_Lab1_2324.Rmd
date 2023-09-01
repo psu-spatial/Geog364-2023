@@ -67,31 +67,14 @@ to install everything needed for the GEOG-364 this semester.
 ## E. Lab 1 set-up
 
 I strongly suggest you CLOSELY follow [TUTORIAL
-3 - CORRECT LINK](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html)
-to install everything needed for lab 1. This means you will: <br>
-
--   Create a GEOG364 folder somewhere easy on your computer
-
--   Create a project for lab 1, saving it within that GEOG364 folder.
-
--   Change your global settings as requested in the tutorial.
-
--   Use the instructions to download/install a package called
-    `rmdformats`
-
--   Create a markdown file using a template of your choice.
-
--   Save as GEOG364_Lab1_USERID.Rmd e.g. for me,
-    GEOG364_Lab1_hlg5155.Rmd
-
--   Press knit to check it works (you may get a message asking you to
-    install more packages)
-
--   Finally, remove all the 'friendly welcome text' below the YAML code,
-    change the title to Lab 1 and press knit .<br>
+3 - CORRECT LINK](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html) to install everything needed for lab 1.  By the end of Tutorial 3, you should be running an R-project for Lab 1, which is placed inside a GEOG364 folder on your computer. Your global settings should be adjusted - and you have opened, knitted and removed the "friendly text" below your YAML code.  You should know what things like YAML code are!
 
 You should now have a blank file in front of you, other than the YAML
 code. If not, ask for help.
+
+Final hint, to help with formatting, you might find it easier to use the markdown visual text editor through clicking the button on the top left. Here's the difference between writing your reports in 'source' mode (near the top left) vs 'visual' mode.
+
+![](https://quarto.org/docs/get-started/hello/images/rstudio-source-visual.png)
 
 <br>
 
@@ -131,11 +114,6 @@ code. If not, ask for help.
         markdown document can be made into. *Hint, [Tutorial
         1](https://psu-spatial.github.io/Geog364-2023/in_Tutorial01WhatisR.html))*<br>
 
-To help with formatting, you might find it easier to use the markdown
-visual text editor. Here's the difference between writing your reports
-in 'source' mode (near the top left) vs 'visual' mode.
-
-![](https://quarto.org/docs/get-started/hello/images/rstudio-source-visual.png)
 
 ## F. Code showcase
 
@@ -144,15 +122,16 @@ Now, leave another new blank line and add a new Level 1 Header called
 the blank lines is that R formatting often gets messed up with not
 enough blank lines, but it will ignore excess ones.
 
-Create a separate code chunk for each problem below. Inside **use R
-code** to calculate the answers. You HAVE to show the code! <br><br>
+Create a separate code chunk for each problem below. <br>
 
 ```{r, echo=FALSE}
 knitr::include_graphics("./Figures/LabFig1_CodeChunk.png")
 ```
 
-IF YOU DON'T IMMEDIATELY KNOW HOW TO DO THESE, FOLLOW [Tutorial
-4](https://psu-spatial.github.io/Geog364-2023/in_Tutorial04ConsoleBasics.html)
+Inside **use R code** to calculate the answers. You HAVE to show the code You're allowed to either use separate code chunks or one large one with all the commands. <br><br>
+
+IF YOU DON'T IMMEDIATELY KNOW HOW TO DO THESE,FOLLOW [Tutorial
+4](https://psu-spatial.github.io/Geog364-2023/in_Tutorial04ConsoleBasics.html) INCLUDING THE VIDEO!
 
 1.  103^3^ (e.g `103*103*103`, or `103^3`) <br>\
 2.  The co-sine of your age (google is your friend, google R function or
