@@ -11,10 +11,16 @@ This is your home for all your instructions, labs, tutorials and projects.
 
 You can find the class syllabus here: <https://psu.instructure.com/courses/2260204>
 
-Look at the tabs to find:
+LOOK AT THE TABS AT THE TOP OF THE SCREEN. You will find menus for
 
--   [Tutorials (constantly updated)]
--   [Your Lab Overview & Labs]
--   [Project Space] (to be added)
+-   Tutorials 
+-   Your Lab Overview & Labs
+-   Project Space (to be added)
 
+If I suggest working through a tutorial, please do - I promise the answers are there. If you find yourself confused after skimming the tutorial, please work through it in detail.  You have time to slow down here and we can work through it with you.
+
+
+
+<br><br><br><br><br><br>s
+#### Website
 This book is made using R-Markdown and the flatly theme

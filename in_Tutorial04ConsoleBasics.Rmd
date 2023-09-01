@@ -1,5 +1,5 @@
 ---
-title: "Tutorial 3: Setting up each lab"
+title: "Tutorial 4: Console Basics"
 ---
 
 ```{r setup, include=FALSE}

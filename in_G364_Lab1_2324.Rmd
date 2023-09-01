@@ -67,7 +67,7 @@ to install everything needed for the GEOG-364 this semester.
 ## E. Lab 1 set-up
 
 I strongly suggest you CLOSELY follow [TUTORIAL
-3](https://psu-spatial.github.io/Geog364-2023/in_Tutorial02SetUp.html)
+3 - CORRECT LINK](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html)
 to install everything needed for lab 1. This means you will: <br>
 
 -   Create a GEOG364 folder somewhere easy on your computer
