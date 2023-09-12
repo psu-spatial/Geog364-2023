@@ -11,7 +11,7 @@
 
 
 
-<title>Lab FAQ</title>
+<title>Lab 2: Playing with data</title>
 
 <script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -361,34 +361,204 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Lab FAQ</h1>
+<h1 class="title toc-ignore">Lab 2: Playing with data</h1>
+<h3 class="subtitle"><h4 style="font-style:normal"><br />
+This is a two week lab. If you are new to R, I suggest doing the
+data-camp, set-up and frost analysis this week, then next week starting
+the UFO analysis.<br />
+</h4></h3>
 
 </div>
 
 
+<style>
+p.comment {
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 0px;
+border-radius: 5px;
+font-style: normal;
+}
+
+h1.title {
+  font-weight: bold;
+  font-family: Arial;  
+}
+
+h2.title {
+  font-family: Arial;  
+}
+
+</style>
+<style type="text/css">
+#TOC {
+  font-size: 12px;
+  font-family: Arial;
+}
+</style>
+<p><br />
+</p>
+<p>The aim of this lab is to start some spatial data analysis and to
+recap what you learned in Lab 1. See <a
+href="https://psu.instructure.com/courses/2260204/assignments/15480985">The
+Canvas page here</a>, or go to canvas for assignment guidelines.</p>
+<p>Your job is to submit the requirements on this page. You can use
+either the website base RStudio/Posit Cloud OR R-Desktop for this lab.
+By the end of this lab you will be able to:</p>
+<ol style="list-style-type: decimal">
+<li><p>Prove to me you can set up the labs</p></li>
+<li><p>Read in data from an excel file and a spatial file</p></li>
+<li><p>Conduct exploratory data analysis</p></li>
+<li><p>Wrangle a table of data</p></li>
+<li><p>Make initial plots and maps for two case studies</p></li>
+</ol>
 <p><br><br></p>
-<div id="what-do-i-submit" class="section level1">
-<h1>What do I submit?</h1>
-<p>You will be creating two files; an Rmd file containing your code and
-a .html file for viewing your finished document.</p>
-<p>You need to submit both of these files on the relevant Canvas
-assignment page.</p>
-<p>Remember you can also add comments to your submission as/if needed on
-the canvas page, or message Dr G.</p>
-<p><br><br></p>
+<div id="a.-data-camp" class="section level1">
+<h1>A. Data Camp</h1>
+<p>IMPORTANT, Click this link to be added (for free) to the class
+datacamp. You will need to have signed up using your PSU address</p>
+<ul>
+<li><a
+href="https://www.datacamp.com/groups/shared_links/09c662a03e00d0ac23e6716894266ef2f72c4cee048f1b1da99c0f9440584976"
+class="uri">https://www.datacamp.com/groups/shared_links/09c662a03e00d0ac23e6716894266ef2f72c4cee048f1b1da99c0f9440584976</a>
+<br><br></li>
+</ul>
+<div id="optional-but-highly-recommended-for-newbies"
+class="section level4">
+<h4>Optional but highly recommended for newbies</h4>
+<p>If you felt lost during week 1, I highly recommend completing chapter
+1 of this data camp course. It will help you understand the next bit of
+the analysis. It’s free if you signed up using the link above.</p>
+<ul>
+<li><a
+href="https://app.datacamp.com/learn/courses/free-introduction-to-r"
+class="uri">https://app.datacamp.com/learn/courses/free-introduction-to-r</a></li>
+</ul>
+<p>I will award 5 participation points for anyone who completes chapter
+1. <br><br></p>
 </div>
-<div id="how-am-i-graded" class="section level1">
-<h1>How am I graded?</h1>
-<p>There are 100 points available for each of the 5 labs. Remember you
-can drop your lowest lab or exam (e.g. you can skip one)</p>
-<p>You can see the SPECIFIC RUBRIC we use for this lab on the canvas
-page. It’s literally how we will award the marks.</p>
-<p>We will also provide as much feedback as possible, so please remember
-to click the rubric button to take a look.</p>
-<p><br><br></p>
 </div>
-<div id="what-your-grade-means" class="section level1">
-<h1>What your grade means</h1>
+<div id="b.-getting-started" class="section level1">
+<h1>B. Getting started</h1>
+<p><br></p>
+<div id="b1.-create-your-project" class="section level2">
+<h2>B1. Create your project</h2>
+<p>Create a new project in R for Lab 2 and make sure it’s in your GEOG
+364 folder.</p>
+<ul>
+<li><p>For R-Desktop, see <a
+href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Projects_using_Desktop">Tutorial
+3B</a></p></li>
+<li><p>For Posit Cloud, see <a
+href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Projects_using_Rstudioposit_Cloud">Tutorial
+3C</a> <br><br><br></p></li>
+</ul>
+<p><u>Take a screenshot of R studio screen that <em>proves</em> you have
+set up your project correctly (hint, <a
+href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#How_to_check_you_are_in_a_project">how
+to check you are in a project</a>)</u></p>
+<ul>
+<li><p>To take a screenshot on a mac: <em>Press
+<strong><code>Shift + Command (⌘) + 4</code></strong>. Your cursor will
+change to a crosshair. Click and drag to select the portion of the
+screen you want to capture. Release the mouse button to take the
+screenshot. It will be saved to your desktop. Re-name the file and move
+to your GEOG-364 Lab 2 folder.</em> <br></p></li>
+<li><p>To take a screenshot on a windows machine, try one of these or
+ask around/Harman: <em>Press
+*<strong><code>Windows key + Shift + S</code></strong> . This is the <a
+href="https://support.microsoft.com/en-us/windows/use-snipping-tool-to-capture-screenshots-00246869-1843-655f-f220-97299b865f6b">snipping
+tool</a>.</em> <em>On older machines, try
+<strong><code>Windows Logo Key + PrtScn.</code></strong></em>
+<em>Re-name the file and move to your GEOG-364 Lab 2 folder.</em>
+<br><br><br></p></li>
+</ul>
+</div>
+<div id="b2.-get-the-files" class="section level2">
+<h2>B2. Get the files</h2>
+<p><u>Download these three files from <a
+href="https://psu.instructure.com/courses/2260204/assignments/15480985">Canvas</a>
+and place them in your lab 2 folder.</u> <br><br />
+If you are on the cloud, <a
+href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Uploading_files">here
+is how to upload files</a>:</p>
+<ul>
+<li><p>The lab template</p></li>
+<li><p>The frost data</p></li>
+<li><p>Your PERSONAL UFO dataset <br><br />
+(<em>f this doesn’t work or you can’t find your file, there’s no panic.
+Let Harman know - we will get it fixed by the end of the day</em>
+<br><br><br></p></li>
+</ul>
+</div>
+<div id="b3.-edit-your-template" class="section level2">
+<h2>B3. Edit your template</h2>
+<p>Rather than create a new markdown file, this week I want you to use a
+template that I made. You should have just downloaded this from Canvas.
+Make sure it’s in your Lab 2 folder and you’re running your project.
+<br><br></p>
+<ol style="list-style-type: decimal">
+<li><p>Go to the file quadrant and click the G364_Lab 2 Template.Rmd
+file.<br><br></p></li>
+<li><p>Click “<a
+href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Visual_mode">visual</a>”
+mode. Your screen should now look like this. If not, ask for
+help<br><br><br />
+</p></li>
+</ol>
+<p><img src="Figures/Lab2Fig1_SetUp.png" width="1680" /></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Click knit. You might have to re-save. Make sure to include your ID
+in the filename. You should see the html appear. <br><br><br />
+</li>
+<li>Go back to R studio.
+<ul>
+<li>In the Set-Up section, explain to me what an R project is in the
+text and include your screenshot, explaining how it proves you are
+running your Lab 2 project.</li>
+<li>Hint, to include a picture, click the visual mode picture button
+(see circle in pic above).<br><br><br></li>
+</ul></li>
+</ol>
+</div>
+<div id="c.-frost-analysis" class="section level2">
+<h2>C. Frost Analysis</h2>
+<p>To be added in the next 10 mins. Refresh the page!</p>
+</div>
+<div id="d.-ufo-analysis" class="section level2">
+<h2>D. UFO Analysis</h2>
+<p>To be added in the next 10 mins. Refresh the page!</p>
+</div>
+<div id="h.-submitting-your-lab" class="section level2">
+<h2>H. Submitting your Lab</h2>
+<p>Remember to save your work throughout and to spell check! (next to
+the save button). Now, press the knit button one final time.</p>
+<p>On R-Desktop</p>
+<ul>
+<li><p>If you have not made any mistakes in the code then R should
+create a html file in your lab 2 folder which includes your
+answers.</p></li>
+<li><p>If you look at your lab 2 folder on your computer, you should see
+this there - complete with a very recent time-stamp. Double click on the
+html file. This will open it in your web-browser.<br />
+CHECK THAT THIS IS WHAT YOU WANT TO SUBMIT.<br></p></li>
+</ul>
+<p>On Rstudio cloud,</p>
+<ul>
+<li>See <a
+href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Projects_using_Rstudioposit_Cloud">TUTORIAL
+3 Cloud - LINK FIXED</a> for how to download your files <br></li>
+</ul>
+<p>Finally, go to Canvas and submit BOTH your html and your .Rmd file in
+Lab 2.</p>
+<p><img src="Figures/LabFig_WhatToSubmit.png" width="1673" /></p>
+<p><br></p>
+<div id="how-am-i-graded" class="section level3">
+<h3>How am I graded?</h3>
+<p>Look on Canvas, there will be a SPECIFIC RUBRIC that we use to grade
+your lab. It should allow you to predict your grade. We will also
+include comments with our feedback in every lab.</p>
 <p>Overall, here is what your lab should correspond to:</p>
 <table class=" lightable-classic-2 table table-striped table-hover table-responsive" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
 <thead>
@@ -500,47 +670,8 @@ Didn’t submit, or incredibly limited attempt. 
 </tr>
 </tbody>
 </table>
-<p><br><br></p>
 </div>
-<div id="whats-the-late-policy" class="section level1">
-<h1>What’s the late policy?</h1>
-<p>If you have technical problems &amp; have sent me canvas message with
-our code and a screenshot of the issue BEFORE THE DEADLINE, all late
-penalties go away until we have fixed it.</p>
-<p><strong>Submitting late is a risk.</strong> The lab might be graded
-at any time past the deadline with no notice given. If worked answers
-are released then that is too late.</p>
-<p>But.. I would prefer you submit late than not at all. If you’re going
-to be late for any reason (you don’t need to explain why), send Dr G a
-canvas message.</p>
-<p><strong>I will only start penalizing if you’re consistently late and
-I have sent a written warning.</strong> See the course syllabus for more
-info. <a
-href="https://psu.instructure.com/courses/2243429/assignments/syllabus"
-class="uri">https://psu.instructure.com/courses/2243429/assignments/syllabus</a></p>
-<p><br><br></p>
 </div>
-<div id="can-i-work-with-friendsmy-lab-partner-what-counts-as-cheating"
-class="section level1">
-<h1>Can I work with friends/my lab partner? What counts as
-cheating?</h1>
-<p>You can talk with each other to help during these labs e.g. you can
-see each others screens and work out answers together. I will try as
-much as possible to provide alternate datasets.</p>
-<p><strong>BUT NEVER SHARE CODE/SEND SCRIPTS. ALL TEXT SHOULD BE IN YOUR
-OWN WORDS.</strong></p>
-<p>For example:</p>
-<ul>
-<li><p>Working out together the right way to apply the
-<code>seq()</code> function, then each independently adding it to your
-own scripts is OK.</p></li>
-<li><p><strong>Copy/pasting your friend’s code/text is
-not.</strong>.</p></li>
-<li><p>So DISCUSS with friends, but then turn away to your own screen
-and write your own code and text.</p></li>
-</ul>
-<p>I will be randomly running lab reports through plagiarism
-software.</p>
 </div>
 
 

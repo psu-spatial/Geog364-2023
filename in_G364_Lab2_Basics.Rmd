@@ -1,154 +1,189 @@
 ---
-title: "Lab 1: R Introduction"
-editor_options: 
-  markdown: 
-    wrap: 72
+title: "Lab 2: Playing with data"
+subtitle: <h4 style="font-style:normal">This is a two week lab. If you are new to R, I suggest doing the data-camp, set-up and frost analysis this week, then next week starting the UFO analysis.</h4>
+output: 
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float: true
+    theme: flatly
 ---
 
-```{r, warning=FALSE, include=FALSE, message=FALSE}
-library(tidyverse)
-library(kableExtra)
+```{=html}
+<style>
+p.comment {
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 0px;
+border-radius: 5px;
+font-style: normal;
+}
+
+h1.title {
+  font-weight: bold;
+  font-family: Arial;  
+}
+
+h2.title {
+  font-family: Arial;  
+}
+
+</style>
+```
+```{=html}
+<style type="text/css">
+#TOC {
+  font-size: 12px;
+  font-family: Arial;
+}
+</style>
+```
+\
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
 ```
 
-The aim of Lab 1 is to get comfortable in R and in R-Markdown and to
-make sure that both are installed properly. It is a "one week lab" and
-you can find the Canvas page here:
-<https://psu.instructure.com/courses/2260204/assignments/15455191>
+```{r,include=FALSE,echo=FALSE}
+# invisible data read
+library(tidyverse)
+library(sp)
+library(sf)
+library(readxl)
+library(skimr)
+library(tmap)
+library(viridis)
+library(kableExtra)
 
-Instructions are below, linking to relevant tutorials in the tutorials
-tab. If I suggest using a tutorial, the answers WILL be there.
+frost <- readxl::read_excel("./Data/DataG364_frostday.xlsx")
+```
 
-Finally, if the labs are causing major problems or you have any other
-software issue, talk to Dr Greatrex or Harman. What do I mean by
-struggling? More than 15-20 minutes without progress.
+The aim of this lab is to start some spatial data analysis and to recap
+what you learned in Lab 1. See [The Canvas page
+here](https://psu.instructure.com/courses/2260204/assignments/15480985),
+or go to canvas for assignment guidelines.
 
-<br>
+Your job is to submit the requirements on this page. You can use either
+the website base RStudio/Posit Cloud OR R-Desktop for this lab. By the
+end of this lab you will be able to:
 
-# Lab instructions
+1.  Prove to me you can set up the labs
 
-## A. Select Lab Groups
+2.  Read in data from an excel file and a spatial file
 
-We will be doing an in-class exercise to choose lab groups
+3.  Conduct exploratory data analysis
 
--   WEDNESDAY LAB: Please fill in this survey:
-    <https://forms.gle/Uf7T5Hh7895Y7G6DA>\
--   FRIDAY LAB - same link but **wait until Friday**
+4.  Wrangle a table of data
 
-<br>
+5.  Make initial plots and maps for two case studies
 
-## B. Review FAQ
+<br><br>
 
-Review [The LAB FAQ LINK FIXED](https://psu-spatial.github.io/Geog364-2023/in_G364_Lab0_FAQ.html) - you can find it in the Labs
-menu at the top of the page. It explains
+# A. Data Camp
 
--   What you need to submit
--   How you are graded and where the rubric is
--   The late policy
--   What counts as cheating
+IMPORTANT, Click this link to be added (for free) to the class datacamp.
+You will need to have signed up using your PSU address
 
-<br>
+-   <https://www.datacamp.com/groups/shared_links/09c662a03e00d0ac23e6716894266ef2f72c4cee048f1b1da99c0f9440584976>
+    <br><br>
 
-## C. Learn about R, R-studio and Markdown
+#### Optional but highly recommended for newbies
 
-Follow [TUTORIAL
-1](https://psu-spatial.github.io/Geog364-2023/in_Tutorial01WhatisR.html)
-to learn about R, R-studio and Markdown.
+If you felt lost during week 1, I highly recommend completing chapter 1
+of this data camp course. It will help you understand the next bit of
+the analysis. It's free if you signed up using the link above.
 
-<br>
+-   <https://app.datacamp.com/learn/courses/free-introduction-to-r>
 
-## D. Initial Semester set-up
+I will award 5 participation points for anyone who completes chapter 1.
+<br><br>
 
-Follow [TUTORIAL
-2](https://psu-spatial.github.io/Geog364-2023/in_Tutorial02SetUp.html)
-to install everything needed for the GEOG-364 this semester.
-
-<br>
-
-## E. Lab 1 set-up
-
-I strongly suggest you CLOSELY follow [TUTORIAL
-3 - CORRECT LINK](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html) to install everything needed for lab 1.  By the end of Tutorial 3, you should be running an R-project for Lab 1, which is placed inside a GEOG364 folder on your computer. Your global settings should be adjusted - and you have opened, knitted and removed the "friendly text" below your YAML code.  You should know what things like YAML code are!
-
-You should now have a blank file in front of you, other than the YAML
-code. If not, ask for help.
-
-Final hint, to help with formatting, you might find it easier to use the markdown visual text editor through clicking the button on the top left. Here's the difference between writing your reports in 'source' mode (near the top left) vs 'visual' mode.
-
-![](https://quarto.org/docs/get-started/hello/images/rstudio-source-visual.png)
+# B. Getting started
 
 <br>
 
-## F. Comprehension questions
+## B1. Create your project
 
-1.  Write the word *Introduction* in the main body of the text - make it
-    a Header 1 format. Leave a few blank lines above and below it. Press
-    knit, check it worked.
+Create a new project in R for Lab 2 and make sure it's in your GEOG 364
+folder.
 
-2.  Now copy each of the questions below into your report. Make each one
-    "Header 3" format.
+-   For R-Desktop, see [Tutorial
+    3B](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Projects_using_Desktop)
 
-3.  Underneath each question write your answer. At least 3 or 4
-    sentences for each one. <br>
+-   For Posit Cloud, see [Tutorial
+    3C](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Projects_using_Rstudioposit_Cloud)
+    <br><br><br>
 
-    1.  QUESTION 1: <br>In your own words, explain the course late
-        policy<br> *Hint, [Lab
-        FAQs](https://psu-spatial.github.io/Geog364-2023/in_G364_Lab0_FAQ.html))*
-        <br>
+[Take a screenshot of R studio screen that *proves* you have set up your
+project correctly (hint, [how to check you are in a
+project](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#How_to_check_you_are_in_a_project))]{.underline}
 
-    2.  QUESTION 2: <br>When are Dr G's office hours? Should I email or
-        Canvas Message to get help fast? *Hint, see
-        [Canvas](https://psu.instructure.com/courses/2260204)* <br>
+-   To take a screenshot on a mac: *Press **`Shift + Command (⌘) + 4`**.
+    Your cursor will change to a crosshair. Click and drag to select the
+    portion of the screen you want to capture. Release the mouse button
+    to take the screenshot. It will be saved to your desktop. Re-name
+    the file and move to your GEOG-364 Lab 2 folder.* <br>
 
-    3.  QUESTION 3: <br>Are you allowed to copy/paste anyone else's code
-        or text in your submission? Explain your answer. *Hint, [Lab
-        FAQs](https://psu-spatial.github.io/Geog364-2023/in_G364_Lab0_FAQ.html))*
-        <br>
+-   To take a screenshot on a windows machine, try one of these or ask
+    around/Harman: *Press \***`Windows key + Shift + S`** . This is the
+    [snipping
+    tool](https://support.microsoft.com/en-us/windows/use-snipping-tool-to-capture-screenshots-00246869-1843-655f-f220-97299b865f6b).*
+    *On older machines, try **`Windows Logo Key + PrtScn.`*** *Re-name
+    the file and move to your GEOG-364 Lab 2 folder.* <br><br><br>
 
-    4.  QUESTION 4: <br>Use something like Spotify (a computer programme
-        that plays custom playlists of music) to explain the difference
-        between R and R-Studio. *Hint, [Tutorial
-        1](https://psu-spatial.github.io/Geog364-2023/in_Tutorial01WhatisR.html))*
-        <br>
+## B2. Get the files
 
-    5.  QUESTION 5: <br>Explain the range of different formats a
-        markdown document can be made into. *Hint, [Tutorial
-        1](https://psu-spatial.github.io/Geog364-2023/in_Tutorial01WhatisR.html))*<br>
+[Download these three files from
+[Canvas](https://psu.instructure.com/courses/2260204/assignments/15480985)
+and place them in your lab 2 folder.]{.underline} <br>\
+If you are on the cloud, [here is how to upload
+files](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Uploading_files):
 
+-   The lab template
 
-## F. Code showcase
+-   The frost data
 
-Now, leave another new blank line and add a new Level 1 Header called
-*"Code Showcase"*. Add a blank line afterwards too - the reason for all
-the blank lines is that R formatting often gets messed up with not
-enough blank lines, but it will ignore excess ones.
+-   Your PERSONAL UFO dataset <br>\
+    (*f this doesn't work or you can't find your file, there's no panic.
+    Let Harman know - we will get it fixed by the end of the day*
+    <br><br><br>
 
-Create a separate code chunk for each problem below. <br>
+## B3. Edit your template
+
+Rather than create a new markdown file, this week I want you to use a
+template that I made. You should have just downloaded this from Canvas.
+Make sure it's in your Lab 2 folder and you're running your project.
+<br><br>
+
+1.  Go to the file quadrant and click the G364_Lab 2 Template.Rmd
+    file.<br><br>
+
+2.  Click
+    "[visual](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Visual_mode)"
+    mode. Your screen should now look like this. If not, ask for
+    help<br><br>\
 
 ```{r, echo=FALSE}
-knitr::include_graphics("./Figures/LabFig1_CodeChunk.png")
+knitr::include_graphics("./Figures/Lab2Fig1_SetUp.png")
 ```
 
-Inside **use R code** to calculate the answers. You HAVE to show the code You're allowed to either use separate code chunks or one large one with all the commands. <br><br>
+3.  Click knit. You might have to re-save. Make sure to include your ID
+    in the filename. You should see the html appear. <br><br>\
+4.  Go back to R studio.
+    -   In the Set-Up section, explain to me what an R project is in the
+        text and include your screenshot, explaining how it proves you
+        are running your Lab 2 project.
+    -   Hint, to include a picture, click the visual mode picture button
+        (see circle in pic above).<br><br><br>
 
-IF YOU DON'T IMMEDIATELY KNOW HOW TO DO THESE,FOLLOW [Tutorial
-4](https://psu-spatial.github.io/Geog364-2023/in_Tutorial04ConsoleBasics.html) INCLUDING THE VIDEO!
+## C. Frost Analysis
 
-1.  103^3^ (e.g `103*103*103`, or `103^3`) <br>\
-2.  The co-sine of your age (google is your friend, google R function or
-    example for cosine) <br>\
-3.  How many characters are in [the longest town name in
-    Wales](https://www.bbcamerica.com/anglophenia/2015/09/how-to-pronounce-the-longest-place-name-in-the-u-k)
-    *Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch*. <br>\
-    -   Hint 1, remember you can copy paste this name into your code.
-        <br>
-    -   Hint 2, the command is available in the tutorials..
-    -   Hint 3, you can google any R command, try googling the *"R
-        command for number of characters in a word"*.<br><br>
+To be added in the next 10 mins. Refresh the page!
 
-Press "knit" at the top of the screen . If you have a made a mistake and
-it doesn't knit, stop and fix before continuing.
+## D. UFO Analysis
 
-<br>
+To be added in the next 10 mins. Refresh the page!
 
 ## H. Submitting your Lab
 
@@ -158,21 +193,21 @@ save button). Now, press the knit button one final time.
 On R-Desktop
 
 -   If you have not made any mistakes in the code then R should create a
-    html file in your lab 1 folder which includes your answers.
+    html file in your lab 2 folder which includes your answers.
 
--   If you look at your lab 1 folder on your computer, you should see
+-   If you look at your lab 2 folder on your computer, you should see
     this there - complete with a very recent time-stamp. Double click on
     the html file. This will open it in your web-browser.\
     CHECK THAT THIS IS WHAT YOU WANT TO SUBMIT.<br>
 
 On Rstudio cloud,
 
--   See [TUTORIAL
-    3 Cloud - LINK FIXED](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Projects_using_Rstudioposit_Cloud)
+-   See [TUTORIAL 3 Cloud - LINK
+    FIXED](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Projects_using_Rstudioposit_Cloud)
     for how to download your files <br>
 
 Finally, go to Canvas and submit BOTH your html and your .Rmd file in
-Lab 1.
+Lab 2.
 
 ```{r, echo=FALSE}
 knitr::include_graphics("./Figures/LabFig_WhatToSubmit.png")
@@ -183,8 +218,8 @@ knitr::include_graphics("./Figures/LabFig_WhatToSubmit.png")
 ### How am I graded?
 
 Look on Canvas, there will be a SPECIFIC RUBRIC that we use to grade
-your lab. USE IT!!! It should allow you to predict your grade. We will
-also include comments with our feedback in every lab.
+your lab. It should allow you to predict your grade. We will also
+include comments with our feedback in every lab.
 
 Overall, here is what your lab should correspond to:
 
