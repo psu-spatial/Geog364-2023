@@ -692,15 +692,22 @@ report to explain what we are doing.</p></li>
 <h2>7: Load the data</h2>
 <p>I have already provided the command to load the data into R. Press
 the green arrow to run.</p>
+<p><img src="Figures/Lab2Fig2a_readindata.png" width="624" /></p>
 <p>This loads the data stored in “DataG364_frostday.xlsx” into R, then
-temporarily saves the data into a table called ‘frost’</p>
-<p>This will only work if - you have run your library code chunk and if
-you have downloaded the readxl library - if your file really is in your
-lab 2 folder - If you are running your project</p>
+temporarily saves the data into a table called ‘frost’. That’s what the
+‘arrow’ is doing in the command. It does the stuff on the right (loads
+the file from excel, then the arrow means ‘store this as’ frost)</p>
+<p>This code will only work if - you have run your library code chunk
+and if you have downloaded the readxl library - if your file really is
+in your lab 2 folder - If you are running your project</p>
 <p>Otherwise you will see an error saying it can’t find the command.</p>
 <p>You should see the frost data appear in the ‘environment tab’. Click
-the NAME to take a look (see screenshot below). You will see a
-spreadsheet/table/data.frame with these columns:</p>
+the NAME to take a look (see screenshot below). Each row represents a
+weather station.</p>
+<p><br></p>
+<p><img src="Figures/Lab2Fig3_frost.png" width="1149" /></p>
+<p><br></p>
+<p>You will see a spreadsheet/table/data.frame with these columns:</p>
 <ul>
 <li><em>Station</em>: The name of the weather station</li>
 <li><em>State</em>: The US State that the station resides in</li>
@@ -718,9 +725,6 @@ spring frost date for that station</li>
 month/day of the year e.g. Jan-1:1, Jan-2:2… Jan-31:31, Feb-1:32…
 Dec-31:365. We use this number instead of the month/day because its
 easier to analyse.</p>
-<p>Each row represents a weather station.</p>
-<p><br></p>
-<p><img src="Figures/Lab2Fig3_frost.png" width="1149" /></p>
 <p><br><br></p>
 </div>
 <div id="intro-analysis" class="section level2">
@@ -760,50 +764,106 @@ show me how many weather stations there are.</p></li>
 </ol>
 <p><br><br></p>
 </div>
-<div id="intro-plots" class="section level2">
-<h2>9: Intro plots</h2>
+<div id="intro-plots-and-maps" class="section level2">
+<h2>9: Intro plots and maps</h2>
+<div id="histograms" class="section level3">
+<h3>Histograms</h3>
 <p>It’s also very easy to make professional plots and maps in R. This
 used to be much harder and there are <em>many</em> packages you could
-use. Today we are going to focus on the ggplot2 and the tmap
-packages.</p>
+use. Today we are going to focus on the ggplot2 package.</p>
 <ol style="list-style-type: decimal">
-<li>First we will make a basic histogram of the Avg_DOY_SpringFrost
+<li><p>First we will make a basic histogram of the Avg_DOY_SpringFrost
 column. You can do this using this code. To understand what is going on,
 see this great tutorial: <a
 href="https://365datascience.com/tutorials/r-tutorials/ggplot2-histogram/"
-class="uri">https://365datascience.com/tutorials/r-tutorials/ggplot2-histogram/</a></li>
-</ol>
+class="uri">https://365datascience.com/tutorials/r-tutorials/ggplot2-histogram/</a></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">ggplot</span>(frost, <span class="fu">aes</span>(<span class="at">x=</span>Avg_DOY_SpringFrost)) <span class="sc">+</span></span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>       <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">8</span>)</span></code></pre></div>
-<ol start="2" style="list-style-type: decimal">
-<li><br> We can improve it very easily. Try running this code.</li>
-</ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">ggplot</span>(frost, <span class="fu">aes</span>(<span class="at">x=</span>Avg_DOY_SpringFrost)) <span class="sc">+</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>      <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">8</span>)</span></code></pre></div>
+<p><br></p></li>
+<li><p>We can improve it very easily. Try running this code.</p>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">ggplot</span>(frost, <span class="fu">aes</span>(<span class="at">x=</span>Avg_DOY_SpringFrost)) <span class="sc">+</span></span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>       <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">8</span>,</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>                      <span class="at">fill=</span><span class="st">&quot;#108A99&quot;</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>                      <span class="at">color=</span><span class="st">&quot;white&quot;</span>)<span class="sc">+</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>                  <span class="at">fill=</span><span class="st">&quot;#108A99&quot;</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>                  <span class="at">color=</span><span class="st">&quot;white&quot;</span>)<span class="sc">+</span></span>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>       <span class="fu">xlab</span>(<span class="st">&quot;Average day of year of the last spring frost&quot;</span>) <span class="sc">+</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>       <span class="fu">xlab</span>(<span class="st">&quot;Number of weather stations&quot;</span>) </span></code></pre></div>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>      <span class="fu">ylab</span>(<span class="st">&quot;Number of weather stations&quot;</span>) </span></code></pre></div></li>
+</ol>
 <p>For a WHOLE LOAD of other formatting options, see here: <a
 href="http://www.sthda.com/english/wiki/ggplot2-histogram-plot-quick-start-guide-r-software-and-data-visualization"
 class="uri">http://www.sthda.com/english/wiki/ggplot2-histogram-plot-quick-start-guide-r-software-and-data-visualization</a></p>
+<p><br></p>
 <ol start="3" style="list-style-type: decimal">
 <li>Now make your own histogram of the Latitude column of the frost
 data. Go wild, impress me with your formatting!</li>
 </ol>
+<p><br><br></p>
 </div>
-<div id="intro-maps" class="section level2">
-<h2>10: Intro maps</h2>
-<p>Finally, we can use the tmap package</p>
+<div id="quick-maps" class="section level3">
+<h3>Quick maps</h3>
+<p>Finally, we can use the tmap package to have a look at some
+plots.</p>
+<ol style="list-style-type: decimal">
+<li><p>First, we loaded our data as a standard old Excel file. So we
+need to teach R that it has spatial coordinates. To do this, run this
+command. If it works, nothing should outwardly happen, but you should
+see in your environment quadrant that a new variable called
+frost.spatial has turned up.</p>
+<div class="sourceCode" id="cb3"><pre
+class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># In future classes we will break down what this is doing </span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>frost.spatial <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(frost,</span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>                      <span class="at">coords =</span><span class="fu">c</span>(<span class="st">&#39;Longitude&#39;</span>, <span class="st">&#39;Latitude&#39;</span>),</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>                      <span class="at">crs =</span> <span class="dv">4326</span>)</span></code></pre></div></li>
+</ol>
+<p>IMPORTANT. IF YOU GET A WEIRD ERROR TRY RE-TYPING ALL THE QUOTE MARKS
+AROUND LONGITUDE AND LATITUDE. The copy/paste sometimes messes up.</p>
+<p><br></p>
+<ol start="2" style="list-style-type: decimal">
+<li><p>Now we can use the QTM (Quick Thematic Map function) to have a
+look! This should make an interactive map by default and you can turn on
+different basemaps.</p>
+<div class="sourceCode" id="cb4"><pre
+class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># This sets the mode to an interactive map. If your computer struggles, try changing &#39;view&#39; to &#39;plot&#39;</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">&#39;view&#39;</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="fu">qtm</span>(frost.spatial,</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>    <span class="at">dots.col=</span><span class="st">&#39;Elevation&#39;</span>)</span></code></pre></div></li>
+</ol>
+<p><img src="Figures/Lab2Fig4_MapOutput.png" width="643" /></p>
+<p><br></p>
+<ol start="3" style="list-style-type: decimal">
+<li>Try making your own map of the Avg_DOY_SpringFrost column in the
+frost.spatial dataset. You can see a load more style options here <a
+href="https://www.rdocumentation.org/packages/tmap/versions/3.3-3/topics/qtm"
+class="uri">https://www.rdocumentation.org/packages/tmap/versions/3.3-3/topics/qtm</a></li>
+</ol>
+<p><br><br></p>
+</div>
+</div>
+<div id="summarise-what-you-have-found" class="section level2">
+<h2>10. Summarise what you have found</h2>
+<p>Finally, write a paragraph summarising</p>
+<ul>
+<li><p>What the study was trying to achieve</p></li>
+<li><p>Details of the dataset (how many weather stations, summary
+statistics etc etc)</p></li>
+<li><p>What spatial patterns do you see in the average last spring frost
+dates in the dataset?</p></li>
+<li><p>From looking at your maps/histograms etc, what factors or
+processes do you think influence those patterns?</p></li>
+</ul>
+<p>In the future &amp; in the UFO section, we will integrate this
+writing around your analysis, but for this week, I wanted you to focus
+on really understanding the code.</p>
 <p><br><br><br></p>
 </div>
 </div>
 <div id="ufo-analysis" class="section level1">
 <h1>UFO Analysis</h1>
 <p>Congrats! If you have reached this far, you have at least received a
-B :)</p>
-<p>To be added later today. Focus on steps 1-9 for now - and you have
-all lab next week for this part.</p>
+C for the bare minimum and a B+ for doing it all well. :)</p>
+<p>This section will be added in the next hour, but really use next week
+to focus on it.</p>
 <p><br><br><br></p>
 </div>
 <div id="submitting-your-lab" class="section level1">

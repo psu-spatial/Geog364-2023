@@ -263,11 +263,13 @@ knitr::include_graphics("./Figures/Lab2Fig2a_readindata.png")
 ```
 
 This loads the data stored in "DataG364_frostday.xlsx" into R, then
-temporarily saves the data into a table called 'frost'.  That's what the 'arrow' is doing in the command.  It does the stuff on the right (loads the file from excel, then the arrow means 'store this as' frost)
+temporarily saves the data into a table called 'frost'. That's what the
+'arrow' is doing in the command. It does the stuff on the right (loads
+the file from excel, then the arrow means 'store this as' frost)
 
-This code will only work if - you have run your library code chunk and if you
-have downloaded the readxl library - if your file really is in your lab
-2 folder - If you are running your project
+This code will only work if - you have run your library code chunk and
+if you have downloaded the readxl library - if your file really is in
+your lab 2 folder - If you are running your project
 
 Otherwise you will see an error saying it can't find the command.
 
@@ -347,52 +349,121 @@ UNITS!
 
 <br><br>
 
-## 9: Intro plots
+## 9: Intro plots and maps
+
+### Histograms
 
 It's also very easy to make professional plots and maps in R. This used
 to be much harder and there are *many* packages you could use. Today we
-are going to focus on the ggplot2 and the tmap packages.
+are going to focus on the ggplot2 package.
 
 1.  First we will make a basic histogram of the Avg_DOY_SpringFrost
     column. You can do this using this code. To understand what is going
     on, see this great tutorial:
     <https://365datascience.com/tutorials/r-tutorials/ggplot2-histogram/>
 
-```{r,eval=FALSE}
-ggplot(frost, aes(x=Avg_DOY_SpringFrost)) +
-       geom_histogram(bins=8)
-```
+    ```{r,eval=FALSE}
+    ggplot(frost, aes(x=Avg_DOY_SpringFrost)) +
+          geom_histogram(bins=8)
+    ```
 
-2.  <br> We can improve it very easily. Try running this code.
+    <br>
 
-```{r,eval=FALSE}
-ggplot(frost, aes(x=Avg_DOY_SpringFrost)) +
-       geom_histogram(bins=8,
+2.  We can improve it very easily. Try running this code.
+
+    ```{r,eval=FALSE}
+    ggplot(frost, aes(x=Avg_DOY_SpringFrost)) +
+           geom_histogram(bins=8,
                       fill="#108A99",
                       color="white")+
-       xlab("Average day of year of the last spring frost") +
-       xlab("Number of weather stations") 
-```
+           xlab("Average day of year of the last spring frost") +
+          ylab("Number of weather stations") 
+    ```
 
 For a WHOLE LOAD of other formatting options, see here:
 <http://www.sthda.com/english/wiki/ggplot2-histogram-plot-quick-start-guide-r-software-and-data-visualization>
 
+<br>
+
 3.  Now make your own histogram of the Latitude column of the frost
     data. Go wild, impress me with your formatting!
 
-## 10: Intro maps
+<br><br>
 
-Finally, we can use the tmap package
+### Quick maps
+
+Finally, we can use the tmap package to have a look at some plots.
+
+1.  First, we loaded our data as a standard old Excel file. So we need
+    to teach R that it has spatial coordinates. To do this, run this
+    command. If it works, nothing should outwardly happen, but you
+    should see in your environment quadrant that a new variable called
+    frost.spatial has turned up.
+
+    ```{r}
+    # In future classes we will break down what this is doing 
+    frost.spatial <- st_as_sf(frost,
+                          coords =c('Longitude', 'Latitude'),
+                          crs = 4326)
+    ```
+
+IMPORTANT. IF YOU GET A WEIRD ERROR TRY RE-TYPING ALL THE QUOTE MARKS
+AROUND LONGITUDE AND LATITUDE. The copy/paste sometimes messes up.
+
+<br>
+
+2.  Now we can use the QTM (Quick Thematic Map function) to have a look!
+    This should make an interactive map by default and you can turn on
+    different basemaps.
+
+    ```{r,eval=FALSE}
+    # This sets the mode to an interactive map. If your computer struggles, try changing 'view' to 'plot'
+    tmap_mode('view')
+
+    qtm(frost.spatial,
+        dots.col='Elevation')
+    ```
+
+```{r, echo=FALSE}
+knitr::include_graphics("./Figures/Lab2Fig4_MapOutput.png")
+```
+
+<br>
+
+3.  Try making your own map of the Avg_DOY_SpringFrost column in the
+    frost.spatial dataset. You can see a load more style options here
+    <https://www.rdocumentation.org/packages/tmap/versions/3.3-3/topics/qtm>
+
+<br><br>
+
+## 10. Summarise what you have found
+
+Finally, write a paragraph summarising
+
+-   What the study was trying to achieve
+
+-   Details of the dataset (how many weather stations, summary
+    statistics etc etc)
+
+-   What spatial patterns do you see in the average last spring frost
+    dates in the dataset?
+
+-   From looking at your maps/histograms etc, what factors or processes
+    do you think influence those patterns?
+
+In the future & in the UFO section, we will integrate this writing
+around your analysis, but for this week, I wanted you to focus on really
+understanding the code.
 
 <br><br><br>
 
 # UFO Analysis
 
-Congrats! If you have reached this far, you have at least received a B
-:)
+Congrats! If you have reached this far, you have at least received a C
+for the bare minimum and a B+ for doing it all well. :)
 
-To be added later today. Focus on steps 1-9 for now - and you have all
-lab next week for this part.
+This section will be added in the next hour, but really use next week to
+focus on it.
 
 <br><br><br>
 
