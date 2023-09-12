@@ -602,21 +602,15 @@ lab 2 folder - If you are running your project</p>
 the NAME to take a look (see screenshot below). You will see a
 spreadsheet/table/data.frame with these columns:</p>
 <ul>
-<li><em>Station</em>: The name of the weather station<br />
-</li>
-<li><em>State</em>: The US State that the station resides in<br />
-</li>
+<li><em>Station</em>: The name of the weather station</li>
+<li><em>State</em>: The US State that the station resides in</li>
 <li><em>Type_Fake</em>: A synthetic column I added to put in a “type” of
 station</li>
-<li><em>Latitude</em>: The latitude of the station (degrees)<br />
-</li>
-<li><em>Longitude</em>: The longitude of the station (degrees)<br />
-</li>
-<li><em>Elevation</em>: The elevation of the station (feet)<br />
-</li>
+<li><em>Latitude</em>: The latitude of the station (degrees)</li>
+<li><em>Longitude</em>: The longitude of the station (degrees)</li>
+<li><em>Elevation</em>: The elevation of the station (feet)</li>
 <li><em>Dist_to_Coast</em>: The distance from the station to the coast
-(miles)<br />
-</li>
+(miles)</li>
 <li><em>Avg_DOY_SpringFrost</em>: The Day-Of-Year of the average final
 spring frost date for that station</li>
 </ul>
@@ -630,7 +624,35 @@ easier to analyse.</p>
 </div>
 <div id="intro-analysis" class="section level2">
 <h2>8: Intro analysis</h2>
-<p>Being added in next 10mins. REFRESH THE PAGE!</p>
+<p>This is great, but the joy of R is that it is easy to do more complex
+things. Click back to your lab script.Before we were applying commands
+to a single word or number e.g. (cos(30)). Now, we can apply commands to
+a whole column of data. E.g.</p>
+<p><code>mean(frost$Elevation)</code></p>
+<p>tells the computer to apply the mean command to the Elevation column
+inside the frost table. (the $ means “column” and when you type it, it
+will bring up a list to choose from).</p>
+<ol style="list-style-type: decimal">
+<li><p>Make a new code chunk. Inside, calculate the mean of the
+Dist_To_Coast column.
+e.g. <code>mean(frost$Dist_To_Coast)</code></p></li>
+<li><p>Use the <code>max</code> command to find the maximum Elevation in
+the dataset.</p></li>
+<li><p>Google the command for the standard deviation in R. Find the
+standard deviation of the distance of the rain-gauges to the
+coast.</p></li>
+<li><p>We can also apply commands to non-numeric data. Use the
+<code>table</code> command on the State column
+e.g. <code>table(frost$State)</code> How many rain-gauges are in
+Alabama?</p></li>
+<li><p>R includes some fantastic summary commands that we can use on the
+whole table. Run <code>summary(frost)</code> and explain what is going
+on.</p></li>
+</ol>
+</div>
+<div id="intro-plots" class="section level2">
+<h2>9: Intro plots</h2>
+<p>Uploaded in the next 10mins REFRESH THE PAGE</p>
 <p><br><br><br></p>
 </div>
 </div>

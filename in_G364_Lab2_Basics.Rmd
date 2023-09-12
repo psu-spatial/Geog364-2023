@@ -244,7 +244,7 @@ of average spring frost dates: *Parnell, 2005, "A Climatology of Frost
 Extremes Across the Southeast United States, 1950--2009":*<br>
 <https://www.proquest.com/openview/d5a7301f0cbe941ead48c96888f791b8/1?pq-origsite=gscholar&cbl=18750&diss=y>
 
--    Read the abstract of the study above to understand the dataset
+-   Read the abstract of the study above to understand the dataset
     *(click the link and skim read pages iv and v, e.g. the bit before
     the table of contents)*.
 
@@ -255,32 +255,39 @@ Extremes Across the Southeast United States, 1950--2009":*<br>
 
 ## 7: Load the data
 
-I have already provided the command to load the data into R. Press the green arrow to run.
+I have already provided the command to load the data into R. Press the
+green arrow to run.
 
-This loads the data stored in "DataG364_frostday.xlsx" into R, then temporarily saves the data into a table called 'frost'
+This loads the data stored in "DataG364_frostday.xlsx" into R, then
+temporarily saves the data into a table called 'frost'
 
-This will only work if 
- - you have run your library code chunk and if you have downloaded the readxl library
- - if your file really is in your lab 2 folder 
- - If you are running your project 
- 
+This will only work if - you have run your library code chunk and if you
+have downloaded the readxl library - if your file really is in your lab
+2 folder - If you are running your project
+
 Otherwise you will see an error saying it can't find the command.
 
-You should see the frost data appear in the 'environment tab'. Click the NAME to take a look (see screenshot below).  You will see a spreadsheet/table/data.frame with these columns:
-  
-  - *Station*: The name of the weather station             
-  - *State*: The US State that the station resides in   
-  - *Type_Fake*: A synthetic column I added to put in a "type" of station
-  - *Latitude*: The latitude of the station (degrees)             
-  - *Longitude*: The longitude of the station (degrees)      
-  - *Elevation*: The elevation of the station (feet)      
-  - *Dist_to_Coast*: The distance from the station to the coast (miles)    
-  - *Avg_DOY_SpringFrost*: The Day-Of-Year of the average final spring frost date for that station
-  
-When I say Day-Of-Year, I mean a number from 1-365 representing the month/day of the year e.g. Jan-1:1, Jan-2:2... Jan-31:31, Feb-1:32... Dec-31:365.  We use this number instead of the month/day because its easier to analyse.
+You should see the frost data appear in the 'environment tab'. Click the
+NAME to take a look (see screenshot below). You will see a
+spreadsheet/table/data.frame with these columns:
+
+-   *Station*: The name of the weather station
+-   *State*: The US State that the station resides in
+-   *Type_Fake*: A synthetic column I added to put in a "type" of
+    station
+-   *Latitude*: The latitude of the station (degrees)
+-   *Longitude*: The longitude of the station (degrees)
+-   *Elevation*: The elevation of the station (feet)
+-   *Dist_to_Coast*: The distance from the station to the coast (miles)
+-   *Avg_DOY_SpringFrost*: The Day-Of-Year of the average final spring
+    frost date for that station
+
+When I say Day-Of-Year, I mean a number from 1-365 representing the
+month/day of the year e.g. Jan-1:1, Jan-2:2... Jan-31:31, Feb-1:32...
+Dec-31:365. We use this number instead of the month/day because its
+easier to analyse.
 
 <br>
-
 
 ```{r, echo=FALSE}
 knitr::include_graphics("./Figures/Lab2Fig3_frost.png")
@@ -288,11 +295,37 @@ knitr::include_graphics("./Figures/Lab2Fig3_frost.png")
 
 <br><br>
 
-
-
 ## 8: Intro analysis
 
-Being added in next 10mins. REFRESH THE PAGE!
+This is great, but the joy of R is that it is easy to do more complex
+things. Click back to your lab script.Before we were applying commands
+to a single word or number e.g. (cos(30)). Now, we can apply commands to
+a whole column of data. E.g.
+
+`mean(frost$Elevation)`
+
+tells the computer to apply the mean command to the Elevation column
+inside the frost table. (the \$ means "column" and when you type it, it
+will bring up a list to choose from).
+
+1.  Make a new code chunk. Inside, calculate the mean of the
+    Dist_To_Coast column. e.g. `mean(frost$Dist_To_Coast)`
+
+2.  Use the `max` command to find the maximum Elevation in the dataset.
+
+3.  Google the command for the standard deviation in R. Find the
+    standard deviation of the distance of the rain-gauges to the coast.
+
+4.  We can also apply commands to non-numeric data. Use the `table`
+    command on the State column e.g. `table(frost$State)` How many
+    rain-gauges are in Alabama?
+
+5.  R includes some fantastic summary commands that we can use on the
+    whole table. Run `summary(frost)` and explain what is going on.
+
+## 9: Intro plots
+
+Uploaded in the next 10mins REFRESH THE PAGE
 
 <br><br><br>
 
