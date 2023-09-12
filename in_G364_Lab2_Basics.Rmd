@@ -258,18 +258,32 @@ Extremes Across the Southeast United States, 1950--2009":*<br>
 I have already provided the command to load the data into R. Press the
 green arrow to run.
 
-This loads the data stored in "DataG364_frostday.xlsx" into R, then
-temporarily saves the data into a table called 'frost'
+```{r, echo=FALSE}
+knitr::include_graphics("./Figures/Lab2Fig2a_readindata.png")
+```
 
-This will only work if - you have run your library code chunk and if you
+This loads the data stored in "DataG364_frostday.xlsx" into R, then
+temporarily saves the data into a table called 'frost'.  That's what the 'arrow' is doing in the command.  It does the stuff on the right (loads the file from excel, then the arrow means 'store this as' frost)
+
+This code will only work if - you have run your library code chunk and if you
 have downloaded the readxl library - if your file really is in your lab
 2 folder - If you are running your project
 
 Otherwise you will see an error saying it can't find the command.
 
 You should see the frost data appear in the 'environment tab'. Click the
-NAME to take a look (see screenshot below). You will see a
-spreadsheet/table/data.frame with these columns:
+NAME to take a look (see screenshot below). Each row represents a
+weather station.
+
+<br>
+
+```{r, echo=FALSE}
+knitr::include_graphics("./Figures/Lab2Fig3_frost.png")
+```
+
+<br>
+
+You will see a spreadsheet/table/data.frame with these columns:
 
 -   *Station*: The name of the weather station
 -   *State*: The US State that the station resides in
@@ -286,14 +300,6 @@ When I say Day-Of-Year, I mean a number from 1-365 representing the
 month/day of the year e.g. Jan-1:1, Jan-2:2... Jan-31:31, Feb-1:32...
 Dec-31:365. We use this number instead of the month/day because its
 easier to analyse.
-
-Each row represents a weather station.
-
-<br>
-
-```{r, echo=FALSE}
-knitr::include_graphics("./Figures/Lab2Fig3_frost.png")
-```
 
 <br><br>
 
