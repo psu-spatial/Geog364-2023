@@ -1,0 +1,14 @@
+/* Change link color to blue */
+a {
+  color: #7fcdbb !important; 
+}
+
+/* Increase the height of the navbar */
+.navbar {
+    height: 80px; /* Adjust the height to your preference */
+    font-size: 30px; /* Adjust the font size to your preference */
+    padding: 15px; /* Adjust as needed */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Adjust the shadow values as needed */
+    background-color: blue; /* Replace 'blue' with your desired color */
+    font-color: white !important; /* Adjust the font size to your preference */
+}

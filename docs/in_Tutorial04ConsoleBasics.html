@@ -16,7 +16,7 @@
 <script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<link href="site_libs/bootstrap-3.3.5/css/sandstone.min.css" rel="stylesheet" />
 <script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
 <script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
@@ -33,6 +33,8 @@
 <link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
 <script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/highlightjs-9.12.0/default.css" rel="stylesheet" />
+<script src="site_libs/highlightjs-9.12.0/highlight.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
 <link href="site_libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
@@ -46,113 +48,23 @@
   ul.task-list{list-style: none;}
     </style>
 
-
-
-<style type="text/css">
-  code {
-    white-space: pre;
+<style type="text/css">code{white-space: pre;}</style>
+<script type="text/javascript">
+if (window.hljs) {
+  hljs.configure({languages: []});
+  hljs.initHighlightingOnLoad();
+  if (document.readyState && document.readyState === "complete") {
+    window.setTimeout(function() { hljs.initHighlighting(); }, 0);
   }
-  .sourceCode {
-    overflow: visible;
-  }
-</style>
-<style type="text/css" data-origin="pandoc">
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
 }
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-    color: #aaaaaa;
-  }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-div.sourceCode
-  {  background-color: #f8f8f8; }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
-code span.al { color: #ef2929; } /* Alert */
-code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #204a87; } /* Attribute */
-code span.bn { color: #0000cf; } /* BaseN */
-code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4e9a06; } /* Char */
-code span.cn { color: #8f5902; } /* Constant */
-code span.co { color: #8f5902; font-style: italic; } /* Comment */
-code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
-code span.dt { color: #204a87; } /* DataType */
-code span.dv { color: #0000cf; } /* DecVal */
-code span.er { color: #a40000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #0000cf; } /* Float */
-code span.fu { color: #204a87; font-weight: bold; } /* Function */
-code span.im { } /* Import */
-code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
-code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
-code span.ot { color: #8f5902; } /* Other */
-code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
-code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
-code span.ss { color: #4e9a06; } /* SpecialString */
-code span.st { color: #4e9a06; } /* String */
-code span.va { color: #000000; } /* Variable */
-code span.vs { color: #4e9a06; } /* VerbatimString */
-code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
-
-</style>
-<script>
-// apply pandoc div.sourceCode style to pre.sourceCode instead
-(function() {
-  var sheets = document.styleSheets;
-  for (var i = 0; i < sheets.length; i++) {
-    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
-    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
-    var j = 0;
-    while (j < rules.length) {
-      var rule = rules[j];
-      // check if there is a div.sourceCode rule
-      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
-        j++;
-        continue;
-      }
-      var style = rule.style.cssText;
-      // check if color or background-color is set
-      if (rule.style.color === '' && rule.style.backgroundColor === '') {
-        j++;
-        continue;
-      }
-      // replace div.sourceCode by a pre.sourceCode rule
-      sheets[i].deleteRule(j);
-      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
-    }
-  }
-})();
 </script>
 
 
 
 
+
+
+<link rel="stylesheet" href="custom.css" type="text/css" />
 
 
 
@@ -487,14 +399,14 @@ directly onto the screen</li>
 </ul>
 <p>Let’s start by the simplest command possible. Type this command into
 your R console and press enter to run.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">+</span><span class="dv">1</span></span></code></pre></div>
+<pre class="r"><code>1+1</code></pre>
 <p>When you press enter, it should give you the answer…. 2</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="dv">1</span><span class="sc">+</span><span class="dv">1</span></span></code></pre></div>
+<pre class="r"><code>1+1</code></pre>
 <pre><code>## [1] 2</code></pre>
 <p><br></p>
 <p>Type this command into your R console and press enter to run.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># Take the sine function of the number 2, like sin(2) on your calculator</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">sin</span>(<span class="dv">2</span>)</span></code></pre></div>
+<pre class="r"><code># Take the sine function of the number 2, like sin(2) on your calculator
+sin(2)</code></pre>
 <p>Here we have a <strong>command</strong> <code>sin()</code> applied to
 the number 2. We also have a <strong>comment</strong> in green, which
 the computer ignores.</p>
@@ -523,15 +435,15 @@ when you close R, all record of these commands will be lost.</p></li>
 you would have learned back in school, so use brackets to force a
 different order. For example, in either the console or a script, try
 running these two commands</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="dv">3</span> <span class="sc">+</span> <span class="dv">5</span> <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
+<pre class="r"><code>3 + 5 * 2</code></pre>
 <p>and</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>(<span class="dv">3</span> <span class="sc">+</span> <span class="dv">5</span>) <span class="sc">*</span> <span class="dv">2</span></span></code></pre></div>
+<pre class="r"><code>(3 + 5) * 2</code></pre>
 <p><br></p>
 <p>We can also take shortcuts with our numbers. For example
 <code>1:5</code> means take all the numbers <code>1 2 3 4 5</code>
 (e.g. increment the integers one - to - five). Try typing this command
 and make sure you understand the result.</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a>(<span class="dv">1</span> <span class="sc">+</span> <span class="dv">2</span>) <span class="sc">*</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">3</span></span></code></pre></div>
+<pre class="r"><code>(1 + 2) * 5:3</code></pre>
 <pre><code>## [1] 15 12  9</code></pre>
 <p><br></p>
 <p>We can use this trick to make our first plot! Try entering this
@@ -543,7 +455,7 @@ other</p>
 ## 3 3  8
 ## 4 4  9
 ## 5 5 10</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">plot</span>(<span class="at">x=</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">y=</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">10</span>,<span class="at">xlab=</span><span class="st">&quot;x-axis&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;y-axis&quot;</span>)</span></code></pre></div>
+<pre class="r"><code>plot(x= 1:5, y= 6:10,xlab=&quot;x-axis&quot;,ylab=&quot;y-axis&quot;)</code></pre>
 <p><br> <br></p>
 </div>
 <div id="asking-questionscomparisons" class="section level2">
@@ -551,8 +463,8 @@ other</p>
 <p>We can also do comparisons in R - using the special symbols TRUE or
 FALSE (no quote marks, they are special).</p>
 <p>Here we are asking R whether 1 is equal to 1.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="co"># note two equals signs is read as &quot;is equal to&quot;</span></span>
-<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a><span class="dv">1</span> <span class="sc">==</span> <span class="dv">1</span>  </span></code></pre></div>
+<pre class="r"><code># note two equals signs is read as &quot;is equal to&quot;
+1 == 1  </code></pre>
 <pre><code>## [1] TRUE</code></pre>
 <p>We could also have used</p>
 <ul>
@@ -618,29 +530,29 @@ are empty.</li>
 </ul>
 <p>To understand what I mean about parentheses, try typing each of these
 commands exactly and see what happens.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co"># Typing this into the console will print out the underlying code</span></span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>file.choose </span>
-<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a><span class="co"># Typing it WITH parentheses will run the command. Note for this command, the parentheses are empty!  </span></span>
-<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="fu">file.choose</span>()</span>
-<span id="cb13-6"><a href="#cb13-6" tabindex="-1"></a></span>
-<span id="cb13-7"><a href="#cb13-7" tabindex="-1"></a><span class="co"># Typing a ? in front will open the help file for that command in the help quadrant</span></span>
-<span id="cb13-8"><a href="#cb13-8" tabindex="-1"></a>?file.choose</span></code></pre></div>
+<pre class="r"><code># Typing this into the console will print out the underlying code
+file.choose 
+
+# Typing it WITH parentheses will run the command. Note for this command, the parentheses are empty!  
+file.choose()
+
+# Typing a ? in front will open the help file for that command in the help quadrant
+?file.choose</code></pre>
 <p>Sometimes we need to give the command some additional information as
 an argument. Anything we wish to tell the command should be included
 inside the inside the parentheses (separated by commas). The command
 literally only knows about the stuff inside the parentheses.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">sin</span>(<span class="dv">1</span>) <span class="co"># trigonometry functions.  Apply the sine function to the number 1. </span></span>
-<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a></span>
-<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">10</span>) <span class="co"># natural logarithm.  Take the natural logarithm of the number 10. </span></span>
-<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a></span>
-<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a><span class="fu">nchar</span>(<span class="st">&quot;hello&quot;</span>) <span class="co"># Count the letters in the word hello</span></span></code></pre></div>
+<pre class="r"><code>sin(1) # trigonometry functions.  Apply the sine function to the number 1. 
+
+log(10) # natural logarithm.  Take the natural logarithm of the number 10. 
+
+nchar(&quot;hello&quot;) # Count the letters in the word hello</code></pre>
 <p>We can also add optional extra arguments. For example let’s improve
 our plot. This following command will plot the number 1 to 10 against
 the numbers 12 to 20, along with some axis labels. When you run this,
 the plot will show up in the plots tab.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># plot the numbers 1 to 10 against the numbers 11 to 20</span></span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>,<span class="dv">11</span><span class="sc">:</span><span class="dv">20</span>,<span class="at">col=</span><span class="st">&quot;dark blue&quot;</span>, <span class="at">xlab=</span><span class="st">&quot;x values&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;GEOG-364 is the best&quot;</span>) </span></code></pre></div>
+<pre class="r"><code># plot the numbers 1 to 10 against the numbers 11 to 20
+plot(1:10,11:20,col=&quot;dark blue&quot;, xlab=&quot;x values&quot;,ylab=&quot;GEOG-364 is the best&quot;) </code></pre>
 <p><img src="in_Tutorial04ConsoleBasics_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p>If you are feeling lost, <a
 href="https://swcarpentry.github.io/r-novice-gapminder/01-rstudio-intro/"
@@ -681,7 +593,7 @@ command, we simply type that name and R will recall the answer.</p>
 arrow <code>&lt;-</code>, which is made up of the left arrow and a dash.
 You can also use the equals sign, but it can cause complications later
 on. Try typing this command into the console:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">50</span></span></code></pre></div>
+<pre class="r"><code>x &lt;- 1/50</code></pre>
 <p>Notice that pressing enter did not print a value onto your screen as
 it did earlier. Instead, look down at the environment tab, you should
 notice that an x has turned up, with the result next to it.</p>
@@ -689,21 +601,21 @@ notice that an x has turned up, with the result next to it.</p>
 or 1/50. You can print a variable on screen by typing its name, no
 quotes, or by using the print command. Try printing out your
 variable.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>x</span>
-<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a></span>
-<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a><span class="co"># or</span></span>
-<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a></span>
-<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a><span class="fu">print</span>(x)</span>
-<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a></span>
-<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a><span class="co"># see what happens when you do this</span></span>
-<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a></span>
-<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a><span class="fu">print</span>(<span class="st">&quot;x&quot;</span>)</span></code></pre></div>
+<pre class="r"><code>x
+
+# or
+
+print(x)
+
+# see what happens when you do this
+
+print(&quot;x&quot;)</code></pre>
 <p>This ‘x’ variable can be used in place of a number in any calculation
 that expects a number. Try typing</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">log</span>(x)</span>
-<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a></span>
-<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a><span class="co"># this is now the same as </span></span>
-<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a><span class="fu">log</span>(<span class="dv">1</span><span class="sc">/</span><span class="dv">50</span>)</span></code></pre></div>
+<pre class="r"><code>log(x)
+
+# this is now the same as 
+log(1/50)</code></pre>
 <p>The way R works is that first it looks for the commands on the right
 of the arrow. It runs all of them, calculates the result, then saves
 that result with the name on the left of the arrow. <strong>It does not
@@ -712,16 +624,16 @@ case, R has no idea that <code>x</code> was created using maths, it just
 knows that it is equal to the number 0.02.</p>
 <p>Notice also that variables can be reassigned. Type this into your
 console.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">100</span></span>
-<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a><span class="fu">print</span>(x)</span></code></pre></div>
+<pre class="r"><code>x &lt;- 100
+print(x)</code></pre>
 <p>x used to contain the value 0.025 and and now it has the value
 100.</p>
 <p><em>Note, the letter x isn’t special in any way, it’s just a variable
 name. You can replace it with any word you like as long as it contains
 no spaces and doesn’t begin with a number</em>.</p>
 <p>for example</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>vlogbrothers.DFTBA <span class="ot">&lt;-</span> <span class="st">&quot;Dont forget to be awesome&quot;</span></span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a><span class="fu">print</span>(vlogbrothers.DFTBA)</span></code></pre></div>
+<pre class="r"><code>vlogbrothers.DFTBA &lt;- &quot;Dont forget to be awesome&quot;
+print(vlogbrothers.DFTBA)</code></pre>
 <p>How you name stuff is up to you, , but be consistent. Different
 people use different conventions for long variable names, these
 include</p>
@@ -733,29 +645,29 @@ include</p>
 <p>Finally, R IS CASE SENSITIVE. X and x are different variables! Try
 these and you will see both appear separately in your environment
 tab.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a>h <span class="ot">&lt;-</span> <span class="dv">1</span></span>
-<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>H <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a></span>
-<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a>ans <span class="ot">&lt;-</span> h<span class="sc">+</span>H</span>
-<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a><span class="fu">print</span>(ans)</span></code></pre></div>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">print</span>(h)</span></code></pre></div>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">print</span>(H)</span></code></pre></div>
+<pre class="r"><code>h &lt;- 1
+H &lt;- 2
+
+ans &lt;- h+H
+print(ans)</code></pre>
+<pre class="r"><code>print(h)</code></pre>
+<pre class="r"><code>print(H)</code></pre>
 <p>To delete a variable, you can use the <code>rm()</code> command
 e.g.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">rm</span>(x)</span></code></pre></div>
+<pre class="r"><code>rm(x)</code></pre>
 <p>and to clear everything, type</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span></code></pre></div>
+<pre class="r"><code>rm(list=ls())</code></pre>
 <div id="combining-variables" class="section level3">
 <h3>Combining variables</h3>
 <p>As I showed above, you can now use multiple variables together in
 more complex commands. For example, try these commands:</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span></span>
-<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a></span>
-<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a><span class="co">#Take the variable x, add 1 then save it to a new variable called y</span></span>
-<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a>y <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="dv">1</span> </span>
-<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a></span>
-<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a><span class="co"># print the multiple of 2yx onto the screen</span></span>
-<span id="cb26-7"><a href="#cb26-7" tabindex="-1"></a><span class="fu">print</span>(<span class="dv">2</span><span class="sc">*</span>y<span class="sc">*</span>x)</span></code></pre></div>
+<pre class="r"><code>x &lt;- 2
+
+#Take the variable x, add 1 then save it to a new variable called y
+y &lt;- x + 1 
+
+# print the multiple of 2yx onto the screen
+print(2*y*x)</code></pre>
 <p>Now you can see that there are two variables in your environment tab,
 x and y. Where y is the sum of the contents of x plus 1.</p>
 <p>You can even use this to change your original variable . Try typing
@@ -763,8 +675,8 @@ the code below in a few times into the console and see what happens.</p>
 <p><strong>A short cut to do this is to type the commands the first
 time, then use the up-arrow on your keyboard to cycle back through
 previous commands you have typed</strong></p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>x <span class="ot">&lt;-</span> x <span class="sc">+</span> <span class="dv">1</span> <span class="co"># notice how RStudio updates its description of x in the environment tab</span></span>
-<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a>x          <span class="co"># print the contents of &quot;x&quot; onto the screen</span></span></code></pre></div>
+<pre class="r"><code>x &lt;- x + 1 # notice how RStudio updates its description of x in the environment tab
+x          # print the contents of &quot;x&quot; onto the screen</code></pre>
 <p>Our variables don’t have to be numbers. They could refer to tables of
 data, or a spatial map, or any other complex thing. We will cover this
 more in future labs.</p>
@@ -881,14 +793,14 @@ From this I saw that the <code>skim()</code> command is in the
 <li>I added the <code>skimr</code> package to my library code chunk and
 re-ran</li>
 </ol>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="co"># LIBRARIES</span></span>
-<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
-<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a><span class="fu">library</span>(ggpubr)</span>
-<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb28-6"><a href="#cb28-6" tabindex="-1"></a><span class="fu">library</span>(plotly)</span>
-<span id="cb28-7"><a href="#cb28-7" tabindex="-1"></a></span>
-<span id="cb28-8"><a href="#cb28-8" tabindex="-1"></a><span class="fu">library</span>(skimr) </span></code></pre></div>
+<pre class="r"><code># LIBRARIES
+library(tidyverse)
+library(dplyr)
+library(ggpubr)
+library(ggplot2)
+library(plotly)
+
+library(skimr) </code></pre>
 <ol start="4" style="list-style-type: decimal">
 <li>In the console, I FIRST typed <code>&gt; ?skimr</code> to read about
 the package itself (e.g. ?PACKAGENAME). This doesn’t work if you didn’t
@@ -909,7 +821,7 @@ understand the command. It looks like skim is a nice summary command I
 can apply to a table (in their case the iris table). And that’s how it
 ended up here..</p></li>
 </ol>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a> <span class="fu">skim</span>(iris)</span></code></pre></div>
+<pre class="r"><code> skim(iris)</code></pre>
 <table style="width: auto;" class="table table-condensed">
 <caption>
 Data summary
@@ -1215,8 +1127,8 @@ Petal.Width
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a> <span class="co"># Use tidyselect</span></span>
-<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a> <span class="fu">skim</span>(iris, Species)</span></code></pre></div>
+<pre class="r"><code> # Use tidyselect
+ skim(iris, Species)</code></pre>
 <table style="width: auto;" class="table table-condensed">
 <caption>
 Data summary
@@ -1332,7 +1244,7 @@ set: 50, ver: 50, vir: 50
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a> <span class="fu">skim</span>(iris, <span class="fu">starts_with</span>(<span class="st">&quot;Sepal&quot;</span>))</span></code></pre></div>
+<pre class="r"><code> skim(iris, starts_with(&quot;Sepal&quot;))</code></pre>
 <table style="width: auto;" class="table table-condensed">
 <caption>
 Data summary
@@ -1513,7 +1425,7 @@ Sepal.Width
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a> <span class="fu">skim</span>(iris, <span class="fu">where</span>(is.numeric))</span></code></pre></div>
+<pre class="r"><code> skim(iris, where(is.numeric))</code></pre>
 <table style="width: auto;" class="table table-condensed">
 <caption>
 Data summary
@@ -1823,7 +1735,7 @@ $(document).ready(function ()  {
 
     // establish options
     var options = {
-      selectors: "h1,h2",
+      selectors: "h1,h2,h3,h4",
       theme: "bootstrap3",
       context: '.toc-content',
       hashGenerator: function (text) {

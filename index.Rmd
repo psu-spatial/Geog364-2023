@@ -1,6 +1,33 @@
 ---
-title: "GEOG-364 Lab Book FA23"
+title: "<br> GEOG-364 Lab Book"
+subtitle: "Fall 2023"
 author: "Dr Helen Greatrex"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    toc: false
+    theme: spacelab
+    css: custom2.css
+navbar:
+  type: inverse
+  title: "GEOG 364 Lab Book"
+  left:
+  - text: "Tutorials"  
+    menu: 
+    - text: "1. What is R?"
+      href: in_Tutorial01WhatisR.html
+    - text: "2. General Set-Up"
+      href: in_Tutorial02SetUp.html
+    - text: "3. Lab Set-Up"
+      href: in_Tutorial03LabSetUp.html
+    - text: "4. Console Basics"
+      href: in_Tutorial04ConsoleBasics.html
+  - text: "Labs"  
+    menu: 
+    - text: "Lab FAQ"
+      href: in_G364_Lab0_FAQ.html
+    - text: "Lab 1"
+      href: in_G364_Lab1_2324.html    
 ---
 
 <br>
