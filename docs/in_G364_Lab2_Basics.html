@@ -766,81 +766,84 @@ on.</p></li>
 There are LOADS of ways of doing this. Have a look at the
 <code>dim</code> command, or the <code>nrow</code> command or others, to
 show me how many weather stations there are.</p></li>
+<li><p><em>Press knit, check there are no issues with the
+code</em></p></li>
 </ol>
 <p><br><br></p>
 </div>
-<div id="intro-plots-and-maps" class="section level2">
-<h2>9: Intro plots and maps</h2>
-<div id="histograms" class="section level3">
-<h3>Histograms</h3>
+<div id="plots-and-maps" class="section level2">
+<h2>9: Plots and maps</h2>
+<div id="a-histograms" class="section level3">
+<h3>a) Histograms</h3>
 <p>It’s also very easy to make professional plots and maps in R. This
 used to be much harder and there are <em>many</em> packages you could
 use. Today we are going to focus on the ggplot2 package.</p>
-<ol style="list-style-type: decimal">
-<li><p>First we will make a basic histogram of the Avg_DOY_SpringFrost
-column. You can do this using this code. To understand what is going on,
-see this great tutorial: <a
+<p>First use this code to make a basic histogram of the
+Avg_DOY_SpringFrost column. To understand what is going on, see this
+great tutorial: <a
 href="https://365datascience.com/tutorials/r-tutorials/ggplot2-histogram/"
 class="uri">https://365datascience.com/tutorials/r-tutorials/ggplot2-histogram/</a></p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">ggplot</span>(frost, <span class="fu">aes</span>(<span class="at">x=</span>Avg_DOY_SpringFrost)) <span class="sc">+</span></span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>      <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">8</span>)</span></code></pre></div>
-<p><br></p></li>
-<li><p>We can improve it very easily. Try running this code.</p>
-<div class="sourceCode" id="cb2"><pre
-class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">ggplot</span>(frost, <span class="fu">aes</span>(<span class="at">x=</span>Avg_DOY_SpringFrost)) <span class="sc">+</span></span>
+<p><br></p>
+<p>To interpret the results, check out this wonderful tutorial - <a
+href="https://flowingdata.com/2014/02/27/how-to-read-histograms-and-use-them-in-r/"
+class="uri">https://flowingdata.com/2014/02/27/how-to-read-histograms-and-use-them-in-r/</a></p>
+<p>We can improve our graph very easily. Try running this code.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">ggplot</span>(frost, <span class="fu">aes</span>(<span class="at">x=</span>Avg_DOY_SpringFrost)) <span class="sc">+</span> </span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>       <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">8</span>,</span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>                  <span class="at">fill=</span><span class="st">&quot;#108A99&quot;</span>,</span>
-<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>                  <span class="at">color=</span><span class="st">&quot;white&quot;</span>)<span class="sc">+</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>                  <span class="at">color=</span><span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>       <span class="fu">xlab</span>(<span class="st">&quot;Average day of year of the last spring frost&quot;</span>) <span class="sc">+</span></span>
-<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>      <span class="fu">ylab</span>(<span class="st">&quot;Number of weather stations&quot;</span>) </span></code></pre></div></li>
-</ol>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>       <span class="fu">ylab</span>(<span class="st">&quot;Number of weather stations&quot;</span>) </span></code></pre></div>
 <p>For a WHOLE LOAD of other formatting options, see here: <a
 href="http://www.sthda.com/english/wiki/ggplot2-histogram-plot-quick-start-guide-r-software-and-data-visualization"
 class="uri">http://www.sthda.com/english/wiki/ggplot2-histogram-plot-quick-start-guide-r-software-and-data-visualization</a></p>
 <p><br></p>
-<ol start="3" style="list-style-type: decimal">
-<li>Now make your own histogram of the Latitude column of the frost
-data. Go wild, impress me with your formatting!</li>
+<ol style="list-style-type: decimal">
+<li><strong>Now make your own histogram of the Latitude column of the
+frost data.</strong> <br> <strong>Go wild, impress us with your
+formatting!<br />
+</strong></li>
+<li><em>Press knit, check there are no issues with the code</em></li>
 </ol>
 <p><br><br></p>
 </div>
-<div id="quick-maps" class="section level3">
-<h3>Quick maps</h3>
+<div id="b-quick-maps" class="section level3">
+<h3>b) Quick maps</h3>
 <p>Finally, we can use the tmap package to have a look at some
 plots.</p>
-<ol style="list-style-type: decimal">
-<li><p>First, we loaded our data as a standard old Excel file. So we
-need to teach R that it has spatial coordinates. To do this, run this
-command. If it works, nothing should outwardly happen, but you should
-see in your environment quadrant that a new variable called
-frost.spatial has turned up.</p>
-<div class="sourceCode" id="cb3"><pre
-class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># In future classes we will break down what this is doing </span></span>
+<p>First, we loaded our data as a standard old Excel file. So we need to
+teach R that it has spatial coordinates. To do this, run this command.
+If it works, nothing should outwardly happen, but you should see in your
+environment quadrant that a new variable called frost.spatial has turned
+up.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># In future classes we will break down what this is doing </span></span>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>frost.spatial <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(frost,</span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>                      <span class="at">coords =</span><span class="fu">c</span>(<span class="st">&#39;Longitude&#39;</span>, <span class="st">&#39;Latitude&#39;</span>),</span>
-<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>                      <span class="at">crs =</span> <span class="dv">4326</span>)</span></code></pre></div></li>
-</ol>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>                      <span class="at">crs =</span> <span class="dv">4326</span>)</span></code></pre></div>
 <p>IMPORTANT. IF YOU GET A WEIRD ERROR TRY RE-TYPING ALL THE QUOTE MARKS
 AROUND LONGITUDE AND LATITUDE. The copy/paste sometimes messes up.</p>
 <p><br></p>
-<ol start="2" style="list-style-type: decimal">
-<li><p>Now we can use the QTM (Quick Thematic Map function) to have a
-look! This should make an interactive map by default and you can turn on
-different basemaps.</p>
-<div class="sourceCode" id="cb4"><pre
-class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># This sets the mode to an interactive map. If your computer struggles, try changing &#39;view&#39; to &#39;plot&#39;</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">&#39;view&#39;</span>)</span>
-<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a></span>
-<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="fu">qtm</span>(frost.spatial,</span>
-<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a>    <span class="at">dots.col=</span><span class="st">&#39;Elevation&#39;</span>)</span></code></pre></div></li>
-</ol>
+<p>Now we can use the QTM (Quick Thematic Map function) to have a look!
+Try this code. It should make an interactive map by default and you can
+turn on different basemaps through clicking the layer symbol on the
+map.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># This sets the mode to an interactive map. </span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="co"># If your computer struggles, try changing &#39;view&#39; to &#39;plot&#39;</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">&#39;view&#39;</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="fu">qtm</span>(frost.spatial,</span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a>    <span class="at">dots.col=</span><span class="st">&#39;Elevation&#39;</span>)</span></code></pre></div>
 <p><img src="Figures/Lab2Fig4_MapOutput.png" width="643" /></p>
 <p><br></p>
-<ol start="3" style="list-style-type: decimal">
-<li>Try making your own map of the Avg_DOY_SpringFrost column in the
-frost.spatial dataset. You can see a load more style options here <a
+<ol style="list-style-type: decimal">
+<li><strong>Now make your own map of the Avg_DOY_SpringFrost column in
+the frost.spatial dataset. You can see a load more style options here <a
 href="https://www.rdocumentation.org/packages/tmap/versions/3.3-3/topics/qtm"
-class="uri">https://www.rdocumentation.org/packages/tmap/versions/3.3-3/topics/qtm</a></li>
+class="uri">https://www.rdocumentation.org/packages/tmap/versions/3.3-3/topics/qtm</a><br />
+</strong></li>
+<li><em>Press knit, check there are no issues with the code</em></li>
 </ol>
 <p><br><br></p>
 </div>
@@ -867,9 +870,94 @@ on really understanding the code.</p>
 <h1>UFO Analysis</h1>
 <p>Congrats! If you have reached this far, you have at least received a
 C for the bare minimum and a B+ for doing it all well. :)</p>
-<p>This section will be added in the next hour, but really use next week
-to focus on it.</p>
+<p>OK, so in the frost example, we went through slowly and in detail. In
+the UFO analysis, I want you to use what you learned on a new dataset.
+Remember you can copy/paste/edit your code from above!</p>
+<div id="reading-in-the-data" class="section level2">
+<h2>11. Reading in the data</h2>
+<p>You should have downloaded your unique UFO dataset from the Canvas
+page into your Lab 2 folder. It should have your e-mail ID in the title.
+Our first challenge is that it is not an excel file. Instead it’s a
+‘gpkg’ file, a special type used for storing spatial data. For example,
+mine is “hlg5155_UFO_Wales.gpkg”</p>
+<p>In your UFO /Reading-In-Data section of your lab report, make a new
+code chunk and use this code to load your dataset.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># change to your personal file name.</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>ufo <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">&quot;YOUR_FILENAME.gpkg&quot;</span>)</span></code></pre></div>
+<p>e.g. for me, it would be
+<code>ufo &lt;- st_read("hlg5155_UFO_Wales.gpkg")</code>. When you run
+the code chunk, it will load the data from the file and save it into
+your environment to a spreadsheet we have called ufo.</p>
+<p><em>Press knit, check there are no issues with the code.</em></p>
+<p>Click on the name ufo and have a look!</p>
+</div>
+<div id="your-own-analysis" class="section level2">
+<h2>12. Your own analysis</h2>
+<ul>
+<li><p>I have given each of you data of reported UFO sightings for
+either a single US State or a single country.</p>
+<ul>
+<li><p>The object of analysis, .e.g each row, is a single UFO
+sighting</p></li>
+<li><p>Your columns are:</p>
+<ul>
+<li><p>Year - The year of the sighting</p></li>
+<li><p>Month - The year of the sighting</p></li>
+<li><p>Day - The year of the sighting</p></li>
+<li><p>Hour - The hour of the sighting (24hr clock e.g. 23=11pm,
+00=midnight)</p></li>
+<li><p>Sighting_Type - what type of UFO was seen?</p></li>
+<li><p>Sighting_Duration - how long was the sighting IN SECONDS</p></li>
+<li><p>Region - your region/country/state</p></li>
+<li><p>geom / geometry - a special internal R column containing the
+spatial location of the sighting.</p></li>
+</ul></li>
+</ul></li>
+<li><p>Your dataset came from here: <a
+href="https://github.com/planetsig/ufo-reports"
+class="uri">https://github.com/planetsig/ufo-reports</a> and I split it
+into separate states and countries. The raw data was collected here: <a
+href="https://nuforc.org/" class="uri">https://nuforc.org/</a></p></li>
+</ul>
+<p>Your job</p>
+<ul>
+<li><p>Write us a summary of this dataset in the UFO section of your
+RMarkdown document, using the code you have learned above (or any other
+code/resources). <br></p></li>
+<li><p>For example, your write up could include:</p>
+<ol style="list-style-type: decimal">
+<li><p>A summary of where the data came from/how it was collected - and
+your guesses about any spatial patterns. <br></p></li>
+<li><p>What country are you focused on, how many sightings are there in
+your database, when did they start/end etc. <br></p></li>
+<li><p>The average duration, and a histogram of Sighting_Duration</p>
+<ul>
+<li><p>A-grade Bonus -try making a boxplot of Sighting_Duration (google
+R boxplot)</p></li>
+<li><p>A** Bonus - try making a boxplot of duration for each month
+e.g. <a href="https://r-graph-gallery.com/boxplot.html"
+class="uri">https://r-graph-gallery.com/boxplot.html</a> e.g. is the
+duration less in the winter?<br />
+(<em>We do not provide support on A** options!)</em> <br></p></li>
+</ul></li>
+<li><p>A frequency table of the different UFO Sighting_Type:</p>
+<ul>
+<li><p>A-grade Bonus - try a “two way” table crossing the type with hour
+e.g. <a href="https://www.statology.org/two-way-table-in-r/"
+class="uri">https://www.statology.org/two-way-table-in-r/</a></p></li>
+<li><p>A** Bonus - try making a tree map of the different ufo types - <a
+href="https://r-graph-gallery.com/treemap.html"
+class="uri">https://r-graph-gallery.com/treemap.html</a> (<em>We do not
+provide support on A** options!</em>)<br></p></li>
+</ul></li>
+<li><p>A map of some aspect of your sightings and a paragraph explaining
+BOTH any patterns you see AND any underlying processes that might cause
+your dataset to have that pattern. <br></p></li>
+<li><p>Optional - Anything else you want! Show off!</p></li>
+</ol></li>
+</ul>
 <p><br><br><br></p>
+</div>
 </div>
 <div id="submitting-your-lab" class="section level1">
 <h1>Submitting your Lab</h1>

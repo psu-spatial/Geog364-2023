@@ -62,6 +62,7 @@ library(viridis)
 library(kableExtra)
 
 frost <- readxl::read_excel("./Data/DataG364_frostday.xlsx")
+ufo <- st_read("./Data/hlg5155_UFO_Wales.gpkg")
 ```
 
 The aim of this lab is to start some spatial data analysis and to recap
@@ -352,82 +353,89 @@ UNITS!
     command, or the `nrow` command or others, to show me how many
     weather stations there are.
 
+7.  *Press knit, check there are no issues with the code*
+
 <br><br>
 
-## 9: Intro plots and maps
+## 9: Plots and maps
 
-### Histograms
+### a) Histograms
 
 It's also very easy to make professional plots and maps in R. This used
 to be much harder and there are *many* packages you could use. Today we
 are going to focus on the ggplot2 package.
 
-1.  First we will make a basic histogram of the Avg_DOY_SpringFrost
-    column. You can do this using this code. To understand what is going
-    on, see this great tutorial:
-    <https://365datascience.com/tutorials/r-tutorials/ggplot2-histogram/>
+First use this code to make a basic histogram of the Avg_DOY_SpringFrost
+column. To understand what is going on, see this great tutorial:
+<https://365datascience.com/tutorials/r-tutorials/ggplot2-histogram/>
 
-    ```{r,eval=FALSE}
-    ggplot(frost, aes(x=Avg_DOY_SpringFrost)) +
-          geom_histogram(bins=8)
-    ```
+```{r,eval=FALSE}
+ggplot(frost, aes(x=Avg_DOY_SpringFrost)) +
+      geom_histogram(bins=8)
+```
 
-    <br>
+<br>
 
-2.  We can improve it very easily. Try running this code.
+To interpret the results, check out this wonderful tutorial -
+<https://flowingdata.com/2014/02/27/how-to-read-histograms-and-use-them-in-r/>
 
-    ```{r,eval=FALSE}
-    ggplot(frost, aes(x=Avg_DOY_SpringFrost)) +
-           geom_histogram(bins=8,
-                      fill="#108A99",
-                      color="white")+
-           xlab("Average day of year of the last spring frost") +
-          ylab("Number of weather stations") 
-    ```
+We can improve our graph very easily. Try running this code.
+
+```{r,eval=FALSE}
+ggplot(frost, aes(x=Avg_DOY_SpringFrost)) + 
+       geom_histogram(bins=8,
+                  fill="#108A99",
+                  color="white") +
+       xlab("Average day of year of the last spring frost") +
+       ylab("Number of weather stations") 
+```
 
 For a WHOLE LOAD of other formatting options, see here:
 <http://www.sthda.com/english/wiki/ggplot2-histogram-plot-quick-start-guide-r-software-and-data-visualization>
 
 <br>
 
-3.  Now make your own histogram of the Latitude column of the frost
-    data. Go wild, impress me with your formatting!
+1.  **Now make your own histogram of the Latitude column of the frost
+    data.** <br> **Go wild, impress us with your formatting!\
+    **
+2.  *Press knit, check there are no issues with the code*
 
 <br><br>
 
-### Quick maps
+### b) Quick maps
 
 Finally, we can use the tmap package to have a look at some plots.
 
-1.  First, we loaded our data as a standard old Excel file. So we need
-    to teach R that it has spatial coordinates. To do this, run this
-    command. If it works, nothing should outwardly happen, but you
-    should see in your environment quadrant that a new variable called
-    frost.spatial has turned up.
+First, we loaded our data as a standard old Excel file. So we need to
+teach R that it has spatial coordinates. To do this, run this command.
+If it works, nothing should outwardly happen, but you should see in your
+environment quadrant that a new variable called frost.spatial has turned
+up.
 
-    ```{r}
-    # In future classes we will break down what this is doing 
-    frost.spatial <- st_as_sf(frost,
-                          coords =c('Longitude', 'Latitude'),
-                          crs = 4326)
-    ```
+```{r}
+# In future classes we will break down what this is doing 
+frost.spatial <- st_as_sf(frost,
+                      coords =c('Longitude', 'Latitude'),
+                      crs = 4326)
+```
 
 IMPORTANT. IF YOU GET A WEIRD ERROR TRY RE-TYPING ALL THE QUOTE MARKS
 AROUND LONGITUDE AND LATITUDE. The copy/paste sometimes messes up.
 
 <br>
 
-2.  Now we can use the QTM (Quick Thematic Map function) to have a look!
-    This should make an interactive map by default and you can turn on
-    different basemaps.
+Now we can use the QTM (Quick Thematic Map function) to have a look! Try
+this code. It should make an interactive map by default and you can turn
+on different basemaps through clicking the layer symbol on the map.
 
-    ```{r,eval=FALSE}
-    # This sets the mode to an interactive map. If your computer struggles, try changing 'view' to 'plot'
-    tmap_mode('view')
+```{r,eval=FALSE}
+# This sets the mode to an interactive map. 
+# If your computer struggles, try changing 'view' to 'plot'
+tmap_mode('view')
 
-    qtm(frost.spatial,
-        dots.col='Elevation')
-    ```
+qtm(frost.spatial,
+    dots.col='Elevation')
+```
 
 ```{r, echo=FALSE}
 knitr::include_graphics("./Figures/Lab2Fig4_MapOutput.png")
@@ -435,9 +443,11 @@ knitr::include_graphics("./Figures/Lab2Fig4_MapOutput.png")
 
 <br>
 
-3.  Try making your own map of the Avg_DOY_SpringFrost column in the
+1.  **Now make your own map of the Avg_DOY_SpringFrost column in the
     frost.spatial dataset. You can see a load more style options here
-    <https://www.rdocumentation.org/packages/tmap/versions/3.3-3/topics/qtm>
+    <https://www.rdocumentation.org/packages/tmap/versions/3.3-3/topics/qtm>\
+    **
+2.  *Press knit, check there are no issues with the code*
 
 <br><br>
 
@@ -467,8 +477,105 @@ understanding the code.
 Congrats! If you have reached this far, you have at least received a C
 for the bare minimum and a B+ for doing it all well. :)
 
-This section will be added in the next hour, but really use next week to
-focus on it.
+OK, so in the frost example, we went through slowly and in detail. In
+the UFO analysis, I want you to use what you learned on a new dataset.
+Remember you can copy/paste/edit your code from above!
+
+## 11. Reading in the data
+
+You should have downloaded your unique UFO dataset from the Canvas page
+into your Lab 2 folder. It should have your e-mail ID in the title. Our
+first challenge is that it is not an excel file. Instead it's a 'gpkg'
+file, a special type used for storing spatial data. For example, mine is
+"hlg5155_UFO_Wales.gpkg"
+
+In your UFO /Reading-In-Data section of your lab report, make a new code
+chunk and use this code to load your dataset.
+
+```{r, eval=FALSE}
+# change to your personal file name.
+ufo <- st_read("YOUR_FILENAME.gpkg")
+```
+
+e.g. for me, it would be `ufo <- st_read("hlg5155_UFO_Wales.gpkg")`.
+When you run the code chunk, it will load the data from the file and
+save it into your environment to a spreadsheet we have called ufo.
+
+*Press knit, check there are no issues with the code.*
+
+Click on the name ufo and have a look!
+
+## 12. Your own analysis
+
+-   I have given each of you data of reported UFO sightings for either a
+    single US State or a single country.
+
+    -   The object of analysis, .e.g each row, is a single UFO sighting
+
+    -   Your columns are:
+
+        -   Year - The year of the sighting
+
+        -   Month - The year of the sighting
+
+        -   Day - The year of the sighting
+
+        -   Hour - The hour of the sighting (24hr clock e.g. 23=11pm,
+            00=midnight)
+
+        -   Sighting_Type - what type of UFO was seen?
+
+        -   Sighting_Duration - how long was the sighting IN SECONDS
+
+        -   Region - your region/country/state
+
+        -   geom / geometry  - a special internal R column containing
+            the spatial location of the sighting.
+
+-   Your dataset came from here:
+    <https://github.com/planetsig/ufo-reports> and I split it into
+    separate states and countries. The raw data was collected here:
+    <https://nuforc.org/>
+
+Your job
+
+-   Write us a summary of this dataset in the UFO section of your
+    RMarkdown document, using the code you have learned above (or any
+    other code/resources). <br>
+
+-   For example, your write up could include:
+
+    1.  A summary of where the data came from/how it was collected - and
+        your guesses about any spatial patterns. <br>
+
+    2.  What country are you focused on, how many sightings are there in
+        your database, when did they start/end etc. <br>
+
+    3.  The average duration, and a histogram of Sighting_Duration
+
+        -   A-grade Bonus -try making a boxplot of Sighting_Duration
+            (google R boxplot)
+
+        -   A\*\* Bonus - try making a boxplot of duration for each
+            month e.g. <https://r-graph-gallery.com/boxplot.html> e.g.
+            is the duration less in the winter?\
+            (*We do not provide support on A\*\* options!)* <br>
+
+    4.  A frequency table of the different UFO Sighting_Type:
+
+        -   A-grade Bonus - try a "two way" table crossing the type with
+            hour e.g. <https://www.statology.org/two-way-table-in-r/>
+
+        -   A\*\* Bonus - try making a tree map of the different ufo
+            types - <https://r-graph-gallery.com/treemap.html> (*We do
+            not provide support on A\*\* options!*)<br>
+
+    5.  A map of some aspect of your sightings and a paragraph
+        explaining BOTH any patterns you see AND any underlying
+        processes that might cause your dataset to have that pattern.
+        <br>
+
+    6.  Optional - Anything else you want! Show off!
 
 <br><br><br>
 
