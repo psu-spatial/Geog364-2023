@@ -591,11 +591,41 @@ report to explain what we are doing.</p></li>
 <div id="load-the-data" class="section level2">
 <h2>7: Load the data</h2>
 <p>I have already provided the command to load the data into R. Press
-the green arrow to run. This will only work if you have run your library
-code chunk, if your file really is in your lab 2 folder and if you have
-downloaded the readxl library.</p>
-<p>You should see the data appear in the ‘environment tab’. Click the
-NAME to take a look.</p>
+the green arrow to run.</p>
+<p>This loads the data stored in “DataG364_frostday.xlsx” into R, then
+temporarily saves the data into a table called ‘frost’</p>
+<p>This will only work if - you have run your library code chunk and if
+you have downloaded the readxl library - if your file really is in your
+lab 2 folder - If you are running your project</p>
+<p>Otherwise you will see an error saying it can’t find the command.</p>
+<p>You should see the frost data appear in the ‘environment tab’. Click
+the NAME to take a look (see screenshot below). You will see a
+spreadsheet/table/data.frame with these columns:</p>
+<ul>
+<li><em>Station</em>: The name of the weather station<br />
+</li>
+<li><em>State</em>: The US State that the station resides in<br />
+</li>
+<li><em>Type_Fake</em>: A synthetic column I added to put in a “type” of
+station</li>
+<li><em>Latitude</em>: The latitude of the station (degrees)<br />
+</li>
+<li><em>Longitude</em>: The longitude of the station (degrees)<br />
+</li>
+<li><em>Elevation</em>: The elevation of the station (feet)<br />
+</li>
+<li><em>Dist_to_Coast</em>: The distance from the station to the coast
+(miles)<br />
+</li>
+<li><em>Avg_DOY_SpringFrost</em>: The Day-Of-Year of the average final
+spring frost date for that station</li>
+</ul>
+<p>When I say Day-Of-Year, I mean a number from 1-365 representing the
+month/day of the year e.g. Jan-1:1, Jan-2:2… Jan-31:31, Feb-1:32…
+Dec-31:365. We use this number instead of the month/day because its
+easier to analyse.</p>
+<p><br></p>
+<p><img src="Figures/Lab2Fig3_frost.png" width="1149" /></p>
 <p><br><br></p>
 </div>
 <div id="intro-analysis" class="section level2">
