@@ -310,8 +310,14 @@ tells the computer to apply the mean command to the Elevation column
 inside the frost table. (the \$ means "column" and when you type it, it
 will bring up a list to choose from).
 
-1.  Make a new code chunk. Inside, calculate the mean of the
-    Dist_To_Coast column. e.g. `mean(frost$Dist_To_Coast)`
+For each question below, leave a few blank white lines (or R can get
+confused) and make a new code chunk for each piece of code.
+
+WRITE YOUR CONCLUSIONS UNDER EACH CODE CHUNK IN A FULL SENTENCE WITH
+UNITS!
+
+1.  Calculate the mean of the Dist_To_Coast column. e.g.
+    `mean(frost$Dist_To_Coast)`
 
 2.  Use the `max` command to find the maximum Elevation in the dataset.
 
@@ -322,8 +328,8 @@ will bring up a list to choose from).
 4.  We can also apply commands to non-numeric data. For example, maybe
     we want to count the occurrences of some category in our dataset
     e.g. how many stations are in each US State. To do this, we use the
-    table command: `table(frost$State)` How many weather stations are in
-    Alabama?
+    table command: `table(frost$State)` Use this to work out how many
+    weather stations there are in Alabama in our data?
 
 5.  R includes some fantastic summary commands that we can use on the
     whole dataset. Run `summary(frost)` and explain what is going on.
@@ -335,15 +341,42 @@ will bring up a list to choose from).
 
 <br><br>
 
-## 9: Intro plots and maps
+## 9: Intro plots
 
 It's also very easy to make professional plots and maps in R. This used
-to be much harder!
+to be much harder and there are *many* packages you could use. Today we
+are going to focus on the ggplot2 and the tmap packages.
 
-For plots, there are *many* packages you could use. Today we are going
-to focus on the ggplot2 and the tmap packages.
+1.  First we will make a basic histogram of the Avg_DOY_SpringFrost
+    column. You can do this using this code. To understand what is going
+    on, see this great tutorial:
+    <https://365datascience.com/tutorials/r-tutorials/ggplot2-histogram/>
 
-To be uploaded in the next 10mins. REFRESH THE PAGE!
+```{r,eval=FALSE}
+ggplot(frost, aes(x=Avg_DOY_SpringFrost)) +
+       geom_histogram(bins=8)
+```
+
+2.  <br> We can improve it very easily. Try running this code.
+
+```{r,eval=FALSE}
+ggplot(frost, aes(x=Avg_DOY_SpringFrost)) +
+       geom_histogram(bins=8,
+                      fill="#108A99",
+                      color="white")+
+       xlab("Average day of year of the last spring frost") +
+       xlab("Number of weather stations") 
+```
+
+For a WHOLE LOAD of other formatting options, see here:
+<http://www.sthda.com/english/wiki/ggplot2-histogram-plot-quick-start-guide-r-software-and-data-visualization>
+
+3.  Now make your own histogram of the Latitude column of the frost
+    data. Go wild, impress me with your formatting!
+
+## 10: Intro maps
+
+Finally, we can use the tmap package
 
 <br><br><br>
 
