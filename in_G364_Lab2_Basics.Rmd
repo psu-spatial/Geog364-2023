@@ -79,7 +79,7 @@ website base RStudio/Posit Cloud OR R-Desktop for this lab
 
 <br><br><br>
 
-# A. Data Camp
+# Data Camp
 
 IMPORTANT, Click this link to be added (for free) to the class datacamp.
 You will need to have signed up using your PSU address
@@ -87,7 +87,7 @@ You will need to have signed up using your PSU address
 -   <https://www.datacamp.com/groups/shared_links/09c662a03e00d0ac23e6716894266ef2f72c4cee048f1b1da99c0f9440584976>
     <br><br>
 
-#### Optional but highly recommended for newbies
+#### 1. Optional but highly recommended for newbies
 
 If you felt lost during week 1, I highly recommend completing chapter 1
 of this data camp course. It will help you understand the next bit of
@@ -99,9 +99,9 @@ I will award 5 participation points for anyone who completes chapter 1.
 
 <br><br><br>
 
-# B. Getting started
+# Getting started
 
-## B1. Create your project
+## 2. Create your project
 
 1.  **Create a new project in R for Lab 2 and make sure it's in your
     GEOG 364 folder.**
@@ -133,7 +133,7 @@ I will award 5 participation points for anyone who completes chapter 1.
 
 <br>
 
-## B2. Get the files 
+## 3. Get the files
 
 [Download these three files from
 [Canvas](https://psu.instructure.com/courses/2260204/assignments/15480985)
@@ -151,7 +151,7 @@ files](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Upl
 
 <br>
 
-## B3. Edit your template
+## 4. Edit your template
 
 Rather than create a new markdown file, this week I want you to use a
 template that I made. You should have just downloaded this from Canvas.
@@ -165,8 +165,8 @@ Make sure it's in your Lab 2 folder and you're running your project.
     some libraries/package. Say yes. Alternatively, use the [install
     package
     command](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Downloading_a_new_package)
-    you used last week to install the sp,
-    sf, tmap, tidyverse and readxl packages.
+    you used last week to install the sp, sf, tmap, tidyverse and readxl
+    packages.
 
 3.  Click
     "[visual](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Visual_mode)"
@@ -188,21 +188,97 @@ Make sure it's in your Lab 2 folder and you're running your project.
 knitr::include_graphics("./Figures/Lab2Fig1_SetUp.png")
 ```
 
+<br><br>
+
+## 5. Libraries
+
+Last week we downloaded the rmdformats package. In the section above,
+hopefully you just downloaded several more (step 3). This is like going
+to the app store to get a new banking app.
+
+Even though they are downloaded, we need to load them EVERY TIME we want
+to use them (in the way you click on an app on your phone before you can
+use it). This is what that library code-chunk does at the start of the
+script.
+
+-   Press the green arrow on the right of the code chunk to run the code
+    inside it.\<br\>You will see a load of "welcome text" telling your
+    details about the packages you just loaded.\<br\>Press the green
+    arrow AGAIN. The text should disappear unless there is an error. If
+    you get errors, you might [still need to download those
+    packages](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Downloading_a_new_package).
+
+-   \<br\>YOU NEED TO RE-RUN THIS CODE CHUNK EVERY TIME YOU OPEN R.
+
+```{r, echo=FALSE}
+knitr::include_graphics("./Figures/Lab2Fig2_Libraries.png")
+```
+
 <br><br><br>
 
-## C. Frost Analysis
+# Frost Analysis
 
-To be added in the next 10 mins. Refresh the page!
+Finally some analysis! We are going to conduct some exploratory data
+analysis on average last spring frost dates across the South East USA.
+
+To to this, we are going to follow these steps:
+
+-   Investigate the topic before touching the data
+-   Read the excel file containing the data into R
+-   Calculate summary statistics and "wrangle" the data
+-   Make some initial plots & maps
+
+<br>
+
+## 6: Exploratory Investigations
+
+*Before we touch any data, it's important to start with words. We need
+to summarise what we already know about the dataset, the population
+under study and any important context.*
+
+The aim of this lab is to analyse the "average last frost dates"
+obtained from weather stations across the South Eastern USA. E.g. what
+day of year, *on average*, is the final day to get frost. We are using
+data obtained from this dissertation to assess the spatial distribution
+of average spring frost dates: *Parnell, 2005, "A Climatology of Frost
+Extremes Across the Southeast United States, 1950--2009":*<br>
+<https://www.proquest.com/openview/d5a7301f0cbe941ead48c96888f791b8/1?pq-origsite=gscholar&cbl=18750&diss=y>
+
+-    Read the abstract of the study above to understand the dataset
+    *(click the link and skim read pages iv and v, e.g. the bit before
+    the table of contents)*.
+
+-   Write a few sentences in the appropriate section of your lab report
+    to explain what we are doing.
+
+<br><br>
+
+## 7: Load the data
+
+I have already provided the command to load the data into R. Press the
+green arrow to run. This will only work if you have run your library
+code chunk, if your file really is in your lab 2 folder and if you have
+downloaded the readxl library.
+
+You should see the data appear in the 'environment tab'. Click the NAME
+to take a look.
+
+<br><br>
+
+## 8: Intro analysis
+
+Being added in next 10mins. REFRESH THE PAGE!
 
 <br><br><br>
 
-## D. UFO Analysis
+# D. UFO Analysis
 
-To be added in the next 10 mins. Refresh the page!
+To be added later today. Focus on sections A-C for now - and you have
+all lab next week for this part.
 
 <br><br><br>
 
-## E. Submitting your Lab
+# E. Submitting your Lab
 
 Remember to save your work throughout and to spell check! (next to the
 save button). Now, press the knit button one final time.

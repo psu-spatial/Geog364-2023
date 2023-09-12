@@ -415,8 +415,8 @@ Canvas page here</a>, or go to canvas for assignment guidelines. You can
 use either the website base RStudio/Posit Cloud OR R-Desktop for this
 lab</p>
 <p><br><br><br></p>
-<div id="a.-data-camp" class="section level1">
-<h1>A. Data Camp</h1>
+<div id="data-camp" class="section level1">
+<h1>Data Camp</h1>
 <p>IMPORTANT, Click this link to be added (for free) to the class
 datacamp. You will need to have signed up using your PSU address</p>
 <ul>
@@ -427,7 +427,7 @@ class="uri">https://www.datacamp.com/groups/shared_links/09c662a03e00d0ac23e6716
 </ul>
 <div id="optional-but-highly-recommended-for-newbies"
 class="section level4">
-<h4>Optional but highly recommended for newbies</h4>
+<h4>1. Optional but highly recommended for newbies</h4>
 <p>If you felt lost during week 1, I highly recommend completing chapter
 1 of this data camp course. It will help you understand the next bit of
 the analysis. It’s free if you signed up using the link above.</p>
@@ -441,10 +441,10 @@ class="uri">https://app.datacamp.com/learn/courses/free-introduction-to-r</a></l
 <p><br><br><br></p>
 </div>
 </div>
-<div id="b.-getting-started" class="section level1">
-<h1>B. Getting started</h1>
-<div id="b1.-create-your-project" class="section level2">
-<h2>B1. Create your project</h2>
+<div id="getting-started" class="section level1">
+<h1>Getting started</h1>
+<div id="create-your-project" class="section level2">
+<h2>2. Create your project</h2>
 <ol style="list-style-type: decimal">
 <li><p><strong>Create a new project in R for Lab 2 and make sure it’s in
 your GEOG 364 folder.</strong></p>
@@ -478,8 +478,8 @@ tool</a>.</em> <em>On older machines, try
 </ol>
 <p><br></p>
 </div>
-<div id="b2.-get-the-files" class="section level2">
-<h2>B2. Get the files</h2>
+<div id="get-the-files" class="section level2">
+<h2>3. Get the files</h2>
 <p><u>Download these three files from <a
 href="https://psu.instructure.com/courses/2260204/assignments/15480985">Canvas</a>
 and place them in your lab 2 folder.</u> <br><br />
@@ -496,8 +496,8 @@ day</em></p></li>
 </ul>
 <p><br></p>
 </div>
-<div id="b3.-edit-your-template" class="section level2">
-<h2>B3. Edit your template</h2>
+<div id="edit-your-template" class="section level2">
+<h2>4. Edit your template</h2>
 <p>Rather than create a new markdown file, this week I want you to use a
 template that I made. You should have just downloaded this from Canvas.
 Make sure it’s in your Lab 2 folder and you’re running your project.
@@ -526,20 +526,92 @@ running your Lab 2 project.</li>
 </ul></li>
 </ol>
 <p><img src="Figures/Lab2Fig1_SetUp.png" width="1680" /></p>
+<p><br><br></p>
+</div>
+<div id="libraries" class="section level2">
+<h2>5. Libraries</h2>
+<p>Last week we downloaded the rmdformats package. In the section above,
+hopefully you just downloaded several more (step 3). This is like going
+to the app store to get a new banking app.</p>
+<p>Even though they are downloaded, we need to load them EVERY TIME we
+want to use them (in the way you click on an app on your phone before
+you can use it). This is what that library code-chunk does at the start
+of the script.</p>
+<ul>
+<li><p>Press the green arrow on the right of the code chunk to run the
+code inside it.&lt;br&gt;You will see a load of “welcome text” telling
+your details about the packages you just loaded.&lt;br&gt;Press the
+green arrow AGAIN. The text should disappear unless there is an error.
+If you get errors, you might <a
+href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Downloading_a_new_package">still
+need to download those packages</a>.</p></li>
+<li><p>&lt;br&gt;YOU NEED TO RE-RUN THIS CODE CHUNK EVERY TIME YOU OPEN
+R.</p></li>
+</ul>
+<p><img src="Figures/Lab2Fig2_Libraries.png" width="662" /></p>
 <p><br><br><br></p>
 </div>
-<div id="c.-frost-analysis" class="section level2">
-<h2>C. Frost Analysis</h2>
-<p>To be added in the next 10 mins. Refresh the page!</p>
+</div>
+<div id="frost-analysis" class="section level1">
+<h1>Frost Analysis</h1>
+<p>Finally some analysis! We are going to conduct some exploratory data
+analysis on average last spring frost dates across the South East
+USA.</p>
+<p>To to this, we are going to follow these steps:</p>
+<ul>
+<li>Investigate the topic before touching the data</li>
+<li>Read the excel file containing the data into R</li>
+<li>Calculate summary statistics and “wrangle” the data</li>
+<li>Make some initial plots &amp; maps</li>
+</ul>
+<p><br></p>
+<div id="exploratory-investigations" class="section level2">
+<h2>6: Exploratory Investigations</h2>
+<p><em>Before we touch any data, it’s important to start with words. We
+need to summarise what we already know about the dataset, the population
+under study and any important context.</em></p>
+<p>The aim of this lab is to analyse the “average last frost dates”
+obtained from weather stations across the South Eastern USA. E.g. what
+day of year, <em>on average</em>, is the final day to get frost. We are
+using data obtained from this dissertation to assess the spatial
+distribution of average spring frost dates: <em>Parnell, 2005, “A
+Climatology of Frost Extremes Across the Southeast United States,
+1950–2009”:</em><br> <a
+href="https://www.proquest.com/openview/d5a7301f0cbe941ead48c96888f791b8/1?pq-origsite=gscholar&amp;cbl=18750&amp;diss=y"
+class="uri">https://www.proquest.com/openview/d5a7301f0cbe941ead48c96888f791b8/1?pq-origsite=gscholar&amp;cbl=18750&amp;diss=y</a></p>
+<ul>
+<li><p>Read the abstract of the study above to understand the dataset
+<em>(click the link and skim read pages iv and v, e.g. the bit before
+the table of contents)</em>.</p></li>
+<li><p>Write a few sentences in the appropriate section of your lab
+report to explain what we are doing.</p></li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="load-the-data" class="section level2">
+<h2>7: Load the data</h2>
+<p>I have already provided the command to load the data into R. Press
+the green arrow to run. This will only work if you have run your library
+code chunk, if your file really is in your lab 2 folder and if you have
+downloaded the readxl library.</p>
+<p>You should see the data appear in the ‘environment tab’. Click the
+NAME to take a look.</p>
+<p><br><br></p>
+</div>
+<div id="intro-analysis" class="section level2">
+<h2>8: Intro analysis</h2>
+<p>Being added in next 10mins. REFRESH THE PAGE!</p>
 <p><br><br><br></p>
 </div>
-<div id="d.-ufo-analysis" class="section level2">
-<h2>D. UFO Analysis</h2>
-<p>To be added in the next 10 mins. Refresh the page!</p>
+</div>
+<div id="d.-ufo-analysis" class="section level1">
+<h1>D. UFO Analysis</h1>
+<p>To be added later today. Focus on sections A-C for now - and you have
+all lab next week for this part.</p>
 <p><br><br><br></p>
 </div>
-<div id="e.-submitting-your-lab" class="section level2">
-<h2>E. Submitting your Lab</h2>
+<div id="e.-submitting-your-lab" class="section level1">
+<h1>E. Submitting your Lab</h1>
 <p>Remember to save your work throughout and to spell check! (next to
 the save button). Now, press the knit button one final time.</p>
 <p>On R-Desktop</p>
@@ -562,7 +634,6 @@ href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Proj
 Lab 2.</p>
 <p><img src="Figures/LabFig_WhatToSubmit.png" width="1673" /></p>
 <p><br><br></p>
-</div>
 <div id="e1.-how-am-i-graded" class="section level2">
 <h2>E1. How am I graded?</h2>
 <p>Look on Canvas, there will be a SPECIFIC RUBRIC that we use to grade
