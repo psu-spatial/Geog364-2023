@@ -618,6 +618,7 @@ spring frost date for that station</li>
 month/day of the year e.g. Jan-1:1, Jan-2:2… Jan-31:31, Feb-1:32…
 Dec-31:365. We use this number instead of the month/day because its
 easier to analyse.</p>
+<p>Each row represents a weather station.</p>
 <p><br></p>
 <p><img src="Figures/Lab2Fig3_frost.png" width="1149" /></p>
 <p><br><br></p>
@@ -639,15 +640,20 @@ e.g. <code>mean(frost$Dist_To_Coast)</code></p></li>
 <li><p>Use the <code>max</code> command to find the maximum Elevation in
 the dataset.</p></li>
 <li><p>Google the command for the standard deviation in R. Find the
-standard deviation of the distance of the rain-gauges to the
+standard deviation of the distance of the weather station to the
 coast.</p></li>
-<li><p>We can also apply commands to non-numeric data. Use the
-<code>table</code> command on the State column
-e.g. <code>table(frost$State)</code> How many rain-gauges are in
-Alabama?</p></li>
+<li><p>We can also apply commands to non-numeric data. For example,
+maybe we want to count the occurrences of some category in our dataset
+e.g. how many stations are in each US State. To do this, we use the
+table command: <code>table(frost$State)</code> How many weather stations
+are in Alabama?</p></li>
 <li><p>R includes some fantastic summary commands that we can use on the
-whole table. Run <code>summary(frost)</code> and explain what is going
+whole dataset. Run <code>summary(frost)</code> and explain what is going
 on.</p></li>
+<li><p>We can also look at how many rows and columns of data there are.
+There are LOADS of ways of doing this. Have a look at the
+<code>dim</code> command, or the <code>nrow</code> command or others, to
+show me how many weather stations there are.</p></li>
 </ol>
 </div>
 <div id="intro-plots" class="section level2">

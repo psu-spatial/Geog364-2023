@@ -287,6 +287,8 @@ month/day of the year e.g. Jan-1:1, Jan-2:2... Jan-31:31, Feb-1:32...
 Dec-31:365. We use this number instead of the month/day because its
 easier to analyse.
 
+Each row represents a weather station.
+
 <br>
 
 ```{r, echo=FALSE}
@@ -314,14 +316,22 @@ will bring up a list to choose from).
 2.  Use the `max` command to find the maximum Elevation in the dataset.
 
 3.  Google the command for the standard deviation in R. Find the
-    standard deviation of the distance of the rain-gauges to the coast.
+    standard deviation of the distance of the weather station to the
+    coast.
 
-4.  We can also apply commands to non-numeric data. Use the `table`
-    command on the State column e.g. `table(frost$State)` How many
-    rain-gauges are in Alabama?
+4.  We can also apply commands to non-numeric data. For example, maybe
+    we want to count the occurrences of some category in our dataset
+    e.g. how many stations are in each US State. To do this, we use the
+    table command: `table(frost$State)` How many weather stations are in
+    Alabama?
 
 5.  R includes some fantastic summary commands that we can use on the
-    whole table. Run `summary(frost)` and explain what is going on.
+    whole dataset. Run `summary(frost)` and explain what is going on.
+
+6.  We can also look at how many rows and columns of data there are.
+    There are LOADS of ways of doing this. Have a look at the `dim`
+    command, or the `nrow` command or others, to show me how many
+    weather stations there are.
 
 ## 9: Intro plots
 
