@@ -37,6 +37,11 @@ h2.title {
   font-size: 12px;
   font-family: Arial;
 }
+
+pre code {
+  font-size: 13px; /* Adjust the font size as needed */
+  white-space: pre-wrap;
+}
 </style>
 ```
 \
