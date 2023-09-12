@@ -1,5 +1,6 @@
 ---
 title: "Tutorial 3: Setting up each lab"
+toc_depth: 4
 ---
 
 ```{r setup, include=FALSE}
@@ -181,16 +182,24 @@ If you wish to learn more about what these windows do, have a look at this resou
 
 If you have used R before, you might see that there are variables and plots etc already loaded. It is always good to clear these before you start a new analysis. To do this, click the little broom symbol in your environment tab. <br><br>
 
-# Global Settings
+# Changing global options
 
-## Changing global settings
+Some of the default R settings are worth changing to make life smoother. We do this in the main global options menu. 
 
-Some of the default R settings are worth changing to make life smoother. We do this in global settings. There are two places you might find this menu
+You only have to do this once!  Follow the arrows in this figure (sections explained below).
 
-1.  Click on the tools menu button on the top right of the screen,-\> Global Options OR
-2.  Click on the R-studio menu button on the top left of the screen, then click Preferences.
+```{r, Tut_Fig18, echo=FALSE, fig.align='center'}
+knitr::include_graphics('./Figures/fig18_global.png')
+```
 
-On the main options screen, I suggest:
+There are two places you might find this menu:
+
+1.  Click on the tools menu button on the VERY top right of the screen,-\> Global Options OR.. <br>
+2.  Click on the R-studio menu button on the top left of the screen, then click Preferences.<br><br>
+
+## Main options screen
+
+On the main options screen (see figure above), I suggest:
 
 -   UNCLICK "Restore most recently opened project at startup"
 
@@ -198,21 +207,19 @@ On the main options screen, I suggest:
 
 -   Set "Save workspace to .RData on" exit to Never
 
--   UNCLICK "Restore previously open source documents on startup"<br><br>
+-   UNCLICK "Restore previously open source documents on startup"
+
+Note, yours will probably show a different default working directory.
+
+<br><br>
 
 ## Changing the appearance
 
-You can also click the appearances menu item to change how the screen looks. For example, maybe you concentrate better with a dark background.<br><br>
+OPTIONAL: You can also click the appearances menu item to change how the screen looks (see the figure above). For example, maybe you concentrate better with a dark background or with pink font.<br><br>
 
 ## Moving the windows around
 
-Like me, you might find you like the different quadrants in a different order. To change this, look at the Panes layout menu item (you can also get here via the `View` menu,then `/Panes/Pane Layout`)
-
-I tend to like the console to be top left and scripts to be top right, with the plots and environment on the bottom - but this is personal choice.<br>
-
-```{r, Tut_Fig18, echo=FALSE, fig.cap = "My preferred set up",fig.align='center'}
-knitr::include_graphics('./Figures/fig18_panes.png')
-```
+OPTIONAL: Like me, you might find you like the different quadrants in a different order. To change this, look at the Panes layout menu item (you can also get here via the `View` menu,then `/Panes/Pane Layout`) I tend to like the console to be top left and scripts to be top right, with the plots and environment on the bottom - but this is personal choice.<br>
 
 <br><br>
 
