@@ -60,25 +60,24 @@ frost <- readxl::read_excel("./Data/DataG364_frostday.xlsx")
 ```
 
 The aim of this lab is to start some spatial data analysis and to recap
-what you learned in Lab 1. See [The Canvas page
+what you learned in Lab 1. By the end of this lab you will be able to:
+
+-   Prove to me you can set up the labs
+
+-   Read in data from an excel file and a spatial file
+
+-   Conduct exploratory data analysis
+
+-   Wrangle a table of data
+
+-   Make initial plots and maps for two case studies <br>
+
+See [The Canvas page
 here](https://psu.instructure.com/courses/2260204/assignments/15480985),
-or go to canvas for assignment guidelines.
+or go to canvas for assignment guidelines. You can use either the
+website base RStudio/Posit Cloud OR R-Desktop for this lab
 
-Your job is to submit the requirements on this page. You can use either
-the website base RStudio/Posit Cloud OR R-Desktop for this lab. By the
-end of this lab you will be able to:
-
-1.  Prove to me you can set up the labs
-
-2.  Read in data from an excel file and a spatial file
-
-3.  Conduct exploratory data analysis
-
-4.  Wrangle a table of data
-
-5.  Make initial plots and maps for two case studies
-
-<br><br>
+<br><br><br>
 
 # A. Data Camp
 
@@ -97,42 +96,44 @@ the analysis. It's free if you signed up using the link above.
 -   <https://app.datacamp.com/learn/courses/free-introduction-to-r>
 
 I will award 5 participation points for anyone who completes chapter 1.
-<br><br>
+
+<br><br><br>
 
 # B. Getting started
 
-<br>
-
 ## B1. Create your project
 
-Create a new project in R for Lab 2 and make sure it's in your GEOG 364
-folder.
+1.  **Create a new project in R for Lab 2 and make sure it's in your
+    GEOG 364 folder.**
 
--   For R-Desktop, see [Tutorial
-    3B](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Projects_using_Desktop)
+    -   For R-Desktop, see [Tutorial
+        3B](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Projects_using_Desktop)
 
--   For Posit Cloud, see [Tutorial
-    3C](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Projects_using_Rstudioposit_Cloud)
-    <br><br><br>
+    -   For Posit Cloud, see [Tutorial
+        3C](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Projects_using_Rstudioposit_Cloud)
+        <br><br>
 
-[Take a screenshot of R studio screen that *proves* you have set up your
-project correctly (hint, [how to check you are in a
-project](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#How_to_check_you_are_in_a_project))]{.underline}
+2.  Take a screenshot of R studio screen that *proves* you have set up
+    your project correctly
 
--   To take a screenshot on a mac: *Press **`Shift + Command (⌘) + 4`**.
-    Your cursor will change to a crosshair. Click and drag to select the
-    portion of the screen you want to capture. Release the mouse button
-    to take the screenshot. It will be saved to your desktop. Re-name
-    the file and move to your GEOG-364 Lab 2 folder.* <br>
+    -   Hint, [how to check you are in a
+        project](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#How_to_check_you_are_in_a_project))
+        <br><br> To take a screenshot on a mac: *Press
+        **`Shift + Command (⌘) + 4`**. Your cursor will change to a
+        crosshair. Click and drag to select the portion of the screen
+        you want to capture. Release the mouse button to take the
+        screenshot. It will be saved to your desktop. Re-name the file
+        and move to your GEOG-364 Lab 2 folder.* <br><br> To take a
+        screenshot on a windows machine, try one of these or ask
+        around/Harman: *Press \***`Windows key + Shift + S`** . This is
+        the [snipping
+        tool](https://support.microsoft.com/en-us/windows/use-snipping-tool-to-capture-screenshots-00246869-1843-655f-f220-97299b865f6b).*
+        *On older machines, try **`Windows Logo Key + PrtScn.`***
+        *Re-name the file and move to your GEOG-364 Lab 2 folder.*
 
--   To take a screenshot on a windows machine, try one of these or ask
-    around/Harman: *Press \***`Windows key + Shift + S`** . This is the
-    [snipping
-    tool](https://support.microsoft.com/en-us/windows/use-snipping-tool-to-capture-screenshots-00246869-1843-655f-f220-97299b865f6b).*
-    *On older machines, try **`Windows Logo Key + PrtScn.`*** *Re-name
-    the file and move to your GEOG-364 Lab 2 folder.* <br><br><br>
+<br>
 
-## B2. Get the files
+## B2. Get the files 
 
 [Download these three files from
 [Canvas](https://psu.instructure.com/courses/2260204/assignments/15480985)
@@ -147,45 +148,61 @@ files](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Upl
 -   Your PERSONAL UFO dataset <br>\
     (*f this doesn't work or you can't find your file, there's no panic.
     Let Harman know - we will get it fixed by the end of the day*
-    <br><br><br>
+
+<br>
 
 ## B3. Edit your template
 
 Rather than create a new markdown file, this week I want you to use a
 template that I made. You should have just downloaded this from Canvas.
 Make sure it's in your Lab 2 folder and you're running your project.
-<br><br>
+<br>
 
 1.  Go to the file quadrant and click the G364_Lab 2 Template.Rmd
     file.<br><br>
 
-2.  Click
+2.  You will hopefully see a little yellow bar asking you to install
+    some libraries/package. Say yes. Alternatively, use the [install
+    package
+    command](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Downloading_a_new_package)
+    you used last week to install the sp,
+    sf, tmap, tidyverse and readxl packages.
+
+3.  Click
     "[visual](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Visual_mode)"
-    mode. Your screen should now look like this. If not, ask for
-    help<br><br>\
+    mode. Your screen should now look like the screenshot below. If not,
+    ask for help<br><br>
+
+4.  Click knit. You might have to re-save. Make sure to include your ID
+    in the filename. You should see the html appear. <br><br>
+
+5.  Go back to R studio.
+
+    -   In the Set-Up section, explain to me what an R project is in the
+        text and include your screenshot, explaining how it proves you
+        are running your Lab 2 project.
+    -   Hint, to include a picture, click the visual mode picture button
+        (see circle in pic above).<br><br>
 
 ```{r, echo=FALSE}
 knitr::include_graphics("./Figures/Lab2Fig1_SetUp.png")
 ```
 
-3.  Click knit. You might have to re-save. Make sure to include your ID
-    in the filename. You should see the html appear. <br><br>\
-4.  Go back to R studio.
-    -   In the Set-Up section, explain to me what an R project is in the
-        text and include your screenshot, explaining how it proves you
-        are running your Lab 2 project.
-    -   Hint, to include a picture, click the visual mode picture button
-        (see circle in pic above).<br><br><br>
+<br><br><br>
 
 ## C. Frost Analysis
 
 To be added in the next 10 mins. Refresh the page!
 
+<br><br><br>
+
 ## D. UFO Analysis
 
 To be added in the next 10 mins. Refresh the page!
 
-## H. Submitting your Lab
+<br><br><br>
+
+## E. Submitting your Lab
 
 Remember to save your work throughout and to spell check! (next to the
 save button). Now, press the knit button one final time.
@@ -213,9 +230,9 @@ Lab 2.
 knitr::include_graphics("./Figures/LabFig_WhatToSubmit.png")
 ```
 
-<br>
+<br><br>
 
-### How am I graded?
+## E1. How am I graded?
 
 Look on Canvas, there will be a SPECIFIC RUBRIC that we use to grade
 your lab. It should allow you to predict your grade. We will also
