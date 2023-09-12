@@ -87,7 +87,7 @@ You will need to have signed up using your PSU address
 -   <https://www.datacamp.com/groups/shared_links/09c662a03e00d0ac23e6716894266ef2f72c4cee048f1b1da99c0f9440584976>
     <br><br>
 
-#### 1. Optional but highly recommended for newbies
+### Optional but recommended
 
 If you felt lost during week 1, I highly recommend completing chapter 1
 of this data camp course. It will help you understand the next bit of
@@ -333,20 +333,31 @@ will bring up a list to choose from).
     command, or the `nrow` command or others, to show me how many
     weather stations there are.
 
-## 9: Intro plots
+<br><br>
 
-Uploaded in the next 10mins REFRESH THE PAGE
+## 9: Intro plots and maps
+
+It's also very easy to make professional plots and maps in R. This used
+to be much harder!
+
+For plots, there are *many* packages you could use. Today we are going
+to focus on the ggplot2 and the tmap packages.
+
+To be uploaded in the next 10mins. REFRESH THE PAGE!
 
 <br><br><br>
 
-# D. UFO Analysis
+# UFO Analysis
 
-To be added later today. Focus on sections A-C for now - and you have
-all lab next week for this part.
+Congrats! If you have reached this far, you have at least received a B
+:)
+
+To be added later today. Focus on steps 1-9 for now - and you have all
+lab next week for this part.
 
 <br><br><br>
 
-# E. Submitting your Lab
+# Submitting your Lab
 
 Remember to save your work throughout and to spell check! (next to the
 save button). Now, press the knit button one final time.
@@ -376,7 +387,7 @@ knitr::include_graphics("./Figures/LabFig_WhatToSubmit.png")
 
 <br><br>
 
-## E1. How am I graded?
+## How am I graded?
 
 Look on Canvas, there will be a SPECIFIC RUBRIC that we use to grade
 your lab. It should allow you to predict your grade. We will also
