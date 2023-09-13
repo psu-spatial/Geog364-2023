@@ -451,9 +451,9 @@ knitr::include_graphics("./Figures/Lab2Fig4_MapOutput.png")
 
 <br><br>
 
-## 10. Summarise what you have found
+## 10. Summarize what you  found
 
-Finally, write a paragraph summarising
+Finally, write a paragraph summarizing
 
 -   What the study was trying to achieve
 
@@ -477,9 +477,9 @@ understanding the code.
 Congrats! If you have reached this far, you have at least received a C
 for the bare minimum and a B+ for doing it all well. :)
 
-OK, so in the frost example, we went through slowly and in detail. In
-the UFO analysis, I want you to use what you learned on a new dataset.
-Remember you can copy/paste/edit your code from above!
+We went through the frost example slowly and in detail. In the UFO
+analysis, I want you to use what you learned on a new dataset. Remember
+you can copy/paste/edit your code from above.<br><br>
 
 ## 11. Reading in the data
 
@@ -490,92 +490,88 @@ file, a special type used for storing spatial data. For example, mine is
 "hlg5155_UFO_Wales.gpkg"
 
 In your UFO /Reading-In-Data section of your lab report, make a new code
-chunk and use this code to load your dataset.
+chunk and use this code to load your dataset. For me, it would be
+`ufo <- st_read("hlg5155_UFO_Wales.gpkg")`.
 
 ```{r, eval=FALSE}
 # change to your personal file name.
 ufo <- st_read("YOUR_FILENAME.gpkg")
 ```
 
-e.g. for me, it would be `ufo <- st_read("hlg5155_UFO_Wales.gpkg")`.
 When you run the code chunk, it will load the data from the file and
 save it into your environment to a spreadsheet we have called ufo.
 
 *Press knit, check there are no issues with the code.*
 
-Click on the name ufo and have a look!
+Click on the name ufo and have a look! I have given each of you data of
+reported UFO sightings for either a single US State or a single country.
 
-## 12. Your own analysis
+-   The object of analysis, .e.g each row, is a single UFO sighting
 
--   I have given each of you data of reported UFO sightings for either a
-    single US State or a single country.
+-   Your columns are:
 
-    -   The object of analysis, .e.g each row, is a single UFO sighting
+    -   Year - The year of the sighting
 
-    -   Your columns are:
+    -   Month - The year of the sighting
 
-        -   Year - The year of the sighting
+    -   Day - The year of the sighting
 
-        -   Month - The year of the sighting
+    -   Hour - The hour of the sighting (24hr clock e.g. 23=11pm,
+        00=midnight)
 
-        -   Day - The year of the sighting
+    -   Sighting_Type - what type of UFO was seen?
 
-        -   Hour - The hour of the sighting (24hr clock e.g. 23=11pm,
-            00=midnight)
+    -   Sighting_Duration - how long was the sighting IN SECONDS
 
-        -   Sighting_Type - what type of UFO was seen?
+    -   Region - your region/country/state
 
-        -   Sighting_Duration - how long was the sighting IN SECONDS
+    -   geom / geometry  - a special internal R column containing the
+        spatial location of the sighting.
 
-        -   Region - your region/country/state
-
-        -   geom / geometry  - a special internal R column containing
-            the spatial location of the sighting.
-
+```{=html}
+<!-- -->
+```
 -   Your dataset came from here:
     <https://github.com/planetsig/ufo-reports> and I split it into
     separate states and countries. The raw data was collected here:
     <https://nuforc.org/>
 
-Your job
+## 12. Your own analysis
 
--   Write us a summary of this dataset in the UFO section of your
-    RMarkdown document, using the code you have learned above (or any
-    other code/resources). <br>
+Write a summary of this dataset in the UFO section of your RMarkdown
+document, using the code you have learned above (or any other
+code/resources). For example, your write up could include: <br>
 
--   For example, your write up could include:
+1.  A summary of where the data came from/how it was collected - and
+    your guesses about any spatial patterns. <br>
 
-    1.  A summary of where the data came from/how it was collected - and
-        your guesses about any spatial patterns. <br>
+2.  What country are you focused on, how many sightings are there in
+    your database, when did they start/end etc. <br>
 
-    2.  What country are you focused on, how many sightings are there in
-        your database, when did they start/end etc. <br>
+3.  The average duration, and a histogram of Sighting_Duration
 
-    3.  The average duration, and a histogram of Sighting_Duration
+    -   A-grade Bonus -try making a boxplot of Sighting_Duration (google
+        R boxplot)
 
-        -   A-grade Bonus -try making a boxplot of Sighting_Duration
-            (google R boxplot)
+    -   A\*\* Bonus - try making a boxplot of duration for each month
+        e.g. <https://r-graph-gallery.com/boxplot.html> e.g. is the
+        duration less in the winter?\
+        (*We do not provide support on A\*\* options!)* <br>
 
-        -   A\*\* Bonus - try making a boxplot of duration for each
-            month e.g. <https://r-graph-gallery.com/boxplot.html> e.g.
-            is the duration less in the winter?\
-            (*We do not provide support on A\*\* options!)* <br>
+4.  A frequency table of the different UFO Sighting_Type:
 
-    4.  A frequency table of the different UFO Sighting_Type:
+    -   A-grade Bonus - try a "two way" table crossing the type with
+        hour e.g. <https://www.statology.org/two-way-table-in-r/>
 
-        -   A-grade Bonus - try a "two way" table crossing the type with
-            hour e.g. <https://www.statology.org/two-way-table-in-r/>
+    -   A\*\* Bonus - try making a tree map of the different ufo types -
+        <https://r-graph-gallery.com/treemap.html> (*We do not provide
+        support on A\*\* options!*)<br>
 
-        -   A\*\* Bonus - try making a tree map of the different ufo
-            types - <https://r-graph-gallery.com/treemap.html> (*We do
-            not provide support on A\*\* options!*)<br>
+5.  A map of some aspect of your sightings and a paragraph explaining
+    BOTH any patterns you see AND any underlying processes that might
+    cause your dataset to have that pattern. <br>
 
-    5.  A map of some aspect of your sightings and a paragraph
-        explaining BOTH any patterns you see AND any underlying
-        processes that might cause your dataset to have that pattern.
-        <br>
-
-    6.  Optional - Anything else you want! Show off!
+6.  Optional - Anything else you want! Show off!
 
 <br><br><br>
 

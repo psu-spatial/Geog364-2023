@@ -848,9 +848,9 @@ class="uri">https://www.rdocumentation.org/packages/tmap/versions/3.3-3/topics/q
 <p><br><br></p>
 </div>
 </div>
-<div id="summarise-what-you-have-found" class="section level2">
-<h2>10. Summarise what you have found</h2>
-<p>Finally, write a paragraph summarising</p>
+<div id="summarize-what-you-found" class="section level2">
+<h2>10. Summarize what you found</h2>
+<p>Finally, write a paragraph summarizing</p>
 <ul>
 <li><p>What the study was trying to achieve</p></li>
 <li><p>Details of the dataset (how many weather stations, summary
@@ -870,9 +870,9 @@ on really understanding the code.</p>
 <h1>UFO Analysis</h1>
 <p>Congrats! If you have reached this far, you have at least received a
 C for the bare minimum and a B+ for doing it all well. :)</p>
-<p>OK, so in the frost example, we went through slowly and in detail. In
-the UFO analysis, I want you to use what you learned on a new dataset.
-Remember you can copy/paste/edit your code from above!</p>
+<p>We went through the frost example slowly and in detail. In the UFO
+analysis, I want you to use what you learned on a new dataset. Remember
+you can copy/paste/edit your code from above.<br><br></p>
 <div id="reading-in-the-data" class="section level2">
 <h2>11. Reading in the data</h2>
 <p>You should have downloaded your unique UFO dataset from the Canvas
@@ -881,21 +881,16 @@ Our first challenge is that it is not an excel file. Instead it’s a
 ‘gpkg’ file, a special type used for storing spatial data. For example,
 mine is “hlg5155_UFO_Wales.gpkg”</p>
 <p>In your UFO /Reading-In-Data section of your lab report, make a new
-code chunk and use this code to load your dataset.</p>
+code chunk and use this code to load your dataset. For me, it would be
+<code>ufo &lt;- st_read("hlg5155_UFO_Wales.gpkg")</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># change to your personal file name.</span></span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>ufo <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">&quot;YOUR_FILENAME.gpkg&quot;</span>)</span></code></pre></div>
-<p>e.g. for me, it would be
-<code>ufo &lt;- st_read("hlg5155_UFO_Wales.gpkg")</code>. When you run
-the code chunk, it will load the data from the file and save it into
-your environment to a spreadsheet we have called ufo.</p>
+<p>When you run the code chunk, it will load the data from the file and
+save it into your environment to a spreadsheet we have called ufo.</p>
 <p><em>Press knit, check there are no issues with the code.</em></p>
-<p>Click on the name ufo and have a look!</p>
-</div>
-<div id="your-own-analysis" class="section level2">
-<h2>12. Your own analysis</h2>
-<ul>
-<li><p>I have given each of you data of reported UFO sightings for
-either a single US State or a single country.</p>
+<p>Click on the name ufo and have a look! I have given each of you data
+of reported UFO sightings for either a single US State or a single
+country.</p>
 <ul>
 <li><p>The object of analysis, .e.g each row, is a single UFO
 sighting</p></li>
@@ -912,19 +907,21 @@ sighting</p></li>
 <li><p>geom / geometry - a special internal R column containing the
 spatial location of the sighting.</p></li>
 </ul></li>
-</ul></li>
-<li><p>Your dataset came from here: <a
+</ul>
+<!-- -->
+<ul>
+<li>Your dataset came from here: <a
 href="https://github.com/planetsig/ufo-reports"
 class="uri">https://github.com/planetsig/ufo-reports</a> and I split it
 into separate states and countries. The raw data was collected here: <a
-href="https://nuforc.org/" class="uri">https://nuforc.org/</a></p></li>
+href="https://nuforc.org/" class="uri">https://nuforc.org/</a></li>
 </ul>
-<p>Your job</p>
-<ul>
-<li><p>Write us a summary of this dataset in the UFO section of your
-RMarkdown document, using the code you have learned above (or any other
-code/resources). <br></p></li>
-<li><p>For example, your write up could include:</p>
+</div>
+<div id="your-own-analysis" class="section level2">
+<h2>12. Your own analysis</h2>
+<p>Write a summary of this dataset in the UFO section of your RMarkdown
+document, using the code you have learned above (or any other
+code/resources). For example, your write up could include: <br></p>
 <ol style="list-style-type: decimal">
 <li><p>A summary of where the data came from/how it was collected - and
 your guesses about any spatial patterns. <br></p></li>
@@ -936,7 +933,7 @@ your database, when did they start/end etc. <br></p></li>
 R boxplot)</p></li>
 <li><p>A** Bonus - try making a boxplot of duration for each month
 e.g. <a href="https://r-graph-gallery.com/boxplot.html"
-class="uri">https://r-graph-gallery.com/boxplot.html</a> e.g. is the
+class="uri">https://r-graph-gallery.com/boxplot.html</a> e.g. is the
 duration less in the winter?<br />
 (<em>We do not provide support on A** options!)</em> <br></p></li>
 </ul></li>
@@ -954,8 +951,7 @@ provide support on A** options!</em>)<br></p></li>
 BOTH any patterns you see AND any underlying processes that might cause
 your dataset to have that pattern. <br></p></li>
 <li><p>Optional - Anything else you want! Show off!</p></li>
-</ol></li>
-</ul>
+</ol>
 <p><br><br><br></p>
 </div>
 </div>
