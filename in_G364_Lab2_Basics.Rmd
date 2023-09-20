@@ -65,6 +65,13 @@ frost <- readxl::read_excel("./Data/DataG364_frostday.xlsx")
 ufo <- st_read("./Data/hlg5155_UFO_Wales.gpkg")
 ```
 
+ANNOUNCEMENT: If you knit twice you might get an error like this. Don't
+panic, see canvas announcements and talk to Harman. (essentially you need to clear your cache, or change any plot_mode("view") to plot_mode("plot")
+
+```{r, echo=FALSE}
+knitr::include_graphics("./Figures/Lab2_Fig5_TmapCacheError.png")
+```
+
 The aim of this lab is to start some spatial data analysis and to recap
 what you learned in Lab 1. By the end of this lab you will be able to:
 
@@ -309,8 +316,9 @@ month/day of the year e.g. Jan-1:1, Jan-2:2... Jan-31:31, Feb-1:32...
 Dec-31:365. We use this number instead of the month/day because its
 easier to analyse.
 
-NOTE - Dr G got the original units wrong.  She thought that the distances were in ft/inches, not metric.
-They have been corrected here.  If you used the feet/inches you will not be penalised.
+NOTE - Dr G got the original units wrong. She thought that the distances
+were in ft/inches, not metric. They have been corrected here. If you
+used the feet/inches you will not be penalised.
 
 <br><br>
 
@@ -422,13 +430,16 @@ frost.spatial <- st_as_sf(frost,
                       crs = 4326)
 ```
 
-IMPORTANT. IF YOU GET A WEIRD ERROR TRY RE-TYPING ALL THE QUOTE MARKS
-AROUND LONGITUDE AND LATITUDE. The copy/paste sometimes messes up.
+IMPORTANT. <br>
 
-ALSO, if you knit twice you might get an error like this. Don't panic, see canvas announcements and talk to Harman/Dr G.
+1.  IF YOU GET A WEIRD ERROR TRY RE-TYPING ALL THE QUOTE MARKS AROUND
+    LONGITUDE AND LATITUDE. The copy/paste sometimes messes up.\
+    <br>
+2.  ALSO, if you knit twice you might get an error like this. Don't
+    panic, see canvas announcements and talk to Harman.
 
 ```{r, echo=FALSE}
-knitr::include_graphics("./Figures/Lab2Fig5.png")
+knitr::include_graphics("./Figures/Lab2_Fig5_TmapCacheError.png")
 ```
 
 <br>
@@ -460,7 +471,7 @@ knitr::include_graphics("./Figures/Lab2Fig4_MapOutput.png")
 
 <br><br>
 
-## 10. Summarize what you  found
+## 10. Summarize what you found
 
 Finally, write a paragraph summarizing
 
@@ -534,12 +545,11 @@ reported UFO sightings for either a single US State or a single country.
 
     -   Region - your region/country/state
 
-    -   geom / geometry  - a special internal R column containing the
+    -   geom / geometry - a special internal R column containing the
         spatial location of the sighting.
 
-```{=html}
 <!-- -->
-```
+
 -   Your dataset came from here:
     <https://github.com/planetsig/ufo-reports> and I split it into
     separate states and countries. The raw data was collected here:

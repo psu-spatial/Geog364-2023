@@ -505,6 +505,11 @@ pre code {
 </style>
 <p><br />
 </p>
+<p>ANNOUNCEMENT: If you knit twice you might get an error like this.
+Don’t panic, see canvas announcements and talk to Harman. (essentially
+you need to clear your cache, or change any plot_mode(“view”) to
+plot_mode(“plot”)</p>
+<p><img src="Figures/Lab2_Fig5_TmapCacheError.png" width="810" /></p>
 <p>The aim of this lab is to start some spatial data analysis and to
 recap what you learned in Lab 1. By the end of this lab you will be able
 to:</p>
@@ -720,9 +725,9 @@ weather station.</p>
 station</li>
 <li><em>Latitude</em>: The latitude of the station (degrees)</li>
 <li><em>Longitude</em>: The longitude of the station (degrees)</li>
-<li><em>Elevation</em>: The elevation of the station (feet)</li>
+<li><em>Elevation</em>: The elevation of the station (m)</li>
 <li><em>Dist_to_Coast</em>: The distance from the station to the coast
-(miles)</li>
+(km)</li>
 <li><em>Avg_DOY_SpringFrost</em>: The Day-Of-Year of the average final
 spring frost date for that station</li>
 </ul>
@@ -730,6 +735,9 @@ spring frost date for that station</li>
 month/day of the year e.g. Jan-1:1, Jan-2:2… Jan-31:31, Feb-1:32…
 Dec-31:365. We use this number instead of the month/day because its
 easier to analyse.</p>
+<p>NOTE - Dr G got the original units wrong. She thought that the
+distances were in ft/inches, not metric. They have been corrected here.
+If you used the feet/inches you will not be penalised.</p>
 <p><br><br></p>
 </div>
 <div id="intro-analysis" class="section level2">
@@ -822,8 +830,15 @@ up.</p>
 <span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a>frost.spatial <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(frost,</span>
 <span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a>                      <span class="at">coords =</span><span class="fu">c</span>(<span class="st">&#39;Longitude&#39;</span>, <span class="st">&#39;Latitude&#39;</span>),</span>
 <span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>                      <span class="at">crs =</span> <span class="dv">4326</span>)</span></code></pre></div>
-<p>IMPORTANT. IF YOU GET A WEIRD ERROR TRY RE-TYPING ALL THE QUOTE MARKS
-AROUND LONGITUDE AND LATITUDE. The copy/paste sometimes messes up.</p>
+<p>IMPORTANT. <br></p>
+<ol style="list-style-type: decimal">
+<li>IF YOU GET A WEIRD ERROR TRY RE-TYPING ALL THE QUOTE MARKS AROUND
+LONGITUDE AND LATITUDE. The copy/paste sometimes messes up.<br />
+<br></li>
+<li>ALSO, if you knit twice you might get an error like this. Don’t
+panic, see canvas announcements and talk to Harman.</li>
+</ol>
+<p><img src="Figures/Lab2_Fig5_TmapCacheError.png" width="810" /></p>
 <p><br></p>
 <p>Now we can use the QTM (Quick Thematic Map function) to have a look!
 Try this code. It should make an interactive map by default and you can
