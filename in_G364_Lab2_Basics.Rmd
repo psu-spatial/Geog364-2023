@@ -299,8 +299,8 @@ You will see a spreadsheet/table/data.frame with these columns:
     station
 -   *Latitude*: The latitude of the station (degrees)
 -   *Longitude*: The longitude of the station (degrees)
--   *Elevation*: The elevation of the station (feet)
--   *Dist_to_Coast*: The distance from the station to the coast (miles)
+-   *Elevation*: The elevation of the station (m)
+-   *Dist_to_Coast*: The distance from the station to the coast (km)
 -   *Avg_DOY_SpringFrost*: The Day-Of-Year of the average final spring
     frost date for that station
 
@@ -308,6 +308,9 @@ When I say Day-Of-Year, I mean a number from 1-365 representing the
 month/day of the year e.g. Jan-1:1, Jan-2:2... Jan-31:31, Feb-1:32...
 Dec-31:365. We use this number instead of the month/day because its
 easier to analyse.
+
+NOTE - Dr G got the original units wrong.  She thought that the distances were in ft/inches, not metric.
+They have been corrected here.  If you used the feet/inches you will not be penalised.
 
 <br><br>
 
