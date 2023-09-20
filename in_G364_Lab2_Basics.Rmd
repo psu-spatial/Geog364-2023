@@ -515,8 +515,9 @@ chunk and use this code to load your dataset. For me, it would be
 
 ```{r, eval=FALSE}
 # change to your personal file name.
-ufo <- st_read("YOUR_FILENAME.gpkg")
+ufo <- st_read("YOUR_FILENAME")
 ```
+NOTE: ".gpkg" is not needed at the end of your file name
 
 When you run the code chunk, it will load the data from the file and
 save it into your environment to a spreadsheet we have called ufo.
