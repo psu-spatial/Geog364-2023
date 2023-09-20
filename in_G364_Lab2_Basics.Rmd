@@ -425,6 +425,12 @@ frost.spatial <- st_as_sf(frost,
 IMPORTANT. IF YOU GET A WEIRD ERROR TRY RE-TYPING ALL THE QUOTE MARKS
 AROUND LONGITUDE AND LATITUDE. The copy/paste sometimes messes up.
 
+ALSO, if you knit twice you might get an error like this. Don't panic, see canvas announcements and talk to Harman/Dr G.
+
+```{r, echo=FALSE}
+knitr::include_graphics("./Figures/Lab2Fig5.png")
+```
+
 <br>
 
 Now we can use the QTM (Quick Thematic Map function) to have a look! Try
