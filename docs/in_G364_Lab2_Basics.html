@@ -899,7 +899,10 @@ mine is “hlg5155_UFO_Wales.gpkg”</p>
 code chunk and use this code to load your dataset. For me, it would be
 <code>ufo &lt;- st_read("hlg5155_UFO_Wales.gpkg")</code>.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="co"># change to your personal file name.</span></span>
-<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>ufo <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">&quot;YOUR_FILENAME.gpkg&quot;</span>)</span></code></pre></div>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>ufo <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">&quot;YOUR_FILENAME&quot;</span>)</span></code></pre></div>
+<p>NOTE: “.gpkg” is not needed at the end of your file name. Pay
+attention to how your file name is displayed in your folder/Rstudio file
+window.</p>
 <p>When you run the code chunk, it will load the data from the file and
 save it into your environment to a spreadsheet we have called ufo.</p>
 <p><em>Press knit, check there are no issues with the code.</em></p>
