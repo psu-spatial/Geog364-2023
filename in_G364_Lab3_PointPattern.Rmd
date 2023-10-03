@@ -1,13 +1,6 @@
 ---
 title: "Lab 3A: Point Pattern Density"
 subtitle: <h4 style="font-style:normal">Lab 3 is split into two parts to match the lectures</h4>
-toc_depth: 3  
-output: 
-  html_document:
-    toc: true
-    toc_depth: 4
-    toc_float: true
-    theme: flatly
 ---
 
 ```{=html}
@@ -270,12 +263,19 @@ In general, you have two options to see a help file.
 
 <details>
 
-<summary>**If you get an error/It doesn't work, click here to expand!**
-</summary>
+<summary>**If you get an error/It doesn't work, click here to
+expand!**</summary>
 
-Just like you can't see the instagram help files without first installing instagram, then tapping the instagram icon,for this to work you must have BOTH [installed](https://psu-spatial.github.io/Geog364-2023/in_G364_Lab3_PointPattern.html#2_Install_new_packages)  (from the 'app' store) AND [loaded](https://psu-spatial.github.io/Geog364-2023/in_G364_Lab3_PointPattern.html#4_Add_your_library_code_chunk)) the library containing the command or dataset.   
+Just like you can't see the instagram help files without first
+installing instagram, then tapping the instagram icon,for this to work
+you must have BOTH
+[installed](https://psu-spatial.github.io/Geog364-2023/in_G364_Lab3_PointPattern.html#2_Install_new_packages)
+(from the 'app' store) AND
+[loaded](https://psu-spatial.github.io/Geog364-2023/in_G364_Lab3_PointPattern.html#4_Add_your_library_code_chunk))
+the library containing the command or dataset.
 
-For example, If you see this error, you either haven't loaded the spatstat library or run the library code chunk (e.g. see [getting
+For example, If you see this error, you either haven't loaded the
+spatstat library or run the library code chunk (e.g. see [getting
 started](https://psu-spatial.github.io/Geog364-2023/in_G364_Lab3_PointPattern.html#4_Add_your_library_code_chunk))
 
 ```{r, Lab3Fig3, echo=FALSE}
@@ -286,9 +286,8 @@ knitr::include_graphics('./Figures/Lab3Fig03_beierror.png')
 
 </details>
 
-
-<br> To see the help file for the longleaf data, I would type this in the
-console.
+<br> To see the help file for the longleaf data, I would type this in
+the console.
 
 ```{r, eval=FALSE}
 ?longleaf  
@@ -304,7 +303,7 @@ knitr::include_graphics('./Figures/Lab3Fig02_longleafhelp.png')
 <br>
 
 We can see a lot of information from this file, [often in the notes
-section.]{.underline} 
+section.]{.underline}
 
 <br>
 
@@ -329,9 +328,6 @@ longleaf**]{.underline}</summary>
     range of 0-200, with units in meters. <br><br>
 
 </details>
-
-
-
 
 <br><br><br>
 
@@ -362,6 +358,8 @@ plot(longleaf)
 
 <br><br><br>
 
+<br>
+
 ## Challenge A
 
 1.  Google the "spatstat" R package. Tell me a little about it and what
@@ -376,9 +374,6 @@ plot(longleaf)
     file for the `bei` data. In your own words, neatly summarise
     everything you can find about the `bei` dataset from the help file.
 
-```{=html}
-<!-- -->
-```
 4.  Create a new code chunk and make a plot of the `bei` data. Comment
     underneath the plot about whether you see any spatial
     autocorrelation (positive/negative/zero), plus which spatial
@@ -426,8 +421,7 @@ dataEllipse(longleaf$x, longleaf$y, levels=0.68,
 
 <details>
 
-
-<br> 
+<br>
 
 <summary>[**Want to know what the options mean? Click to
 expand**]{.underline}</summary>
@@ -452,7 +446,6 @@ dataEllipse(longleaf$x, longleaf$y, levels=0.68,
 ```
 
 </details>
-
 
 <br><br><br>
 
@@ -604,7 +597,7 @@ By different I mean unusually clustered or uniform/regular.
 <summary>[**Click to expand to read what the test is doing & how to
 run/interpret the output**]{.underline}</summary>
 
-#### Creating Independent Random Point Processes:
+**Creating Independent Random Point Processes:**
 
 To assess the significance of a spatial pattern, we start by creating
 multiple simulated data-sets that represent what we would expect under
@@ -614,7 +607,7 @@ distribution is a mathematical model that describes the distribution of
 rare events occurring in a fixed interval of time or space. In our case,
 it's used to simulate random point patterns.
 
-#### Variance-to-Mean Ratio (VMR):
+**Variance-to-Mean Ratio (VMR):**
 
 Next, for each of these simulated data-sets, we calculate the VMR. ON
 AVERAGE, it would be 1.Some will be slightly clustered and some more
@@ -630,14 +623,14 @@ So, lets update our hypotheses:
     Independent Random Process. The VMR is likely to be unusually high
     OR unusually low.
 
-#### Chi-Squared Test:
+**Chi-Squared Test:**
 
 We want to know if the VMR from our actual longleaf data is "unusual"
 compared to the set from our simulated data-sets. So we we compare the
 VMR we observed in our actual data to this distribution of VMR from the
 simulations using a statistical test called the chi-squared test.
 
-#### P-Value:
+**P-Value:**
 
 The chi-squared test provides a p-value, which represents the likelihood
 of encountering a VMR as extreme as what we observed in our simulated
@@ -645,7 +638,7 @@ processes. For instance, a p-value of 0.051 means that 5.1% of
 artificially generated Poisson processes would exhibit a more extreme
 level of clustering or uniformity.
 
-#### Interpreting the p-value:
+**Interpreting the p-value:**
 
 The smaller the p-value, the more unusual our result, and the stronger
 the evidence that we can "reject H0." In other words, we have reason to
@@ -658,7 +651,11 @@ outcome hinged on our decision, we might need a higher level of
 confidence than 5%.. (the old threshold of 0.05 = "significant" came
 from the days of pre-calculators where all this maths was done by hand).
 
-#### Example in R.
+</details>
+
+<br><br>
+
+#### Worked example in R.
 
 Of course you don't need to write all that all the time. This is enough.
 
@@ -674,22 +671,17 @@ Of course you don't need to write all that all the time. This is enough.
 quadrat.test(longleaf)
 ```
 
-Here our p-value is TINY! 2.2 x 10^-16^. Let's use xkcd to put that into
-context ([link
+Here our p-value is TINY! 2.2 x 10^-16^, so this data is VERY unusual if
+it was caused by an IRP.
+
+Let's use xkcd to put that into context ([link
 here](https://www.explainxkcd.com/wiki/index.php/2379:_Probability_Comparisons)).
-This is how likely it is..
-
-|                                                                                                                                                                      |
-|------------------------------------------------------------------------|
-| *You pick up a phone, dial a random 10-digit number, and say 'Hello President Obama, there's just been a magnitude 8 earthquake in California" and you are correct!* |
-
-: So this data is VERY unusual if it was caused by an IRP.
+This is how likely it is.. "*You pick up a phone, dial a random 10-digit
+number, and say 'Hello President Obama, there's just been a magnitude 8
+earthquake in California" and you are correct!*"
 
 We have enough evidence to reject H0 and say that our scenario of an
 "independent random process" is unlikely to have caused this pattern.
-
-</details>
-
 
 <br><br><br>
 
@@ -883,7 +875,6 @@ Or this set of videos is great:
 <https://www.youtube.com/watch?v=ge4Oh-h1Of8>
 
 </details>
-
 
 <br><br>
 

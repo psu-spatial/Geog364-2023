@@ -784,6 +784,7 @@ diameter is a mark
 </p>
 </div>
 <p><br><br><br></p>
+<p><br></p>
 </div>
 <div id="challenge-a" class="section level2">
 <h2>Challenge A</h2>
@@ -798,9 +799,6 @@ back and reread the section.</p></li>
 file for the <code>bei</code> data. In your own words, neatly summarise
 everything you can find about the <code>bei</code> dataset from the help
 file.</p></li>
-</ol>
-<!-- -->
-<ol start="4" style="list-style-type: decimal">
 <li><p>Create a new code chunk and make a plot of the <code>bei</code>
 data. Comment underneath the plot about whether you see any spatial
 autocorrelation (positive/negative/zero), plus which spatial fallacies
@@ -988,9 +986,7 @@ Independent Random Process.</p></li>
 <u><strong>Click to expand to read what the test is doing &amp; how to
 run/interpret the output</strong></u>
 </summary>
-<div id="creating-independent-random-point-processes"
-class="section level4">
-<h4>Creating Independent Random Point Processes:</h4>
+<p><strong>Creating Independent Random Point Processes:</strong></p>
 <p>To assess the significance of a spatial pattern, we start by creating
 multiple simulated data-sets that represent what we would expect under
 our H0 scenario, in this case, complete spatial randomness. We generate
@@ -998,9 +994,7 @@ these simulated data-sets using a Poisson distribution. The Poisson
 distribution is a mathematical model that describes the distribution of
 rare events occurring in a fixed interval of time or space. In our case,
 it’s used to simulate random point patterns.</p>
-</div>
-<div id="variance-to-mean-ratio-vmr" class="section level4">
-<h4>Variance-to-Mean Ratio (VMR):</h4>
+<p><strong>Variance-to-Mean Ratio (VMR):</strong></p>
 <p>Next, for each of these simulated data-sets, we calculate the VMR. ON
 AVERAGE, it would be 1.Some will be slightly clustered and some more
 uniform just by chance - so imagine a histogram of VMR values from our
@@ -1013,24 +1007,18 @@ Process. Any clustering/dispersion is just luck. The VMR = 1</p></li>
 Independent Random Process. The VMR is likely to be unusually high OR
 unusually low.</p></li>
 </ul>
-</div>
-<div id="chi-squared-test" class="section level4">
-<h4>Chi-Squared Test:</h4>
+<p><strong>Chi-Squared Test:</strong></p>
 <p>We want to know if the VMR from our actual longleaf data is “unusual”
 compared to the set from our simulated data-sets. So we we compare the
 VMR we observed in our actual data to this distribution of VMR from the
 simulations using a statistical test called the chi-squared test.</p>
-</div>
-<div id="p-value" class="section level4">
-<h4>P-Value:</h4>
+<p><strong>P-Value:</strong></p>
 <p>The chi-squared test provides a p-value, which represents the
 likelihood of encountering a VMR as extreme as what we observed in our
 simulated processes. For instance, a p-value of 0.051 means that 5.1% of
 artificially generated Poisson processes would exhibit a more extreme
 level of clustering or uniformity.</p>
-</div>
-<div id="interpreting-the-p-value" class="section level4">
-<h4>Interpreting the p-value:</h4>
+<p><strong>Interpreting the p-value:</strong></p>
 <p>The smaller the p-value, the more unusual our result, and the
 stronger the evidence that we can “reject H0.” In other words, we have
 reason to believe that something beyond random chance is responsible for
@@ -1041,9 +1029,10 @@ catastrophic outcome hinged on our decision, we might need a higher
 level of confidence than 5%.. (the old threshold of 0.05 = “significant”
 came from the days of pre-calculators where all this maths was done by
 hand).</p>
-</div>
-<div id="example-in-r." class="section level4">
-<h4>Example in R.</h4>
+</details>
+<p><br><br></p>
+<div id="worked-example-in-r." class="section level4">
+<h4>Worked example in R.</h4>
 <p>Of course you don’t need to write all that all the time. This is
 enough.</p>
 <ul>
@@ -1063,28 +1052,17 @@ unusually low.</p></li>
 ## alternative hypothesis: two.sided
 ## 
 ## Quadrats: 5 by 5 grid of tiles</code></pre>
-<p>Here our p-value is TINY! 2.2 x 10<sup>-16</sup>. Let’s use xkcd to
-put that into context (<a
+<p>Here our p-value is TINY! 2.2 x 10<sup>-16</sup>, so this data is
+VERY unusual if it was caused by an IRP.</p>
+<p>Let’s use xkcd to put that into context (<a
 href="https://www.explainxkcd.com/wiki/index.php/2379:_Probability_Comparisons">link
-here</a>). This is how likely it is..</p>
-<table>
-<caption>So this data is VERY unusual if it was caused by an
-IRP.</caption>
-<colgroup>
-<col width="100%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td><em>You pick up a phone, dial a random 10-digit number, and say
-’Hello President Obama, there’s just been a magnitude 8 earthquake in
-California” and you are correct!</em></td>
-</tr>
-</tbody>
-</table>
+here</a>). This is how likely it is.. “<em>You pick up a phone, dial a
+random 10-digit number, and say ’Hello President Obama, there’s just
+been a magnitude 8 earthquake in California” and you are
+correct!</em>”</p>
 <p>We have enough evidence to reject H0 and say that our scenario of an
 “independent random process” is unlikely to have caused this
 pattern.</p>
-</details>
 <p><br><br><br></p>
 </div>
 </div>
