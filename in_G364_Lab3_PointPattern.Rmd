@@ -1,5 +1,5 @@
 ---
-title: "Lab 3: Point Pattern"
+title: "Lab 3A: Point Pattern Density"
 subtitle: <h4 style="font-style:normal">Lab 3 is split into two parts to match the lectures</h4>
 toc_depth: 3  
 output: 
@@ -79,14 +79,27 @@ statistical approaches for characterizing the spatial properties of a
 point pattern.
 
 -   **This week:** We will be focusing on quadrat analysis, kernel
-    analysis and standard ellipses.
--   **Next week:** We will be focusing on nearest neighbour, L analysis
-    and simulation
+    analysis and standard ellipses. (Oct 2-6) e.g. Point pattern density
+
+    RECOMMENDED: You can optionally submit this week's lab to get graded
+    up to the first 50 points - If you submit before Monday 9th, we will
+    provide feedback, so you can improve your grade when you (re)submit
+    the entire lab.\
+
+-   **Next week (Oct 9-12):** a new set of tutorials will be released on
+    point pattern distance. You will (re)-submit everything from 3A and
+    3B. 
+
+    See the rubric on canvas (this is up!) for how it will be graded and
+    the checklist at the end for what you need for 100%.
 
 See [The Canvas page
 here](https://psu.instructure.com/courses/2260204/assignments/15455241),
 or go to canvas for assignment guidelines. You can use either the
-website base RStudio/Posit Cloud OR R-Desktop for this lab
+website base RStudio/Posit Cloud OR R-Desktop for this lab.
+
+Getting stuck? Look at the Canvas page for the McGrew Chapter 14 - it
+has a great overview.
 
 <br><br><br>
 
@@ -122,6 +135,8 @@ for details (or what the little yellow bar is).
 *If you are a Windows user, you might see a message at the beginning of
 the install process saying that you need to install R-Tools. IGNORE
 THIS - You probably don't need to install R-Tools*
+
+<br><br>
 
 #### Reminders on installing packages
 
@@ -159,14 +174,15 @@ what you want to do. Either
     2](https://psu-spatial.github.io/Geog364-2023/in_G364_Lab2_Basics.html#4_Edit_your_template),
     but change the text in the template to match Lab 3.
 
+<br>
+
 Your file should look professional with a template when you press knit.
 Note, if you are using R Studio CLOUD, you might need to re-install the
 `rmdformats` or `prettydocs` package to make the templates appear. Want
 to try a new template? Try these packages:
 
--   `prettydocs` (easy)
-
--   <https://github.com/hrbrmstr/markdowntemplates> (I have never tried
+-   `prettydocs` (easy) or
+    <https://github.com/hrbrmstr/markdowntemplates> (I have never tried
     this but they seem interesting)
 
 KNIT TO CHECK IT WORKS. IF YOU ARE STRUGGLING WITH THIS, PLEASE TALK TO
@@ -202,7 +218,7 @@ Now click the Knit Button and make sure everything looks correct.
 
 ## 1. Loading the data
 
-In this walkthrough, we will use two datasets that are already built
+In this walk-through, we will use two data-sets that are already built
 into the spatstat package. The advantage of this is that we don't have
 to worry about file formats or map projections.
 
@@ -219,7 +235,7 @@ data(longleaf)
 data(bei)
 ```
 
-Run the code chunk and you should see the longleaf and bei datasets
+Run the code chunk and you should see the longleaf and bei data-sets
 appear in your environment quadrant on the screen. They might appear as
 grey-ed out "promises", but as soon as you do something else, they will
 load fully.
@@ -228,11 +244,10 @@ load fully.
 
 ## 2. IMPORTANT
 
-**From now onward, you don't *have* to run longleaf examples because you
+From now onward, you don't *have* to run longleaf examples because you
 can see the output in this lab script, but I suggest copying them into
 your lab script, getting them working, then in the challenges, tweaking
-and editing them to replace the longleaf names with bei & follow the
-instructions**
+and editing them to replace the longleaf names with bei as required.
 
 [**You are graded on the lab challenges.**]{.underline}
 
@@ -240,27 +255,39 @@ instructions**
 
 ## 3. Data background (help-files)
 
-Every R command AND R-dataset has its own helpfile. For a more detailed
+Every R command AND R-dataset has its own help file. For a more detailed
 explanation of how I combine these with google searches, see [this
 tutorial](https://psu-spatial.github.io/Geog364-2023/in_Tutorial04ConsoleBasics.html#Getting_help).
-
-But in general, you have two options to see a help file (IF THE PACKAGE
-IS LOADED).
+In general, you have two options to see a help file.
 
 1.  Go to the Help quadrant (next to packages) and use the top right
-    search bar.
+    search bar. <br>
 2.  IN THE CONSOLE (NOT IN A CODE CHUNK), type `?` then the name of your
-    command, function or dataset.
+    command, function or dataset. e.g. to see the help file for the
+    quick thematic map, I would type `?qtm` IN THE CONSOLE.
 
-e.g. to see the helpfile for the quick thematic map, I would type `?qtm`
-IN THE CONSOLE.
+<br>
 
-You must have loaded the relevant library for this to work, in this case
-tmap, as this also loads the help files for the commands in that library
-(just like you couldn't see the instagram helpfiles without first
-tapping the instagram icon).
+<details>
 
-To see the helpfile for the longleaf data, I would type this in the
+<summary>**If you get an error/It doesn't work, click here to expand!**
+</summary>
+
+Just like you can't see the instagram help files without first installing instagram, then tapping the instagram icon,for this to work you must have BOTH [installed](https://psu-spatial.github.io/Geog364-2023/in_G364_Lab3_PointPattern.html#2_Install_new_packages)  (from the 'app' store) AND [loaded](https://psu-spatial.github.io/Geog364-2023/in_G364_Lab3_PointPattern.html#4_Add_your_library_code_chunk)) the library containing the command or dataset.   
+
+For example, If you see this error, you either haven't loaded the spatstat library or run the library code chunk (e.g. see [getting
+started](https://psu-spatial.github.io/Geog364-2023/in_G364_Lab3_PointPattern.html#4_Add_your_library_code_chunk))
+
+```{r, Lab3Fig3, echo=FALSE}
+knitr::include_graphics('./Figures/Lab3Fig03_beierror.png')
+```
+
+<br><br>
+
+</details>
+
+
+<br> To see the help file for the longleaf data, I would type this in the
 console.
 
 ```{r, eval=FALSE}
@@ -274,23 +301,37 @@ examples that I can run.
 knitr::include_graphics('./Figures/Lab3Fig02_longleafhelp.png')
 ```
 
+<br>
+
 We can see a lot of information from this file, [often in the notes
-section.]{.underline}
+section.]{.underline} 
+
+<br>
+
+<details>
+
+<summary>[**Click here to expand & see what I found out about
+longleaf**]{.underline}</summary>
 
 -   My data is a point pattern dataset containing locations and diameter
-    measurements of longleaf pint trees in a US forest in Georgia
--   There are 586 pine trees in the dataset
+    measurements of longleaf pint trees in a US forest in Georgia <br>
+-   There are 586 pine trees in the dataset <br>
 -   The data was collected and analysed by Platt, Evans and Rathbun in
-    1988
+    1988 <br>
 -   The data is *marked*. So it is not just locations, but it also
     contains additional information about the diameter of each tree
-    trunk (in cm).
+    trunk (in cm). <br>
 -   The data is stored as a "ppp" object (which is a point pattern file
-    type)
+    type) <br>
 -   The ppp object also contains information on the region (i.e.,
     window) that was chosen for the study. In this case it is a
     rectangle with an X coordinate range of 0-200 and a Y coordinate
-    range of 0-200, with units in meters.
+    range of 0-200, with units in meters. <br><br>
+
+</details>
+
+
+
 
 <br><br><br>
 
@@ -327,21 +368,17 @@ plot(longleaf)
     it does.
 
 2.  Make sure you have run code chunk that loads the packages (the one
-    with the `library` comand), AND one that loads the longleaf and bei
-    data using the `data` commnd. If not, go back and reread the
+    with the `library` command), AND one that loads the longleaf and bei
+    data using the `data` commend. If not, go back and reread the
     section.
 
 3.  In a new code chunk, use the instructions above to load the help
     file for the `bei` data. In your own words, neatly summarise
     everything you can find about the `bei` dataset from the help file.
 
-If you see this error, you haven't loaded the spatstat library or run
-the library code chunk (e.g. see point 1)
-
-```{r, Lab3Fig3, echo=FALSE}
-knitr::include_graphics('./Figures/Lab3Fig03_beierror.png')
+```{=html}
+<!-- -->
 ```
-
 4.  Create a new code chunk and make a plot of the `bei` data. Comment
     underneath the plot about whether you see any spatial
     autocorrelation (positive/negative/zero), plus which spatial
@@ -377,7 +414,7 @@ dataEllipse(longleaf$x, longleaf$y, levels=0.68)
 ```
 
 ```{r}
-#Fancy look at the par helpfile for more options
+#Fancy look at the par help file for more options
 dataEllipse(longleaf$x, longleaf$y, levels=0.68, 
             fill=TRUE, fill.alpha=0.1,
             col= c( rgb(red=1, green=0, blue=0, alpha = 0.5),
@@ -387,10 +424,18 @@ dataEllipse(longleaf$x, longleaf$y, levels=0.68,
 
 ```
 
-Here's what it all means
+<details>
+
+
+<br> 
+
+<summary>[**Want to know what the options mean? Click to
+expand**]{.underline}</summary>
+
+Here's what it all means. The \# in a code chunk means ignore the text
 
 ```{r, eval=FALSE}
-# look at the par and dataEllipse helpfiles for more options
+# look at the par and dataEllipse help files for more options
 # 
 dataEllipse(longleaf$x, longleaf$y, levels=0.68, 
             fill=TRUE,      # Fill the ellipse
@@ -405,6 +450,9 @@ dataEllipse(longleaf$x, longleaf$y, levels=0.68,
 
 
 ```
+
+</details>
+
 
 <br><br><br>
 
@@ -437,8 +485,8 @@ The first way to look at this is to examine the overall density of
 points over the entire field, known as the global intensity. This is
 simply the average number of points per unit area.
 
-We say it's "global" because we only calculate a single number for the
-entire study area.
+**We say it's "global" because we only calculate a single number for the
+entire study area.**
 
 Mathematically, the overall intensity of a point process can be
 calculated via the following equation, where n is the number of points
@@ -448,7 +496,7 @@ $$\lambda=\frac{n}{A}$$
 
 In R, we can do this simply by looking at the summary command. Scroll
 back up and look at it. We can see that the global intensity of the
-pattern is 0.0146 trees per square metre (note the units).
+pattern is 0.0146 trees per square meter (note the units).
 
 *(We can also see that the thinnest tree trunk has a diameter 2cm and
 the largest, 75.9cm. Finally it tells us the shape and area of our
@@ -478,7 +526,7 @@ grid-cells, or quadrats - 4 quadrats in the x direction and 4 in the y
 direction. It then returns the number of points in each box as well as
 the size of each box. We can see that the area is 50\*50 = 2500m.
 
-To standardise and compare patterns, we can divide each count by 2500.
+To standardize and compare patterns, we can divide each count by 2500.
 The intensity command does this automatically, showing the proportion of
 points per unit area in each quadrat:
 
@@ -535,29 +583,40 @@ print(longleaf.VMR)
 
 ### 6D. Quadrat Hypothesis test
 
-We can examine whether our VMR is 'significantly' different from what
-would be expected from complete spatial randomness. By different I mean
-unusually clustered or uniform.
+We can now examine whether our pattern might look similar to those
+generated by different underlying scenarios. The easiest one to start
+with is "does the pattern look 'unusual' compared to one generated by an
+Independent Random Process.
+
+By different I mean unusually clustered or uniform/regular.
 
 -   H0: Our Longleaf pattern was caused by an Independent Random
-    Process. Any clustering/dispersion is just luck.
+    Process. Any clustering/dispersion is just random chance. AKA
+    there's an equal probability of seeing a point occur anywhere in the
+    study area AKA The pattern is an example of Complete Spatial
+    Randomness.
 
 -   H1: Our longleaf is unusually DIFFERENT to one caused by an
     Independent Random Process.
 
+<details>
+
+<summary>[**Click to expand to read what the test is doing & how to
+run/interpret the output**]{.underline}</summary>
+
 #### Creating Independent Random Point Processes:
 
 To assess the significance of a spatial pattern, we start by creating
-multiple simulated datasets that represent what we would expect under
+multiple simulated data-sets that represent what we would expect under
 our H0 scenario, in this case, complete spatial randomness. We generate
-these simulated datasets using a Poisson distribution. The Poisson
+these simulated data-sets using a Poisson distribution. The Poisson
 distribution is a mathematical model that describes the distribution of
 rare events occurring in a fixed interval of time or space. In our case,
 it's used to simulate random point patterns.
 
 #### Variance-to-Mean Ratio (VMR):
 
-Next, for each of these simulated datasets, we calculate the VMR. ON
+Next, for each of these simulated data-sets, we calculate the VMR. ON
 AVERAGE, it would be 1.Some will be slightly clustered and some more
 uniform just by chance - so imagine a histogram of VMR values from our
 simulation.
@@ -574,8 +633,8 @@ So, lets update our hypotheses:
 #### Chi-Squared Test:
 
 We want to know if the VMR from our actual longleaf data is "unusual"
-compared to the set from our simulated datasets. So we we compare the
-VMR we observed in our actual data to this distribution of VMRs from the
+compared to the set from our simulated data-sets. So we we compare the
+VMR we observed in our actual data to this distribution of VMR from the
 simulations using a statistical test called the chi-squared test.
 
 #### P-Value:
@@ -621,13 +680,16 @@ here](https://www.explainxkcd.com/wiki/index.php/2379:_Probability_Comparisons))
 This is how likely it is..
 
 |                                                                                                                                                                      |
-|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+|------------------------------------------------------------------------|
 | *You pick up a phone, dial a random 10-digit number, and say 'Hello President Obama, there's just been a magnitude 8 earthquake in California" and you are correct!* |
 
 : So this data is VERY unusual if it was caused by an IRP.
 
 We have enough evidence to reject H0 and say that our scenario of an
 "independent random process" is unlikely to have caused this pattern.
+
+</details>
+
 
 <br><br><br>
 
@@ -655,8 +717,6 @@ example:
     -   A plot of counts
 
     -   A plot of intensities
-
-<!-- -->
 
 5.  Calculate the Variance Mean Ratio for the bei data. Explain from
     this if you think the data is clustered, randomly distributed or
@@ -749,7 +809,7 @@ point pattern densities. As described in
 <https://sites.warnercnr.colostate.edu/wtinkham/courses-taught/nr-512-spatial-statistical-modeling/nr-512-exercise-descriptions/nr-512-exercise-3/>.
 
 *"Quadrat counting is useful for characterizing the intensity of an
-inhomogeneous point process, however there are limitations including:*
+in-homogeneous point process, however there are limitations including:*
 
 -- *The choice of origin, quadrat orientation, and quadrat size affects
 the observed frequency distribution.* -- *A significant amount of
@@ -804,7 +864,7 @@ with shorter "hills" have fewer.
 So, in simple terms, kernel density smoothing takes your data on
 longleaf tree locations and turns it into a map that gives you a sense
 of where these trees are more densely packed in the forest. It helps you
-identify the hotspots of longleaf tree concentration, which can be
+identify the hot-spots of longleaf tree concentration, which can be
 valuable information for ecological studies or conservation efforts.
 
 </details>
@@ -822,7 +882,8 @@ See here :)
 Or this set of videos is great:
 <https://www.youtube.com/watch?v=ge4Oh-h1Of8>
 
-<details>
+</details>
+
 
 <br><br>
 

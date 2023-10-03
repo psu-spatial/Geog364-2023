@@ -11,7 +11,7 @@
 
 
 
-<title>Lab 3: Point Pattern</title>
+<title>Lab 3A: Point Pattern Density</title>
 
 <script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -465,7 +465,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Lab 3: Point Pattern</h1>
+<h1 class="title toc-ignore">Lab 3A: Point Pattern Density</h1>
 <h3 class="subtitle"><h4 style="font-style:normal"><br />
 Lab 3 is split into two parts to match the lectures<br />
 </h4></h3>
@@ -514,16 +514,27 @@ location.</p>
 introductory spatial statistical approaches for characterizing the
 spatial properties of a point pattern.</p>
 <ul>
-<li><strong>This week:</strong> We will be focusing on quadrat analysis,
-kernal analysis and standard ellipses.</li>
-<li><strong>Next week:</strong> We will be focusing on nearest
-neighbour, L analysis and simulation</li>
+<li><p><strong>This week:</strong> We will be focusing on quadrat
+analysis, kernel analysis and standard ellipses. (Oct 2-6) e.g. Point
+pattern density</p>
+<p>RECOMMENDED: You can optionally submit this week’s lab to get graded
+up to the first 50 points - If you submit before Monday 9th, we will
+provide feedback, so you can improve your grade when you (re)submit the
+entire lab.<br />
+</p></li>
+<li><p><strong>Next week (Oct 9-12):</strong> a new set of tutorials
+will be released on point pattern distance. You will (re)-submit
+everything from 3A and 3B. </p>
+<p>See the rubric on canvas (this is up!) for how it will be graded and
+the checklist at the end for what you need for 100%.</p></li>
 </ul>
 <p>See <a
 href="https://psu.instructure.com/courses/2260204/assignments/15455241">The
 Canvas page here</a>, or go to canvas for assignment guidelines. You can
 use either the website base RStudio/Posit Cloud OR R-Desktop for this
-lab</p>
+lab.</p>
+<p>Getting stuck? Look at the Canvas page for the McGrew Chapter 14 - it
+has a great overview.</p>
 <p><br><br><br></p>
 <div id="getting-started" class="section level1">
 <h1>Getting started</h1>
@@ -558,6 +569,7 @@ tutorial</a> for details (or what the little yellow bar is).</p>
 beginning of the install process saying that you need to install
 R-Tools. IGNORE THIS - You probably don’t need to install
 R-Tools</em></p>
+<p><br><br></p>
 <div id="reminders-on-installing-packages" class="section level4">
 <h4>Reminders on installing packages</h4>
 <p>Although it works in the console, please do not include the
@@ -595,16 +607,17 @@ href="https://psu-spatial.github.io/Geog364-2023/in_G364_Lab2_Basics.html#4_Edit
 in Lab 2</a>, but change the text in the template to match Lab
 3.</p></li>
 </ul>
+<p><br></p>
 <p>Your file should look professional with a template when you press
 knit. Note, if you are using R Studio CLOUD, you might need to
 re-install the <code>rmdformats</code> or <code>prettydocs</code>
 package to make the templates appear. Want to try a new template? Try
 these packages:</p>
 <ul>
-<li><p><code>prettydocs</code> (easy)</p></li>
-<li><p><a href="https://github.com/hrbrmstr/markdowntemplates"
+<li><code>prettydocs</code> (easy) or <a
+href="https://github.com/hrbrmstr/markdowntemplates"
 class="uri">https://github.com/hrbrmstr/markdowntemplates</a> (I have
-never tried this but they seem interesting)</p></li>
+never tried this but they seem interesting)</li>
 </ul>
 <p>KNIT TO CHECK IT WORKS. IF YOU ARE STRUGGLING WITH THIS, PLEASE TALK
 TO AN INSTRUCTOR.</p>
@@ -632,9 +645,9 @@ list and re-run not randomly throughout your code! I guarantee that
 <h1>Point Pattern Analysis</h1>
 <div id="loading-the-data" class="section level2">
 <h2>1. Loading the data</h2>
-<p>In this walkthrough, we will use two datasets that are already built
-into the spatstat package. The advantage of this is that we don’t have
-to worry about file formats or map projections.</p>
+<p>In this walk-through, we will use two data-sets that are already
+built into the spatstat package. The advantage of this is that we don’t
+have to worry about file formats or map projections.</p>
 <ul>
 <li>All of the examples in this tutorial are based on a dataset called
 <code>longleaf</code></li>
@@ -646,7 +659,7 @@ Inside add:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># This loads the internal dataset from R.</span></span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">data</span>(longleaf)</span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">data</span>(bei)</span></code></pre></div>
-<p>Run the code chunk and you should see the longleaf and bei datasets
+<p>Run the code chunk and you should see the longleaf and bei data-sets
 appear in your environment quadrant on the screen. They might appear as
 grey-ed out “promises”, but as soon as you do something else, they will
 load fully.</p>
@@ -654,58 +667,80 @@ load fully.</p>
 </div>
 <div id="important" class="section level2">
 <h2>2. IMPORTANT</h2>
-<p><strong>From now onward, you don’t <em>have</em> to run longleaf
-examples because you can see the output in this lab script, but I
-suggest copying them into your lab script, getting them working, then in
-the challenges, tweaking and editing them to replace the longleaf names
-with bei &amp; follow the instructions</strong></p>
+<p>From now onward, you don’t <em>have</em> to run longleaf examples
+because you can see the output in this lab script, but I suggest copying
+them into your lab script, getting them working, then in the challenges,
+tweaking and editing them to replace the longleaf names with bei as
+required.</p>
 <p><u><strong>You are graded on the lab challenges.</strong></u></p>
 <p><br><br><br></p>
 </div>
 <div id="data-background-help-files" class="section level2">
 <h2>3. Data background (help-files)</h2>
-<p>Every R command AND R-dataset has its own helpfile. For a more
+<p>Every R command AND R-dataset has its own help file. For a more
 detailed explanation of how I combine these with google searches, see <a
 href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial04ConsoleBasics.html#Getting_help">this
-tutorial</a>.</p>
-<p>But in general, you have two options to see a help file (IF THE
-PACKAGE IS LOADED).</p>
+tutorial</a>. In general, you have two options to see a help file.</p>
 <ol style="list-style-type: decimal">
 <li>Go to the Help quadrant (next to packages) and use the top right
-search bar.</li>
+search bar. <br></li>
 <li>IN THE CONSOLE (NOT IN A CODE CHUNK), type <code>?</code> then the
-name of your command, function or dataset.</li>
+name of your command, function or dataset. e.g. to see the help file for
+the quick thematic map, I would type <code>?qtm</code> IN THE
+CONSOLE.</li>
 </ol>
-<p>e.g. to see the helpfile for the quick thematic map, I would type
-<code>?qtm</code> IN THE CONSOLE.</p>
-<p>You must have loaded the relevant library for this to work, in this
-case tmap, as this also loads the help files for the commands in that
-library (just like you couldn’t see the instagram helpfiles without
-first tapping the instagram icon).</p>
-<p>To see the helpfile for the longleaf data, I would type this in the
-console.</p>
+<p><br></p>
+<details>
+<summary>
+<strong>If you get an error/It doesn’t work, click here to
+expand!</strong>
+</summary>
+<p>Just like you can’t see the instagram help files without first
+installing instagram, then tapping the instagram icon,for this to work
+you must have BOTH <a
+href="https://psu-spatial.github.io/Geog364-2023/in_G364_Lab3_PointPattern.html#2_Install_new_packages">installed</a>
+(from the ‘app’ store) AND <a
+href="https://psu-spatial.github.io/Geog364-2023/in_G364_Lab3_PointPattern.html#4_Add_your_library_code_chunk">loaded</a>)
+the library containing the command or dataset.</p>
+<p>For example, If you see this error, you either haven’t loaded the
+spatstat library or run the library code chunk (e.g. see <a
+href="https://psu-spatial.github.io/Geog364-2023/in_G364_Lab3_PointPattern.html#4_Add_your_library_code_chunk">getting
+started</a>)</p>
+<p><img src="Figures/Lab3Fig03_beierror.png" width="752" /></p>
+<p><br><br></p>
+</details>
+<p><br> To see the help file for the longleaf data, I would type this in
+the console.</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>?longleaf  </span></code></pre></div>
 <p>It brings up this page. Scrolling down will give more details and
 worked examples that I can run.</p>
 <p><img src="Figures/Lab3Fig02_longleafhelp.png" width="814" /></p>
+<p><br></p>
 <p>We can see a lot of information from this file, <u>often in the notes
 section.</u></p>
+<p><br></p>
+<details>
+<summary>
+<u><strong>Click here to expand &amp; see what I found out about
+longleaf</strong></u>
+</summary>
 <ul>
 <li>My data is a point pattern dataset containing locations and diameter
-measurements of longleaf pint trees in a US forest in Georgia</li>
-<li>There are 586 pine trees in the dataset</li>
+measurements of longleaf pint trees in a US forest in Georgia <br></li>
+<li>There are 586 pine trees in the dataset <br></li>
 <li>The data was collected and analysed by Platt, Evans and Rathbun in
-1988</li>
+1988 <br></li>
 <li>The data is <em>marked</em>. So it is not just locations, but it
 also contains additional information about the diameter of each tree
-trunk (in cm).</li>
+trunk (in cm). <br></li>
 <li>The data is stored as a “ppp” object (which is a point pattern file
-type)</li>
+type) <br></li>
 <li>The ppp object also contains information on the region (i.e.,
 window) that was chosen for the study. In this case it is a rectangle
 with an X coordinate range of 0-200 and a Y coordinate range of 0-200,
-with units in meters.</li>
+with units in meters. <br><br></li>
 </ul>
+</details>
 <p><br><br><br></p>
 </div>
 <div id="summary-analysisplots" class="section level2">
@@ -756,17 +791,15 @@ diameter is a mark
 <li><p>Google the “spatstat” R package. Tell me a little about it and
 what it does.</p></li>
 <li><p>Make sure you have run code chunk that loads the packages (the
-one with the <code>library</code> comand), AND one that loads the
-longleaf and bei data using the <code>data</code> commnd. If not, go
+one with the <code>library</code> command), AND one that loads the
+longleaf and bei data using the <code>data</code> commend. If not, go
 back and reread the section.</p></li>
 <li><p>In a new code chunk, use the instructions above to load the help
 file for the <code>bei</code> data. In your own words, neatly summarise
 everything you can find about the <code>bei</code> dataset from the help
 file.</p></li>
 </ol>
-<p>If you see this error, you haven’t loaded the spatstat library or run
-the library code chunk (e.g. see point 1)</p>
-<p><img src="Figures/Lab3Fig03_beierror.png" width="752" /></p>
+<!-- -->
 <ol start="4" style="list-style-type: decimal">
 <li><p>Create a new code chunk and make a plot of the <code>bei</code>
 data. Comment underneath the plot about whether you see any spatial
@@ -795,7 +828,7 @@ the <code>car</code> package. Here is a basic version and a fancy
 version</p>
 <div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co">#Basic</span></span>
 <span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">dataEllipse</span>(longleaf<span class="sc">$</span>x, longleaf<span class="sc">$</span>y, <span class="at">levels=</span><span class="fl">0.68</span>)</span></code></pre></div>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co">#Fancy look at the par helpfile for more options</span></span>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co">#Fancy look at the par help file for more options</span></span>
 <span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">dataEllipse</span>(longleaf<span class="sc">$</span>x, longleaf<span class="sc">$</span>y, <span class="at">levels=</span><span class="fl">0.68</span>, </span>
 <span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>            <span class="at">fill=</span><span class="cn">TRUE</span>, <span class="at">fill.alpha=</span><span class="fl">0.1</span>,</span>
 <span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>            <span class="at">col=</span> <span class="fu">c</span>( <span class="fu">rgb</span>(<span class="at">red=</span><span class="dv">1</span>, <span class="at">green=</span><span class="dv">0</span>, <span class="at">blue=</span><span class="dv">0</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>),</span>
@@ -803,8 +836,15 @@ version</p>
 <span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>            <span class="at">pch=</span><span class="dv">16</span>, <span class="at">cex=</span>.<span class="dv">5</span>,    </span>
 <span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>            <span class="at">xlab=</span><span class="st">&quot;x (m)&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;y (m)&quot;</span>) </span></code></pre></div>
 <p><img src="in_G364_Lab3_PointPattern_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
-<p>Here’s what it all means</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># look at the par and dataEllipse helpfiles for more options</span></span>
+<details>
+<p><br></p>
+<summary>
+<u><strong>Want to know what the options mean? Click to
+expand</strong></u>
+</summary>
+<p>Here’s what it all means. The # in a code chunk means ignore the
+text</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># look at the par and dataEllipse help files for more options</span></span>
 <span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="co"># </span></span>
 <span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="fu">dataEllipse</span>(longleaf<span class="sc">$</span>x, longleaf<span class="sc">$</span>y, <span class="at">levels=</span><span class="fl">0.68</span>, </span>
 <span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>            <span class="at">fill=</span><span class="cn">TRUE</span>,      <span class="co"># Fill the ellipse</span></span>
@@ -816,6 +856,7 @@ version</p>
 <span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a>            </span>
 <span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a>            <span class="at">pch=</span><span class="dv">16</span>, <span class="at">cex=</span>.<span class="dv">5</span>,    <span class="co"># filled dots (pch) and small size (cex)</span></span>
 <span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a>            <span class="at">xlab=</span><span class="st">&quot;x (m)&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;y (m)&quot;</span>) <span class="co">#labels</span></span></code></pre></div>
+</details>
 <p><br><br><br></p>
 </div>
 <div id="challenge-b" class="section level2">
@@ -844,15 +885,15 @@ might influence the pattern we see.</p>
 <p>The first way to look at this is to examine the overall density of
 points over the entire field, known as the global intensity. This is
 simply the average number of points per unit area.</p>
-<p>We say it’s “global” because we only calculate a single number for
-the entire study area.</p>
+<p><strong>We say it’s “global” because we only calculate a single
+number for the entire study area.</strong></p>
 <p>Mathematically, the overall intensity of a point process can be
 calculated via the following equation, where n is the number of points
 within our region and A is the overall area of the region.</p>
 <p><span class="math display">\[\lambda=\frac{n}{A}\]</span></p>
 <p>In R, we can do this simply by looking at the summary command. Scroll
 back up and look at it. We can see that the global intensity of the
-pattern is 0.0146 trees per square metre (note the units).</p>
+pattern is 0.0146 trees per square meter (note the units).</p>
 <p><em>(We can also see that the thinnest tree trunk has a diameter 2cm
 and the largest, 75.9cm. Finally it tells us the shape and area of our
 boundary box containing all our points is 200x200m. Note, this bounding
@@ -880,7 +921,7 @@ use it again below.</p>
 grid-cells, or quadrats - 4 quadrats in the x direction and 4 in the y
 direction. It then returns the number of points in each box as well as
 the size of each box. We can see that the area is 50*50 = 2500m.</p>
-<p>To standardise and compare patterns, we can divide each count by
+<p>To standardize and compare patterns, we can divide each count by
 2500. The intensity command does this automatically, showing the
 proportion of points per unit area in each quadrat:</p>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="co"># Print the density for each quadrat</span></span>
@@ -929,29 +970,38 @@ clustered. See the lecture for more.</p>
 </div>
 <div id="d.-quadrat-hypothesis-test" class="section level3">
 <h3>6D. Quadrat Hypothesis test</h3>
-<p>We can examine whether our VMR is ‘significantly’ different from what
-would be expected from complete spatial randomness. By different I mean
-unusually clustered or uniform.</p>
+<p>We can now examine whether our pattern might look similar to those
+generated by different underlying scenarios. The easiest one to start
+with is “does the pattern look ‘unusual’ compared to one generated by an
+Independent Random Process.</p>
+<p>By different I mean unusually clustered or uniform/regular.</p>
 <ul>
 <li><p>H0: Our Longleaf pattern was caused by an Independent Random
-Process. Any clustering/dispersion is just luck.</p></li>
+Process. Any clustering/dispersion is just random chance. AKA there’s an
+equal probability of seeing a point occur anywhere in the study area AKA
+The pattern is an example of Complete Spatial Randomness.</p></li>
 <li><p>H1: Our longleaf is unusually DIFFERENT to one caused by an
 Independent Random Process.</p></li>
 </ul>
+<details>
+<summary>
+<u><strong>Click to expand to read what the test is doing &amp; how to
+run/interpret the output</strong></u>
+</summary>
 <div id="creating-independent-random-point-processes"
 class="section level4">
 <h4>Creating Independent Random Point Processes:</h4>
 <p>To assess the significance of a spatial pattern, we start by creating
-multiple simulated datasets that represent what we would expect under
+multiple simulated data-sets that represent what we would expect under
 our H0 scenario, in this case, complete spatial randomness. We generate
-these simulated datasets using a Poisson distribution. The Poisson
+these simulated data-sets using a Poisson distribution. The Poisson
 distribution is a mathematical model that describes the distribution of
 rare events occurring in a fixed interval of time or space. In our case,
 it’s used to simulate random point patterns.</p>
 </div>
 <div id="variance-to-mean-ratio-vmr" class="section level4">
 <h4>Variance-to-Mean Ratio (VMR):</h4>
-<p>Next, for each of these simulated datasets, we calculate the VMR. ON
+<p>Next, for each of these simulated data-sets, we calculate the VMR. ON
 AVERAGE, it would be 1.Some will be slightly clustered and some more
 uniform just by chance - so imagine a histogram of VMR values from our
 simulation.</p>
@@ -967,8 +1017,8 @@ unusually low.</p></li>
 <div id="chi-squared-test" class="section level4">
 <h4>Chi-Squared Test:</h4>
 <p>We want to know if the VMR from our actual longleaf data is “unusual”
-compared to the set from our simulated datasets. So we we compare the
-VMR we observed in our actual data to this distribution of VMRs from the
+compared to the set from our simulated data-sets. So we we compare the
+VMR we observed in our actual data to this distribution of VMR from the
 simulations using a statistical test called the chi-squared test.</p>
 </div>
 <div id="p-value" class="section level4">
@@ -1034,6 +1084,7 @@ California” and you are correct!</em></td>
 <p>We have enough evidence to reject H0 and say that our scenario of an
 “independent random process” is unlikely to have caused this
 pattern.</p>
+</details>
 <p><br><br><br></p>
 </div>
 </div>
@@ -1058,9 +1109,6 @@ trees in the bei dataset</p></li>
 <li><p>A plot of counts</p></li>
 <li><p>A plot of intensities</p></li>
 </ul></li>
-</ol>
-<!-- -->
-<ol start="5" style="list-style-type: decimal">
 <li><p>Calculate the Variance Mean Ratio for the bei data. Explain from
 this if you think the data is clustered, randomly distributed or
 uniformly distributed.</p></li>
@@ -1149,7 +1197,7 @@ explore point pattern densities. As described in <a
 href="https://sites.warnercnr.colostate.edu/wtinkham/courses-taught/nr-512-spatial-statistical-modeling/nr-512-exercise-descriptions/nr-512-exercise-3/"
 class="uri">https://sites.warnercnr.colostate.edu/wtinkham/courses-taught/nr-512-spatial-statistical-modeling/nr-512-exercise-descriptions/nr-512-exercise-3/</a>.</p>
 <p><em>“Quadrat counting is useful for characterizing the intensity of
-an inhomogeneous point process, however there are limitations
+an in-homogeneous point process, however there are limitations
 including:</em></p>
 <p>– <em>The choice of origin, quadrat orientation, and quadrat size
 affects the observed frequency distribution.</em> – <em>A significant
@@ -1193,7 +1241,7 @@ with shorter “hills” have fewer.</p>
 <p>So, in simple terms, kernel density smoothing takes your data on
 longleaf tree locations and turns it into a map that gives you a sense
 of where these trees are more densely packed in the forest. It helps you
-identify the hotspots of longleaf tree concentration, which can be
+identify the hot-spots of longleaf tree concentration, which can be
 valuable information for ecological studies or conservation efforts.</p>
 </details>
 <p><br><br></p>
@@ -1207,7 +1255,7 @@ class="uri">https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-anal
 <p>Or this set of videos is great: <a
 href="https://www.youtube.com/watch?v=ge4Oh-h1Of8"
 class="uri">https://www.youtube.com/watch?v=ge4Oh-h1Of8</a></p>
-<details>
+</details>
 <p><br><br></p>
 <p>To apply it in R, we simply use the density command. For example, for
 the longleaf data, I would create a new code chunk and type.</p>
