@@ -30,3 +30,5 @@ navbar:
       href: in_G364_Lab1_2324.html
     - text: "Lab 2"
       href: in_G364_Lab2_Basics.html      
+    - text: "Lab 3"
+      href: in_G364_Lab3_PointPattern.html   

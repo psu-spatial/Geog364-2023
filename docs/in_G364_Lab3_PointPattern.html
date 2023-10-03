@@ -1,0 +1,1506 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Lab 3: Point Pattern</title>
+
+<script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #204a87; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">GEOG 364 Lab Book</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Tutorials
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_Tutorial01WhatisR.html">1. What is R?</a>
+    </li>
+    <li>
+      <a href="in_Tutorial02SetUp.html">2. General Set-Up</a>
+    </li>
+    <li>
+      <a href="in_Tutorial03LabSetUp.html">3. Lab Set-Up</a>
+    </li>
+    <li>
+      <a href="in_Tutorial04ConsoleBasics.html">4. Console Basics</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Labs
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_G364_Lab0_FAQ.html">Lab FAQ</a>
+    </li>
+    <li>
+      <a href="in_G364_Lab1_2324.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="in_G364_Lab2_Basics.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="in_G364_Lab3_PointPattern.html">Lab 3</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Lab 3: Point Pattern</h1>
+<h3 class="subtitle"><h4 style="font-style:normal"><br />
+Lab 3 is split into two parts to match the lectures<br />
+</h4></h3>
+
+</div>
+
+
+<style>
+p.comment {
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 0px;
+border-radius: 5px;
+font-style: normal;
+}
+
+h1.title {
+  font-weight: bold;
+  font-family: Arial;  
+}
+
+h2.title {
+  font-family: Arial;  
+}
+
+</style>
+<style type="text/css">
+#TOC {
+  font-size: 12px;
+  font-family: Arial;
+}
+
+pre code {
+  font-size: 13px; /* Adjust the font size as needed */
+  white-space: pre-wrap;
+}
+</style>
+<p><br />
+</p>
+<p>Welcome to Lab 3, where we are going to focus on Point Pattern
+Analysis. A point pattern dataset is comprised of events or objects
+occurring in a defined study region. These events could represent
+anything with a specific measurable point location.</p>
+<p><strong>Objective:</strong> The goal of Lab 3 is to learn some
+introductory spatial statistical approaches for characterizing the
+spatial properties of a point pattern.</p>
+<ul>
+<li><strong>This week:</strong> We will be focusing on quadrat analysis,
+kernal analysis and standard ellipses.</li>
+<li><strong>Next week:</strong> We will be focusing on nearest
+neighbour, L analysis and simulation</li>
+</ul>
+<p>See <a
+href="https://psu.instructure.com/courses/2260204/assignments/15455241">The
+Canvas page here</a>, or go to canvas for assignment guidelines. You can
+use either the website base RStudio/Posit Cloud OR R-Desktop for this
+lab</p>
+<p><br><br><br></p>
+<div id="getting-started" class="section level1">
+<h1>Getting started</h1>
+<div id="create-your-project" class="section level2">
+<h2>1. Create your project</h2>
+<ol style="list-style-type: decimal">
+<li><p>In Desktop R, select your 364 directory, create a new project,
+then name the project Lab 3. If you are stuck on this process, see the
+start of Lab 1 and Lab 2 or these tutorials</p>
+<ul>
+<li><p>For R-Desktop, see <a
+href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Projects_using_Desktop">Tutorial
+3B</a></p></li>
+<li><p>For Posit Cloud, see <a
+href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Projects_using_Rstudioposit_Cloud">Tutorial
+3C</a> <br><br></p></li>
+</ul></li>
+</ol>
+<p>You can check this has worked by looking on the file explorer on your
+computer, then selecting your GEOG364 folder and checking that a Lab 3
+folder has appeared with your Lab3.Proj file inside it.</p>
+<p><br><br><br></p>
+</div>
+<div id="install-new-packages" class="section level2">
+<h2>2. Install new packages</h2>
+<p>There are two specialist packages called “spatstat” and “car” which
+focus on point pattern analysis. Please install these - either keep
+reading for a summary or see <a
+href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Downloading_a_new_package">this
+tutorial</a> for details (or what the little yellow bar is).</p>
+<p><em>If you are a Windows user, you might see a message at the
+beginning of the install process saying that you need to install
+R-Tools. IGNORE THIS - You probably don’t need to install
+R-Tools</em></p>
+<div id="reminders-on-installing-packages" class="section level4">
+<h4>Reminders on installing packages</h4>
+<p>Although it works in the console, please do not include the
+<code>install.packages()</code> command in your .Rmd file .If you
+include install.packages in your code chunks, then when you press knit,
+you are asking a computer to independently visit an app store (which it
+can’t do) - which often causes errors.</p>
+<p>Instead, install spatstat and car by clicking the “install button” in
+the packages menu. Click on the install button, then start typing
+spatstat, select it and press install.</p>
+<div class="figure">
+<img src="Figures/Lab3Fig01_install.png" alt="Click the button and  type the name if the package you want to install" width="914" />
+<p class="caption">
+Click the button and type the name if the package you want to install
+</p>
+</div>
+<p>Now, repeat the process for the <code>car</code> package. This might
+take a while to download. If this doesn’t work, TALK TO AN INSTRUCTOR
+(it can be buggy).</p>
+<p><br><br><br></p>
+</div>
+</div>
+<div id="create-your-.rmd-file" class="section level2">
+<h2>3. Create your .RmD file</h2>
+<p>In Lab 1, you created your own template for your labs. In Lab 2, you
+used an .RmD template that Dr G created. In this lab, you can choose
+what you want to do. Either</p>
+<ul>
+<li><p>Follow the instructions in <a
+href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Creating_a_Markdown_document">Tutorial
+3E.</a> Remember to remove any “friendly text” below your YAML
+code!</p></li>
+<li><p>Or follow the <a
+href="https://psu-spatial.github.io/Geog364-2023/in_G364_Lab2_Basics.html#4_Edit_your_template">instructions
+in Lab 2</a>, but change the text in the template to match Lab
+3.</p></li>
+</ul>
+<p>Your file should look professional with a template when you press
+knit. Note, if you are using R Studio CLOUD, you might need to
+re-install the <code>rmdformats</code> or <code>prettydocs</code>
+package to make the templates appear. Want to try a new template? Try
+these packages:</p>
+<ul>
+<li><p><code>prettydocs</code> (easy)</p></li>
+<li><p><a href="https://github.com/hrbrmstr/markdowntemplates"
+class="uri">https://github.com/hrbrmstr/markdowntemplates</a> (I have
+never tried this but they seem interesting)</p></li>
+</ul>
+<p>KNIT TO CHECK IT WORKS. IF YOU ARE STRUGGLING WITH THIS, PLEASE TALK
+TO AN INSTRUCTOR.</p>
+<p><br><br><br></p>
+</div>
+<div id="add-your-library-code-chunk" class="section level2">
+<h2>4. Add your library code chunk</h2>
+<p>Add a new code chunk. Inside add the following code and run it.</p>
+<p>The reason we are adding this just after typing it into your console
+is that these library commands need to be run every time you open R. So
+we put them in a code chunk right at the top of your file.</p>
+<p>Note if later on you install new packages, please add them to this
+list and re-run not randomly throughout your code! I guarantee that
+‘future you’ will thank you.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(spatstat)</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(sp)</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">library</span>(car)</span></code></pre></div>
+<p>Now click the Knit Button and make sure everything looks correct.</p>
+<p><br><br><br></p>
+</div>
+</div>
+<div id="point-pattern-analysis" class="section level1">
+<h1>Point Pattern Analysis</h1>
+<div id="loading-the-data" class="section level2">
+<h2>1. Loading the data</h2>
+<p>In this walkthrough, we will use two datasets that are already built
+into the spatstat package. The advantage of this is that we don’t have
+to worry about file formats or map projections.</p>
+<ul>
+<li>All of the examples in this tutorial are based on a dataset called
+<code>longleaf</code></li>
+<li>You will be conducting your analysis on a dataset called
+<code>bei</code></li>
+</ul>
+<p>But first, we need to load them into R studio. Make a new code chunk.
+Inside add:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># This loads the internal dataset from R.</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">data</span>(longleaf)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">data</span>(bei)</span></code></pre></div>
+<p>Run the code chunk and you should see the longleaf and bei datasets
+appear in your environment quadrant on the screen. They might appear as
+grey-ed out “promises”, but as soon as you do something else, they will
+load fully.</p>
+<p><br><br><br></p>
+</div>
+<div id="important" class="section level2">
+<h2>2. IMPORTANT</h2>
+<p><strong>From now onward, you don’t <em>have</em> to run longleaf
+examples because you can see the output in this lab script, but I
+suggest copying them into your lab script, getting them working, then in
+the challenges, tweaking and editing them to replace the longleaf names
+with bei &amp; follow the instructions</strong></p>
+<p><u><strong>You are graded on the lab challenges.</strong></u></p>
+<p><br><br><br></p>
+</div>
+<div id="data-background-help-files" class="section level2">
+<h2>3. Data background (help-files)</h2>
+<p>Every R command AND R-dataset has its own helpfile. For a more
+detailed explanation of how I combine these with google searches, see <a
+href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial04ConsoleBasics.html#Getting_help">this
+tutorial</a>.</p>
+<p>But in general, you have two options to see a help file (IF THE
+PACKAGE IS LOADED).</p>
+<ol style="list-style-type: decimal">
+<li>Go to the Help quadrant (next to packages) and use the top right
+search bar.</li>
+<li>IN THE CONSOLE (NOT IN A CODE CHUNK), type <code>?</code> then the
+name of your command, function or dataset.</li>
+</ol>
+<p>e.g. to see the helpfile for the quick thematic map, I would type
+<code>?qtm</code> IN THE CONSOLE.</p>
+<p>You must have loaded the relevant library for this to work, in this
+case tmap, as this also loads the help files for the commands in that
+library (just like you couldn’t see the instagram helpfiles without
+first tapping the instagram icon).</p>
+<p>To see the helpfile for the longleaf data, I would type this in the
+console.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a>?longleaf  </span></code></pre></div>
+<p>It brings up this page. Scrolling down will give more details and
+worked examples that I can run.</p>
+<p><img src="Figures/Lab3Fig02_longleafhelp.png" width="814" /></p>
+<p>We can see a lot of information from this file, <u>often in the notes
+section.</u></p>
+<ul>
+<li>My data is a point pattern dataset containing locations and diameter
+measurements of longleaf pint trees in a US forest in Georgia</li>
+<li>There are 586 pine trees in the dataset</li>
+<li>The data was collected and analysed by Platt, Evans and Rathbun in
+1988</li>
+<li>The data is <em>marked</em>. So it is not just locations, but it
+also contains additional information about the diameter of each tree
+trunk (in cm).</li>
+<li>The data is stored as a “ppp” object (which is a point pattern file
+type)</li>
+<li>The ppp object also contains information on the region (i.e.,
+window) that was chosen for the study. In this case it is a rectangle
+with an X coordinate range of 0-200 and a Y coordinate range of 0-200,
+with units in meters.</li>
+</ul>
+<p><br><br><br></p>
+</div>
+<div id="summary-analysisplots" class="section level2">
+<h2>4. Summary analysis/Plots</h2>
+<p>Our data has been loaded in a special “spatstat” spatial format
+called ppp. This means we get different information when using commands
+like “plot”, “head” (which normally prints the first few lines) or
+“summary”.</p>
+<p>It’s actually quite old fashioned in that it’s a harder to read
+format - so I bet there will be a new package along soon to replace
+it..</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">summary</span>(longleaf)</span></code></pre></div>
+<pre><code>## Marked planar point pattern:  584 points
+## Average intensity 0.0146 points per square metre
+## 
+## Coordinates are given to 1 decimal place
+## i.e. rounded to the nearest multiple of 0.1 metres
+## 
+## marks are numeric, of type &#39;double&#39;
+## Summary:
+##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+##    2.00    9.10   26.15   26.84   42.12   75.90 
+## 
+## Window: rectangle = [0, 200] x [0, 200] metres
+## Window area = 40000 square metres
+## Unit of length: 1 metre</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">head</span>(longleaf)</span></code></pre></div>
+<pre><code>## Marked planar point pattern: 6 points
+## marks are numeric, of storage type  &#39;double&#39;
+## window: rectangle = [0, 200] x [0, 200] metres</code></pre>
+<p>I then made a quick plot of the longleaf data. Because the data is
+marked, the size of the circle automatically corresponds to the marks,
+the diameter of the tree trunk (which I worked out from the help
+file).</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">plot</span>(longleaf)</span></code></pre></div>
+<div class="figure">
+<img src="in_G364_Lab3_PointPattern_files/figure-html/unnamed-chunk-7-1.png" alt="It automatically understands the data is spatial and that the trunk diameter is a mark" width="672" />
+<p class="caption">
+It automatically understands the data is spatial and that the trunk
+diameter is a mark
+</p>
+</div>
+<p><br><br><br></p>
+</div>
+<div id="challenge-a" class="section level2">
+<h2>Challenge A</h2>
+<ol style="list-style-type: decimal">
+<li><p>Google the “spatstat” R package. Tell me a little about it and
+what it does.</p></li>
+<li><p>Make sure you have run code chunk that loads the packages (the
+one with the <code>library</code> comand), AND one that loads the
+longleaf and bei data using the <code>data</code> commnd. If not, go
+back and reread the section.</p></li>
+<li><p>In a new code chunk, use the instructions above to load the help
+file for the <code>bei</code> data. In your own words, neatly summarise
+everything you can find about the <code>bei</code> dataset from the help
+file.</p></li>
+</ol>
+<p>If you see this error, you haven’t loaded the spatstat library or run
+the library code chunk (e.g. see point 1)</p>
+<p><img src="Figures/Lab3Fig03_beierror.png" width="752" /></p>
+<ol start="4" style="list-style-type: decimal">
+<li><p>Create a new code chunk and make a plot of the <code>bei</code>
+data. Comment underneath the plot about whether you see any spatial
+autocorrelation (positive/negative/zero), plus which spatial fallacies
+might cause problems in this lab.</p></li>
+<li><p>Look at the summary of the <code>bei</code> data. Can you catch
+where someone made a mistake in the help file? (try not to cheat on this
+one - it’ll help you learn R)</p></li>
+</ol>
+<p><br><br><br></p>
+</div>
+<div id="mean-centre-and-standard-ellipse" class="section level2">
+<h2>5. Mean Centre and Standard Ellipse</h2>
+<p>Now, let’s look at some summary point statistics. The easiest thing
+to consider is the spatial mean, where we take the mean of all the x
+values vs all the y values.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>x.mean.longleaf <span class="ot">&lt;-</span> <span class="fu">mean</span>(longleaf<span class="sc">$</span>x) </span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>y.mean.longleaf <span class="ot">&lt;-</span> <span class="fu">mean</span>(longleaf<span class="sc">$</span>y)</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="fu">print</span>(x.mean.longleaf)</span></code></pre></div>
+<pre><code>## [1] 98.73527</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">print</span>(y.mean.longleaf)</span></code></pre></div>
+<pre><code>## [1] 113.8293</code></pre>
+<p>We can also add a standard ellipse using the dataEllipse command in
+the <code>car</code> package. Here is a basic version and a fancy
+version</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="co">#Basic</span></span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a><span class="fu">dataEllipse</span>(longleaf<span class="sc">$</span>x, longleaf<span class="sc">$</span>y, <span class="at">levels=</span><span class="fl">0.68</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co">#Fancy look at the par helpfile for more options</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">dataEllipse</span>(longleaf<span class="sc">$</span>x, longleaf<span class="sc">$</span>y, <span class="at">levels=</span><span class="fl">0.68</span>, </span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>            <span class="at">fill=</span><span class="cn">TRUE</span>, <span class="at">fill.alpha=</span><span class="fl">0.1</span>,</span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a>            <span class="at">col=</span> <span class="fu">c</span>( <span class="fu">rgb</span>(<span class="at">red=</span><span class="dv">1</span>, <span class="at">green=</span><span class="dv">0</span>, <span class="at">blue=</span><span class="dv">0</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>),</span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>                    <span class="st">&quot;blue&quot;</span>),    </span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>            <span class="at">pch=</span><span class="dv">16</span>, <span class="at">cex=</span>.<span class="dv">5</span>,    </span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>            <span class="at">xlab=</span><span class="st">&quot;x (m)&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;y (m)&quot;</span>) </span></code></pre></div>
+<p><img src="in_G364_Lab3_PointPattern_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>Here’s what it all means</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># look at the par and dataEllipse helpfiles for more options</span></span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="co"># </span></span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a><span class="fu">dataEllipse</span>(longleaf<span class="sc">$</span>x, longleaf<span class="sc">$</span>y, <span class="at">levels=</span><span class="fl">0.68</span>, </span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>            <span class="at">fill=</span><span class="cn">TRUE</span>,      <span class="co"># Fill the ellipse</span></span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>            <span class="at">fill.alpha=</span><span class="fl">0.1</span>, <span class="co"># Fill the ellipse with transparent color</span></span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>            </span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a>            <span class="co"># In the first part of col, I make my dots a slightly transparent red, </span></span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a>            <span class="co"># in the second I make the ellipse blue </span></span>
+<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a>            <span class="at">col=</span> <span class="fu">c</span> ( <span class="fu">rgb</span>(<span class="at">red=</span><span class="dv">1</span>, <span class="at">green=</span><span class="dv">0</span>, <span class="at">blue=</span><span class="dv">0</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>),<span class="st">&quot;blue&quot;</span>),  </span>
+<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a>            </span>
+<span id="cb15-11"><a href="#cb15-11" tabindex="-1"></a>            <span class="at">pch=</span><span class="dv">16</span>, <span class="at">cex=</span>.<span class="dv">5</span>,    <span class="co"># filled dots (pch) and small size (cex)</span></span>
+<span id="cb15-12"><a href="#cb15-12" tabindex="-1"></a>            <span class="at">xlab=</span><span class="st">&quot;x (m)&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;y (m)&quot;</span>) <span class="co">#labels</span></span></code></pre></div>
+<p><br><br><br></p>
+</div>
+<div id="challenge-b" class="section level2">
+<h2>Challenge B</h2>
+<ol style="list-style-type: decimal">
+<li><p>Make a new heading called Standard Ellipse</p></li>
+<li><p>Make a new code chunk and find the spatial mean of the
+<code>bei</code> data</p></li>
+<li><p>Create a new code chunk and plot the standard ellipse of the
+<code>bei</code> data - that is formatted uniquely to you. Instead of
+including only the first standard deviation of the data, I want you to
+include TWO standard deviations. (Think about levels and your lecture
+notes, or google normal distribution 68% for a hint).</p></li>
+</ol>
+<p><br><br><br></p>
+</div>
+<div id="density-autocorrelation-analysis" class="section level2">
+<h2>6. Density autocorrelation analysis</h2>
+<p>In the rest of this Lab, we will study the variation of the
+observations’ <em>density</em> across a study area, which tell us about
+the underlying non-uniformity of the background environment and how it
+might influence the pattern we see.</p>
+<p><br><br></p>
+<div id="a.-global-intensity" class="section level3">
+<h3>6A. Global intensity</h3>
+<p>The first way to look at this is to examine the overall density of
+points over the entire field, known as the global intensity. This is
+simply the average number of points per unit area.</p>
+<p>We say it’s “global” because we only calculate a single number for
+the entire study area.</p>
+<p>Mathematically, the overall intensity of a point process can be
+calculated via the following equation, where n is the number of points
+within our region and A is the overall area of the region.</p>
+<p><span class="math display">\[\lambda=\frac{n}{A}\]</span></p>
+<p>In R, we can do this simply by looking at the summary command. Scroll
+back up and look at it. We can see that the global intensity of the
+pattern is 0.0146 trees per square metre (note the units).</p>
+<p><em>(We can also see that the thinnest tree trunk has a diameter 2cm
+and the largest, 75.9cm. Finally it tells us the shape and area of our
+boundary box containing all our points is 200x200m. Note, this bounding
+box doesn’t <u>have</u> to be rectangular.)</em></p>
+<p><br><br></p>
+</div>
+<div id="b.-local-quadrat-analysis" class="section level3">
+<h3>6B. Local Quadrat analysis</h3>
+<p>Moving beyond of a single ‘global’ number, we can examine how the
+‘local’ density varies across the study area. The simplest way to do
+this is by a technique called <em>quadrat analysis</em>. See this week’s
+lectures and canvas.</p>
+<p>This can be done in R using the quadratcount command from the
+spatstat package. Here, I “saved” my answer as the variable Q, so I can
+use it again below.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>Q <span class="ot">&lt;-</span> <span class="fu">quadratcount</span>(longleaf, <span class="at">nx =</span> <span class="dv">4</span>, <span class="at">ny =</span> <span class="dv">4</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="fu">print</span>(Q)</span></code></pre></div>
+<pre><code>##            x
+## y           [0,50) [50,100) [100,150) [150,200]
+##   [150,200]     34       49        25        36
+##   [100,150)     34       48        78        46
+##   [50,100)      43       26        37        47
+##   [0,50)        33       18        15        15</code></pre>
+<p>This command divides the longleaf dataset in 16 equally sized square
+grid-cells, or quadrats - 4 quadrats in the x direction and 4 in the y
+direction. It then returns the number of points in each box as well as
+the size of each box. We can see that the area is 50*50 = 2500m.</p>
+<p>To standardise and compare patterns, we can divide each count by
+2500. The intensity command does this automatically, showing the
+proportion of points per unit area in each quadrat:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="co"># Print the density for each quadrat</span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="co"># This is literally the counts in each box divided by the area of the whole area, 2500m^2</span></span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a><span class="fu">intensity</span>(Q)</span></code></pre></div>
+<pre><code>##            x
+## y           [0,50) [50,100) [100,150) [150,200]
+##   [150,200] 0.0136   0.0196    0.0100    0.0144
+##   [100,150) 0.0136   0.0192    0.0312    0.0184
+##   [50,100)  0.0172   0.0104    0.0148    0.0188
+##   [0,50)    0.0132   0.0072    0.0060    0.0060</code></pre>
+<p>We can also plot this to make it easier to interpret. I can quickly
+see that there are 15 points in the bottom right quadrat compared to 34
+in the top left.</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="co"># I didn&#39;t want it to plot the different circle sizes so i turned off marks</span></span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="fu">plot</span>(longleaf,       </span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>     <span class="at">use.marks =</span> F,  </span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>     <span class="at">cex =</span> <span class="fl">0.5</span>, <span class="at">pch =</span> <span class="dv">4</span>, <span class="co"># point size and shape    </span></span>
+<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Longleaf quadrat count&quot;</span>) <span class="co"># plot title</span></span>
+<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a></span>
+<span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a><span class="fu">plot</span>(Q, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">cex =</span> <span class="dv">2</span>)  <span class="co"># Now I add Q on top.</span></span></code></pre></div>
+<p><img src="in_G364_Lab3_PointPattern_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>Alternatively, we can plot the intensity, because the colours make it
+simpler to see patterns. This time, I added the points on top.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="co"># Plot the intensity</span></span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">intensity</span>(Q, <span class="at">image=</span><span class="cn">TRUE</span>), <span class="at">main=</span><span class="st">&quot;Point intensity&quot;</span>, <span class="at">las=</span><span class="dv">1</span>)  <span class="co"># Plot intensity raster </span></span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a><span class="fu">plot</span>(longleaf, <span class="at">pch=</span><span class="dv">20</span>, <span class="at">cex=</span><span class="fl">0.6</span>,  <span class="at">add=</span><span class="cn">TRUE</span>)                     <span class="co"># Add points</span></span></code></pre></div>
+<p><img src="in_G364_Lab3_PointPattern_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><br><br></p>
+</div>
+<div id="c.-quadrat-variance-mean-ratio" class="section level3">
+<h3>6C. Quadrat Variance Mean Ratio</h3>
+<p>Finally, I am going to calculate the Variance Mean Ratio, which gives
+an assessment about whether the data is clustered, uniform or random
+(AKA levels of spatial autocorrelation). Overall, I suspect this data is
+clustered. See the lecture for more.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="co"># we use the as vector command to convert the data from a spatial ppp object back to a normal number</span></span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>longleaf.variance <span class="ot">&lt;-</span> <span class="fu">var</span>(<span class="fu">as.vector</span>(Q)) </span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>longleaf.mean <span class="ot">&lt;-</span> <span class="fu">mean</span>(<span class="fu">as.vector</span>(Q))</span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a>longleaf.VMR <span class="ot">&lt;-</span> longleaf.variance <span class="sc">/</span> longleaf.mean</span>
+<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a><span class="fu">print</span>(longleaf.VMR)</span></code></pre></div>
+<pre><code>## [1] 6.918721</code></pre>
+<p><br><br></p>
+</div>
+<div id="d.-quadrat-hypothesis-test" class="section level3">
+<h3>6D. Quadrat Hypothesis test</h3>
+<p>We can examine whether our VMR is ‘significantly’ different from what
+would be expected from complete spatial randomness. By different I mean
+unusually clustered or uniform.</p>
+<ul>
+<li><p>H0: Our Longleaf pattern was caused by an Independent Random
+Process. Any clustering/dispersion is just luck.</p></li>
+<li><p>H1: Our longleaf is unusually DIFFERENT to one caused by an
+Independent Random Process.</p></li>
+</ul>
+<div id="creating-independent-random-point-processes"
+class="section level4">
+<h4>Creating Independent Random Point Processes:</h4>
+<p>To assess the significance of a spatial pattern, we start by creating
+multiple simulated datasets that represent what we would expect under
+our H0 scenario, in this case, complete spatial randomness. We generate
+these simulated datasets using a Poisson distribution. The Poisson
+distribution is a mathematical model that describes the distribution of
+rare events occurring in a fixed interval of time or space. In our case,
+it’s used to simulate random point patterns.</p>
+</div>
+<div id="variance-to-mean-ratio-vmr" class="section level4">
+<h4>Variance-to-Mean Ratio (VMR):</h4>
+<p>Next, for each of these simulated datasets, we calculate the VMR. ON
+AVERAGE, it would be 1.Some will be slightly clustered and some more
+uniform just by chance - so imagine a histogram of VMR values from our
+simulation.</p>
+<p>So, lets update our hypotheses:</p>
+<ul>
+<li><p>H0: Our Longleaf pattern was caused by an Independent Random
+Process. Any clustering/dispersion is just luck. The VMR = 1</p></li>
+<li><p>H1: Our longleaf is unusually DIFFERENT to one caused by an
+Independent Random Process. The VMR is likely to be unusually high OR
+unusually low.</p></li>
+</ul>
+</div>
+<div id="chi-squared-test" class="section level4">
+<h4>Chi-Squared Test:</h4>
+<p>We want to know if the VMR from our actual longleaf data is “unusual”
+compared to the set from our simulated datasets. So we we compare the
+VMR we observed in our actual data to this distribution of VMRs from the
+simulations using a statistical test called the chi-squared test.</p>
+</div>
+<div id="p-value" class="section level4">
+<h4>P-Value:</h4>
+<p>The chi-squared test provides a p-value, which represents the
+likelihood of encountering a VMR as extreme as what we observed in our
+simulated processes. For instance, a p-value of 0.051 means that 5.1% of
+artificially generated Poisson processes would exhibit a more extreme
+level of clustering or uniformity.</p>
+</div>
+<div id="interpreting-the-p-value" class="section level4">
+<h4>Interpreting the p-value:</h4>
+<p>The smaller the p-value, the more unusual our result, and the
+stronger the evidence that we can “reject H0.” In other words, we have
+reason to believe that something beyond random chance is responsible for
+our observed pattern.</p>
+<p>Whether this is considered “significant” depends on your risk
+tolerance and the consequences of your decision. For instance, if a
+catastrophic outcome hinged on our decision, we might need a higher
+level of confidence than 5%.. (the old threshold of 0.05 = “significant”
+came from the days of pre-calculators where all this maths was done by
+hand).</p>
+</div>
+<div id="example-in-r." class="section level4">
+<h4>Example in R.</h4>
+<p>Of course you don’t need to write all that all the time. This is
+enough.</p>
+<ul>
+<li><p>H0: Our Longleaf pattern was caused by an Independent Random
+Process. Any clustering/dispersion is random chance. On average, the VMR
+= 1</p></li>
+<li><p>H1: Our longleaf is unusually DIFFERENT to one caused by an
+Independent Random Process. The VMR is likely to be unusually high OR
+unusually low.</p></li>
+</ul>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">quadrat.test</span>(longleaf)</span></code></pre></div>
+<pre><code>## 
+##  Chi-squared test of CSR using quadrat counts
+## 
+## data:  longleaf
+## X2 = 152.64, df = 24, p-value &lt; 2.2e-16
+## alternative hypothesis: two.sided
+## 
+## Quadrats: 5 by 5 grid of tiles</code></pre>
+<p>Here our p-value is TINY! 2.2 x 10<sup>-16</sup>. Let’s use xkcd to
+put that into context (<a
+href="https://www.explainxkcd.com/wiki/index.php/2379:_Probability_Comparisons">link
+here</a>). This is how likely it is..</p>
+<table>
+<caption>So this data is VERY unusual if it was caused by an
+IRP.</caption>
+<colgroup>
+<col width="100%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><em>You pick up a phone, dial a random 10-digit number, and say
+’Hello President Obama, there’s just been a magnitude 8 earthquake in
+California” and you are correct!</em></td>
+</tr>
+</tbody>
+</table>
+<p>We have enough evidence to reject H0 and say that our scenario of an
+“independent random process” is unlikely to have caused this
+pattern.</p>
+<p><br><br><br></p>
+</div>
+</div>
+</div>
+<div id="challenge-c" class="section level2">
+<h2>Challenge C</h2>
+<p>If none of that made sense, also try working through this online
+example: <a
+href="https://mgimond.github.io/Spatial/point-pattern-analysis-in-r.html"
+class="uri">https://mgimond.github.io/Spatial/point-pattern-analysis-in-r.html</a></p>
+<ol style="list-style-type: decimal">
+<li><p>Create a new subheading called quadrat analysis</p></li>
+<li><p>In your own words, explain what 1st and 2nd spatial
+autocorrelation are. What 1st and second order processes do you think
+might influence your bei dataset?</p></li>
+<li><p>Create a new code chunk and calculate out the global intensity of
+trees in the bei dataset</p></li>
+<li><p>Conduct a quadrat analysis on the bei dataset, including</p>
+<ul>
+<li><p>A table of counts</p></li>
+<li><p>A table of intensities</p></li>
+<li><p>A plot of counts</p></li>
+<li><p>A plot of intensities</p></li>
+</ul></li>
+</ol>
+<!-- -->
+<ol start="5" style="list-style-type: decimal">
+<li><p>Calculate the Variance Mean Ratio for the bei data. Explain from
+this if you think the data is clustered, randomly distributed or
+uniformly distributed.</p></li>
+<li><p>Conduct a chi-square hypothesis test to assess if your data
+really is randomly distributed</p></li>
+</ol>
+<p><br><br><br></p>
+</div>
+<div id="e.-issues-with-quadrat-analysis" class="section level2">
+<h2>6E. Issues with quadrat analysis</h2>
+<p>Like many things in statistics, we don’t want individual items to
+skew our results. So I suggest if possible to keep the numbers IN EACH
+QUADRAT to be at least 30. Otherwise you have an even higher likelihood
+of seeing patterns just by random chance.</p>
+<p>Quadrat analysis is susceptible to some major spatial fallacies and
+problems. <a
+href="https://mgimond.github.io/Spatial/chp11_0.html#density-based-analysis">As
+described in this textbook section</a>:</p>
+<p><em>The choice of quadrat shape and size will influence the measure
+of local density and must be chosen with care. If very small quadrat
+sizes are used you risk having many quadrats with no points which may
+prove uninformative. If very large quadrat sizes are used, you risk
+missing subtle changes in spatial density distributions.”</em></p>
+<p>Here is how I made some plots that explores this issue.</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="co"># First, I will set up my different experiments</span></span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a>Q<span class="fl">.2</span>_2.Boxes  <span class="ot">&lt;-</span> <span class="fu">quadratcount</span>(longleaf, <span class="at">nx =</span> <span class="dv">2</span>, <span class="at">ny =</span> <span class="dv">2</span>) </span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a>Q<span class="fl">.4</span>_4.Boxes  <span class="ot">&lt;-</span> <span class="fu">quadratcount</span>(longleaf, <span class="at">nx =</span> <span class="dv">4</span>, <span class="at">ny =</span> <span class="dv">4</span>) </span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a>Q<span class="fl">.12</span>_3.Boxes <span class="ot">&lt;-</span> <span class="fu">quadratcount</span>(longleaf, <span class="at">nx =</span> <span class="dv">12</span>, <span class="at">ny =</span> <span class="dv">3</span>)      </span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a></span>
+<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a><span class="co"># Now set up three subplots in a row - and change the plot margin</span></span>
+<span id="cb26-7"><a href="#cb26-7" tabindex="-1"></a><span class="co"># Type ?par in the console for more options</span></span>
+<span id="cb26-8"><a href="#cb26-8" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="at">row=</span><span class="dv">1</span>,<span class="at">col=</span><span class="dv">3</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">3</span>)) </span>
+<span id="cb26-9"><a href="#cb26-9" tabindex="-1"></a></span>
+<span id="cb26-10"><a href="#cb26-10" tabindex="-1"></a><span class="co"># Plot 1</span></span>
+<span id="cb26-11"><a href="#cb26-11" tabindex="-1"></a><span class="co"># Plot intensity, then add longleaf points, then add numbers</span></span>
+<span id="cb26-12"><a href="#cb26-12" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">intensity</span>(Q<span class="fl">.2</span>_2.Boxes, <span class="at">image=</span><span class="cn">TRUE</span>), <span class="at">main=</span><span class="st">&quot;&quot;</span>, <span class="at">las=</span><span class="dv">1</span>)                </span>
+<span id="cb26-13"><a href="#cb26-13" tabindex="-1"></a><span class="fu">plot</span>(longleaf, <span class="at">pch=</span><span class="dv">20</span>, <span class="at">cex=</span><span class="fl">0.6</span>, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,.<span class="dv">5</span>), <span class="at">add=</span><span class="cn">TRUE</span>)    </span>
+<span id="cb26-14"><a href="#cb26-14" tabindex="-1"></a><span class="fu">plot</span>(Q<span class="fl">.2</span>_2.Boxes, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col=</span><span class="st">&quot;white&quot;</span>,<span class="at">font=</span><span class="dv">2</span>)               </span>
+<span id="cb26-15"><a href="#cb26-15" tabindex="-1"></a></span>
+<span id="cb26-16"><a href="#cb26-16" tabindex="-1"></a><span class="co"># Plot 2</span></span>
+<span id="cb26-17"><a href="#cb26-17" tabindex="-1"></a><span class="co"># Repeat but for the 4x4 boxes.</span></span>
+<span id="cb26-18"><a href="#cb26-18" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">intensity</span>(Q<span class="fl">.4</span>_4.Boxes, <span class="at">image=</span><span class="cn">TRUE</span>), <span class="at">main=</span><span class="st">&quot;&quot;</span>, <span class="at">las=</span><span class="dv">1</span>)                </span>
+<span id="cb26-19"><a href="#cb26-19" tabindex="-1"></a><span class="fu">plot</span>(longleaf, <span class="at">pch=</span><span class="dv">20</span>, <span class="at">cex=</span><span class="fl">0.6</span>, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,.<span class="dv">5</span>), <span class="at">add=</span><span class="cn">TRUE</span>)    </span>
+<span id="cb26-20"><a href="#cb26-20" tabindex="-1"></a><span class="fu">plot</span>(Q<span class="fl">.4</span>_4.Boxes, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col=</span><span class="st">&quot;white&quot;</span>,<span class="at">font=</span><span class="dv">2</span>)               </span>
+<span id="cb26-21"><a href="#cb26-21" tabindex="-1"></a></span>
+<span id="cb26-22"><a href="#cb26-22" tabindex="-1"></a><span class="co"># Plot 3</span></span>
+<span id="cb26-23"><a href="#cb26-23" tabindex="-1"></a><span class="co"># Repeat but for the 12x3 boxes.</span></span>
+<span id="cb26-24"><a href="#cb26-24" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">intensity</span>(Q<span class="fl">.12</span>_3.Boxes, <span class="at">image=</span><span class="cn">TRUE</span>), <span class="at">main=</span><span class="st">&quot;&quot;</span>, <span class="at">las=</span><span class="dv">1</span>)                </span>
+<span id="cb26-25"><a href="#cb26-25" tabindex="-1"></a><span class="fu">plot</span>(longleaf, <span class="at">pch=</span><span class="dv">20</span>, <span class="at">cex=</span><span class="fl">0.6</span>, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,.<span class="dv">5</span>), <span class="at">add=</span><span class="cn">TRUE</span>)    </span>
+<span id="cb26-26"><a href="#cb26-26" tabindex="-1"></a><span class="fu">plot</span>(Q<span class="fl">.12</span>_3.Boxes, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col=</span><span class="st">&quot;white&quot;</span>,<span class="at">font=</span><span class="dv">2</span>)               </span></code></pre></div>
+<p><img src="in_G364_Lab3_PointPattern_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><br><br><br></p>
+</div>
+<div id="challenge-d" class="section level2">
+<h2>Challenge D</h2>
+<ol style="list-style-type: decimal">
+<li><p>Create a new code chunk, then copy and paste the code above into
+it. Replace all the longleafs with bei (there are 6 instances) and run
+to check it works</p></li>
+<li><p>Now, modify the code chunk to:</p></li>
+</ol>
+<ul>
+<li>Make your subplots in 1 column but in 3 rows (e.g. arranged
+vertically)</li>
+<li>plot quadrat counts for
+<ul>
+<li>4 quadrats (2 in the x direction and 2 in the y direction),</li>
+<li>20 quadrats (5 in the x direction and 4 in the y direction),</li>
+<li>100 quadrats (10x10)</li>
+</ul></li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li><p>Below the code chunk, write about the features you observe when
+modifying the number of quadrats for the bei data.</p></li>
+<li><p>This is a classic example of a spatial fallacy. Explain which one
+and what is going on.</p></li>
+</ol>
+<p><br><br><br></p>
+</div>
+<div id="kernel-density-estimation-kde" class="section level2">
+<h2>7. Kernel Density Estimation (KDE)</h2>
+<div id="a.-what-is-this" class="section level3">
+<h3>7A. What is this?</h3>
+<p>Kernel Density Estimation is another method that we can use to
+explore point pattern densities. As described in <a
+href="https://sites.warnercnr.colostate.edu/wtinkham/courses-taught/nr-512-spatial-statistical-modeling/nr-512-exercise-descriptions/nr-512-exercise-3/"
+class="uri">https://sites.warnercnr.colostate.edu/wtinkham/courses-taught/nr-512-spatial-statistical-modeling/nr-512-exercise-descriptions/nr-512-exercise-3/</a>.</p>
+<p><em>“Quadrat counting is useful for characterizing the intensity of
+an inhomogeneous point process, however there are limitations
+including:</em></p>
+<p>– <em>The choice of origin, quadrat orientation, and quadrat size
+affects the observed frequency distribution.</em> – <em>A significant
+amount of spatial data is lost.</em></p>
+<p><em>KDE algorithms use a moving window approach to characterize
+intensity. This approach tends to preserve a greater amount of spatial
+detail and does not suffer as much from choices of origin, quadrat
+orientation, and quadrat size as compared to quadrat counting.”</em></p>
+<p>“Conceptually, a smoothly curved surface is fitted over each point.
+The surface value is highest at the location of the point and diminishes
+with increasing distance from the point.”</p>
+<p><br><br></p>
+<details>
+<summary>
+<u><strong>Tell me in simple language. Click here to expand</strong></u>
+</summary>
+<p>This is how ChatGPT explains it:</p>
+<p>Kernel density smoothing is a statistical technique used to estimate
+the density or concentration of something in a specific area, like the
+density of longleaf trees in a forest. Let’s break it down using an
+example with the longleaf tree data from the R spatstat package:</p>
+<p>The Data: Imagine you’re a student studying longleaf trees in a
+forest. You’ve collected data on the locations of some longleaf trees in
+the forest.</p>
+<p>The Question: You want to know if there are areas in the forest where
+longleaf trees are more concentrated than in others. In other words, you
+want to create a map that shows where longleaf trees are more
+common.</p>
+<p>Kernel Density Smoothing: This technique helps you create that map.
+It works by placing a little “hill” or “bump” on the map for each known
+longleaf tree location.</p>
+<p>Bandwidth: The size of each “hill” (or the width of the bump) is
+determined by something called the bandwidth. A smaller bandwidth makes
+the map more detailed and wiggly, while a larger bandwidth makes it
+smoother.</p>
+<p>Combining Information: By adding up all these little “hills” from
+each known longleaf tree, you get a smooth map. The map shows where the
+concentration of longleaf trees is higher or lower in the forest. Areas
+with taller “hills” on the map have more longleaf trees, while areas
+with shorter “hills” have fewer.</p>
+<p>So, in simple terms, kernel density smoothing takes your data on
+longleaf tree locations and turns it into a map that gives you a sense
+of where these trees are more densely packed in the forest. It helps you
+identify the hotspots of longleaf tree concentration, which can be
+valuable information for ecological studies or conservation efforts.</p>
+</details>
+<p><br><br></p>
+<details>
+<summary>
+<u><strong>I want all the details! Click here to expand</strong></u>
+</summary>
+<p>See here :) <a
+href="https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-analyst/how-kernel-density-works.htm"
+class="uri">https://pro.arcgis.com/en/pro-app/latest/tool-reference/spatial-analyst/how-kernel-density-works.htm</a></p>
+<p>Or this set of videos is great: <a
+href="https://www.youtube.com/watch?v=ge4Oh-h1Of8"
+class="uri">https://www.youtube.com/watch?v=ge4Oh-h1Of8</a></p>
+<details>
+<p><br><br></p>
+<p>To apply it in R, we simply use the density command. For example, for
+the longleaf data, I would create a new code chunk and type.</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>PointDensity <span class="ot">&lt;-</span> <span class="fu">density</span>(longleaf)</span>
+<span id="cb27-2"><a href="#cb27-2" tabindex="-1"></a><span class="fu">plot</span>(PointDensity)</span>
+<span id="cb27-3"><a href="#cb27-3" tabindex="-1"></a></span>
+<span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a><span class="co"># Individual events can be added to the plot by adding our original points to the plot.</span></span>
+<span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a> <span class="fu">plot</span>(longleaf, <span class="at">add =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb27-6"><a href="#cb27-6" tabindex="-1"></a>      <span class="at">use.marks =</span> F, <span class="at">cex =</span> <span class="fl">0.5</span>,<span class="at">pch=</span><span class="dv">16</span>) </span></code></pre></div>
+<p><img src="in_G364_Lab3_PointPattern_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p>So you can see that instead of quadrats, we now have a smooth
+surface.</p>
+<p><br><br></p>
+</div>
+<div id="b.-modifying-the-bandwidth" class="section level3">
+<h3>7B. Modifying the bandwidth</h3>
+<p>In the density command above, the “bandwidth” (e.g. the size &amp;
+shape) of the smoothing window/hill/‘bump’ defaults to 0.9 times the
+minimum of the standard deviation and the interquartile range divided by
+1.34 times the sample size to the negative one-fifth power.</p>
+<p>However, the bandwidth can be scaled via the sigma parameter within
+the density command:</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a><span class="co"># set up 3 subplots in a row</span></span>
+<span id="cb28-2"><a href="#cb28-2" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="at">row=</span><span class="dv">1</span>,<span class="at">col=</span><span class="dv">3</span>),<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>)) </span>
+<span id="cb28-3"><a href="#cb28-3" tabindex="-1"></a></span>
+<span id="cb28-4"><a href="#cb28-4" tabindex="-1"></a><span class="co"># change bandwidth by altering the value assigned to sigma</span></span>
+<span id="cb28-5"><a href="#cb28-5" tabindex="-1"></a><span class="fu">plot</span> (<span class="fu">density</span>(longleaf, <span class="at">sigma =</span> <span class="dv">5</span>),<span class="at">main=</span><span class="st">&quot;Bandwidth=5&quot;</span>)</span>
+<span id="cb28-6"><a href="#cb28-6" tabindex="-1"></a><span class="fu">plot</span>(longleaf, <span class="at">add =</span> <span class="cn">TRUE</span>,<span class="at">use.marks =</span> F, <span class="at">cex =</span> <span class="fl">0.5</span>,<span class="at">pch=</span><span class="dv">16</span>)</span>
+<span id="cb28-7"><a href="#cb28-7" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="#cb28-8" tabindex="-1"></a><span class="fu">plot</span> (<span class="fu">density</span>(longleaf, <span class="at">sigma =</span> <span class="dv">20</span>),<span class="at">main=</span><span class="st">&quot;Bandwidth=20&quot;</span>)</span>
+<span id="cb28-9"><a href="#cb28-9" tabindex="-1"></a><span class="fu">plot</span>(longleaf, <span class="at">add =</span> <span class="cn">TRUE</span>,<span class="at">use.marks =</span> F, <span class="at">cex =</span> <span class="fl">0.5</span>,<span class="at">pch=</span><span class="dv">16</span>)</span>
+<span id="cb28-10"><a href="#cb28-10" tabindex="-1"></a></span>
+<span id="cb28-11"><a href="#cb28-11" tabindex="-1"></a><span class="fu">plot</span> (<span class="fu">density</span>(longleaf, <span class="at">sigma =</span> <span class="dv">100</span>),<span class="at">main=</span><span class="st">&quot;Bandwidth=100&quot;</span>)</span>
+<span id="cb28-12"><a href="#cb28-12" tabindex="-1"></a><span class="fu">plot</span>(longleaf, <span class="at">add =</span> <span class="cn">TRUE</span>,<span class="at">use.marks =</span> F, <span class="at">cex =</span> <span class="fl">0.5</span>,<span class="at">pch=</span><span class="dv">16</span>)</span></code></pre></div>
+<p><img src="in_G364_Lab3_PointPattern_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><br><br></p>
+</div>
+<div id="c.-calculating-an-optimal-bandwidth" class="section level3">
+<h3>7C. Calculating an “optimal” bandwidth</h3>
+<p>Different statisticians have come up with different ways to
+automatically calculate the “optimal” bandwidth. For example</p>
+<ol style="list-style-type: decimal">
+<li><code>bw.diggle()</code> - minimizes the mean-square error criterion
+defined by Diggle (1985)</li>
+<li><code>bw.frac()</code> - uses a quantile of the distance between two
+independent random points in the window 3. 3. 3.
+<code>bw.stoyan()</code> - sets the standard deviation of the
+kernel</li>
+</ol>
+<p>You can look at the R help to understand in more detail how they work
+(e.g. type ?bw.diggle into your console)</p>
+<p>Here I will apply the diggle() function to estimate a bandwidth for
+the data. As you can see, the result is interesting.</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="co"># Report the value of the bandwidth</span></span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>optimal_diggle <span class="ot">&lt;-</span> <span class="fu">bw.diggle</span>(longleaf)</span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a></span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a><span class="co"># use the diggle function to automatically guess bandwidth</span></span>
+<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a><span class="co"># I made a fancy title that automatically prints it.</span></span>
+<span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a><span class="fu">plot</span> (<span class="fu">density</span>(longleaf,<span class="at">sigma =</span> optimal_diggle), </span>
+<span id="cb29-7"><a href="#cb29-7" tabindex="-1"></a>      <span class="at">main=</span><span class="fu">paste</span>(<span class="st">&quot;Diggle Bandwidth Estimation = &quot;</span>,<span class="fu">round</span>(optimal_diggle,<span class="dv">3</span>)))</span>
+<span id="cb29-8"><a href="#cb29-8" tabindex="-1"></a></span>
+<span id="cb29-9"><a href="#cb29-9" tabindex="-1"></a><span class="fu">plot</span>(longleaf, <span class="at">add =</span> <span class="cn">TRUE</span>,<span class="at">use.marks =</span> F, <span class="at">cex =</span> <span class="fl">0.5</span>,<span class="at">pch=</span><span class="dv">16</span>)</span></code></pre></div>
+<p><img src="in_G364_Lab3_PointPattern_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><br><br><br></p>
+</div>
+</div>
+<div id="challenge-e" class="section level2">
+<h2>Challenge E</h2>
+<p>Apply the code above to your script to calculate and plot an
+“optimal” bandwidth for the bei data.</p>
+<p>Finally, reflect on the lab and look back at the outputs you have
+made. If someone asks you about the spatial distribution of trees in the
+area, what would you tell them and which plots and analyses would you
+use (or not use!) to provide evidence. Write your thoughts below the
+code chunk.</p>
+<p><br><br><br></p>
+</div>
+</div>
+<div id="submitting-your-work" class="section level1">
+<h1>Submitting your work</h1>
+<p>Remember to save your work throughout and to spell check! (next to
+the save button). Now, press the knit button one final time.</p>
+<p>On R-Desktop</p>
+<ul>
+<li><p>If you have not made any mistakes in the code then R should
+create a html file in your lab 3 folder which includes your
+answers.</p></li>
+<li><p>If you look at your lab 3 folder on your computer, you should see
+the html there - complete with a very recent time-stamp. Double click on
+the html file. This will open it in your web-browser.<br />
+CHECK THAT THIS IS WHAT YOU WANT TO SUBMIT.<br></p></li>
+</ul>
+<p>On Rstudio cloud,</p>
+<ul>
+<li>See <a
+href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Projects_using_Rstudioposit_Cloud">TUTORIAL
+3 Cloud - LINK FIXED</a> for how to download your files <br></li>
+</ul>
+<p>Finally, go to Canvas and submit BOTH your html and your .Rmd file in
+Lab 3.</p>
+<p><img src="Figures/LabFig_WhatToSubmit.png" width="1673" /></p>
+<p><br><br></p>
+<div id="how-am-i-graded" class="section level2">
+<h2>How am I graded?</h2>
+<p>Overall, here is what your lab should correspond to:</p>
+<table class=" lightable-classic-2 table table-striped table-hover table-responsive" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+POINTS
+</th>
+<th style="text-align:left;">
+Approx grade
+</th>
+<th style="text-align:left;">
+What it means
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+98-100
+</td>
+<td style="text-align:left;">
+A*
+</td>
+<td style="text-align:left;">
+Exceptional.  Above and beyond.  THIS IS HARD TO GET.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+93-98
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+Everything asked for with high quality.   Class example
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+85-93
+</td>
+<td style="text-align:left;">
+B+/A-
+</td>
+<td style="text-align:left;">
+Solid work but the odd mistake or missing answer in either the code or
+interpretation
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+70-85
+</td>
+<td style="text-align:left;">
+B-/B
+</td>
+<td style="text-align:left;">
+Starting to miss entire/questions sections, or multiple larger mistakes.
+Still a solid attempt. 
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+60-70
+</td>
+<td style="text-align:left;">
+C/C+
+</td>
+<td style="text-align:left;">
+It’s clear you tried and learned something.  Just attending labs will
+get you this much as we can help you get to this stage
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+40-60
+</td>
+<td style="text-align:left;">
+D
+</td>
+<td style="text-align:left;">
+You submit a single word AND have reached out to Dr G or Aish for help
+before the deadline (make sure to comment you did this so we can check)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+30-40
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+You submit a single word……. ANYTHING.. Think, that’s 30-40 marks towards
+your total….
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0+
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+Didn’t submit, or incredibly limited attempt. 
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
