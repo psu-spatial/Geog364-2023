@@ -78,7 +78,7 @@ location.
 statistical approaches for characterizing the spatial properties of a
 point pattern.
 
--   **This week:** We will be focusing on quadrat analysis, kernal
+-   **This week:** We will be focusing on quadrat analysis, kernel
     analysis and standard ellipses.
 -   **Next week:** We will be focusing on nearest neighbour, L analysis
     and simulation

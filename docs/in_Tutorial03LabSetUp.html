@@ -1,0 +1,1036 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Tutorial 3: Setting up each lab</title>
+
+<script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="site_libs/vembedr-0.1.5/css/vembedr.css" rel="stylesheet" />
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #204a87; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">GEOG 364 Lab Book</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Tutorials
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_Tutorial01WhatisR.html">1. What is R?</a>
+    </li>
+    <li>
+      <a href="in_Tutorial02SetUp.html">2. General Set-Up</a>
+    </li>
+    <li>
+      <a href="in_Tutorial03LabSetUp.html">3. Lab Set-Up</a>
+    </li>
+    <li>
+      <a href="in_Tutorial04ConsoleBasics.html">4. Console Basics</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Labs
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_G364_Lab0_FAQ.html">Lab FAQ</a>
+    </li>
+    <li>
+      <a href="in_G364_Lab1_2324.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="in_G364_Lab2_Basics.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="in_G364_Lab3_PointPattern.html">Lab 3</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Tutorial 3: Setting up each lab</h1>
+
+</div>
+
+
+<p>In this tutorial we are going to cover setting up each lab. This
+involves making projects, packages and R Markdown documents.</p>
+<div id="starting-a-new-lab" class="section level1">
+<h1>Starting a new lab</h1>
+<div id="about-projects" class="section level2">
+<h2>About Projects</h2>
+<p>In this class, we will be using R-Projects:</p>
+<ul>
+<li>On Rstudio cloud, this is how you set up each lab.</li>
+<li>On the desktop, this is a folder that will store everything to do
+with each lab in one place on your computer. Each lab will be its own
+project.</li>
+</ul>
+<p>This is incredibly useful - it means that if you switch from R-Cloud,
+to the lab computers, to your laptop, all you have to do is to move the
+folder and everything will just work. Equally, its easy to compare
+labs.</p>
+<p>Learn more here.</p>
+<p><a
+href="https://www.linkedin.com/learning/learning-the-r-tidyverse/why-should-you-use-projects-in-rstudio?u=76811570"><img
+src="Figures/fig9_ProjectVideo.png" /></a></p>
+<p>We will cover how to make projects for R studio cloud and desktop in
+the set up below.</p>
+</div>
+<div id="projects-using-desktop" class="section level2">
+<h2>Projects using Desktop</h2>
+<p>Everything should now be installed. If not, go back to Tutorial
+2.</p>
+<p><img src="Figures/fig10_Startup_Logos.png" width="80%" style="display: block; margin: auto;" /></p>
+<ol style="list-style-type: decimal">
+<li><p>IMPORTANT! If you haven’t already, on an easy to access place on
+your computer, make a folder called GEOG364. This is where ALL your labs
+are going to live. <br></p></li>
+<li><p>Now everything is installed, open R-studio (NOT R!).
+<br></p></li>
+</ol>
+<p>Steps 3-7 are shown graphically in the figure below.</p>
+<ol start="3" style="list-style-type: decimal">
+<li>Go to the Main File menu at the <u>very top left</u> and click
+<code>New Project</code> <br><br />
+</li>
+<li>Select <code>New Directory</code>, then
+<code>New Project</code><br><br />
+</li>
+<li>Name your project <em>GEOG364-Lab1-PROJECT</em> (or whatever lab it
+us) <br><br />
+</li>
+<li>Under “create project as a subdirectory of”, hit the browse button
+and find your GEOG364 folder (you just need to be in the folder, you
+don’t need to have selected anything). Press open <br><br />
+</li>
+<li>Finally, press <code>Create Project</code><br></li>
+</ol>
+<p><img src="Figures/fig11_projectcreation.png" width="660" /></p>
+<div id="how-to-check-you-are-in-a-project"
+class="section level3 unnumbered">
+<h3 class="unnumbered">How to check you are in a project</h3>
+<p>R will change slightly. If you look at the top of the screen in the
+title bar, it should say something like <em>GEOG364-Lab1-PROJECT - R
+Studio</em>.</p>
+<p>The Files tab should have gone to your project folder. Essentially,
+R-Studio is now “looking” inside your Lab 1 folder, making it easier to
+find your data and output your results.</p>
+<div class="figure">
+<img src="Figures/fig12_projectcheck.png" alt="How to check you are in a project" width="845" />
+<p class="caption">
+How to check you are in a project
+</p>
+</div>
+<p><br></p>
+<p>If you want one, final check, try typing this into the console
+(INCLUDING THE EMPTY PARANTHESES/BRACKETS), press enter and see if it
+prints out the location of Lab 1 on your computer. If not, talk to an
+instructor.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
+<p><br><br></p>
+</div>
+<div id="returning-to-your-lab-project" class="section level3">
+<h3>Returning to your lab project</h3>
+<p>OK, let’s imagine that you get halfway through your lab and your
+computer dies. How do you get back to your Lab work? Try this now. Close
+down R-Studio.</p>
+<p>To reopen a lab:</p>
+<ol style="list-style-type: decimal">
+<li><p><strong>DO NOT RE-OPEN R-STUDIO!</strong></p></li>
+<li><p>Instead navigate on your computer to your
+<em>GEOG364/GEOG364-Lab1-PROJECT</em> folder.</p></li>
+<li><p>Double click on the <em>GEOG364-Lab1-PROJECT</em>.RProj
+file.</p></li>
+</ol>
+<p>This will reopen R for that specific lab, so you can continue where
+you left off. It means you can also open several versions of R studio
+for multiple labs, which can be very useful in staying sane</p>
+<p><img src="Figures/fig13_projectopen.png" width="961" /></p>
+<p><br><br></p>
+</div>
+</div>
+<div id="projects-using-rstudioposit-cloud" class="section level2">
+<h2>Projects using Rstudio/posit Cloud</h2>
+<p>Go to this webpage. <a href="https://login.posit.cloud/login"
+class="uri">https://login.posit.cloud/login</a> You can get here from
+any web-browser, You do not need a special computer.</p>
+<p>When you log in, you should see a dashboard like this.</p>
+<div class="figure" style="text-align: center">
+<img src="Figures/fig14_clouddash.png" alt="*The Cloud dashboard*" width="1003" />
+<p class="caption">
+<em>The Cloud dashboard</em>
+</p>
+</div>
+<p>YOU SHOULD MAKE A NEW PROJECT FOR EACH LAB.</p>
+<p>You make a new project by clicking the button on the top right. You
+can open different projects in different tabs on your browser. You can
+also go back to the work-space at any time.</p>
+<div id="returning-to-your-lab-project-1" class="section level3">
+<h3>Returning to your lab project</h3>
+<p>On the cloud this is very easy, just go back to <a
+href="https://posit.cloud/content/yours"
+class="uri">https://posit.cloud/content/yours</a></p>
+</div>
+<div id="downloading-files-or-switching-to-desktop"
+class="section level3">
+<h3>Downloading files or switching to desktop</h3>
+<p>Let’s say you want to switch to the desktop but save your progress.
+Or you want to submit your work to Canvas!</p>
+<p>To switch to desktop, download/install the desktop version using the
+tutorials here. Then make a new project using the instructions
+above.</p>
+<p>Either way:</p>
+<ol style="list-style-type: decimal">
+<li><p>On the R-Studio Cloud website; inside your project, go to the
+files tab (next to Projects/Help in one quadrant. You will see a list of
+files, one with the file type .Rmd (your code) and one with .html(the
+website you made when you pressed knit). Look at the red circle in the
+pic below</p></li>
+<li><p>Click the check-box to the left of the .RmD file</p></li>
+<li><p>Look just above at the Files quadrant settings menu. Click the
+blue “more” cogwheel icon. (see diagram). You might need to make
+R-Studio full screen to see it, it cuts off if the window is too
+small.</p></li>
+<li><p>Now click Export This will download the file</p></li>
+<li><p>REPEAT FOR THE HTML (you can do them together but it exports as a
+zip)</p></li>
+<li><p>Submit both files on Canvas or put them in your project
+file.</p></li>
+</ol>
+<div class="figure" style="text-align: center">
+<img src="Figures/fig15_export.png" alt="*Downloading the files*" width="1363" />
+<p class="caption">
+<em>Downloading the files</em>
+</p>
+</div>
+</div>
+<div id="uploading-files" class="section level3 unnumbered">
+<h3 class="unnumbered">Uploading files</h3>
+<p>Sometimes you want to put your code into R-Studio Cloud, for example
+if for one week you don’t want to bring your laptop.</p>
+<p>Make a project for the lab on the cloud as above, then click the
+<code>upload</code> button inside your project in the files tab and
+upload your files. You will only need the .RmD file and any data
+files.</p>
+<div class="figure" style="text-align: center">
+<img src="Figures/fig16_import.png" alt="This is zoomed in to your files quadrant" width="764" />
+<p class="caption">
+This is zoomed in to your files quadrant
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="the-rstudio-screen" class="section level1">
+<h1>The RStudio screen</h1>
+<p>You will be greeted by three panels:</p>
+<ul>
+<li>The interactive R console (entire left)</li>
+<li>Environment/History (tabbed in upper right)</li>
+<li>Files/Plots/Packages/Help/Viewer (tabbed in lower right)</li>
+</ul>
+<p><img src="Figures/fig17_quadrants.png" width="889" style="display: block; margin: auto;" /></p>
+<p>If you wish to learn more about what these windows do, have a look at
+this resource, from the Pirates Guide to R: <a
+href="https://bookdown.org/ndphillips/YaRrr/the-four-rstudio-windows.html"
+class="uri">https://bookdown.org/ndphillips/YaRrr/the-four-rstudio-windows.html</a>.</p>
+<p>If you have used R before, you might see that there are variables and
+plots etc already loaded. It is always good to clear these before you
+start a new analysis. To do this, click the little broom symbol in your
+environment tab. <br><br></p>
+</div>
+<div id="changing-global-options" class="section level1">
+<h1>Changing global options</h1>
+<p>Some of the default R settings are worth changing to make life
+smoother. We do this in the main global options menu.</p>
+<p>You only have to do this once! Follow the arrows in this figure
+(sections explained below).</p>
+<p><img src="Figures/fig18_global.png" width="1182" style="display: block; margin: auto;" /></p>
+<p>There are two places you might find this menu:</p>
+<ol style="list-style-type: decimal">
+<li>Click on the tools menu button on the VERY top right of the
+screen,-&gt; Global Options OR.. <br></li>
+<li>Click on the R-studio menu button on the top left of the screen,
+then click Preferences.<br><br></li>
+</ol>
+<div id="main-options-screen" class="section level2">
+<h2>Main options screen</h2>
+<p>On the main options screen (see figure above), I suggest:</p>
+<ul>
+<li><p>UNCLICK “Restore most recently opened project at
+startup”</p></li>
+<li><p>UNCLICK “Restore .RData into workspace on startup”</p></li>
+<li><p>Set “Save workspace to .RData on” exit to Never</p></li>
+<li><p>UNCLICK “Restore previously open source documents on
+startup”</p></li>
+</ul>
+<p>Note, yours will probably show a different default working
+directory.</p>
+<p><br><br></p>
+</div>
+<div id="changing-the-appearance" class="section level2">
+<h2>Changing the appearance</h2>
+<p>OPTIONAL: You can also click the appearances menu item to change how
+the screen looks (see the figure above). For example, maybe you
+concentrate better with a dark background or with pink font.<br><br></p>
+</div>
+<div id="moving-the-windows-around" class="section level2">
+<h2>Moving the windows around</h2>
+<p>OPTIONAL: Like me, you might find you like the different quadrants in
+a different order. To change this, look at the Panes layout menu item
+(you can also get here via the <code>View</code> menu,then
+<code>/Panes/Pane Layout</code>) I tend to like the console to be top
+left and scripts to be top right, with the plots and environment on the
+bottom - but this is personal choice.<br></p>
+<p><br><br></p>
+</div>
+</div>
+<div id="r-packageslibraries" class="section level1">
+<h1>R-Packages/libraries</h1>
+<p><br></p>
+<div id="what-are-packages" class="section level2">
+<h2>What are packages?</h2>
+<p>As described earlier, we program in R by typing a series of commands.
+R is open source and anyone can create a new command. Over the last 20
+years,tens of millions of new custom commands have been created.</p>
+<p>Commands tend to be grouped together into collections called
+<code>Packages</code> or <code>Libraries</code> (two names for the same
+thing). For example, one package contains the complete works of
+Shakespeare; another allows interactive website design; another allows
+advanced Bayesian statistics. There is a package for literally
+everything and there are now over 20,000 packages available. You can see
+a selection here: <a
+href="https://cran.r-project.org/web/packages/available_packages_by_name.html"
+class="uri">https://cran.r-project.org/web/packages/available_packages_by_name.html</a>
+<br></p>
+<p><strong>A close analogy is your phone:</strong> There are millions of
+apps available from banking, to 50 different calendar apps. You don’t
+have every app in the world installed on your phone - and you don’t have
+every app you <em>do</em> download running at the same time. Instead you
+download the apps that you think you will need (occasionally downloading
+a new one on the fly) - and when you need to use an app, you click on it
+to open.<br></p>
+<p>This is exactly the same in R. To access the commands in a package we
+need these two steps:</p>
+<ol style="list-style-type: decimal">
+<li>ONCE ONLY: Download the package from the internet, in the way you
+download an app from the app store</li>
+<li>EVERY TIME: Load the packages you want, like clicking an app icon to
+open it. <br><br></li>
+</ol>
+</div>
+<div id="downloading-a-new-package" class="section level2">
+<h2>Downloading a new package</h2>
+<div id="manually-click" class="section level3">
+<h3>Manually click</h3>
+<p>This is like going to the app store to get a new app. Just like you
+only go to the app store once, this is a one-off for each package. NOTE!
+For R studio cloud online, you might have to do this for each
+project.</p>
+<ul>
+<li>Look for the quadrant with the packages tab in it.
+<ul>
+<li>You will see a list of packages/apps that have already been
+installed.</li>
+<li>Click the INSTALL button in the Packages tab menu (on the left)</li>
+<li>Start typing the package name and it will show up (check the include
+dependencies box). Install the package.</li>
+</ul></li>
+</ul>
+</div>
+<div id="little-yellow-banner" class="section level3">
+<h3>Little yellow banner</h3>
+<ul>
+<li>R will sometime tell you that you are missing a package (sometimes a
+little yellow ribbon), click yes to install!</li>
+</ul>
+<p><img src="Figures/fig19_yellowbanner.png" width="100%" style="display: block; margin: auto;" /></p>
+</div>
+<div id="using-the-console" class="section level3">
+<h3>Using the console</h3>
+<p>You can also use a command to install a new package:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;bardr&quot;</span>)</span></code></pre></div>
+<p><strong>DO NOT INCLUDE ANY INSTALL.PACKAGES COMMANDS IN YOUR FINAL
+SCRIPT. ALWAYS TYPE/RUN THIS COMMAND IN THE CONSOLE WINDOW.</strong> The
+command means “go to the app store” and download a package. You don’t
+want to do this when pressing knit. <br><br></p>
+</div>
+<div id="practice-for-you" class="section level3">
+<h3>PRACTICE FOR YOU</h3>
+<p>Please install the rmdformats package onto your computer/the cloud.
+You will need this in the nest step.</p>
+</div>
+<div id="problem-solving" class="section level3">
+<h3>Problem solving</h3>
+<div id="why-isnt-my-package-downloading-its-frozen"
+class="section level4">
+<h4>Why isn’t my package downloading? Its frozen</h4>
+<p>Sometimes R will ask you if you want to install binaries or other
+things. IT WILL ASK YOU THIS QUESTION THROUGH “SPEAKING” IN THE CONSOLE.
+It expects you to type yes or no, and to press enter to continue. Try
+yes, if it doesn’t work (esp xfun), try no. <br><br></p>
+</div>
+<div id="r-keeps-asking-to-restart." class="section level4">
+<h4>R keeps asking to restart.</h4>
+<p>Sometimes R-Studio might want to restart when downloading packages
+and occasionally gets confused. If it keeps asking, press cancel, close
+R-studio, reopen and try again. If it really doesn’t want to work, open
+the R program itself and run in the console there (or talk to Dr G)
+<br><br></p>
+</div>
+</div>
+</div>
+<div id="loadingusing-the-commands-inside-a-package"
+class="section level2">
+<h2>Loading/Using the commands inside a package</h2>
+<p>Just as going to the app store doesn’t check your credit-card balance
+or make an Instagram post, simply <em>downloading</em> a package from
+the app-store doesn’t make the commands immediately available. For that
+you need to load it (just as you click on a phone app to open it).</p>
+<p><strong>I will tell you which packages you need for each lab, but if
+R tells you it wants a package, then install it AND load
+it.</strong></p>
+<p>This can be done with the <code>library()</code> command.</p>
+<p>For example, this command loads the full works of Shakespeare from
+the the bardr package. (<a
+href="https://www.rdocumentation.org/packages/bardr/versions/0.0.9"
+class="uri">https://www.rdocumentation.org/packages/bardr/versions/0.0.9</a>).
+If you want to try this, you might need to first install bardr using the
+instructions above.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">library</span>(bardr)</span></code></pre></div>
+<p><br></p>
+<div id="using-a-single-command-from-a-package" class="section level3">
+<h3>Using a single command from a package</h3>
+<p>ADVANCED: Sometimes several packages name a command the same word and
+you want to specify which package you want to use.</p>
+<p>You can do this using the :: symbol. For example, this command
+<em>forces</em> the computer to use the ‘dplyr package’ version of
+filter.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a>dplyr<span class="sc">::</span><span class="fu">filter</span>(mydata)</span></code></pre></div>
+<p><br><br></p>
+</div>
+<div id="problem-solving-1" class="section level3">
+<h3>Problem Solving</h3>
+<div id="nothing-happened" class="section level4">
+<h4>Nothing happened!</h4>
+<p>If you have managed to load a package successfully, often nothing
+happens - this is great! It means it loaded the package without
+errors.</p>
+</div>
+<div id="there-was-a-load-of-text-output---an-error"
+class="section level4">
+<h4>There was a load of text output - an error?</h4>
+<p>Hard to tell. So I suggest running the library command TWICE! This is
+because many packages will print “friendly messages” or “welcome text”
+the first time you load them.</p>
+<p>For example, this is what shows up when you install the tidyverse
+package. The welcome text is indicating the sub-packages that tidyverse
+downloaded and also that some commands now have a different meaning.</p>
+<div class="figure" style="text-align: center">
+<img src="Figures/fig20_friendlytext.png" alt="Tidyverse install messages" width="100%" />
+<p class="caption">
+Tidyverse install messages
+</p>
+</div>
+<p><strong>To find out if what you are seeing is a friendly message or
+an error, run the command again. If you run it a second time and and
+nothing happens, then you’re fine.</strong></p>
+<p><br></p>
+</div>
+</div>
+</div>
+</div>
+<div id="creating-a-markdown-document" class="section level1">
+<h1>Creating a Markdown document</h1>
+<p>This will be your lab report. Remind yourself of what Rmarkdown is
+using Tutorial 1, here <a href="https://rmarkdown.rstudio.com"
+class="uri">https://rmarkdown.rstudio.com</a>, or via this short
+video</p>
+<div class="vembedr">
+<div>
+<iframe class="vimeo-embed" src="https://player.vimeo.com/video/178485416" width="533" height="300" frameborder="0" webkitallowfullscreen="" mozallowfullscreen="" allowfullscreen="" data-external="1"></iframe>
+</div>
+</div>
+<div id="templates" class="section level2">
+<h2>Templates</h2>
+<p>In the past, you used to have to know a lot of computer commands to
+get markdown documents to work. Every month it seems to get easier, and
+there are now a load of professional templates available.</p>
+<p>The ones we are going to use are from the package
+<code>rmdformats</code>. Have a look at the templates here: <a
+href="https://juba.github.io/rmdformats/"
+class="uri">https://juba.github.io/rmdformats/</a>. If none of these
+appeal, google RMarkdown templates for more.</p>
+<p>Install the package <code>rmdformats</code> using the packages
+tutorial above.</p>
+</div>
+<div id="making-your-markdown-file" class="section level2">
+<h2>Making your Markdown file</h2>
+<p>Go to the File menu on the top left, then click New File -
+<strong>R-Markdown</strong>. If this is your first time ever, it might
+ask to download some packages to be able to do this. Say yes. Eventually
+a window will open up:</p>
+<p><img src="Figures/fig21a_Markdown.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>Click “From Template” and <strong>select a template of your
+choice</strong>. Click here to see what different templates look
+like:</p>
+<p><a href="https://juba.github.io/rmdformats/"
+class="uri">https://juba.github.io/rmdformats/</a></p>
+<p><img src="Figures/fig21B_Markdown%20templates.png" width="955" style="display: block; margin: auto;" /></p>
+<p>If you don’t see any templates, you needed to have installed the
+rmdformats package (see above). There are many packages containing
+different templates. You can see which package each template belongs to
+below (red). You should also be running your project - so it should auto
+save your file to your lab 1 folder.</p>
+<p>It will ask you to name your file. Give it a relevant name including
+your email ID, like Lab-2_hlg5155. Press OK.</p>
+<p><img src="Figures/fig21c_Creating%20doc.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><br> A new file should appear on your screen.</p>
+<p><img src="Figures/fig21d_Markdown.png" width="80%" style="display: block; margin: auto;" /></p>
+<p>Essentially, we have some space for text, some space for code, and a
+space at the top of the file where we can add information about
+themes/styles etc called “YAML”.</p>
+<p>Each grey code area is called a “code chunk”. To run the code inside
+it, click the little green arrow on the top right.</p>
+<p>Depending on the template, your file might contain some friendly text
+to explain what is going on. Read through it, then you are welcome to
+delete it from the after the lower — onwards.</p>
+<p><img src="Figures/fig21e_Markdown.png" width="1070" style="display: block; margin: auto;" /></p>
+</div>
+<div id="three-important-buttons---read-this" class="section level2">
+<h2>THREE IMPORTANT BUTTONS - READ THIS</h2>
+</div>
+<div id="visual-mode" class="section level2">
+<h2>Visual mode</h2>
+<p>It is MUCH easier to edit markdown documents in the new visual mode.
+Essentially instead of having to remember text short cuts like * for
+bold, you can edit the text part as though you were using a word
+processor. NOTE HEADERS where it says “Normal”, this allows you to make
+auto tables of contents.</p>
+<p><img
+src="https://quarto.org/docs/get-started/hello/images/rstudio-source-visual.png" /></p>
+<div id="creating-a-new-code-chunk." class="section level3">
+<h3>Creating a new code chunk.</h3>
+<p>Code chunks are mini consoles where you can run R commands. We will
+talk more about them in the next tutorial.</p>
+<p><img src="Figures/fig22_CodeChunk.png" width="1062" style="display: block; margin: auto;" /></p>
+<p>On the top right there are a suite of buttons for adding a new code
+chunk, running code etc. The green one adds a new code chunk. To run an
+individual code chunk you will press the green arrow on its top right
+e.g.</p>
+<p><img src="Figures/fig23_RunCodeChunk.png" width="774" style="display: block; margin: auto;" /></p>
+</div>
+<div id="knitting" class="section level3">
+<h3>Knitting</h3>
+<p><img src="Figures/fig24_knit.png" width="1072" style="display: block; margin: auto;" /></p>
+<p>The file on your screen isn’t the finished article. To see how it
+will look as a final version, we need to “knit” it. Go to the top of the
+.Rmd file, find the <code>knit</code> button. Press it (you might have
+to first save your script if you haven’t already, then press it
+again)</p>
+<p>You should see that the Markdown tab “builds” your document and you
+get an output as a website. The html should also be saved into your
+project folder.</p>
+<p>For example, from my other class, here is a file with markdown and
+knitted output.</p>
+<p><img src="Figures/fig25_AllMarkdownElements.png" width="1652" style="display: block; margin: auto;" /></p>
+<p><br> <br></p>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
