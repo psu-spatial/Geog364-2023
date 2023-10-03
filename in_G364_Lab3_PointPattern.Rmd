@@ -69,10 +69,10 @@ data(longleaf)
 
 ```
 
-Welcome to Lab 3, where we are going to focus on Point Pattern Analysis.
-A point pattern dataset is comprised of events or objects occurring in a
-defined study region. These events could represent anything with a
-specific measurable point location.
+Welcome to Lab 3 on Point Pattern Analysis. A point pattern dataset is
+comprised of events or objects occurring in a defined study region.
+These events could represent anything with a specific measurable point
+location.
 
 **Objective:** The goal of Lab 3 is to learn some introductory spatial
 statistical approaches for characterizing the spatial properties of a
