@@ -306,7 +306,72 @@ Ignore them.
 
 <br><br><br>
 
-# THIS IS BEING UPLOADED IN PARTS - IF YOU SEE THIS BANNER PLEASE REFRESH THE PAGE AFTER 1:30 TUESDAY
+# 6. Nearest neighbour analysis
+
+The `nndist` command calculates the distance of the nearest neighbour
+for every point. Going back to my longleaf data from Lab 3A, here is what I would type:
+
+```{r}
+# nearest neighbour analysis
+# Hint, your ppp variable is called *market.ppp*. 
+ longleaf.NNDist <- nndist(longleaf)
+
+#now I make a histogram
+ hist(longleaf.NNDist,br=50)
+```
+
+In the first line, 
+ - the COMMAND is `nndist` (so if I wanted I could look at its help file),
+ - I apply the command to my *longleaf* variable 
+ - and I save the answer to a new variable called *longleaf.NNDist*.
+
+# 7. Average nearest neighbour
+
+We can now easily calculate the average nearest neighbor distance using the mean command.  Here is how I *stack* commands to make a prettier output, using paste and "c" to stick things together.
+
+```{r}
+# Mean nearest neighbour
+#-------------------------------------
+ paste( c("The average nearest neighbour of my longleaf data is:"),
+        round(mean(longleaf.NNDist),3),"m away")
+```
+
+This is exactly the same as
+
+```{r}
+# find the mean
+mean.longleaf.NNDist  <- mean(longleaf.NNDist) 
+# round the answer to 3 decimal places
+rounded.mean.longleaf <-  round(mean.longleaf.NNDist,3)
+
+# make my answer
+print("The average nearest neighbour of my longleaf data is:")
+rounded.mean.longleaf
+print("m away")
+```
+
+# 8. Calculate the ClarkEvans Ratio
+
+This ratio is named after the people who invented it, Clarke & Evans. Type `?clarkevans` into the help file for more details and look at the textbook/google point pattern clarke evans ratio for more information.
+
+I can create these and print them out using the following commands, again I am making my code look neater.
+
+```{r,eval=FALSE}
+# R ratio applied to the ppp variable itself, yours is called market.ppp
+#----------------------------------
+ R.Ratio <- clarkevans(longleaf)
+ R.Ratio
+
+```
+
+The output of the R.Ratio likely gives you two values, naive and cdf.
+CDF is simply a mathematical way of taking into account edge effects, more details here: https://www.jstor.org/stable/20146996
+
+<br><br><br>
+
+# THIS IS BEING UPLOADED IN PARTS - IF YOU SEE THIS BANNER PLEASE REFRESH THE PAGE AFTER 1:45 TUESDAY
+
+
 
 <br><br><br>
 
