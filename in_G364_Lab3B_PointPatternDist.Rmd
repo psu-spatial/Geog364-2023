@@ -180,8 +180,8 @@ market     <- read_csv("./Data/Farmers_Markets_NYShort.csv")
 <details>
 
 <summary>[**It doesn't work! or There is ./Data in there I have never
-seen before! Do I need it???? Click here for the answer**]{.underline}
-</summary>
+seen before! Do I need it???? Click here for the
+answer**]{.underline}</summary>
 
 ```{r}
 market     <- read_csv("./Data/Farmers_Markets_NYShort.csv")
@@ -260,12 +260,35 @@ qtm(market.utm)
 
 <br><br><br>
 
+# 5. Make the data ppp/spatstat format
+
+Same as last week, we will to analyse the data using commands from the
+spatstat package.
+
+Just as .kml files are proprietary to Google Earth, the owners spatstat
+package require us to convert the data into a special format called ppp.
+
+```{r}
+
+ # This reads the data into a ppp format, and sets the study area to the box surrounding the points.
+ market.ppp <- as.ppp(market.utm)
+ plot(market.ppp,use.marks = F,cex = 1, pch = 4)
+
+```
+
+Copy the code above into a new code chunk and make sure it runs. You
+might get errors about *Discarded datum Unknown based on GRS80 ellipsoid
+in CRS definition*, or *only first attribute column is used for marks*.
+Ignore them.
+
+<br><br><br>
+
 # CHALLENGE 8
 
 [You can find challenge 1-7 in Lab
 3A!](https://psu-spatial.github.io/Geog364-2023/in_G364_Lab3_PointPattern.html)
 
-1.  Exactly follow steps 1-4 above.<br><br>
+1.  Exactly follow steps 1-5 above.<br><br>
 
 2.  The data is obtained and subset from here.
     <https://agriculture.ny.gov/farmersmarkets> . Look at this page and
