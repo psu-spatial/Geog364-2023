@@ -1,6 +1,6 @@
 ---
-title: "Lab 3A: Point Pattern Density"
-subtitle: <h4 style="font-style:normal">This is the first part of Lab 3</h4>
+title: "Lab 3B: Point Pattern Distance"
+subtitle: <h4 style="font-style:normal">Lab 3 is split into two parts to match the lectures</h4>
 ---
 
 ```{=html}
@@ -71,8 +71,8 @@ location.
 statistical approaches for characterizing the spatial properties of a
 point pattern.
 
--   **This week:** We will be focusing on Point pattern density: quadrat
-    analysis, kernel analysis and standard ellipses. (Oct 2-6)
+-   **This week:** We will be focusing on quadrat analysis, kernel
+    analysis and standard ellipses. (Oct 2-6) e.g. Point pattern density
 
     RECOMMENDED: You can optionally submit this week's lab to get graded
     up to the first 50 points - If you submit before Monday 9th, we will
@@ -91,8 +91,8 @@ here](https://psu.instructure.com/courses/2260204/assignments/15455241),
 or go to canvas for assignment guidelines. You can use either the
 website base RStudio/Posit Cloud OR R-Desktop for this lab.
 
-[Getting stuck? Look at the Canvas page for the McGrew Chapter 14 - it
-has a great overview.]{.underline}
+Getting stuck? Look at the Canvas page for the McGrew Chapter 14 - it
+has a great overview.
 
 <br><br><br>
 
@@ -965,10 +965,6 @@ what would you tell them and which plots and analyses would you use (or
 not use!) to provide evidence. Write your thoughts below the code chunk.
 
 <br><br><br>
-
-## NOW GO TO [LAB 3B](https://psu-spatial.github.io/Geog364-2023/in_G364_Lab3B_PointPatternDist.html)
-
-Remember it's a 2 week lab!
 
 # Submitting your work
 

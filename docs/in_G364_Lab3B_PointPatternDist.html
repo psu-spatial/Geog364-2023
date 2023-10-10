@@ -11,7 +11,7 @@
 
 
 
-<title>Lab 3A: Point Pattern Density</title>
+<title>Lab 3B: Point Pattern Distance</title>
 
 <script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -468,9 +468,9 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Lab 3A: Point Pattern Density</h1>
+<h1 class="title toc-ignore">Lab 3B: Point Pattern Distance</h1>
 <h3 class="subtitle"><h4 style="font-style:normal"><br />
-This is the first part of Lab 3<br />
+Lab 3 is split into two parts to match the lectures<br />
 </h4></h3>
 
 </div>
@@ -517,9 +517,9 @@ location.</p>
 introductory spatial statistical approaches for characterizing the
 spatial properties of a point pattern.</p>
 <ul>
-<li><p><strong>This week:</strong> We will be focusing on Point pattern
-density: quadrat analysis, kernel analysis and standard ellipses. (Oct
-2-6)</p>
+<li><p><strong>This week:</strong> We will be focusing on quadrat
+analysis, kernel analysis and standard ellipses. (Oct 2-6) e.g. Point
+pattern density</p>
 <p>RECOMMENDED: You can optionally submit this week’s lab to get graded
 up to the first 50 points - If you submit before Monday 9th, we will
 provide feedback, so you can improve your grade when you (re)submit the
@@ -536,8 +536,8 @@ href="https://psu.instructure.com/courses/2260204/assignments/15455241">The
 Canvas page here</a>, or go to canvas for assignment guidelines. You can
 use either the website base RStudio/Posit Cloud OR R-Desktop for this
 lab.</p>
-<p><u>Getting stuck? Look at the Canvas page for the McGrew Chapter 14 -
-it has a great overview.</u></p>
+<p>Getting stuck? Look at the Canvas page for the McGrew Chapter 14 - it
+has a great overview.</p>
 <p><br><br><br></p>
 <div id="getting-started" class="section level1">
 <h1>Getting started</h1>
@@ -780,7 +780,7 @@ the diameter of the tree trunk (which I worked out from the help
 file).</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="fu">plot</span>(longleaf)</span></code></pre></div>
 <div class="figure">
-<img src="in_G364_Lab3_PointPattern_files/figure-html/unnamed-chunk-7-1.png" alt="It automatically understands the data is spatial and that the trunk diameter is a mark" width="672" />
+<img src="in_G364_Lab3B_PointPatternDist_files/figure-html/unnamed-chunk-7-1.png" alt="It automatically understands the data is spatial and that the trunk diameter is a mark" width="672" />
 <p class="caption">
 It automatically understands the data is spatial and that the trunk
 diameter is a mark
@@ -836,7 +836,7 @@ version</p>
 <span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a>                    <span class="st">&quot;blue&quot;</span>),    </span>
 <span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a>            <span class="at">pch=</span><span class="dv">16</span>, <span class="at">cex=</span>.<span class="dv">5</span>,    </span>
 <span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a>            <span class="at">xlab=</span><span class="st">&quot;x (m)&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;y (m)&quot;</span>) </span></code></pre></div>
-<p><img src="in_G364_Lab3_PointPattern_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p><img src="in_G364_Lab3B_PointPatternDist_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <details>
 <p><br></p>
 <summary>
@@ -945,13 +945,13 @@ in the top left.</p>
 <span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Longleaf quadrat count&quot;</span>) <span class="co"># plot title</span></span>
 <span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a></span>
 <span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a><span class="fu">plot</span>(Q, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">cex =</span> <span class="dv">2</span>)  <span class="co"># Now I add Q on top.</span></span></code></pre></div>
-<p><img src="in_G364_Lab3_PointPattern_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p><img src="in_G364_Lab3B_PointPatternDist_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
 <p>Alternatively, we can plot the intensity, because the colours make it
 simpler to see patterns. This time, I added the points on top.</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="co"># Plot the intensity</span></span>
 <span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">intensity</span>(Q, <span class="at">image=</span><span class="cn">TRUE</span>), <span class="at">main=</span><span class="st">&quot;Point intensity&quot;</span>, <span class="at">las=</span><span class="dv">1</span>)  <span class="co"># Plot intensity raster </span></span>
 <span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a><span class="fu">plot</span>(longleaf, <span class="at">pch=</span><span class="dv">20</span>, <span class="at">cex=</span><span class="fl">0.6</span>,  <span class="at">add=</span><span class="cn">TRUE</span>)                     <span class="co"># Add points</span></span></code></pre></div>
-<p><img src="in_G364_Lab3_PointPattern_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p><img src="in_G364_Lab3B_PointPatternDist_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <p><br><br></p>
 </div>
 <div id="c.-quadrat-variance-mean-ratio" class="section level3">
@@ -1140,7 +1140,7 @@ missing subtle changes in spatial density distributions.”</em></p>
 <span id="cb26-24"><a href="#cb26-24" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">intensity</span>(Q<span class="fl">.12</span>_3.Boxes, <span class="at">image=</span><span class="cn">TRUE</span>), <span class="at">main=</span><span class="st">&quot;&quot;</span>, <span class="at">las=</span><span class="dv">1</span>)                </span>
 <span id="cb26-25"><a href="#cb26-25" tabindex="-1"></a><span class="fu">plot</span>(longleaf, <span class="at">pch=</span><span class="dv">20</span>, <span class="at">cex=</span><span class="fl">0.6</span>, <span class="at">col=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,.<span class="dv">5</span>), <span class="at">add=</span><span class="cn">TRUE</span>)    </span>
 <span id="cb26-26"><a href="#cb26-26" tabindex="-1"></a><span class="fu">plot</span>(Q<span class="fl">.12</span>_3.Boxes, <span class="at">add =</span> <span class="cn">TRUE</span>, <span class="at">cex =</span> <span class="dv">2</span>,<span class="at">col=</span><span class="st">&quot;white&quot;</span>,<span class="at">font=</span><span class="dv">2</span>)               </span></code></pre></div>
-<p><img src="in_G364_Lab3_PointPattern_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p><img src="in_G364_Lab3B_PointPatternDist_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
 <p><br><br><br></p>
 </div>
 <div id="challenge-d" class="section level2">
@@ -1246,7 +1246,7 @@ the longleaf data, I would create a new code chunk and type.</p>
 <span id="cb27-4"><a href="#cb27-4" tabindex="-1"></a><span class="co"># Individual events can be added to the plot by adding our original points to the plot.</span></span>
 <span id="cb27-5"><a href="#cb27-5" tabindex="-1"></a> <span class="fu">plot</span>(longleaf, <span class="at">add =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb27-6"><a href="#cb27-6" tabindex="-1"></a>      <span class="at">use.marks =</span> F, <span class="at">cex =</span> <span class="fl">0.5</span>,<span class="at">pch=</span><span class="dv">16</span>) </span></code></pre></div>
-<p><img src="in_G364_Lab3_PointPattern_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<p><img src="in_G364_Lab3B_PointPatternDist_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <p>So you can see that instead of quadrats, we now have a smooth
 surface.</p>
 <p><br><br></p>
@@ -1271,7 +1271,7 @@ the density command:</p>
 <span id="cb28-10"><a href="#cb28-10" tabindex="-1"></a></span>
 <span id="cb28-11"><a href="#cb28-11" tabindex="-1"></a><span class="fu">plot</span> (<span class="fu">density</span>(longleaf, <span class="at">sigma =</span> <span class="dv">100</span>),<span class="at">main=</span><span class="st">&quot;Bandwidth=100&quot;</span>)</span>
 <span id="cb28-12"><a href="#cb28-12" tabindex="-1"></a><span class="fu">plot</span>(longleaf, <span class="at">add =</span> <span class="cn">TRUE</span>,<span class="at">use.marks =</span> F, <span class="at">cex =</span> <span class="fl">0.5</span>,<span class="at">pch=</span><span class="dv">16</span>)</span></code></pre></div>
-<p><img src="in_G364_Lab3_PointPattern_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+<p><img src="in_G364_Lab3B_PointPatternDist_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
 <p><br><br></p>
 </div>
 <div id="c.-calculating-an-optimal-bandwidth" class="section level3">
@@ -1299,7 +1299,7 @@ the data. As you can see, the result is interesting.</p>
 <span id="cb29-7"><a href="#cb29-7" tabindex="-1"></a>      <span class="at">main=</span><span class="fu">paste</span>(<span class="st">&quot;Diggle Bandwidth Estimation = &quot;</span>,<span class="fu">round</span>(optimal_diggle,<span class="dv">3</span>)))</span>
 <span id="cb29-8"><a href="#cb29-8" tabindex="-1"></a></span>
 <span id="cb29-9"><a href="#cb29-9" tabindex="-1"></a><span class="fu">plot</span>(longleaf, <span class="at">add =</span> <span class="cn">TRUE</span>,<span class="at">use.marks =</span> F, <span class="at">cex =</span> <span class="fl">0.5</span>,<span class="at">pch=</span><span class="dv">16</span>)</span></code></pre></div>
-<p><img src="in_G364_Lab3_PointPattern_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p><img src="in_G364_Lab3B_PointPatternDist_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
 <p><br><br><br></p>
 </div>
 </div>
@@ -1313,12 +1313,6 @@ area, what would you tell them and which plots and analyses would you
 use (or not use!) to provide evidence. Write your thoughts below the
 code chunk.</p>
 <p><br><br><br></p>
-</div>
-<div id="now-go-to-lab-3b" class="section level2">
-<h2>NOW GO TO <a
-href="https://psu-spatial.github.io/Geog364-2023/in_G364_Lab3B_PointPatternDist.html">LAB
-3B</a></h2>
-<p>Remember it’s a 2 week lab!</p>
 </div>
 </div>
 <div id="submitting-your-work" class="section level1">
