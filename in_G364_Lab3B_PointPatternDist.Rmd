@@ -260,7 +260,7 @@ qtm(market.utm)
 
 <br><br><br>
 
-# 5. Make the data ppp/spatstat format
+# 5. Convert to ppp format
 
 Same as last week, we will to analyse the data using commands from the
 spatstat package.
@@ -306,72 +306,174 @@ Ignore them.
 
 <br><br><br>
 
-# 6. Nearest neighbour analysis
+# 6. Nearest neighbour plots
 
 The `nndist` command calculates the distance of the nearest neighbour
-for every point. Going back to my longleaf data from Lab 3A, here is what I would type:
+for every point. Going back to my longleaf data from Lab 3A, here is
+what I would type:
 
 ```{r}
 # nearest neighbour analysis
 # Hint, your ppp variable is called *market.ppp*. 
- longleaf.NNDist <- nndist(longleaf)
+ longleaf.nnd <- nndist(longleaf)
 
 #now I make a histogram
- hist(longleaf.NNDist,br=50)
+ hist(longleaf.nnd,br=50)
 ```
 
-In the first line, 
- - the COMMAND is `nndist` (so if I wanted I could look at its help file),
- - I apply the command to my *longleaf* variable 
- - and I save the answer to a new variable called *longleaf.NNDist*.
+In the first line, - the COMMAND is `nndist` (so if I wanted I could
+look at its help file), - I apply the command to my *longleaf*
+variable - and I save the answer to a new variable called *longleaf.nnd
+(e.g. the longleaf nearest neighbour distances)*
 
 # 7. Average nearest neighbour
 
-We can now easily calculate the average nearest neighbor distance using the mean command.  Here is how I *stack* commands to make a prettier output, using paste and "c" to stick things together.
+We can now easily calculate the average nearest neighbor distance using
+the mean command. Here is how I *stack* commands to make a prettier
+output, using paste and "c" to stick things together.
 
 ```{r}
 # Mean nearest neighbour
 #-------------------------------------
  paste( c("The average nearest neighbour of my longleaf data is:"),
-        round(mean(longleaf.NNDist),3),"m away")
+        round(mean(longleaf.nnd),3),"m away")
 ```
 
 This is exactly the same as
 
 ```{r}
-# find the mean
-mean.longleaf.NNDist  <- mean(longleaf.NNDist) 
+# find single observed average distance for the whole field.
+longleaf.obs_mean_nnd  <- mean(longleaf.nnd) 
 # round the answer to 3 decimal places
-rounded.mean.longleaf <-  round(mean.longleaf.NNDist,3)
+round.longleaf.obs_mean_nnd <-  round(longleaf.obs_mean_nnd,3)
 
 # make my answer
 print("The average nearest neighbour of my longleaf data is:")
-rounded.mean.longleaf
+round.longleaf.obs_mean_nnd
 print("m away")
 ```
 
-# 8. Calculate the ClarkEvans Ratio
+# 8. Calculate the Clarke-Evans Ratio, R
 
-This ratio is named after the people who invented it, Clarke & Evans. Type `?clarkevans` into the help file for more details and look at the textbook/google point pattern clarke evans ratio for more information.
+This ratio is named after the people who invented it, Clarke & Evans.
+Type `?clarkevans` into the help file for more details and look at the
+textbook/google point pattern clarke evans ratio for more information.
 
-I can create these and print them out using the following commands, again I am making my code look neater.
+I can create these and print them out using the following commands,
+again I am making my code look neater.
 
 ```{r,eval=FALSE}
 # R ratio applied to the ppp variable itself, yours is called market.ppp
 #----------------------------------
- R.Ratio <- clarkevans(longleaf)
- R.Ratio
+ longleaf.obs.RRatio <- clarkevans(longleaf)
+ longleaf.obs.RRatio
 
 ```
 
 The output of the R.Ratio likely gives you two values, naive and cdf.
-CDF is simply a mathematical way of taking into account edge effects, more details here: https://www.jstor.org/stable/20146996
+CDF is simply a mathematical way of taking into account edge effects,
+more details here: <https://www.jstor.org/stable/20146996>
+
+So in this, R= 0.832
+
+# 9. Conduct a hypothesis test on it
+
+Finally, we can conduct a hypothesis test on the ratio output:
+
+```{r}
+clarkevans.test(longleaf)
+
+```
+
+If we look at the help file (?clarkevans.test), we can see
+
+-   H0: The pattern shows complete spatial randomness caused by an
+    independent random process. R=1. E.g. If we simulated 100 random
+    point patterns and calculated the Clarke Evans ratio for each, we
+    would get a histogram with a mean of 1.
+
+-   H1: The pattern is unusually DIFFERENT (e.g. strangely clustered OR
+    strangely uniform) compared to what we would expect in H0. E.g. R
+    would be high or low.
+
+From the R output, the observed R was 0.83. A randomly created H0
+pattern would only expect to see something like this once every
+1000,000,000,000,000 times. It's a very unusual result (e.g. the
+probability of seeing it is tiny).
+
+Therefore I personally have enough evidence to reject the null
+hypothesis and say a random independent process probably isn't causing
+the longleaf tree pattern.
 
 <br><br><br>
 
-# THIS IS BEING UPLOADED IN PARTS - IF YOU SEE THIS BANNER PLEASE REFRESH THE PAGE AFTER 1:45 TUESDAY
+# CHALLENGE 9
 
+1.  Create a new heading called nearest neighbour (spelled either the
+    American or British way!) <br><br>
 
+2.  Get the code in tutorials 6-8 working for your market data (hint,
+    remember to remove any reference longleaf!)<br><br>
+
+3.  Now explain what the output of the code is showing you for the
+    nearest neighbour and Clarke Evans Ratio. What units are the
+    distances in? (hint, google the units of your new map
+    projection)<br>
+
+    1.  Bonus - add another layer in my fancy stacked code to convert to
+        km using basic maths.<br><br>
+
+4.  Now write your interpretation of the output.<br>
+
+    -   E.g. this show the data is clustered, random or dispersed?<br>
+    -   What would the clarke evens ratio, R, be for very disperse
+        data?<br>
+    -   What would the clarke evens ratio, R, be for very clustered
+        data?<br><br>
+
+5.  Conduct a ONE-SIDED clarke evans hypothesis test on whether your
+    market data is more CLUSTERED than you expect and interpret the
+    result (hint go back to the Canvas page for the textbook chapter 14
+    and the clarkeevans.text help file for modifying the code). <br><br>
+
+6.  Write a short paragraph for each of the following<br>
+
+    1.  What are edge effects in point pattern data? Are they going be
+        an issue for this SPECIFIC dataset/analysis and why?<br>
+
+    2.  What is the locational fallacy? Is it going going be an issue
+        for this SPECIFIC dataset/analysis and why?<br>
+
+    3.  What is MAUP? Is it going be an issue for this SPECIFIC
+        dataset/analysis and why?<br><br>
+
+# THIS IS BEING UPLOADED IN PARTS - IF YOU SEE THIS BANNER PLEASE REFRESH THE PAGE AFTER 2.15pm TUESDAY
+
+# 11. Ripleys K hypothesis test
+
+Finally, we can assess the significance of this result using a
+hypothesis test. Here I show you how to conduct a 'pseudo test' using
+simulations. E.g. we directly create a load of H0 scenarios, calculate
+the clarke evans ratio for each and see the probability of seeing our
+result
+
+```{r, eval=FALSE,echo=FALSE}
+
+# Here I am creating 10 point patterns with complete spatial randomness, and for each one calculating the clarke evans ratio
+longleaf.RRatio.simulations <- envelope(longleaf, 
+                                        fun = clarkevans, 
+                                        nsim = 10)
+
+# Plot the results
+plot(envelope_result)
+
+# Compare the observed Clarke-Evans Ratio to the envelope
+longleaf.obs.RRatio
+summary(envelope_result)
+
+# Check if the observed value is significantly different
+p_value <- ppp.test(envelope_result, longleaf.obs.RRatio)
+```
 
 <br><br><br>
 
