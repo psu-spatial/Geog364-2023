@@ -1,0 +1,557 @@
+County,City,State,Zip,Contact,Phone,Operation Season,FMNP,SNAP,FCC Issued,FCC Accepted,Latitude,Longitude
+Clinton,Rouses Point,NY,12979,Jim Rabideau,5182983878,June 21-August 30,Y,N,N,Y,44.99029,-73.36438
+Franklin,Fort Covington,NY,12937,Richard LaVigne,5183194028,June 25-August 27,Y,N,N,Y,44.98837,-74.49625
+Clinton,Champlain,NY,12919,Janet McFetridge,5182984152,July 1-September 15,Y,N,N,Y,44.98721,-73.44961
+Franklin,Akwesasne,NY,13655,Kim McElwain,5183583141,June 4-October 1,Y,N,N,Y,44.9867,-74.6755
+Franklin,Hoagansburg,NY,13655,Richard LaVigne,5183194028,June 11-October 23,Y,N,N,Y,44.97848,-74.68828
+Franklin,Westville,NY,12926,Richard LaVigne,5183194028,June 25-August 27,Y,N,N,Y,44.94404,-74.39536
+Franklin,Chateaugay,NY,12920,Richard LaVigne,5183194028,June 27-August 29,Y,N,N,Y,44.92642,-74.08103
+Franklin,Constable,NY,12926,Richard LaVigne,5183194028,June 24-August 26,Y,N,N,Y,44.9233,-74.29372
+St. Lawrence,Massena,NY,13662,Matt Martin,3158428052,July 11-October 10,Y,Y,N,Y,44.92199,-74.88432
+St. Lawrence,Massena,NY,13662,Matt Martin,3158428052,July 14-October 13,Y,Y,N,Y,44.92199,-74.88432
+Franklin,Burke,NY,12917,Richard LaVigne,5183194028,June 27-August 29,Y,N,N,Y,44.90456,-74.16867
+Franklin,Malone,NY,12953,Richard LaVigne,5183194028,June 12-October 23,Y,N,N,Y,44.86017,-74.29201
+Franklin,Brainardsville,NY,12915,Richard LaVigne,5183194028,June 28-August 30,Y,N,N,Y,44.85809,-74.0333
+Franklin,Malone,NY,12953,Richard LaVigne,5183194028,June 12-October 23,Y,N,N,Y,44.85654,-74.29187
+Franklin,Malone,NY,12953,Richard LaVigne,5183194028,June 24-August 26,Y,N,N,Y,44.85025,-74.27794
+Franklin,Malone,NY,12953,Richard LaVigne,5183194028,June 10-October 24,Y,N,N,Y,44.84882,-74.29518
+Franklin,Malone,NY,12953,Vicky Rayl,5186517680,June 5-October 9,Y,N,N,Y,44.84733,-74.32773
+Franklin,Malone,NY,12953,Richard LaVigne,5183194028,June 10-October 21,Y,N,N,Y,44.84193,-74.30111
+Franklin,Malone,NY,12953,Richard LaVigne,5183194028,June 13-October 24,Y,N,N,Y,44.83906,-74.30107
+Franklin,Malone,NY,12953,Richard LaVigne,5183194028,June 14-October 25,Y,N,N,Y,44.83873,-74.30102
+Franklin,Malone,NY,12953,Richard LaVigne,5183194028,June 14-October 25,Y,N,N,Y,44.83505,-74.2986
+Franklin,Brushton,NY,12916,Leona Steen,5185296398,July 15-Oct 31,Y,N,N,Y,44.83379,-74.49148
+Franklin,Whippleville,NY,12995,Richard LaVigne,5183194028,June 26-August 28,Y,N,N,Y,44.81014,-74.26207
+Franklin,Merrill,NY,12955,Vicky Rayl,5186517680,June 22-August 31,Y,N,N,Y,44.78327,-73.98388
+St. Lawrence,Winthrop,NY,13697,Cherie Whitten,3153595112,May 13-August 27,Y,N,N,Y,44.75203,-74.752
+Clinton,Plattsburgh,NY,12901,Sam Dyer,5185610473,Mid July-Mid October,Y,Y,N,Y,44.73789,-73.47064
+Franklin,Lyons Mt.,NY,12952,Richard LaVigne,5183194028,June 28-August 30,Y,N,N,Y,44.73223,-73.91025
+Clinton,Plattsburgh,NY,12901,Julie Baughn,5188027164,May 11-October 12,Y,Y,Y,Y,44.69535,-73.45226
+Clinton,Plattsburgh,NY,12901,Julie Baughn,5188027164,May 11-October 12,Y,Y,Y,Y,44.69535,-73.45226
+Clinton,Plattsburgh,NY,12944,Darcy Pray,5188349130,Year-round,Y,N,N,Y,44.6948,-73.5069
+Franklin,Owls Head,NY,12969,Richard LaVigne,5183194028,June 19-August 28,Y,N,N,Y,44.69206,-74.11341
+St. Lawrence,Potsdam,NY,13676,Daniel Martin,3152651246,May 7-December 1,Y,Y,N,Y,44.67107,-74.90401
+St. Lawrence,Potsdam,NY,13676,Jennifer McAvoy,3155282454,May 11-October 26,Y,Y,N,Y,44.66865,-74.98493
+St. Lawrence,Canton,NY,13617,Elizabeth Parson,3153239158,May 14-October 29,Y,Y,N,Y,44.59564,-75.16921
+Clinton,Peru,NY,12972,Shannon Rulfs,5186438636,June-November,Y,Y,N,Y,44.5786,-73.49804
+Clinton,Peru,NY,12972,Jenna Mulbury,5186439718,May 1-December 23,Y,Y,N,Y,44.5569,-73.53324
+St. Lawrence,Canton,NY,13617,Joel Howe,3152120950,August 1-November 1,Y,N,N,Y,44.55387,-75.13583
+Clinton,Keeseville,NY,12944,Darcy Pray,5188349130,Year-Round,Y,N,N,Y,44.49367,-73.50798
+St. Lawrence,Hammond,NY,13646,George Blatchley,3155784003,June 16-September 29,Y,N,N,Y,44.47353,-75.55463
+St. Lawrence,Hammond,NY,13646,Lori Thistle,3153245032,June 19-September 18,Y,Y,N,Y,44.45118,-75.69312
+Essex,Willsboro,NY,12996,Vicky Rayl,5186517680,June 13-September 5,Y,N,N,Y,44.36971,-73.395629
+St. Lawrence,Gouverneur,NY,13642,Linda E. Brown,3152870384,June 6-October 31,Y,Y,N,Y,44.33871,-75.45766
+Franklin,Saranac Lake,NY,12983,Jacob Vennie Vollrath,5182172495,"October 19-March 21, 2020",N,N,N,Y,44.32717,-74.13016
+Franklin,Saranac Lake,NY,12983,Dan Rivera,5182172495,June 1-October 12,Y,Y,N,Y,44.32503,-74.13178
+Essex,Lake Placid,NY,12946,Christie Sausa,,Year-round,N,N,N,Y,44.283516,-73.983905
+Jefferson,Clayton,NY,13624,Tricia Bannister,3156863771,June 6-September 12,Y,N,N,Y,44.23992,-76.08508
+Franklin,Tupper Lake,NY,12986,Cherie Whitten,3153595112,June 19-November 1,Y,N,N,Y,44.22528,-74.44821
+Franklin,Tupper Lake,NY,12986,Cherie Whitten,3153595112,June 21-October 11,Y,N,N,Y,44.22528,-74.44821
+Essex,Keene Valley,NY,12943,Vicky Rayl,5186517680,June 2-October 13,Y,N,N,Y,44.22067,-73.78561
+Essex,Elizabethtown,NY,12932,Vicky Rayl,5186517680,June 7-October 11,Y,N,N,Y,44.21552,-73.59168
+Lewis,Harrisville,NY,13648,Laura La Platney,3157771689,May 25-October 26,Y,N,N,Y,44.14849,-75.31571
+Jefferson,Cape Vincent,NY,13618,Shelley Higgins,3156542481,June 15-September 21,Y,N,N,Y,44.12838,-76.33472
+Essex,Port Henry,NY,12974,Kiana French,5856909500,Year-Round,Y,N,N,Y,44.04849,-73.45958
+Jefferson,Carthage,NY,13619,Jeanette Turner,3154933590,May 31-October 11,Y,N,N,Y,43.97714,-75.61247
+Jefferson,Watertown,NY,13601,Shawn Chamberlain,3154081088,June 1-October 26,Y,N,N,Y,43.97651,-75.90988
+Jefferson,Watertown,NY,13601,Kylie Peck,3157884400,May 22-October 2,Y,Y,N,Y,43.97173,-75.91116
+Essex,Crown Point,NY,12928,Robert Burroughs,5185974489,July 1-October 15,Y,N,N,Y,43.95838,-73.43036
+Jefferson,Carthage,NY,13619,Chris Bush,3157838642,May 25-November 1,Y,Y,N,Y,43.91954,-75.58686
+Jefferson,Watertown,NY,13601,Delta Keeney,3157881933,June 20-October 30,Y,Y,N,Y,43.91784,-75.87206
+Essex,Ticonderoga,NY,12883,Henry Drinkwine,5185856346,July 12-October 15,Y,N,N,Y,43.88032,-73.44955
+Essex,Ticonderoga,NY,12883,Mathew Courtright,5185856619,July 6-September 28,Y,N,N,Y,43.85688,-73.43642
+Lewis,Lowville,NY,13367,Tina Schell,3153765087,June 20-October 3,Y,N,N,Y,43.79599,-75.49832
+Lewis,Lowville,NY,13367,Sarah Roes,3153767750,June 1-October 26,Y,N,N,Y,43.79484,-75.48769
+Lewis,Lowville,NY,13367,John Ingham,3153762268,August 15-Nov 30,Y,N,N,Y,43.78906,-75.54409
+Hamilton,Indian Lake,NY,12842,Brenda Valentine,5186485636,July 6-September 28,Y,N,N,Y,43.78247,-74.26541
+Lewis,Glenfield,NY,13343,Michael Colwell,3153767402,April 1-December 24,Y,Y,N,Y,43.71844,-75.41148
+Herkimer,Old Forge,NY,13420,Robin Hill,3153693353,June 21-October 11,Y,Y,Y,Y,43.70893,-74.97286
+Warren,Chestertown,NY,12817,Rand Fosdick,5184947942,June 15-September 7,Y,N,N,Y,43.66217,-73.80349
+Warren,Chestertown,NY,12817,Cindy Mead,5184944600,June 12-September 21,N,N,N,Y,43.6497,-73.80105
+Lewis,Lyons Falls,NY,13368,Beverly Swiernik,3157651506,June 18-October 8,Y,N,N,Y,43.61458,-75.3562
+Washington,Whitehall,NY,12887,Cyd Groff,5186421653,May 28-October 22,Y,N,N,Y,43.55205,-73.40302
+Hamilton,Speculator,NY,12164,Donna Benkovich,5185484521,June 20-September 12,Y,N,N,Y,43.49679,-74.36073
+Warren,Athol,NY,12810,Robert Barody,5187443351,June1-November 30,Y,N,N,Y,43.4926,-73.85734
+Warren,Warrensburg,NY,12811,Teresa Whalen,5184665497,May 31-October 11,Y,N,N,Y,43.48876,-73.77828
+Oneida,Boonville,NY,13309,Michelle Bartelotte,3159425112,June 13-October 17,Y,N,N,Y,43.48178,-75.34404
+Oswego,Oswego,NY,13126,Sara Broadwell,3153437681,June 13-October 10,Y,Y,N,Y,43.45656,-76.51127
+Washington,Fort Ann,NY,12827,Laura A. Burch,5182607810,June 7-December 20,Y,N,N,Y,43.43771,-73.38613
+Washington,Granville,NY,12832,Cyd Groff,5186421653,June 3-October 21,Y,N,N,Y,43.39845,-73.2658
+Orleans,Waterport,NY,14571,Laurie Gregori,5856824435,May 23-October 30,Y,N,N,Y,43.36049,-78.24848
+Oswego,West Monroe,NY,13617,Elaine Guppy,3156257920,July 13-September 30,Y,N,N,Y,43.35052,-76.03094
+Warren,Glens Falls,NY,12801,Richard Sandora,5187920438,November 2-April 25,Y,Y,Y,Y,43.3173,-73.65347
+Oswego,Fulton,NY,,Kenneth Simpelaar,3159452844,June 1-December 31,N,N,N,Y,43.31347,-76.42623
+Oswego,Phoenix,NY,13135,Roberta and Josephine Godfrey,3155937291,Year-round,Y,Y,N,Y,43.31155,-76.29001
+Oswego,Fulton,NY,13069,Sara Broadwell,3153437681,June 15-October 12,Y,Y,N,Y,43.3111,-76.40499
+Warren,Glens Falls,NY,12801,Richard Sandora,5187920438,May 4-October 26,Y,Y,Y,Y,43.3099,-73.64699
+Monroe,Kendall,NY,14470,Lora Partyka,5857520258,May1-December 26,Y,Y,N,Y,43.29811,-77.99548
+Monroe,Hamlin,NY,14464,Betsy Brightly,5856364337,Year-round,Y,N,N,Y,43.29471,-77.94344
+Westchester,Hastings,NY,13036,Pascale Le Draoulec,9148063380,Dec 7-May 16,N,Y,N,Y,43.29237,-76.14928
+Washington,Fort Edward,NY,12828,Linda Gifford,5187920198,June 21-October 25,Y,N,N,Y,43.28393,-73.58721
+Niagara,Newfane,NY,14108,Amy Luckman,7167787011,June 19-October 16,Y,N,N,Y,43.28365,-78.70879
+Niagara,Middleport,NY,14105,Lynne McAvoy,7165149645,March-December,N,Y,N,Y,43.28347,-78.48892
+Niagara,Appleton,NY,14008,JoMarie Human,7165312820,June 16-November 30,Y,N,N,Y,43.27537,-78.64954
+Washington,Fort Edward,NY,12828,Peter Williams,5183212954,June 6-September 26,Y,N,N,Y,43.26875,-73.58419
+Orleans,Albion,NY,14411,Karen Watt,5855898000,June 15-December 24,Y,N,N,Y,43.265158,-78.192266
+Orleans,Albion,NY,14411,Shauna Gardner,5855902437,June 3-October 28,Y,N,N,Y,43.25845,-78.19669
+Monroe,Rochester,NY,14612,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.25492,-77.61411
+Monroe,Brockport,NY,14420,Linda Kirby,5856372600,May 1-December 24,Y,N,N,Y,43.25194,-77.98451
+Niagara,Middleport,NY,14105,Dan Huntington,7163930590,June 15-October 12,Y,N,N,Y,43.24672,-78.48848
+Monroe,Rochester,NY,14612,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.2444,-77.61607
+Oneida,Holland Patent,NY,13354,William Hajdasz,3155257513,June 15-October 5,Y,Y,Y,Y,43.24214,-75.25647
+Oneida,Blossvale,NY,13471,Jessica Johnson-Travers,3158866824,May 23-October 3,Y,N,N,Y,43.24004,-75.70196
+Wayne,Sodus,NY,14551,Sandy Hall,3154838029,June 12-October 9,Y,Y,Y,Y,43.23615,-77.06587
+Oneida,Rome,NY,13440,Ronald Wagner,3153395182,June 18-October 29,Y,N,N,Y,43.23179,-75.43859
+Monroe,Brockport,NY,14420,Clayton Christ,5855077900,May 1-November 3,Y,N,N,Y,43.23014,-77.91477
+Wayne,Ontario,NY,14519,Fedele Noto,3155898703,June 2-October 27,Y,N,N,Y,43.22736,-77.29231
+Oneida,Rome,NY,13440,Ronald Wagner,3153395182,May 3-November 8,Y,N,N,Y,43.22401,-75.48476
+Oneida,Rome,NY,13440,Makenzi Enos,3153397608,June 5-September 25,Y,N,N,Y,43.22396,-75.44779
+Orleans,Holley,NY,14470,Lori Passarell,5853310708,May 1-November 30,Y,N,N,Y,43.22135,-78.02329
+Orleans,Medina,NY,14103,Gail Miller,5857983904,February-December,Y,N,N,Y,43.220217,-78.38851
+Monroe,Rochester,NY,14626,Mitch Gruber,5853283380,July-September,Y,Y,N,Y,43.21894,-77.73798
+Orleans,Albion,NY,14411,Guinevere Panek,5855896155,June 1-October 31,Y,N,N,Y,43.21866,-78.2551
+Wayne,Wolcott,NY,14590,David & Cindy Savary,3158790798,June 6-October 3,Y,Y,N,Y,43.21855,-76.81491
+Monroe,Brockport,NY,14420,Charlene Veltz,5857503382,June 16-October 27,Y,N,N,Y,43.21556,-77.9385
+Monroe,Rochester,NY,14626,Mitch Gruber,5853283380,July-September,Y,Y,N,Y,43.2122,-77.69579
+Monroe,Rochester,NY,14617,Don Sinton,5853367060,May 30-October 17,Y,Y,Y,Y,43.21118,-77.58154
+Monroe,Webster,NY,14580,Jason Bliek,5852611533,June 8-October 26,Y,N,N,Y,43.20964,-77.45416
+Monroe,Webster,NY,14580,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.20943,-77.4189
+Orleans,Medina,NY,14103,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.20801,-78.38317
+Orleans,Medina,NY,14103,Margaret Roberts,7165601200,Year-round,Y,N,N,Y,43.20679,-78.40098
+Monroe,Rochester,NY,14626,Melanie Fazio,5852251140,June 1-October 26,Y,N,N,Y,43.20677,-77.69406
+Monroe,Rochester,NY,14626,Melanie Fazio,5852251140,June 1-October 26,Y,N,N,Y,43.20677,-77.69406
+Monroe,Rochester,NY,14617,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.20568,-77.60067
+Niagara,Gasport,NY,14067,Sharon Brent,7165600853,Year-round,Y,Y,N,Y,43.20425,-78.52308
+Saratoga,Gansevoort,NY,12831,Linda Gifford,5187920198,June 18-October 29,Y,N,N,Y,43.19612,-73.65167
+Monroe,Rochester,NY,14621,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.19529,-77.60791
+Monroe,Rochester,NY,14621,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.19411,-77.5813
+Monroe,Rochester,NY,14621,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.19395,-77.60168
+Monroe,Rochester,NY,14621,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.19375,-77.6078
+Monroe,Rochester,NY,14621,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.19309,-77.60324
+Monroe,Rochester,NY,14621,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.1904,-77.61943
+Monroe,Rochester,NY,14609,Mitch Gruber,5853283380,April-September,Y,Y,N,Y,43.18972,-77.57741
+Orleans,Albion,NY,14411,Amanda Mrzyuka,5855894674,Year-Round,Y,N,N,Y,43.18941,-78.25422
+Monroe,Rochester,NY,14613,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.18468,-77.63891
+Monroe,Rochester,NY,14609,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.1836,-77.56554
+Herkimer,Newport,NY,13416,Michael Skwara,3159850088,Year-round,Y,Y,N,Y,43.18096,-75.01054
+Monroe,Rochester,NY,14613,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.18092,-77.63017
+Oneida,Rome,NY,13440,Ronald Wagner,3153395182,Year-round,Y,N,N,Y,43.1805,-75.50086
+Monroe,Rochester,NY,14609,Mitch Gruber,5853283380,April-September,Y,Y,N,Y,43.17805,-77.58148
+Monroe,Rochester,NY,14621,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.17777,-77.61842
+Monroe,Rochester,NY,14613,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.17514,-77.64558
+Monroe,Rochester,NY,14613,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.17496,-77.64307
+Fulton,Caroga Lake,NY,12032,Michael Tillson,5188829306,June 7-September 13,Y,N,Y,Y,43.17396,-74.51806
+Monroe,Rochester,NY,14613,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.17387,-77.6516
+Washington,Salem,NY,12865,Cyd Groff,5186421653,June 1-October 12,Y,N,N,Y,43.17322,-73.32837
+Monroe,Rochester,NY,14608,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.17054,-77.62751
+Niagara,Lockport,NY,14094,Jessica Dittly,7164340212,June 8-October 19,Y,Y,N,Y,43.1705,-78.694
+Monroe,Rochester,NY,14605,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.17032,-77.60607
+Niagara,Lockport,NY,14094,Jessica Dittly,7164340212,November 2-May 16,N,Y,N,Y,43.16982,-78.68755
+Monroe,Rochester,NY,14605,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.1693,-77.60223
+Monroe,Rochester,NY,14606,Mitch Gruber,5853283380,June-Season,Y,Y,N,Y,43.16924,-77.69727
+Onondaga,Baldwinsville,NY,13027,Anthony Emmi,3156357529,June 1-October 20,Y,N,N,Y,43.16899,-76.40302
+Monroe,Rochester,NY,14605,Mitch Gruber,5853283380,July-September,Y,Y,N,Y,43.16855,-77.60732
+Monroe,Rochester,NY,14608,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.16603,-77.63234
+Monroe,Rochester,NY,14609,Mitch Gruber,5853283380,April-September,Y,Y,N,Y,43.1658,-77.56665
+Monroe,Rochester,NY,14609,Cindy De Coste,5854286907,Year-round,Y,Y,Y,Y,43.1657,-77.59016
+Monroe,Rochester,NY,14609,Cindy De Coste,5854286907,Year-round,Y,Y,Y,Y,43.1657,-77.59016
+Monroe,Rochester,NY,14609,Cindy De Coste,5854286907,Year-round,Y,Y,Y,Y,43.1657,-77.59016
+Monroe,Rochester,NY,14604,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.16073,-77.6082
+Monroe,Rochester,NY,14605,Mitch Gruber,5853283380,July-November,Y,Y,N,Y,43.16069,-77.59043
+Monroe,Rochester,NY,14609,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.16012,-77.55586
+Monroe,Rochester,NY,14611,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.15933,-77.65077
+Monroe,Rochester,NY,14604,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.15872,-77.61047
+Monroe,Rochester,NY,14604,Mitch Gruber,5853283380,July-September,Y,Y,N,Y,43.15805,-77.60484
+Monroe,Rochester,NY,14607,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.15467,-77.59855
+Monroe,Rochester,NY,14608,Mitch Gruber,5853283380,July-September,Y,Y,N,Y,43.15396,-77.62575
+Monroe,Rochester,NY,14611,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.15038,-77.64166
+Monroe,Rochester,NY,14608,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.14997,-77.62109
+Monroe,Rochester,NY,14624,Judy Russell,5857481898,September - October,Y,N,N,Y,43.14905,-77.77737
+Monroe,Rochester,NY,14611,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.14844,-77.63718
+Monroe,Rochester,NY,14610,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.14804,-77.54569
+Monroe,Rochester,NY,14620,Mitch Gruber,5853283380,June-Septebmer,Y,Y,N,Y,43.1465,-77.60524
+Monroe,Rochester,NY,14620,Glynis Valenti,5852561740,June 20-September 26,Y,Y,Y,Y,43.1464,-77.60882
+Monroe,Rochester,NY,14620,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.14573,-77.61013
+Monroe,Rochester,NY,14612,Don & Jen Lamb,5854899273,June 6-October 18,Y,N,N,Y,43.14434,-77.56195
+Wayne,Rose,NY,14542,Irene Henderberg,3155879062,May 1-December 1,Y,N,N,Y,43.14429,-76.87492
+Monroe,Rochester,NY,14607,Mitch Gruber,5853283380,April-September,Y,Y,N,Y,43.14406,-77.58938
+Monroe,Rochester,NY,14607,Allen Krisiloff,5854734470,June 12-October 16,Y,Y,Y,Y,43.14357,-77.58848
+Herkimer,Salisbury Center,NY,13329,Gina Thompson,3154299102,May 24-October 11,Y,N,N,Y,43.14304,-74.78544
+Monroe,Rochester,NY,14608,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.14251,-77.61894
+Monroe,Rochester,NY,14619,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.14226,-77.64258
+Monroe,Rochester,NY,14611,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.14061,-77.63585
+Monroe,Rochester,NY,14620,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.14006,-77.59637
+Wayne,Walworth,NY,14568,Jacqueline VanLare,3159861400,June 11-October 8,Y,N,N,Y,43.1391,-77.28549
+Onondaga,Liverpool,NY,13088,Anthony Emmi,3156357529,July 5-September 4,Y,N,N,Y,43.13879,-76.17373
+Onondaga,Liverpool,NY,13090,Coleen Tucker,3156521463,May 1-October 30,Y,N,N,Y,43.13779,-76.22602
+Monroe,Rochester,NY,14611,Jackie Farrell,5854368999,June 11-October 8,Y,Y,Y,Y,43.134058,-77.636523
+Monroe,Rochester,NY,14619,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.132866,-77.651137
+Monroe,Rochester,NY,14611,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.13192,-77.6339
+Wayne,Newark,NY,14513,Barbara Wells,3153316294,June 7-December 22,Y,Y,N,Y,43.12967,-77.09774
+Monroe,North Chili,NY,14514,Roger Dart,5853157754,June 15-October 26,Y,N,N,Y,43.12648,-77.78969
+Monroe,Rochester,NY,14620,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.12489,-77.6126
+Monroe,Rochester,NY,14618,Sue Gardner-Smith,5852698918,May 12-November 24,Y,Y,Y,Y,43.12204,-77.56808
+Oneida,Whitesboro,NY,13492,Bob Friedlander,3157361613,June 3-October 7,Y,N,N,Y,43.121773,-75.291136
+Oneida,Whitesboro,NY,13492,Library Staff,3157369734,October 14-December 30,N,N,N,Y,43.121106,-75.289193
+Onondaga,Kirkville,NY,13082,James A Brownson,3156562025,April 1-December 31,Y,N,N,Y,43.11657,-75.95328
+Monroe,Rochester,NY,14620,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.11451,-77.61886
+Monroe,Rochester,NY,14618,Sue Gardner-Smith,5852698918,Dec 1-May 3,N,Y,Y,Y,43.11275,-77.56809
+Madison,Kirkville,NY,13082,Karissa Atwood,3156322739,July 1-October 31,Y,N,N,Y,43.11239,-75.94782
+Oneida,Utica,NY,13501,Elizabeth Irons,3157983639,May 18-October 25,Y,Y,Y,Y,43.10393,-75.2239
+Oneida,Utica,NY,13501,Elizabeth Irons,3157983639,"November 9-Apr 25, 2020",Y,Y,Y,Y,43.10393,-75.2239
+Niagara,Niagara Falls,NY,14305,Jen Regan,7162990905,July 11-September 26,Y,Y,N,Y,43.10213,-79.05196
+Herkimer,Dolgeville,NY,13329,Barbara Campbell,3154293548,June 1-October 12,Y,N,N,Y,43.10057,-74.7755
+Oneida,Utica,NY,13501,Thalia Hunter,3157920114,June 26-October 30,Y,Y,Y,Y,43.10043,-75.22483
+Niagara,Niagara Falls,NY,14301,Jen Regan,7162990905,July 11-September 26,Y,Y,N,Y,43.09992,-79.02631
+Monroe,Fairport,NY,14450,Fritz May,5852236795,May 11-November 23,Y,N,N,Y,43.09992,-77.44214
+Herkimer,Utica,NY,13502,Deborah E Juliano,3157230022,April 25-October 31,Y,N,N,Y,43.09608,-75.14626
+Niagara,Niagara Falls,NY,14301,Victor Muto,7167540798,Year-round,Y,N,N,Y,43.09513,-79.03972
+Niagara,Niagara Falls,NY,14301,Victor Muto,7167540798,Year-round,Y,N,N,Y,43.09513,-79.03972
+Niagara,Niagara Falls,NY,14301,Victor Muto,7167540798,Year-round,Y,N,N,Y,43.09513,-79.03972
+Niagara,Niagara Falls,NY,14301,Jen Regan,7162990905,July 11-September 26,Y,Y,N,Y,43.09224,-79.05563
+Saratoga,Middle Grove,NY,12850,Himanee Gupta-Carlson,5184308360,June 21-September 20,Y,N,N,Y,43.09005,-73.91628
+Washington,Greenwich,NY,12834,Julie Callahan,5189447149,February 13-Dec 18,Y,N,N,Y,43.08931,-73.49854
+Madison,Oneida,NY,13421,Colleen Donahue,3153634136,May 28-August 27,Y,N,N,Y,43.08719,-75.64705
+Saratoga,Saratoga Springs,NY,12866,Justine Denison,5186642510,May 1-October 31,Y,Y,Y,Y,43.08552,-73.78121
+Saratoga,Saratoga Springs,NY,12866,Justine Denison,5186642510,May 1-October 31,Y,Y,Y,Y,43.08552,-73.78121
+Saratoga,Saratoga Springs,NY,12866,Colleen Kelley,5185841621,June 7-October 4,Y,N,N,Y,43.07701,-73.78905
+Niagara,Niagara Falls,NY,14304,Jen Regan,7162990905,July 11-September 26,Y,Y,N,Y,43.07637,-78.96524
+Onondaga,Syracuse,NY,13208,Amanda Vitale,3154228647,Year-round,Y,Y,Y,Y,43.07269,-76.16835
+Onondaga,Syracuse,NY,13208,Amanda Vitale,3154228647,May-November,Y,Y,Y,Y,43.07269,-76.16835
+Onondaga,Syracuse,NY,13208,Amanda Vitale,3154228647,Year-round,Y,Y,Y,Y,43.07269,-76.16835
+Onondaga,Memphis,NY,13112,Robert Nogash,3156723706,June-January,Y,Y,N,Y,43.07172,-76.35375
+Madison,Canastota,NY,13032,Gary J. Debrucque,3153801015,June 1-October 31,Y,N,N,Y,43.06975,-75.75169
+Monroe,Henrietta,NY,14467,Mitch Gruber,5853283380,April-September,Y,Y,N,Y,43.06563,-77.64833
+Monroe,Palmyra,NY,14522,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.06538,-77.23119
+Saratoga,Saratoga Springs,NY,12866,Michael Greenslade,5185842000,Year-round,N,N,N,Y,43.06474,-73.78876
+Saratoga,Saratoga Springs,NY,12866,Justine Denison,5186642510,"November 2-April 26,2020",N,Y,N,Y,43.06464,-73.79044
+Wayne,Lyons,NY,14489,Sean Dobbins,3153744597,June 15-October 26,Y,N,N,Y,43.06336,-76.99243
+Wayne,Newark,NY,14513,Mitch Gruber,5853283380,July-September,Y,Y,N,Y,43.05973,-77.10224
+Fulton,Gloversville,NY,12078,Michael Tillson,5188829306,May 4-October 19,Y,Y,N,Y,43.052604,-74.345796
+Onondaga,Syracuse,NY,13202,Charles McFadden,3154228284,June 11-October 8,Y,Y,N,Y,43.05054,-76.15354
+Oneida,Clinton,NY,13323,Jackie Walters,3158531735,June 6-October 3,Y,Y,Y,Y,43.04932,-75.37881
+Wayne,Newark,NY,14513,Andrew Bodine,3158791120,June 20-October 24,Y,Y,N,Y,43.04412,-77.09252
+Onondaga,Syracuse,NY,13204,Frank Cetera,3153081372,May 4-October 26,Y,N,N,Y,43.04307,-76.16744
+Herkimer,Little Falls,NY,13365,Mary Davis,3158662619,May 4-October 26,Y,N,N,Y,43.04284,-74.85828
+Onondaga,Syracuse,NY,13210,Jennifer Walton,3154788634,June 19-October 30,Y,Y,N,Y,43.03662,-76.1192
+Niagara,North Tonawanda,NY,14120,Matt Parrish,7166958555,Year-round,Y,Y,Y,Y,43.03377,-78.87021
+Niagara,North Tonawanda,NY,14120,Matt Parrish,7166958555,Year-round,Y,Y,Y,Y,43.03377,-78.87021
+Niagara,North Tonawanda,NY,14120,Matt Parrish,7166958555,Year-round,Y,Y,Y,Y,43.03377,-78.87021
+Washington,Cambridge,NY,12816,Lindsay Fisk,5185389467,November 4-December 22,N,N,N,Y,43.02872,-73.37955
+Washington,Cambridge,NY,12816,Lindsay Fisk,5185389467,May 19-October 27,Y,N,N,Y,43.02833,-73.38093
+Monroe,Newark,NY,14513,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,43.02778,-77.0932
+Onondaga,Fayetteville,NY,13066,Lacey Cashman,3013351434,Year-Round,Y,N,N,Y,43.02764,-76.01608
+Herkimer,Herkimer,NY,13350,Rose Burroughs,3158666964,July 11-September 19,N,N,N,Y,43.02696,-74.98528
+Monroe,Scottsville,NY,14546,Marcy McCall,5858893981,June 5-September 25,Y,N,N,Y,43.0193,-77.75548
+Onondaga,Syracuse,NY,13205,Diane Turner,3153450600,Year-round,Y,Y,Y,Y,43.016878,-76.153714
+Onondaga,Syracuse,NY,13207,Jessi Lyons,3154204521,June 8-October 26,Y,Y,N,Y,43.01343,-76.15644
+Cayuga,Weedsport,NY,13166,Gordon Tripp,3152524097,August 1-March 31,Y,Y,N,Y,43.01314,-76.50749
+Genesee,Batavia,NY,14020,Leon Halat Jr,7164744573,May 1 - December 31,Y,N,N,Y,43.01245,-78.2021
+Herkimer,Mohawk,NY,13407,Bre Baylor,3158662983,June 5-October 16,N,N,N,Y,43.01227,-75.00124
+Fulton,Johnstown,NY,12095,Michael Tillson,5188829306,June 25-October 15,Y,N,Y,Y,43.00636,-74.37421
+Montgomery,St. Johnsville,NY,13452,Barb Damin,5185682643,Year-round,Y,Y,N,Y,43.00497,-74.72233
+Saratoga,Ballston Spa,NY,12020,Ellen Mottola,5188852772,June 15-September 28,Y,N,N,Y,43.00256,-73.84964
+Saratoga,Ballston Spa,NY,12020,Ellen Mottola,5188852772,June 20-September 26,Y,N,N,Y,43.00241,-73.85154
+Genesee,Batavia,NY,14020,Sharon Brent,7165600853,June 11-October 22,Y,Y,Y,Y,42.99905,-78.18151
+Genesee,Batavia,NY,14020,Sharon Brent,7165600853,June 7-October 25,Y,Y,Y,Y,42.99905,-78.18151
+Genesee,Batavia,NY,14020,Sharon Brent,7165600853,June 13-October 24,Y,Y,Y,Y,42.99905,-78.18151
+Genesee,Batavia,NY,14020,Mitch Gruber,5853283380,July-September,Y,Y,N,Y,42.99659,-78.17634
+Erie,Clarence,NY,14031,Dan Huntington,7163930590,June 15-October 12,Y,N,N,Y,42.98909,-78.55762
+Erie,Clarence,NY,14221,Julie Fix-Minchen,7168789628,June 19-October 16,Y,N,N,Y,42.9861,-78.69691
+Montgomery,Amsterdam,NY,12010,Melissa Levoy,5185770033,August 1-November 30,Y,N,N,Y,42.98258,-74.16679
+Ontario,Victor,NY,14564,Roseanne Turner-Adams,5859243311,June 5-October 30,Y,N,N,Y,42.98236,-77.4088
+Erie,Clarence,NY,14031,Cheryl Anthony,7167591075,June 1-October 26,Y,N,N,Y,42.9808,-78.58904
+Genesee,Le Roy,NY,14482,Mary Margaret Ripley,5852972441,June 15-September 28,Y,N,N,Y,42.97756,-77.98592
+Saratoga,Ballston Lake,NY,12019,Maria Matthews,5188825416,June-November,Y,N,N,Y,42.97542,-73.99127
+Saratoga,West Charlton,NY,12010,Jason Arnold,5182699562,June 1-November 23,Y,N,N,Y,42.96962,-74.02911
+Onondaga,Marcellus,NY,13108,Sue Jones,3156731350,November-April,N,N,N,Y,42.964885,-76.344609
+Erie,Buffalo,NY,14217,Lauren Willett-Benson,7162289068,June 16-October 13,N,N,N,Y,42.96362,-78.8698
+Erie,Williamsville,NY,14221,Debbie Griffin,7166018466,May-October,N,N,N,Y,42.962438,-78.745756
+Ontario,Clifton Springs,NY,14432,Mitch Gruber,5853283380,July-September,Y,Y,N,Y,42.96143,-77.13613
+Oneida,Cassville,NY,13318,Katherine Warden,3157251716,Year-round,Y,N,N,Y,42.95876,-75.29667
+Montgomery,Fonda,NY,12068,Pat Brooking,5187701390,March 1-December 24,Y,Y,N,Y,42.95627,-74.36841
+Erie,Buffalo,NY,14216,Joann Steinmetz,7168361361,June 20-October 26,Y,Y,N,Y,42.95173,-78.84797
+Saratoga,Ballston Spa,NY,12020,Gaynell Bliss,5189353341,July 15-October 15,Y,N,N,Y,42.95105,-73.91653
+Onondaga,Pavilion,NY,13152,Sue Murphy,3157279320,May-October,Y,N,N,Y,42.95091,-76.43045
+Onondaga,Skaneateles,NY,13152,Sue Murphy,3157279320,May-October,Y,N,N,Y,42.95089,-76.4309
+Erie,Buffalo,NY,14215,Danielle Rovillo,7168825327,June 4-October 28,Y,Y,N,Y,42.9433,-78.8134
+Erie,Buffalo,NY,14214,Danielle Rovillo,7168825327,June 6-October 30,Y,Y,N,Y,42.93779,-78.83581
+Saratoga,Stillwater,NY,12170,Autumn Carpenter,5186645752,June 4-October 15,Y,N,N,Y,42.93756,-73.65848
+Cayuga,Auburn,NY,13021,Mark Soper,3157048609,June 1-October 26,Y,Y,Y,Y,42.93406,-76.56985
+Cayuga,Auburn,NY,13021,Mark Soper,3157048609,June 4-October 29,Y,Y,Y,Y,42.93401,-76.57007
+Cayuga,Auburn,NY,13021,Mark Soper,3157048609,June 6-October 31,Y,Y,Y,Y,42.93401,-76.57007
+Montgomery,Fort Plain,NY,13339,Annette Rorick,5189934271,May 23-November 15,Y,N,N,Y,42.9316,-74.62182
+Madison,Cazenovia,NY,13035,Aileen Randolph,3156554429,May 11-October 26,N,N,N,Y,42.92975,-75.85456
+Ontario,Canandaigua,NY,14424,Marlin & Leann Sensenig,7175870079,April 15-December 24,Y,N,N,Y,42.92848,-77.30929
+Madison,Cazenovia,NY,13035,Tricia Park,3157202141,November 1-March 1,N,N,N,Y,42.92467,-75.85168
+Erie,Buffalo,NY,14222,Ashley Smith,7168810707,May 11-November 23,Y,Y,N,Y,42.92371,-78.87702
+Erie,Buffalo,NY,14213,Seth Brown,8143678108,July 5-October 25,Y,Y,N,Y,42.9223,-78.8969
+Erie,Buffalo,NY,14208,Danielle Rovillo,7168825327,June 7-October 31,Y,Y,N,Y,42.91597,-78.85403
+Montgomery,Fort Plain,NY,13339,David Clancy,5189934806,June  17-November 1,Y,N,N,Y,42.91494,-74.62885
+Erie,Buffalo,NY,14213,Danielle Rovillo,7168825327,June 5-October 29,Y,Y,N,Y,42.9128,-78.88774
+Erie,Buffalo,NY,14211,Mayda Pozantides,7169087396,June 4-November 5,Y,N,N,Y,42.91092,-78.81813
+Seneca,Seneca Falls,NY,13148,Gregg Zellers,3153384359,June 11-October 8,Y,Y,Y,Y,42.91008,-76.80086
+Saratoga,Mechanicville,NY,12118,Michelle Duell,5186644646,June 3-September 30,Y,N,N,Y,42.90881,-73.68361
+Saratoga,Burnt Hills,NY,12027,Carol Gumienny,5184902750,June 1-October 5,Y,N,N,Y,42.90853,-73.89973
+Saratoga,Mechanicville,NY,12118,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.90829,-73.68374
+Erie,Buffalo,NY,14213,Carrie Nader,7163616591,Jun 1-November 2,Y,Y,Y,Y,42.90687,-78.88899
+Montgomery,Canajoharie,NY,13317,Janet L. Stanley,5186730292,June-October,Y,N,N,Y,42.90515,-74.57222
+Livingston,Lima,NY,14485,Suzanne Muehleisen,5857529238,June 25-October 22,Y,N,N,Y,42.90496,-77.61175
+Monroe,Lima,NY,14485,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,42.9028,-77.62298
+Seneca,Waterloo,NY,13165,Melissa Nesbit,3157309476,June 22-October 5,Y,Y,N,Y,42.90253,-76.86587
+Erie,Buffalo,NY,14204,Danielle Rovillo,7168825327,June 6-October 30,Y,Y,N,Y,42.90029,-78.85812
+Erie,Buffalo,NY,14202,Danielle Rovillo,7168825327,June 1-October 27,Y,Y,N,Y,42.90008,-78.87024
+Saratoga,Mechanicville,NY,12118,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.89934,-73.69122
+Erie,Alden,NY,14004,Alyssa Cooper,7169376177,May 11-October 12,Y,N,N,Y,42.89784,-78.49904
+Erie,Buffalo,NY,14212,Kathleen Peterson,7168930705,year-round,N,Y,N,Y,42.893162,-78.837667
+Erie,Buffalo,NY,14206,Terra Dumas,7162929109,June 8-October 5,Y,Y,N,Y,42.88783,-78.84284
+Ontario,Canandaigua,NY,14424,Brian Howell,5854064771,June 1-October 26,Y,N,N,Y,42.8857,-77.27849
+Erie,Buffalo,NY,14203,Paige Tilley,7168563150,May 16-October 24,Y,Y,N,Y,42.8844,-78.8754
+Erie,Buffalo,NY,14202,Paige Tilley,7168563150,May 16-October 24,Y,Y,N,Y,42.88418,-78.87491
+Ontario,Canandaigua,NY,14424,Rich Riedman,5853946597,November 9-May 30,Y,N,N,Y,42.88362,-77.2801
+Madison,Bouckville,NY,13310,Terry Mosher,3158937173,June 10-October 31,Y,N,N,Y,42.87972,-75.57175
+Herkimer,West Winfield,NY,13491,David or Cynthia Ball,3159823589,June 18-October 1,Y,N,N,Y,42.87912,-75.19255
+Ontario,Canandaigua,NY,14424,Mitch Gruber,5853283380,July-September,Y,Y,N,Y,42.8789,-77.27981
+Ontario,Geneva,NY,14456,Kathy Ryrko,3157874190,July 8-September 23,Y,N,N,Y,42.87573,-76.9877
+Monroe,Geneva,NY,14456,Mitch Gruber,5853283380,April-September,Y,Y,N,Y,42.87554,-76.9801
+Erie,Buffalo,NY,14206,Sharon Baldi,7162080003,May 1-October 31,Y,Y,N,Y,42.87206,-78.81997
+Erie,Buffalo,NY,14206,Sharon Baldi,7162080003,May 1-October 31,Y,Y,N,Y,42.87206,-78.81997
+Erie,Buffalo,NY,14206,Sharon Baldi,7162080003,May 1-October 31,Y,Y,N,Y,42.87206,-78.81997
+Erie,Buffalo,NY,14206,Sharon Baldi,7162080003,May 1-October 31,Y,Y,N,Y,42.87206,-78.81997
+Erie,Buffalo,NY,14206,Sharon Baldi,7162080003,May 1-October 31,Y,Y,N,Y,42.87206,-78.81997
+Erie,Buffalo,NY,14206,Sharon Baldi,7162080003,May 1-October 31,Y,Y,N,Y,42.87206,-78.81997
+Erie,Buffalo,NY,14206,Sharon Baldi,7162080003,Year-round,Y,Y,N,Y,42.87205,-78.81998
+Monroe,Geneva,NY,14456,Mitch Gruber,5853283380,April-September,Y,Y,N,Y,42.8709,-76.98484
+Ontario,Geneva,NY,14456,David Sharman,3157895005,June 13-October 17,Y,N,N,Y,42.869,-76.98106
+Ontario,Geneva,NY,14456,David Sharman,3157895005,June 22-October 12,Y,N,N,Y,42.869,-76.98106
+Saratoga,Clifton Park,NY,12065,Justine Denison,5186642510,July 1-October 28,Y,N,N,Y,42.8688,-73.80859
+Monroe,Geneva,NY,14456,Mitch Gruber,5853283380,April-September,Y,Y,N,Y,42.86795,-76.98268
+Schenectady,Scotia,NY,12302,Keith Buhrmaster,5183995931,May 1-December 24,N,N,N,Y,42.86538,-73.93288
+Ontario,Geneva,NY,14456,Flora Liu,3157810014,July-September,Y,N,N,Y,42.86515,-76.98162
+Otsego,Richfield Springs,NY,13439,Ronald Bayzon,3158582703,June 15-October 26,Y,N,N,Y,42.85359,-74.98476
+Otsego,Richfield Springs,NY,13439,Ronald Bayzon,3158582703,June 20-October 31,Y,N,N,Y,42.85341,-74.98506
+Saratoga,Clifton Park,NY,12065,Kevin Bowman,5183712042,June 7-September 25,Y,N,N,Y,42.84034,-73.79385
+Madison,Erieville,NY,13061,Elizabeth Blackburn,3156627565,May 1-October 21,Y,N,N,Y,42.83934,-75.74399
+Madison,Hamilton,NY,13346,Gwenn Werner,3158240002,November-April,N,N,N,Y,42.832844,-75.548027
+Herkimer,West Winfield,NY,13491,David or Cynthia Ball,3159823589,June 18-October 1,Y,N,N,Y,42.83092,-75.1367
+Saratoga,Waterford,NY,12188,Michelle Petuske,5183715709,June 1-September 30,Y,Y,N,Y,42.82758,-73.71722
+Madison,Hamilton,NY,13346,Kim Taranto,3158241111,May 4-October 26,Y,N,N,Y,42.82684,-75.54436
+Niagara,Lackawanna,NY,14218,Jen Regan,7162990905,July 10-September 25,Y,Y,N,Y,42.82598,-78.82227
+Niagara,Lackawanna,NY,14218,Jen Regan,7162990905,July 10-September 25,Y,Y,N,Y,42.82592,-78.83083
+Niagara,Lackawanna,NY,14218,Jen Regan,7162990905,July 10-September 25,Y,Y,N,Y,42.82093,-78.84284
+Niagara,Lackawana,NY,14218,Jen Regan,7162990905,July 10-September 25,Y,Y,N,Y,42.81641,-78.8161
+Saratoga,Rexford,NY,12148,Kevin Bowman,5183712042,June 1-November 30,Y,N,N,Y,42.81576,-73.83953
+Schenectady,Schenectady,NY,12305,Steve Feeney,5183862225,May 9-October 31,Y,Y,Y,Y,42.81378,-73.94032
+Schenectady,Schenectady,NY,12305,Cheryl Whilby,5189860318,May 5-October 27,Y,Y,Y,Y,42.81372,-73.94015
+Schenectady,Schenectady,NY,12305,Erika Baer,5189860318,November 3-April 26,N,Y,N,Y,42.812373,-73.941802
+Schenectady,Schenectady,NY,12307,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.80923,-73.93822
+Schenectady,Schenectady,NY,12305,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.80919,-73.94511
+Schenectady,Schenectady,NY,12305,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.80375,-73.95193
+Schenectady,Schenectady,NY,12307,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.80323,-73.93741
+Schenectady,Schenectady,NY,12307,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.8014,-73.9278
+Schoharie,Sharon Springs,NY,13459,Kenyon Parsons,5182842330,June 1-December 24,Y,N,N,Y,42.78332,-74.60004
+Albany,Cohoes,NY,12047,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.77712,-73.70101
+Rensselaer,Troy,NY,12182,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.7748,-73.67761
+Madison,Poolville,NY,13332,Chris Amman,3155273429,"Nov 2-April 4, 1st Sat Jan-April",N,N,N,Y,42.77299,-75.50557
+Rensselaer,Troy,NY,12182,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.77223,-73.67258
+Erie,East Aurora,NY,14052,Gail Fenton,5853439491,May 4-November 27,Y,N,Y,Y,42.76593,-78.63413
+Erie,East Aurora,NY,14052,Gail Fenton,5853439491,May 4-November 27,Y,N,Y,Y,42.76593,-78.63413
+Albany,Niskayuna,NY,12309,Al Or Jessica Lansing,5184640889,May 5-November 20,Y,N,N,Y,42.7629,-73.85447
+Schenectady,Schenectady,NY,12303,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.76062,-73.94004
+Wyoming,Warsaw,NY,14569,Patricia Reiter,5855911358,July 11-September 26,Y,N,N,Y,42.74796,-78.13257
+Wyoming,Warsaw,NY,14569,Ashley Milhollen,5857868766,June 12-September 25,Y,N,N,Y,42.74311,-78.13256
+Rensselaer,Troy,NY,12180,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.74208,-73.68525
+Rensselaer,Troy,NY,12180,Nell Roberts,5182748685,May 7-October 29,Y,Y,Y,Y,42.73697,-73.68247
+Rensselaer,Troy,NY,12180,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.73495,-73.68493
+Rensselaer,Troy,NY,12180,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.73436,-73.68587
+Rensselaer,Troy,NY,12180,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.733148,-73.684555
+Rensselaer,Troy,NY,12180,Stephen Ridler,5187084216,May 4-October 26,Y,Y,Y,Y,42.73214,-73.6905
+Rensselaer,Troy,NY,12180,Stephen Ridler,5187084216,November 2-April 25,Y,Y,Y,Y,42.73196,-73.68893
+Rensselaer,Troy,NY,12180,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.73123,-73.69261
+Rensselaer,Troy,NY,12180,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.73006,-73.69055
+Albany,Albany,NY,12205,Krysta Dennis,5186692636,May 28-September 26,Y,N,N,Y,42.72889,-73.84576
+Rensselaer,Watervliet,NY,12189,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.72629,-73.70008
+Livingston,Mount Morris,NY,14510,Anna Spencer,9102601057,June 7-September 27,Y,N,N,Y,42.7245,-77.87333
+Albany,Altamont,NY,12009,Jim Abbruzzese,5188616515,Aug 31-Dec 23,Y,N,N,Y,42.72256,-74.01493
+Livingston,Mt. Morris,NY,14510,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,42.72139,-77.87262
+Wyoming,Perry,NY,14530,Rick Hauser,5859913893,June 15-September 28,Y,N,N,Y,42.71842,-78.00218
+Albany,Loudonville,NY,12211,Emily Szesnat,5184588294,July 10 -September 30,Y,N,N,Y,42.71722,-73.78613
+Erie,Hamburg,NY,14075,Jamie Decker,7166497917,May 4-October 26,Y,N,N,Y,42.71677,-78.82994
+Cayuga,Moravia,NY,13118,Barbara Flynn,3154962235,June 6-October 31,Y,N,N,Y,42.71209,-76.42079
+Albany,Altamont,NY,12009,Amy Castillo,5188698019,March 15-December 24,Y,N,N,Y,42.71055,-73.92593
+Albany,Colonie,NY,12211,Laura Archambault,5187832760,May 18-September 28,Y,N,N,Y,42.71016,-73.78029
+Otsego,Cooperstown,NY,13326,Wilfred Bruneau,6075478212,July 1-November 2,Y,N,N,Y,42.70279,-74.8348
+Albany,Altamont,NY,12009,Jim Abbruzzese,5188616515,July 12-August 30,Y,N,N,Y,42.70149,-74.03254
+Otsego,Cooperstown,NY,13326,Ellen Pope,6075478881,June-September,Y,Y,Y,Y,42.70063,-74.92524
+Otsego,Cooperstown,NY,13326,Ellen Pope,6075478881,Year-round,Y,Y,Y,Y,42.70001,-74.92526
+Schoharie,Schoharie,NY,12157,Shirley Ball,5182957139,March 1-December 24,Y,N,N,Y,42.68477,-74.29692
+Albany,Albany,NY,12206,Randy Tryon,5186415611,June 6-October 3,Y,N,N,Y,42.68418,-73.80587
+Schoharie,Cobleskill,NY,12043,Donna Olsen,5182842609,July 24-September 7,Y,Y,N,Y,42.68006,-74.46674
+Schoharie,Cobleskill,NY,12043,Donna Olsen,5182842609,July 13-October 12,Y,Y,N,Y,42.68005,-74.46673
+Albany,Albany,NY,12203,Nicholas DeBlois,5184863966,May 1-October 10,Y,N,N,Y,42.678038,-73.809942
+Erie,Derby,NY,14074,Joseph Kwilos,7165496201,May 8-October 31,Y,N,N,Y,42.67729,-79.02178
+Seneca,Ovid,NY,14521,Patti Paine Battley,3155399251,July 5-August 30,Y,Y,N,Y,42.67552,-76.82293
+Albany,Albany,NY,12204,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.67368,-73.73953
+Albany,Albany,NY,12203,Katy Stenta,5184828063,May 21-October 1,Y,N,N,Y,42.67228,-73.81026
+Albany,Albany,NY,12206,Hannah Wise,5184267181,June 24-September 30,Y,N,N,Y,42.672,-73.77637
+Albany,Albany,NY,12206,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.66508,-73.76804
+Albany,Albany,NY,12210,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.66338,-73.75595
+Albany,Albany,NY,12210,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.6629,-73.76094
+Albany,Albany,NY,12207,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.66215,-73.74859
+Albany,Albany,NY,12202,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.66205,-73.7578
+Yates,Penn Yan,NY,14527,Rivka Davis,6072435234,May 25-September 28,Y,N,N,Y,42.66095,-77.05365
+Albany,Albany,NY,12203,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.65998,-73.77276
+Rensselaer,Rensselaer,NY,12144,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.65953,-73.73008
+Cortland,Homer,NY,13077,David Root,6077494955,May 10-October 31,Y,Y,N,Y,42.659118,-76.203042
+Albany,Albany,NY,12208,Theresa Joslin,5185255437,June 12-September 25,Y,N,N,Y,42.65609,-73.80517
+Rensselaer,Rensselaer,NY,12144,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.65482,-73.73432
+Albany,Albany,NY,12210,Scott Abraham,5185958109,August 3-Sept 28,Y,N,N,Y,42.65468,-73.76646
+Albany,Albany,NY,12208,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.65244,-73.81416
+Albany,Albany,NY,12208,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.65197,-73.81477
+Albany,Albany,NY,12210,Nicholas DeBlois,5184863966,March 1-October 11,Y,Y,Y,Y,42.65162,-73.75692
+Albany,Albany,NY,12210,Nicholas DeBlois,5184863966,Year-round,Y,Y,Y,Y,42.65068,-73.758
+Rensselaer,Rensselaer,NY,12144,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.65038,-73.73443
+Albany,Voorheesville,NY,12186,Dianne Luci,5187654536,June 19-October 2,Y,N,N,Y,42.64892,-73.92991
+Albany,Albany,NY,12207,Frank Stanton,5187568228,Year-round,N,N,N,Y,42.64847,-73.75012
+Albany,Albany,NY,12207,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.6465,-73.75482
+Albany,Albany,NY,12202,Tom McPheeters,5184519849,June 29-October 26,N,Y,N,Y,42.64326,-73.7599
+Albany,Albany,NY,12209,Louise McNeilly,5184341730,June 18-November 19,Y,Y,N,Y,42.64305,-73.77824
+Erie,Holland,NY,14080,Marg Wnek,7165379590,May 5-October 27,Y,N,N,Y,42.64149,-78.54248
+Albany,Albany,NY,12202,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.64112,-73.75802
+Albany,Albany,NY,12202,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.64093,-73.75363
+Cayuga,Cortland,NY,13045,Scott Badman,6077495233,May 7-October 30,Y,N,N,Y,42.63978,-76.27522
+Cortland,Homer,NY,13077,Kristen Case,6077493322,May 11-October 26,Y,Y,N,Y,42.63966,-76.17827
+Rensselaer,Rensselaer,NY,12144,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.63925,-73.73936
+Rensselaer,Rensselaer,NY,12144,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.63326,-73.73991
+Cayuga,Locke,NY,13092,Jeff Saeli,6075925810,June 1-November 30,Y,N,N,Y,42.6309,-76.45455
+Albany,Albany,NY,12202,Audrey Bridge,5182748685,Year-round,Y,Y,Y,Y,42.63003,-73.76585
+Chenango,Plymouth,NY,13832,Kathryn Clemens,6073365834,Year-round,Y,N,N,Y,42.62427,-75.59152
+Albany,Delmar,NY,12054,Richard Rugen,5188634711,May 7-November 26,Y,N,N,Y,42.62298,-73.83623
+Albany,Delmar,NY,12054,Ken Myer,5184871991,May 4-December 21,Y,Y,N,Y,42.6212,-73.82577
+Rensselaer,East Greenbush,NY,12061,Shannon Romanowski,5184772570,June 12-September 25,Y,N,N,Y,42.619,-73.69488
+Cortland,Cortland,NY,13045,Joan Franklin,6077493424,May 18-October 29,Y,Y,N,Y,42.60028,-76.18044
+Cortland,Cortland,NY,13045,Joan Franklin,6077493424,May 18-October 29,Y,Y,N,Y,42.60028,-76.18044
+Schoharie,Fulton,NY,12122,Sarah Hooper,5188275454,Year-round,Y,Y,N,Y,42.58123,-74.39189
+Yates,Penn Yan,NY,14527,Stephen D. Wilson,3155215513,April 27-December 14,Y,N,N,Y,42.57687,-77.03609
+Erie,North Collins,NY,14111,Bruce Bowman,7163372695,June-October,Y,Y,N,Y,42.57506,-78.93838
+Erie,Irving,NY,14081,Azalia Garlow,7169037066,June 11-October 29,Y,Y,Y,Y,42.57394,-79.09044
+Livingston,Dansville,NY,14437,Gary Roth,5853352963,May 24-October 4,Y,Y,N,Y,42.56606,-77.70838
+Rensselaer,Castleton,NY,12033,Kenneth Johnson,5184776250,May 1-November 23,Y,N,N,Y,42.56495,-73.70495
+Cortland,Cortland,NY,13045,John and Carla Plunkett,6077530001,June 1-November 30,Y,N,N,Y,42.55495,-76.13123
+Livingston,Dansville,NY,14437,Mitch Gruber,5853283380,June-September,Y,Y,N,Y,42.55055,-77.69462
+Otsego,Morris,NY,13808,Kristina Shields,6072635203,May 23-October 10,Y,N,N,Y,42.54813,-75.24686
+Chenango,Norwich,NY,13815,Richard Williams,6073342676,May 1-November 30,Y,N,N,Y,42.54525,-75.52498
+Tompkins,Trumansburg,NY,14886,Victoria Badalmenti,6073876501,May 8-October 30,Y,N,Y,Y,42.54205,-76.66668
+Cortland,Cincinnatus,NY,13040,Paul Halstead,6078368972,May 11-November 2,Y,N,N,Y,42.53812,-75.89662
+Chenango,Norwich,NY,13815,Carol Eichler,6073347674,May 4-November 28,Y,N,N,Y,42.53184,-75.5229
+Chenango,Norwich,NY,13815,Sandy Pierce,6073344928,Year-round,Y,Y,Y,Y,42.53055,-75.52365
+Tompkins,Freeville,NY,13068,Margaret Tracy,6073474617,June 1-November 1,Y,N,N,Y,42.5272,-76.41507
+Cortland,Virgil,NY,13045,Matt Hollenbeck,6078356455,June 1-October 12,Y,N,N,Y,42.51058,-76.19184
+Erie,Springville,NY,14141,Donna Goldhawk,7165600198,Year-round,Y,N,N,Y,42.50906,-78.67989
+Erie,Collins,NY,14034,Alan Butzer,7165481863,June 1-November 30,Y,Y,N,Y,42.49846,-78.92872
+Tompkins,Dryden,NY,13053,Kelly Ritter,6078448663,June 15-September 28,Y,N,N,Y,42.49034,-76.30358
+Chautauqua,Dunkirk,NY,14048,Edward Hayes,7163669876,June 12-October 16,Y,Y,Y,Y,42.48427,-79.32655
+Schoharie,Jefferson,NY,12093,Carol Bodnar,6076522107,May 15-October 12,Y,N,N,Y,42.48069,-74.6133
+Allegany,Fillmore,ny,14735,Terry Wagoner,5856108836,May 15-October 31,Y,Y,N,Y,42.48057,-78.09042
+Tompkins,Ithaca,NY,14850,Gregory Rothman,6072295799,June 15-November 30,Y,N,N,Y,42.4718,-76.54806
+Columbia,New Lebanon,NY,12125,Chelsea Vigue,5083173502,June 2-October 27,Y,Y,N,Y,42.46715,-73.3917
+Columbia,New Lebanon,NY,12125,Chelsea Vigue,5083173502,November 17-May 17,N,Y,N,Y,42.46421,-73.39698
+Chautauqua,Dunkirk,NY,14048,Roberto Fred,7163667200,June 11-November,Y,Y,N,Y,42.464201,-79.361694
+Otsego,Oneonta,NY,13820,Meg Kennedy,6072938128,May 4-October 26,Y,N,N,Y,42.45417,-75.06173
+Otsego,Oneonta,NY,13820,Betty Lee,6072671807,Nov 2-April 26,N,N,N,Y,42.45397,-75.06188
+Tompkins,Ithaca,NY,14850,Becca Rimmel,6072737109,April 6-December 22,Y,Y,Y,Y,42.44958,-76.50782
+Tompkins,Ithaca,NY,14850,Becca Rimmel,6072737109,April 6-December 21,Y,Y,Y,Y,42.44958,-76.50785
+Tompkins,Ithaca,NY,14850,Becca Rimmel,6072737109,April 6-December 19,Y,Y,Y,Y,42.44958,-76.50782
+Chautauqua,Fredonia,NY,14063,Rosemary Joy,7164107313,November 2-May 9,Y,Y,Y,Y,42.44764,-79.315
+Tompkins,Ithaca,NY,14850,Becca Rimmel,6072737109,May 7-October 29,Y,Y,Y,Y,42.44131,-76.49911
+Tompkins,Ithaca,NY,14850,Becca Rimmel,6072737109,January 5-March 30,N,Y,N,Y,42.44097,-76.51093
+Chautauqua,Fredonia,NY,14063,Anneliese Bruegel,7169652716,May 18-October 26,Y,Y,Y,Y,42.44064,-79.33235
+Chenango,Oxford,NY,13830,Mina Takahashi,6072266843,November-April,N,N,N,Y,42.440234,-75.594121
+Tompkins,Ithaca,NY,14850,Becca Rimmel,6072737109,May 8-October 30,Y,Y,Y,Y,42.4385,-76.46559
+Delaware,South Kortright,NY,13842,Diane Frances,6075389707,June 1-December 1,Y,N,N,Y,42.41111,-74.71033
+Columbia,Kinderhook,NY,12106,Kim Voltz,5187559293,May 11-October 12,Y,N,N,Y,42.3954,-73.69817
+Tompkins,Brooktondale,NY,14817,Carine Kenyon,6075397927,June 4-October 1,Y,N,N,Y,42.38185,-76.39376
+Schuyler,Watkins Glen,NY,14891,Jylle Benson-Gauss,6075462351,May 24-October 25,Y,N,N,Y,42.38096,-76.86954
+Chenango,Greene,NY,13778,Jim Girton,6076567242,May 1-October 31,Y,N,N,Y,42.37041,-75.78369
+Delaware,Hobart,NY,12167,Andrew Flach,6075384007,June 7-September 27,Y,N,N,Y,42.37016,-74.66867
+Cattaraugus,South Dayton,NY,14138,Linda Dewey,7166729004,June 1-October 19,Y,N,N,Y,42.3609,-79.04925
+Greene,Coxsackie,NY,12051,Kimberly Bender,5183303008,May 15-September 25,Y,N,N,Y,42.3525,-73.79622
+Schuyler,Montour Falls,NY,14685,Roxanne Leyes,6075357489,May 2-October 3,Y,Y,Y,Y,42.34629,-76.84783
+Allegany,Belfast,NY,14711,Stephen Demarte,7165605594,June-November,Y,N,N,Y,42.34485,-78.11563
+Schuyler,Beaver Dams,NY,14812,Richard Roberts,6072153257,May-October,Y,N,N,Y,42.3443,-76.96252
+Delaware,Franklin,NY,13775,Brian Brock,5187060612,May 26-October 13,Y,N,N,Y,42.33901,-75.1672
+Cattaraugus,Franklinville,NY,14737,Phyllis Couture,7169423710,June 12-September 25,Y,Y,N,Y,42.33772,-78.45771
+Delaware,Unadilla,NY,13849,Johnson Erin,9147992078,July 15-October 31,Y,N,N,Y,42.33657,-75.28612
+Steuben,Bath,NY,14810,Phillip Glosick,6077763577,May 4-October 26,Y,N,N,Y,42.33353,-77.31842
+Steuben,Bath,NY,14810,Hazel Buck,6077943494,May 1-October 30,Y,Y,N,Y,42.33353,-77.31842
+Steuben,Hornell,NY,14843,Valorie Whitehall,6073249786,June 6-September 26,Y,N,N,Y,42.32902,-77.66062
+Steuben,Bath,NY,14810,David Hyer,6077947043,April 19-December 24,Y,N,N,Y,42.32583,-77.29073
+Chautauqua,Westfield,NY,14787,Nancy Scriven,7162699726,May 25-September 29,Y,N,N,Y,42.32203,-79.57812
+Allegany,Angelica,NY,14709,Tammy Wise,8026735466,June 8-September 28,Y,N,N,Y,42.3066,-78.01619
+Greene,Athens,NY,12015,Chellie Apa,5187318776,March 15-December 24,Y,Y,N,Y,42.30634,-73.85043
+Chenango,Greene,NY,13778,Ellen Evans,6076567319,July 1-October 15,Y,N,N,Y,42.291625,-75.640573
+Chautauqua,Ripley,NY,14775,Patricia Hathaway,7167536072,May 1-September 30,Y,Y,N,Y,42.28014,-79.68442
+Delaware,Delhi,NY,13753,Meg Kennedy,6072938128,June 5-September 19,Y,N,N,Y,42.27744,-74.91673
+Greene,Leeds,NY,12451,Ron Bulich,5185885320,June 15-October 31,Y,N,N,Y,42.26297,-73.92541
+Allegany,Alfred,NY,14802,Cassandra Bull,5189373234,June 16-October 27,Y,Y,N,Y,42.25359,-77.79036
+Cattaraugus,Little Valley,NY,14755,Cindy Lauer,7164320121,July 4-September 26,Y,N,N,Y,42.24889,-78.78557
+Columbia,Hudson,NY,12534,Branda Maholtz,5188287217,May 4-November 23,Y,Y,Y,Y,42.24866,-73.78369
+Columbia,Hudson,NY,12534,Marilyn Cederoth,5189650552,"Dec, February-April",N,N,N,Y,42.24738,-73.78535
+Allegany,Belmont,NY,14813,Phyllis Couture,7169423710,May 23-October 24,Y,Y,N,Y,42.2356,-78.05212
+Tioga,Candor,NY,13743,Joellen Riggs,6077684072,June 21-September 26,Y,Y,N,Y,42.23249,-76.33317
+Chautauqua,Sinclairville,NY,14782,Barb Swan,7169622514,July 25-October 20,Y,N,N,Y,42.22834,-79.2554
+Greene,Catskill,NY,12414,Donna Christensen,5187198244,June 7-September 13,Y,N,N,Y,42.21821,-73.86507
+Tioga,Spencer,NY,14883,Stephanie Hafl,6075897496,June 1-October 1,Y,N,N,Y,42.21138,-76.49267
+Columbia,Claverack,NY,12534,Virginia Ambrose,5188212453,May 4-December 24,Y,Y,N,Y,42.2105,-73.67909
+Delaware,Halcottville,NY,12438,Madalyn Warren,6073266177,May 19-November 30,Y,N,N,Y,42.20103,-74.59909
+Greene,Tannersville,NY,12485,Becky Kempter,9165993136,Year-round,Y,N,N,Y,42.19546,-74.13889
+Columbia,Hillsdale,NY,12529,Diane Creed,5183251430,May 25-October 26,Y,Y,Y,Y,42.17077,-73.51771
+Delaware,Walton,NY,13856,Jeanne Darling,6078656531,July 5-September 27,Y,N,N,Y,42.16855,-75.13157
+Steuben,Painted Post,NY,14870,Cathy Halm,6075278730,May 18-October 26,Y,N,N,Y,42.16134,-77.0919
+Steuben,Painted Post,NY,14870,Cathy Halm,6075278730,"November 2-March 21,2020",N,N,N,Y,42.16067,-77.09283
+Chemung,Horseheads,NY,14845,Cassidy L Mallernee,6077954430,July 11-September 26,Y,N,N,Y,42.16027,-76.82182
+Cattaraugus,Salamanca,NY,14779,Phyllis Couture,7169423710,May 21-October 29,Y,Y,N,Y,42.15497,-78.71739
+Chautauqua,Kennedy,NY,14747,Sue Abers,7162672431,Year-round,Y,Y,N,Y,42.14495,-79.10996
+Steuben,Corning,NY,14830,Nate Basch,6079376292,June 7-October 25,Y,N,N,Y,42.1443,-77.05339
+Allegany,Scio,NY,14895,Stephen Demarte,7165605594,April-December,Y,N,N,Y,42.14093,-77.97553
+Columbia,Germantown,NY,12526,Lauren Williams,5185675691,May 25-September 28,Y,N,N,Y,42.135,-73.88551
+Broome,Binghamton,NY,13905,Amy Willis,6077728953,June 23-September 29,Y,Y,Y,Y,42.12921,-75.90609
+Broome,Binghamton,NY,13905,Amy Willis,6077728953,Year-round,Y,Y,Y,Y,42.12921,-75.90609
+Allegany,Wellsville,NY,14895,Rick Monaco,4072191658,June 22-October 26,Y,N,N,Y,42.120079,-77.947159
+Broome,Johnson City,NY,13790,Jack Seman,6077249130,Year-round,Y,Y,Y,Y,42.11849,-75.95493
+Chautauqua,Falconer,NY,14733,DeEtte Dispenza,7166654400,June 6-October 29,Y,N,N,Y,42.11763,-79.19952
+Broome,Binghamton,NY,13901,Jack Seman,6077249130,Year-round,Y,Y,Y,Y,42.1093,-75.90168
+Broome,Binghamton,NY,13901,Jack Seman,6077249130,Year-round,Y,Y,Y,Y,42.10925,-75.90552
+Broome,Binghamton,NY,13901,Jack Seman,6077249130,Year-round,Y,Y,Y,Y,42.10911,-75.89979
+Broome,Binghamton,NY,13905,Jack Seman,6077249130,Year-round,Y,Y,Y,Y,42.10687,-75.93015
+Chautauqua,Lakewood,NY,14750,Joe Johnson,7167638557,July 11-September 26,Y,N,N,Y,42.10338,-79.32624
+Tioga,Owego,NY,13827,John Purdy,6076428439,June-October,Y,N,N,Y,42.10324,-76.26314
+Tioga,Owego,NY,13827,Frank Wiles,6076872874,June 15-October 31,Y,N,N,Y,42.10315,-76.26336
+Tioga,Owego,NY,13827,John Purdy,6076428439,June-October,Y,N,N,Y,42.10315,-76.26336
+Broome,Binghamton,NY,13901,Jack Seman,6077249130,Year-round,Y,Y,Y,Y,42.10179,-75.90955
+Broome,Vestal,NY,13850,Allison Russell,6079725793,September 1-Nov 30,Y,N,N,Y,42.1009,-76.0078
+Broome,Binghamton,NY,13901,Jack Seman,6077249130,Year-round,Y,Y,Y,Y,42.09999,-75.90674
+Cattaraugus,Allegany,NY,14706,Mark Printz,7163789714,Year-round,Y,Y,N,Y,42.09601,-78.50618
+Chautauqua,Jamestown,NY,14701,Linnea Carlson,7164893497,June 8-October 26,Y,Y,N,Y,42.09567,-79.24234
+Chemung,Elmira,NY,14901,Matthew Glenn,6075464535,June 3-October 28,Y,N,N,Y,42.0921,-76.82013
+Chemung,Elmira,NY,14901,Jennifer Herrick,6077340341,May 30-September 26,Y,Y,Y,Y,42.08943,-76.80801
+Chemung,Elmira,NY,14901,Andrew Fagan,6077344453,June 14-October 11,Y,Y,N,Y,42.08905,-76.7922
+Broome,Vestal,NY,13850,MaKenzie Darrow,6072065742,May 26-November 27,Y,N,N,Y,42.087322,-76.045678
+Cattaraugus,Olean,NY,14760,Stephanie Beneg,7163745257,May 11-October 26,Y,Y,N,Y,42.08329,-78.42987
+Cattaraugus,Olean,NY,14760,Phyllis Couture,7169423710,May 17-October 25,Y,Y,N,Y,42.08294,-78.45503
+Ulster,Saugerties,NY,12477,Judith Spektor,8456811160,May 25-October 26,Y,Y,Y,Y,42.07901,-73.94894
+Cattaraugus,Olean,NY,14760,Keith Miller,7163722521,April-December,Y,Y,N,Y,42.071439,-78.39814
+Delaware,Deposit,NY,13754,Lonny Schaefer,6074675762,Year-round,Y,N,N,Y,42.06673,-75.40725
+Broome,Deposit,NY,13754,Jeanne Darling,6078656531,Aug 15 & Sep 19,Y,N,N,Y,42.06166,-75.42605
+Broome,Deposit,NY,13754,Dorothy Crantz,6074672956,June 29-September 14,Y,N,N,Y,42.061003,-75.425572
+Ulster,Woodstock,NY,12498,Megan Reynolds,8459015970,May 29-October 16,Y,Y,N,Y,42.04018,-74.11797
+Allegany,Whitesville,NY,14897,Justin Ellison,5858086061,Year-round,N,N,N,Y,42.01631,-77.84727
+Dutchess,Millerton,NY,12546,John Nowak,5184077030,Year-round,Y,Y,N,Y,41.9543,-73.50977
+Ulster,Kingston,NY,12401,Katy Kondrat,3477217386,May 11-November 22,Y,Y,Y,Y,41.93384,-74.01968
+Ulster,Kingston,NY,12401,Katy Kondrat,3477217386,December 8-April 13,N,Y,Y,Y,41.93286,-74.01884
+Sullivan,Roscoe,NY,12776,Anne Marie Dennis,6074985665,May 12-October 13,Y,N,N,Y,41.93282,-74.91236
+Ulster,Kingston,NY,12401,Kaycee Wimbish,8453322927,June 19-September 11,Y,Y,Y,Y,41.92948,-74.01048
+Ulster,Kingston,NY,12401,Kaycee Wimbish,8453322927,May 16-October 31,Y,Y,Y,Y,41.92805,-74.0007
+Dutchess,Rhinebeck,NY,12572,Andrea Bartolomeo,5188211481,May 5-December 29,Y,Y,N,Y,41.92704,-73.91027
+Ulster,Kingston,NY,12401,Kaycee Wimbish,8453322927,June 18-September 10,Y,Y,Y,Y,41.92185,-73.99869
+Sullivan,Livingston Manor,NY,12758,Maria Bivins,8457072723,May 5-October 13,Y,N,Y,Y,41.90119,-74.82754

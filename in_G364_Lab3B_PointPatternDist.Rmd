@@ -59,76 +59,229 @@ library(spatstat.data)
 library(car)
 
 data(longleaf)
+market    <- read_csv("./Data/Farmers_Markets_NYShort.csv")
+market.sp <- st_as_sf(market,coords=c("Longitude","Latitude"),crs=4326)
 
 ```
 
-# THIS IS BEING UPLOADED IN PARTS - IF YOU SEE THIS BANNER PLEASE REFRESH THE PAGE AFTER 1:30 TUESDAY
+# Overview
 
-Welcome to Lab 3B on Point Pattern Analysis. A point pattern dataset is
-comprised of events or objects occurring in a defined study region.
-These events could represent anything with a specific measurable point
-location.
+Welcome to Lab 3B on Point Pattern Analysis. The goal of Lab 3B is to
+learn some introductory spatial statistical approaches for
+characterizing distance based properties of a point pattern. We will be
+focusing on nearest neighbour analysis and the F, G, K and L functions.
+This builds on density based approaches in Lab 3A.
 
-**Objective:** The goal of Lab 3B is to learn some introductory spatial
-statistical approaches for characterizing the spatial properties of a
-point pattern.
+-   **You need to submit everything on this page AND lab 3A under Lab 3
+    on canvas**
 
--   **This week:** We will be focusing on point pattern DISTANCE
-    analysis e.g. nearest neighbour
-
--   You need to submit everything on this page AND lab 3A under Lab 3 on
-    canvas
-
-    See the rubric on canvas (this is up!) for how it will be graded and
-    the checklist at the end for what you need for 100%.
+-   **See the rubric on canvas (this is up!) for how it will be graded
+    and the checklist at the end for what you need for 100%.**
 
 See [The Canvas page
 here](https://psu.instructure.com/courses/2260204/assignments/15455241),
 or go to canvas for assignment guidelines. You can use either the
 website base RStudio/Posit Cloud OR R-Desktop for this lab.
 
-Getting stuck? Look at the Canvas page for the McGrew Chapter 14 - it
-has a great overview.
+Getting stuck? Look at the [canvas
+page](https://psu.instructure.com/courses/2260204/assignments/15455241)
+for the McGrew Chapter 14 - it has a great overview.
 
 <br><br><br>
 
-# Getting started
+# 1. What are we doing?
 
-## 1. CONTINUE FROM LAB 3A!
+Density-based (Lab 3a) and distance-based (lab 3b) point pattern
+approaches are two different ways to analyze the spatial distribution of
+points or events in a dataset. They serve different purposes and provide
+distinct insights into the data:
 
-Go back and check that you are happy with Lab 3A. Quickly reread your
-work and make sure that it all make sense and knits neatly.
+-   density-based approaches are concerned with estimating point density
+    and identifying areas of concentration or sparsity,
 
-We will be continuing Lab 3B IN THE SAME DOCUMENT (e.g. you are
-submitting one single Lab 3 to canvas which includes both 3A and 3B).
+-   distance-based approaches focus on quantifying distances between
+    points and using this to analyze their spatial relationships.
+
+Each of these could capture both 1st order (changes in underlying
+environment) or 2nd autocorrelation (points impacting each other). In
+general, density tends to be more useful for situations where the
+underlying environment or movement of points is relatively static.
+Distance based approaches tend to be more useful in situations where
+points might move around or for 2nd order autocorrelation in general.
+
+But choice between these approaches depends on the specific research
+question and the type of spatial pattern you are interested in studying.
+
+<br><br>
+
+# 2. Open Lab 3A
+
+**We are continuing from lab 3A with new data**
+
+Open your project for Lab 3A. Quickly reread your work and make sure
+that it all make sense and knits neatly. We will be continuing Lab 3B IN
+THE SAME DOCUMENT (e.g. you are submitting one single Lab 3 to canvas
+which includes both 3A and 3B).
+
+<br><br>
+
+# 3. Add new libraries
+
+[**e.g. EDIT your existing library code chunk**]{.underline}
+
+We need some additional packages in lab 3B and it is good form to keep
+all your "library commands" at the top of your script (easier to find
+package related errors). Scroll up to your library code chunk at the top
+of your script, and add in these additional packages.
+
+-   `library(elevatr)`
+
+You might need to install the packages first. If so, the easiest way is
+to add the library command to the code chunk, press knit/save and a
+[little yellow
+banner](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Little_yellow_banner)
+will pop up asking if you want to install them. If it doesn't pop-up,
+simply follow the instructions in [Lab
+3A](https://psu-spatial.github.io/Geog364-2023/in_G364_Lab3_PointPattern.html#2_Install_new_packages)
+and [Tutorial
+3D](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Downloading_a_new_package)
+for installing packages.
+
+REMEMBER DO NOT LEAVE *INSTALL.PACKAGE()* COMMANDS IN YOUR CODE CHUNKS.
+The knit button does not understand 'go to the app store' style
+commands.
+
+Run the code chunk a few times to check for errors. Now click the Knit
+Button and make sure everything looks correct.
 
 <br><br><br>
 
-## 2. Install new packages
+# 3. Read in the market data
 
-<br><br><br>
+A second element of this lab is to know how to read data into the
+spatstat format. This means instead of bei, you will be studying farmers
+markets in New York. Here I will support you directly, so you can
+directly copy/paste the commands into your report.
 
-## 4. EDIT your library code chunk
+**Go to the Canvas page for Lab 3 and download the file
+`Farmers_Markets_NYShort.csv`**
 
-It is good form to keep all your "library commands" at the top of your
-script. Scroll up to your library code chunk and add in these additional
-packages. You might need to install these packages first. If so, the
-easiest way is to add the library command to the code chunk, press
-knit/save and a little yellow banner will pop up asking if you want to
-install them.
+1st, create a new heading in your report called Lab 3B farmers markets.
 
-If it doesn't follow the instructions in Lab 3A and Tutorial 3 for
-installing packages.
+2nd, this first command reads in a .csv file (a basic spreadsheet - the
+numeric equivalent of a .txt file) and saves it as the variable market.
 
-```{r, message=FALSE,warning=FALSE}
-#Content to add
+```{r}
+market     <- read_csv("./Data/Farmers_Markets_NYShort.csv")
 ```
 
-Now click the Knit Button and make sure everything looks correct.
+<br>
+
+<details>
+
+<summary>[**It doesn't work! or There is ./Data in there I have never
+seen before! Do I need it???? Click here for the answer**]{.underline}
+</summary>
+
+```{r}
+market     <- read_csv("./Data/Farmers_Markets_NYShort.csv")
+```
+
+You can see in my command I have a "./Data" at the front of my address.
+That is because I saved my market-data inside a sub-folder called Data.
+
+```{r, echo=FALSE}
+knitr::include_graphics("./Figures/Lab4Fig1_subfolders.png")
+```
+
+For those who have been taught setwd(), this is similar but rather than
+hard-wiring the location to a specific place on your computer, you are
+navigating within the project folder.
+
+-   The "." means "the location of the current folder" (should be your
+    project lab folder)
+
+-   The "/Data" means look inside the data sub-folder,
+
+-   Then I type its EXACT name (case sensitive) including the extension.
+
+So if your data is just in your main project folder for Lab 2, you can
+use its normal name as we have done before.
+
+```{r,eval=FALSE}
+market     <- read_csv("Farmers_Markets_NYShort.csv")
+```
+
+</details>
 
 <br><br><br>
 
-Content to be uploaded.
+# 4. Make spatial and utm
+
+Here is how I make the data spatial (in sf format) and change the map
+projection.
+
+```{r}
+# You can see how I try to keep everything neat with my variable names
+market.sf  <- st_as_sf(market,coords=c("Longitude","Latitude"),crs=4326)
+
+# change the map projection
+market.utm <- st_transform(market.sf,crs=26918)
+```
+
+-   The first line creates an 'sf' version of the dataset that we can
+    use to make maps. The coordinate column names in my data were
+    Longitude and Latitude and the current map projection is
+    longitude/latitude.
+
+-   The second line *changes* the map projection from long/lat to "UTM"
+    for the New York area.
+
+*Note, I googled the map projection I wanted to find the number (more in
+lab 3). I did this because the units of UTM are metres rather than
+degrees, a quirk that makes the spatstat package happy.*
+
+```{r}
+# You can see how I try to keep everything neat with my variable names
+market.sf  <- st_as_sf(market,coords=c("Longitude","Latitude"),crs=4326)
+
+# change the map projection
+market.utm <- st_transform(market.sf,crs=26918)
+```
+
+Finally, I make a quick map of the market data to take a look:
+
+```{r}
+#change to plot before knitting if you get the error 
+# & restarting R annoys you
+tmap_mode("view") 
+qtm(market.utm)
+```
+
+<br><br><br>
+
+# CHALLENGE 8
+
+[You can find challenge 1-7 in Lab
+3A!](https://psu-spatial.github.io/Geog364-2023/in_G364_Lab3_PointPattern.html)
+
+1.  Exactly follow steps 1-4 above.<br><br>
+
+2.  The data is obtained and subset from here.
+    <https://agriculture.ny.gov/farmersmarkets> . Look at this page and
+    use it to understand the column names in your market dataset.
+    <br><br>
+
+3.  Use your knowledge to write a few sentences introducing farmers
+    markets in new york (mentioning this website as the data source),
+    what the data contains and what the column names mean. <br><br>
+
+4.  Using the map you made and your general knowledge, write a short
+    paragraph about the spatial patterns you see in this dataset and any
+    1st and 2nd order autocorrelation processes that might be behind
+    them.
+
+<br><br><br>
 
 # THIS IS BEING UPLOADED IN PARTS - IF YOU SEE THIS BANNER PLEASE REFRESH THE PAGE AFTER 1:30 TUESDAY
 
