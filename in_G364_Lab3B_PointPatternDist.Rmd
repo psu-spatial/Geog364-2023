@@ -64,6 +64,8 @@ market.sp <- st_as_sf(market,coords=c("Longitude","Latitude"),crs=4326)
 
 ```
 
+# LAB IS COMPLETE
+
 # Overview
 
 Welcome to Lab 3B on Point Pattern Analysis. The goal of Lab 3B is to
@@ -353,7 +355,7 @@ round.longleaf.obs_mean_nnd
 print("m away")
 ```
 
-# 8. Calculate the Clarke-Evans Ratio, R
+# 8. Clarke-Evans Ratio, R
 
 This ratio is named after the people who invented it, Clarke & Evans.
 Type `?clarkevans` into the help file for more details and look at the
@@ -376,7 +378,7 @@ more details here: <https://www.jstor.org/stable/20146996>
 
 So in this, R= 0.832
 
-# 9. Conduct a hypothesis test on it
+# 9. Clarke-Evans hypothesis test
 
 Finally, we can conduct a hypothesis test on the ratio output:
 
@@ -447,33 +449,72 @@ the longleaf tree pattern.
     3.  What is MAUP? Is it going be an issue for this SPECIFIC
         dataset/analysis and why?<br><br>
 
-# THIS IS BEING UPLOADED IN PARTS - IF YOU SEE THIS BANNER PLEASE REFRESH THE PAGE AFTER 2.15pm TUESDAY
+# 10. Ripley's L-Function
 
-# 11. Ripleys K hypothesis test
+We will now conduct an L-Function analysis on the data. This is a
+version of Ripley's K that is easier to interpret. This code won't show
+any output if it runs correctly because I've saved all the outputs to
+variables.
 
-Finally, we can assess the significance of this result using a
-hypothesis test. Here I show you how to conduct a 'pseudo test' using
-simulations. E.g. we directly create a load of H0 scenarios, calculate
-the clarke evans ratio for each and see the probability of seeing our
-result
+Note, my variable names are long in this class to stay informative
 
-```{r, eval=FALSE,echo=FALSE}
+```{r}
+# Calculate the L function. Your data is market.ppp
+longleaf.lest <- Lest(longleaf,correction = "Ripley")
 
-# Here I am creating 10 point patterns with complete spatial randomness, and for each one calculating the clarke evans ratio
-longleaf.RRatio.simulations <- envelope(longleaf, 
-                                        fun = clarkevans, 
-                                        nsim = 10)
-
-# Plot the results
-plot(envelope_result)
-
-# Compare the observed Clarke-Evans Ratio to the envelope
-longleaf.obs.RRatio
-summary(envelope_result)
-
-# Check if the observed value is significantly different
-p_value <- ppp.test(envelope_result, longleaf.obs.RRatio)
+# Create an ensemble (collection) of simulated point patterns 
+# that is based on our data data, 
+# but the points have been rearranged using an independent random process. 
+# For each one, calculate the L function, lest
+# 
+longleaf.lest.IRPsimulation <- envelope(longleaf, 
+                              Lest, correction = "Ripley", 
+                              verbose = F,
+                              nsim=100, nrank=1, 
+                              savepatterns = FALSE, savefuns = FALSE)
 ```
+
+Now we can plot the data. This command is horrible, just copy/paste
+changing longleaf to your market data. I will look for a better one!
+
+```{r}
+#Find the max and min values
+L.EST.Max<-(max(longleaf.lest$iso-longleaf.lest$r))
+L.EST.Min <- 0-L.EST.Max
+
+#The dots are weirdly important here. Copy/paste
+plot(longleaf.lest,. - r ~ r, ylim=c(L.EST.Min,L.EST.Max))
+
+# Add IRP simulated Lestimates (so many, they merge into a grey cloud)
+plot(longleaf.lest.IRPsimulation, . - r ~ r,add=TRUE)
+```
+
+We will talk about the interpretation in class. But simply, the data is
+unusually clustered (above the grey cloud) at all scales.
+
+<br><br><br>
+
+# CHALLENGE 10
+
+1.  Get the L-function code working on your market data. You will find
+    that the grey cloud does not show up! <br><br>\
+
+2.  Play with the number of simulations (nsim) and re-run the two code
+    chunks. (e.g. set it to 10 and re-run, set it to 1000 and rerun) Why
+    does the grey cloud get larger as the number of simulations
+    increases? <br><br>\
+
+3.  Interpret the output of your L-Function in the text. Because H0: CSR
+    is a boring comparison, this will be pretty clear. In class I will
+    show you how to get more complex. <br><br>
+
+4.  Look at the help file for the [**Kest**]{.underline}, command
+    (easier to read) and explain what the "correction" option is doing.
+    What are some of the other options available?
+
+<br><br><br>
+
+# LAB IS COMPLETE
 
 <br><br><br>
 
