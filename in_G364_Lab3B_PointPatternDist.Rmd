@@ -376,7 +376,7 @@ The output of the R.Ratio likely gives you two values, naive and cdf.
 CDF is simply a mathematical way of taking into account edge effects,
 more details here: <https://www.jstor.org/stable/20146996>
 
-So in this, R= 0.832
+So in this case, R= 0.832 - showing slightly clustered data.
 
 # 9. Clarke-Evans hypothesis test
 
@@ -405,33 +405,33 @@ probability of seeing it is tiny).
 
 Therefore I personally have enough evidence to reject the null
 hypothesis and say a random independent process probably isn't causing
-the longleaf tree pattern.
+the autocorrelation pattern of longleaf trees in my study area.
 
 <br><br><br>
 
 # CHALLENGE 9
 
-1.  Create a new heading called nearest neighbour (spelled either the
-    American or British way!) <br><br>
+1.  Create a new heading called nearest neighbour \*(spelled either the
+    American or British way..)\*<br><br>
 
-2.  Get the code in tutorials 6-8 working for your market data (hint,
-    remember to remove any reference longleaf!)<br><br>
+2.  Get the code in tutorials 6-9 working for your market data<br><br>
 
-3.  Now explain what the output of the code is showing you for the
-    nearest neighbour and Clarke Evans Ratio. What units are the
-    distances in? (hint, google the units of your new map
-    projection)<br>
+3.  Explain what the output of the code is showing you for the nearest
+    neighbour and Clarke Evans Ratio for farmers markets in New York.
+    What units are the distances in? (hint, google the units of your new
+    map projection)<br>
 
     1.  Bonus - add another layer in my fancy stacked code to convert to
         km using basic maths.<br><br>
 
-4.  Now write your interpretation of the output.<br>
+4.  Now write your interpretation of the output.<br>\#
 
-    -   E.g. this show the data is clustered, random or dispersed?<br>
     -   What would the clarke evens ratio, R, be for very disperse
         data?<br>
     -   What would the clarke evens ratio, R, be for very clustered
-        data?<br><br>
+        data?<br>
+    -   Does this show whether NY farmers markets are clustered, random
+        or dispersed?<br><br>
 
 5.  Conduct a ONE-SIDED clarke evans hypothesis test on whether your
     market data is more CLUSTERED than you expect and interpret the
