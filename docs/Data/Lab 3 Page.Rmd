@@ -1,0 +1,141 @@
+---
+title: "Lab 3: Bei Data Set Spatial Analysis"
+date: "`r Sys.Date()`"
+author: "dpd5576"
+output:
+  rmdformats::downcute:
+    self_contained: true
+    default_style: "dark"
+    downcute_theme: "default"
+---
+was thinking about doing a spatial analysis project themselves.
+
+# Lab 3B Farmers Markets
+
+### Reading in the data
+
+```{r}
+market    <- read_csv("./Data/Farmers_Markets_NYShort.csv")
+```
+
+### Making the data spatial and utm
+
+```{r}
+#the first like makes an "sf" version of the data that helps us make maps
+market.sf <-st_as_sf(market,coords=c("Longitude","Latitude"),crs=4326)
+
+#changing the map proection from long/lat to "UTM"
+market.utm <-st_transform(market.sf,crs=26918)
+```
+
+```{r}
+#making a map!
+tmap_mode("view")
+qtm(market.utm)
+```
+
+### Making the data ppp/spatstat format
+
+```{r}
+#this reads the data into a ppp format, and then sets our study area to the box surrounding the points
+market.ppp <- as.ppp(market.utm)
+plot(market.ppp,use.marks = F, cex = 1, pch = 4)
+```
+
+## Challenge A
+
+1.  **Summarize this data set. What does it contain?**
+
+    (Answer)
+
+2.  **What spatial processes do you see so far. Are there 1st and/or 2nd order autocorrelation processes that might be behind them?**
+
+    (Answer)
+
+## Challenge B
+
+1.  **Nearest neighbor plots:**
+
+    ```{r}
+    #nearest neighbor analysis
+    market.ppp <- nndist(market)
+    #this command then makes the histogram
+    hist(market.ppp,br=50)
+    ```
+
+    (explain code and results)
+
+2.  **Average nearest neighbor**
+
+    ```{r}
+    paste( c("The average nearest neighbor of my Market data is:"),
+          round(mean(market.ppp),3),"m away")
+    ```
+
+    (explain code and results)
+
+3.  **Calculating the Clarke-Evans Ratio**
+
+    ```{r}
+    ?clarkevans
+    ```
+
+    ```{r}
+    market.obs.RRatio <- clarkevans(market.ppp)
+    market.obs.RRatio
+    ```
+
+    (explain code and results)
+
+4.  **Conducting hypothesis test on Clarke-Evans Ratio Output:**
+
+    ```{r}
+    clarkevans.test(market.ppp)
+    ```
+
+    (NOTE: H0 and H1 taken directly from Lab instructions)
+
+    -   H0: The pattern shows complete spatial randomness caused by an independent random process. R=1. E.g. If we simulated 100 random point patterns and calculated the Clarke Evans ratio for each, we would get a histogram with a mean of 1.
+
+    -   H1: The pattern is unusually DIFFERENT (e.g. strangely clustered OR strangely uniform) compared to what we would expect in H0. E.g. R would be high or low.
+
+    ```{r}
+
+    ```
+
+5.  **General Interpretation of the data**
+
+    (answer)
+
+6.  **One-Sided Clarke Evans Hypothesis Test**
+
+    (answer)
+
+7.  Fallacy Questions
+
+    -   [What are edge effects in point pattern data? Are they going to be an issue for this specific dataset/analysis and why?]{.underline}
+
+        (Answer)
+
+    -   [What is the locational fallacy? Is it going going be an issue for this SPECIFIC dataset/analysis and why?]{.underline}
+
+        (Answer)
+
+    -   [What is MAUP? Is it going be an issue for this SPECIFIC dataset/analysis and why?]{.underline}
+
+        (Answer)
+
+## Challenge C
+
+1.  **Ripley's L-Function**
+
+    ```{r}
+    market.lest <- Lest(market,correction = "Ripley")
+    #creating a collection of simulated point patterns based on our data, but the points have been rearrange using independent random process (for each one, we calculate the L function, lest)
+
+    market.lest.IRsimulation <- envelop(market,
+                                        Lest, correction = "Ripley",
+                                        verbose = F,
+                                        nsim=100, nrank=1,
+                                        savepatterns = FALSE, savefuns = FALSE)
+    ```

@@ -137,6 +137,7 @@ package related errors). Scroll up to your library code chunk at the top
 of your script, and add in these additional packages.
 
 -   `library(elevatr)`
+-   `library(tidyverse)`
 
 You might need to install the packages first. If so, the easiest way is
 to add the library command to the code chunk, press knit/save and a
@@ -174,7 +175,8 @@ directly copy/paste the commands into your report.
 numeric equivalent of a .txt file) and saves it as the variable market.
 
 ```{r}
-market     <- read_csv("./Data/Farmers_Markets_NYShort.csv")
+market     <- read.csv("./Data/Farmers_Markets_NYShort.csv")
+# read.csv also works as a command. read_csv is from the tidyverse package
 ```
 
 <br>
@@ -308,6 +310,65 @@ Ignore them.
 
 <br><br><br>
 
+# IMPORTANT - DATA NAMES
+
+From now onward, I will continue with the longleaf data from Lab 3A.
+
+MY `longleaf` example data was loaded straight from the spatstat
+package. It's ALREADY a special ppp type of data.
+
+```{r}
+class(longleaf)
+```
+
+But, when I read the market data into R I loaded it in as a standard
+table from a .csv spreadsheet.
+
+```{r}
+class(market)
+```
+
+To convert it to spatial, we made sf-longlat, sf-utm and ppp versions of
+the market data (in order to do specific things in those packages). I
+wanted a way to keep track. So I edited the names to include a .ppp, a
+.sf and a .utm e.g. I decided the name of my ppp market data would be
+market.ppp
+
+But I COULD have called them anything
+
+```{r}
+# These are EXACTLY the same, I just saved them as different names
+ market.ppp  <- as.ppp(market.utm)
+ catsarecool <- as.ppp(market.utm)
+ 
+ class(market.ppp)
+ class(catsarecool)
+```
+
+So in your next section, I will use "longleaf" as my
+[**input**]{.underline}. You will use market.ppp as your
+[**input**]{.underline} E.g.
+
+```{r}
+# Again, I can name the OUTPUT whatever I want! 
+# But the input needs to have already been created 
+# and be the correct variable type
+
+mysummarylooooongleaf   <- summary(longleaf)
+mysummarymarket         <- summary(market.ppp)
+```
+
+If you accidentally put market.ppp as your *output* e.g.
+
+```{r}
+market.ppp <- 5
+```
+
+Then you will overwrite it! It will no longer be a special ppp table, it
+will be the number 5. Then the rest of your code won't work.
+
+<br><br><br>
+
 # 6. Nearest neighbour plots
 
 The `nndist` command calculates the distance of the nearest neighbour
@@ -315,12 +376,17 @@ for every point. Going back to my longleaf data from Lab 3A, here is
 what I would type:
 
 ```{r}
-# nearest neighbour analysis
-# Hint, your ppp variable is called *market.ppp*. 
- longleaf.nnd <- nndist(longleaf)
+# Nearest neighbour analysis
+# Hint, your ppp variable for the INPUT is called *market.ppp*.  
+# Mine is called longleaf. 
+# The command is nndist
+# I saved my output as a custom name, longleaf_nnd 
+# e.g. longleaf nearest neighbour. You can call yours anything you like
+ 
+longleaf_nnd <- nndist(longleaf)
 
-#now I make a histogram
- hist(longleaf.nnd,br=50)
+#now I make a histogram of nearest neighbours
+ hist(longleaf_nnd,br=50)
 ```
 
 In the first line, - the COMMAND is `nndist` (so if I wanted I could
@@ -328,24 +394,26 @@ look at its help file), - I apply the command to my *longleaf*
 variable - and I save the answer to a new variable called *longleaf.nnd
 (e.g. the longleaf nearest neighbour distances)*
 
+<br><br><br>
+
 # 7. Average nearest neighbour
 
 We can now easily calculate the average nearest neighbor distance using
-the mean command. Here is how I *stack* commands to make a prettier
+the mean command. Here is how I stack commands to make a prettier
 output, using paste and "c" to stick things together.
 
 ```{r}
 # Mean nearest neighbour
 #-------------------------------------
  paste( c("The average nearest neighbour of my longleaf data is:"),
-        round(mean(longleaf.nnd),3),"m away")
+        round(mean(longleaf_nnd),3),"m away")
 ```
 
 This is exactly the same as
 
 ```{r}
 # find single observed average distance for the whole field.
-longleaf.obs_mean_nnd  <- mean(longleaf.nnd) 
+longleaf.obs_mean_nnd  <- mean(longleaf_nnd) 
 # round the answer to 3 decimal places
 round.longleaf.obs_mean_nnd <-  round(longleaf.obs_mean_nnd,3)
 
@@ -354,6 +422,8 @@ print("The average nearest neighbour of my longleaf data is:")
 round.longleaf.obs_mean_nnd
 print("m away")
 ```
+
+<br><br><br>
 
 # 8. Clarke-Evans Ratio, R
 
@@ -377,6 +447,49 @@ CDF is simply a mathematical way of taking into account edge effects,
 more details here: <https://www.jstor.org/stable/20146996>
 
 So in this case, R= 0.832 - showing slightly clustered data.
+
+<br><br>
+
+<details>
+
+<summary>[**It doesn't work! I get an error! Click here for the
+answer**]{.underline}</summary>
+
+<br><br>
+
+If your error is this,
+
+<br>
+
+```{r, echo=FALSE}
+knitr::include_graphics("./Figures/Lab4Fig3 error.png")
+```
+
+<br>
+
+then look upwards in your code for the last time you typed market.ppp.
+
+Did you accidentally save it as an OUTPUT (e.g. market.ppp \<- .....)?
+
+If so, go back and re-read that "IMPORTANT DATA NAME SECTION" because
+probably you have overwritten it with something else! It might be
+*called* .ppp, but its contents are no longer a ppp type. For example,
+this line will run without error in its own right, but in running it,
+you overwrote your ppp answer with a list of nearest neighbour
+distances. So now, nothing in the future that needs the actual ppp data
+will work.
+
+```{r, eval=FALSE}
+# you applied the command nndist to the variable market, then overwrote your existing ppp variable with the answer 
+market.ppp<- nndist(market)
+
+```
+
+Go back, change it and re-run all your code chunks!
+
+<\details>
+
+<br><br><br>
 
 # 9. Clarke-Evans hypothesis test
 
@@ -415,6 +528,9 @@ the autocorrelation pattern of longleaf trees in my study area.
     American or British way..)\*<br><br>
 
 2.  Get the code in tutorials 6-9 working for your market data<br><br>
+
+    -   IF YOU GET ERRORS RE-READ THE IMPORTANT DATA NAME & "I GOT AN
+        ERROR" BITS
 
 3.  Explain what the output of the code is showing you for the nearest
     neighbour and Clarke Evans Ratio for farmers markets in New York.
@@ -508,9 +624,9 @@ unusually clustered (above the grey cloud) at all scales.
     is a boring comparison, this will be pretty clear. In class I will
     show you how to get more complex. <br><br>
 
-4.  Look at the help file for the [**Kest**]{.underline}, command
-    (easier to read) and explain what the "correction" option is doing.
-    What are some of the other options available?
+4.  Look at the help file for the [**Kest**]{.underline} command (easier
+    to read) and explain what the "correction" option is doing. What are
+    some of the other options available?
 
 <br><br><br>
 
