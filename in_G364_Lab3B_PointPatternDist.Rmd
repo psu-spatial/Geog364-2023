@@ -487,7 +487,11 @@ market.ppp<- nndist(market)
 
 Go back, change it and re-run all your code chunks!
 
+<br><br><br>
+
 <\details>
+
+.
 
 <br><br><br>
 
