@@ -29,7 +29,9 @@ navbar:
     - text: "7. Data summaries"
       href: in_Tutorial07DataSummaries.html  
     - text: "8. Plotting data"
-      href: in_Tutorial08Plots.html          
+      href: in_Tutorial08Plots.html    
+    - text: "9. Spatial basics"
+      href: in_Tutorial09Spatial.html        
   - text: "Labs"  
     menu: 
     - text: "Lab FAQ"

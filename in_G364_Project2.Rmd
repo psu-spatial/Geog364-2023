@@ -17,6 +17,15 @@ make it 'spatial' and to do some point pattern analysis.
 <br>
 
 
+![](Figures/Proj_Fig1_Rubric.png){width="700"}
+
+<br>
+
+Go to the assignment page on Canvas and take a look at your feedback for
+Lab 1. See the screenshot above for where to click.
+<https://psu.instructure.com/courses/2260204/assignments/15503679>
+
+<br>
 
 <details>
 
@@ -345,11 +354,11 @@ these tasks and write up a paragraph where you tell me what you did.**
 
 # Step 6\| Spatial wrangling
 
-We now want to make a range of spatial versions of your data type, and
-sort out map projections.
+Have a look at TUTORIAL 9. You need to:
 
-If it's not already spatial, try st_as_sf() and I will provide custom
-help.
+ - Get your data into sf format. 
+ - Choose an appropriate map projection (as appropriate)
+ - Make some initial maps.
 
 <br><br>
 

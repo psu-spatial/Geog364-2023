@@ -33,6 +33,8 @@ library(biscale)
 library(tidycensus)
 library(cowplot)
 library(units)
+frost    <- readxl::read_excel("./Data/DataG364_frostday.xlsx")
+
 ```
 
 <br><br>
