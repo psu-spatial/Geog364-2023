@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Dr Helen Greatrex" />
+
+
+<title>Worked Example - A Tourism Focused Analysis of Iowan Farmers Markets</title>
+
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+<link href="site_libs/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-5.2.2/bootstrap.bundle.min.js"></script>
+<link href="site_libs/Prompt-0.4.7/font.css" rel="stylesheet" />
+<link href="site_libs/Proza_Libre-0.4.7/font.css" rel="stylesheet" />
+<script src="site_libs/bs3compat-0.5.1/transition.js"></script>
+<script src="site_libs/bs3compat-0.5.1/tabs.js"></script>
+<script src="site_libs/bs3compat-0.5.1/bs3compat.js"></script>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<script src="site_libs/navigation-1.1/codefolding.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #204a87; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+.sourceCode .row {
+  width: 100%;
+}
+.sourceCode {
+  overflow-x: auto;
+}
+.code-folding-btn {
+  margin-right: -30px;
+}
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+<style type="text/css">
+.code-folding-btn { margin-bottom: 4px; }
+</style>
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">GEOG 364 Lab Book</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Tutorials
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_Tutorial01WhatisR.html">1. What is R?</a>
+    </li>
+    <li>
+      <a href="in_Tutorial02SetUp.html">2. General Set-Up</a>
+    </li>
+    <li>
+      <a href="in_Tutorial03LabSetUp.html">3. Lab Set-Up</a>
+    </li>
+    <li>
+      <a href="in_Tutorial04ConsoleBasics.html">4. Console Basics</a>
+    </li>
+    <li>
+      <a href="in_Tutorial05ReadingInData.html">5. Reading in Data</a>
+    </li>
+    <li>
+      <a href="in_Tutorial06DataWrangling.html">6. Data wrangling</a>
+    </li>
+    <li>
+      <a href="in_Tutorial07DataSummaries.html">7. Data summaries</a>
+    </li>
+    <li>
+      <a href="in_Tutorial08Plots.html">8. Plotting data</a>
+    </li>
+    <li>
+      <a href="in_Tutorial09Spatial.html">9. Spatial basics</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Labs
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_G364_Lab0_FAQ.html">Lab FAQ</a>
+    </li>
+    <li>
+      <a href="in_G364_Lab1_2324.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="in_G364_Lab2_Basics.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="in_G364_Lab3_PointPattern.html">Lab 3A</a>
+    </li>
+    <li>
+      <a href="in_G364_Lab3B_PointPatternDist.html">Lab 3B</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Project instructions
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_G364_Project2.html">Project 2</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Project WORKED EXAMPLE
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_WorkedExample_Workings.html">Background workings</a>
+    </li>
+    <li>
+      <a href="in_WorkedExample_Report.html">Example Report</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+<div class="btn-group pull-right float-right">
+<button type="button" class="btn btn-default btn-xs btn-secondary btn-sm dropdown-toggle" data-toggle="dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span>Code</span> <span class="caret"></span></button>
+<ul class="dropdown-menu dropdown-menu-right" style="min-width: 50px;">
+<li><a id="rmd-show-all-code" href="#">Show All Code</a></li>
+<li><a id="rmd-hide-all-code" href="#">Hide All Code</a></li>
+</ul>
+</div>
+
+
+
+<h1 class="title toc-ignore">Worked Example - A Tourism Focused Analysis
+of Iowan Farmers Markets</h1>
+<h4 class="author">Dr Helen Greatrex</h4>
+
+</div>
+
+
+<div id="important" class="section level1">
+<h1>IMPORTANT</h1>
+<p>This report is the level I would expect from a graduate student with
+this assignment, but I want you to aim high. The entire thing from start
+to end took me 3 hrs, so it’s also possible for you by the end of the
+semester.<br />
+</p>
+<p><strong>WANT TO DOWNLOAD THE UNDERLYING CODE? CLICK
+HERE:</strong></p>
+</div>
+<div id="background-r-set-up" class="section level1">
+<h1>Background R Set-Up</h1>
+<p><em>Note, I would normally hide this entire section, using code chunk
+option include=FALSE so that so they are invisible. I want you to keep
+them in, so I can see your code.</em></p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co"># Stop warnings printing</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a>knitr<span class="sc">::</span>opts_chunk<span class="sc">$</span><span class="fu">set</span>(<span class="at">echo =</span> <span class="cn">TRUE</span>, <span class="at">warning=</span><span class="cn">FALSE</span>, <span class="at">message =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># Libraries</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">library</span>(sp)</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="fu">library</span>(skimr)</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="fu">library</span>(spatstat)</span></code></pre></div>
+<p>To see how I came up with this specific code, see the background
+workings.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co"># INITIAL CODE</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="co"># clear the workspace</span></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" tabindex="-1"></a><span class="co"># Read in the data</span></span>
+<span id="cb3-6"><a href="#cb3-6" tabindex="-1"></a>IA_market   <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">&quot;./Data/Farmers_Markets_Iowa.xlsx&quot;</span>,<span class="at">na=</span><span class="st">&quot;NA&quot;</span>)</span>
+<span id="cb3-7"><a href="#cb3-7" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" tabindex="-1"></a><span class="co"># Remove unreal longitudes</span></span>
+<span id="cb3-9"><a href="#cb3-9" tabindex="-1"></a>IA_market <span class="ot">&lt;-</span> IA_market[<span class="fu">which</span>(IA_market<span class="sc">$</span>X <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">990</span>),]</span>
+<span id="cb3-10"><a href="#cb3-10" tabindex="-1"></a></span>
+<span id="cb3-11"><a href="#cb3-11" tabindex="-1"></a><span class="co"># Remvbe NAs</span></span>
+<span id="cb3-12"><a href="#cb3-12" tabindex="-1"></a>IA_market <span class="ot">&lt;-</span> IA_market[<span class="fu">complete.cases</span>(IA_market<span class="sc">$</span>X), ]</span>
+<span id="cb3-13"><a href="#cb3-13" tabindex="-1"></a>IA_market <span class="ot">&lt;-</span> IA_market[<span class="fu">complete.cases</span>(IA_market<span class="sc">$</span>Y), ]</span>
+<span id="cb3-14"><a href="#cb3-14" tabindex="-1"></a></span>
+<span id="cb3-15"><a href="#cb3-15" tabindex="-1"></a><span class="co"># Remove that one point outside Iowa</span></span>
+<span id="cb3-16"><a href="#cb3-16" tabindex="-1"></a>IA_market <span class="ot">&lt;-</span> IA_market[<span class="fu">which</span>(IA_market<span class="sc">$</span>X <span class="sc">&lt;</span> <span class="sc">-</span><span class="dv">90</span>),]</span>
+<span id="cb3-17"><a href="#cb3-17" tabindex="-1"></a></span>
+<span id="cb3-18"><a href="#cb3-18" tabindex="-1"></a><span class="co"># Choose Columns</span></span>
+<span id="cb3-19"><a href="#cb3-19" tabindex="-1"></a>IA_market <span class="ot">&lt;-</span> IA_market[,<span class="fu">c</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;Y&quot;</span>,<span class="st">&quot;FID&quot;</span>,<span class="st">&quot;City&quot;</span>,<span class="st">&quot;County&quot;</span>, <span class="st">&quot;Market_Name&quot;</span>,<span class="st">&quot;Weekday&quot;</span>)]</span>
+<span id="cb3-20"><a href="#cb3-20" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" tabindex="-1"></a><span class="co"># Make family/grouped/categorical variables into factors</span></span>
+<span id="cb3-22"><a href="#cb3-22" tabindex="-1"></a>IA_market<span class="sc">$</span>City <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(IA_market<span class="sc">$</span>City)</span>
+<span id="cb3-23"><a href="#cb3-23" tabindex="-1"></a>IA_market<span class="sc">$</span>County <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(IA_market<span class="sc">$</span>County)</span>
+<span id="cb3-24"><a href="#cb3-24" tabindex="-1"></a>IA_market<span class="sc">$</span>Weekday <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(IA_market<span class="sc">$</span>Weekday)</span>
+<span id="cb3-25"><a href="#cb3-25" tabindex="-1"></a></span>
+<span id="cb3-26"><a href="#cb3-26" tabindex="-1"></a><span class="co"># Rename</span></span>
+<span id="cb3-27"><a href="#cb3-27" tabindex="-1"></a><span class="fu">names</span>(IA_market)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Longitude&quot;</span> </span>
+<span id="cb3-28"><a href="#cb3-28" tabindex="-1"></a><span class="fu">names</span>(IA_market)[<span class="dv">2</span>] <span class="ot">&lt;-</span> <span class="st">&quot;Latitude&quot;</span> </span>
+<span id="cb3-29"><a href="#cb3-29" tabindex="-1"></a></span>
+<span id="cb3-30"><a href="#cb3-30" tabindex="-1"></a><span class="co"># Make spatial</span></span>
+<span id="cb3-31"><a href="#cb3-31" tabindex="-1"></a>IA_market.sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(IA_market,<span class="at">coords=</span><span class="fu">c</span>(<span class="st">&quot;Longitude&quot;</span>,<span class="st">&quot;Latitude&quot;</span>), <span class="at">crs=</span><span class="dv">4326</span>)</span>
+<span id="cb3-32"><a href="#cb3-32" tabindex="-1"></a></span>
+<span id="cb3-33"><a href="#cb3-33" tabindex="-1"></a><span class="co"># Make a UTM version</span></span>
+<span id="cb3-34"><a href="#cb3-34" tabindex="-1"></a>IA_market.sf.utm <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(IA_market.sf,<span class="dv">3744</span>)</span>
+<span id="cb3-35"><a href="#cb3-35" tabindex="-1"></a></span>
+<span id="cb3-36"><a href="#cb3-36" tabindex="-1"></a><span class="co"># Make a ppp version</span></span>
+<span id="cb3-37"><a href="#cb3-37" tabindex="-1"></a>IA_market.ppp <span class="ot">&lt;-</span> <span class="fu">as.ppp</span>(IA_market.sf.utm)</span></code></pre></div>
+</div>
+<div id="introduction" class="section level1">
+<h1>Introduction</h1>
+<p><u>Intended Audience:</u> Matt Kodis, Research Analyst at Iowa
+Tourism (<a href="https://www.traveliowa.com/contact-us/"
+class="uri">https://www.traveliowa.com/contact-us/</a>). I have been
+asked to provide a spatial analysis of farmers markets in the State, to
+support tourism efforts.</p>
+<div id="background" class="section level2">
+<h2>Background</h2>
+<p><a
+href="https://www.dsmpartnership.com/downtowndsmusa/news-blog/blog/how-to-navigate-the-downtown-farmers-market-in-2022"><img
+src="Figures/Report_Fig1_Market.jpeg"
+alt="The Des Moines Farmers Market, Iowa. Picture sourced from The DSMPartnership https://www.dsmpartnership.com/downtowndsmusa/news-blog/blog/how-to-navigate-the-downtown-farmers-market-in-2022" /></a></p>
+<p>There are over 200 farmers markets in Iowa, providing direct
+marketing outlets for fresh locally grown produce; baked goods; and a
+variety of products from eggs to meat, wine, cheese and crafts.</p>
+<p>Understanding the spatial pattern of farmers markets is crucial for
+enhancing our tourism strategies in Iowa. It allows us to make informed
+decisions that can significantly impact our marketing efforts and the
+overall visitor experience. First and foremost, having this knowledge
+enables us to effectively target and engage potential tourists. We can
+tailor our promotional materials and itineraries to highlight the
+farmers markets that align with their interests and preferences. It’s
+not just about quantity; it’s about showcasing the right markets in the
+right places to attract the right audience.</p>
+<p>There has been some research on this topic in other areas of the USA.
+For example, Tong et al<a href="#fn1" class="footnote-ref"
+id="fnref1"><sup>1</sup></a> (2012) theoretically modeled the placement
+of new markets in Arizona; Mack and Tong<a href="#fn2"
+class="footnote-ref" id="fnref2"><sup>2</sup></a> (2015) used surveys to
+characterize the spatial and temporal patterns of farmers’ market
+visits; and Sage<a href="#fn3" class="footnote-ref"
+id="fnref3"><sup>3</sup></a> (2012) used point pattern analysis to
+consider the pattern of market locations in Washington State.</p>
+</div>
+<div id="dataset" class="section level2">
+<h2>Dataset</h2>
+<p>The specific dataset I am using for this analysis is obtained from
+the Iowa State GIS portal<a href="#fn4" class="footnote-ref"
+id="fnref4"><sup>4</sup></a>, of 175 markets in 2018. This reported that
+the original source of the data was the Iowa Department of Agriculture
+and Land Stewardship Data Directory (<a
+href="https://www.idalsdata.org/fmnp/index.cfm?fuseaction=main.formFarmersMarketDirectory">https://www.idalsdata.org/</a>.)),
+which contains the details of all licensed farmers markets currently in
+Iowa. The data is collected from license records, so should be complete
+across the state.</p>
+<p>Importantly, the GIS portal was last updated on 15 November 2018 - so
+the data I am analyzing is not fully up to date. For example, my
+analysis will not reflect recent updates or closures due to the COVID
+pandemic. Given time for a more detailed analysis, I would pull the most
+recent data directly from IDALS.</p>
+<p>The data will also not cover markets in other States that are just on
+the border with Iowa. This means we might get ‘edge effects’ in our
+spatial analysis. For example, as shown in the Figure below - there are
+towns to the West of Iowa that spread across the border. It would be
+reasonable to assume there were more than 2 markets in this town, but we
+only have data for the Iowan side.</p>
+<p><a
+href="https://geodata.iowa.gov/datasets/iowa::farmers-markets/"><img
+src="Figures/Report_Fig2_MarketEdge.png"
+alt="Edge effects in Iowan Markets. Map annotated, with the original obtained from from https://geodata.iowa.gov/datasets/iowa::farmers-markets/" /></a></p>
+<div id="structure-of-the-data" class="section level3">
+<h3>Structure of the data</h3>
+<p>As shown below in the code, there are 165 markets available for study
+after missing data was taken into account. The location is stored in
+Lat/Long format and the data has these variables available for
+study.</p>
+<ul>
+<li><p><code>Longitude</code> : The longitude of each market in
+degrees</p></li>
+<li><p><code>Latitude</code> : The latitude of each market in
+degrees</p></li>
+<li><p><code>FID</code> : This is the unique ID of each market applied
+by the Iowa GIS portal</p></li>
+<li><p><code>City</code> : The name of the city the market is held
+in</p></li>
+<li><p><code>County</code> : The name of the Iowa county the market is
+held in</p></li>
+<li><p><code>Market_Name</code> : The name of the market</p></li>
+<li><p><code>Weekday</code> : The day of the week that the market is
+held on</p></li>
+</ul>
+<p><br><br></p>
+</div>
+</div>
+<div id="quality-controldata-wrangling" class="section level2">
+<h2>Quality control/Data wrangling</h2>
+<p>Some quality control was carried out before the data was
+analysed:</p>
+<ol style="list-style-type: decimal">
+<li>A few markets had corrupted or missing locations. These were
+removed. <br></li>
+<li>Only relevant variables were kept for analysis. The columns
+<em>Open_Hours</em>, <em>Open_Dates</em> and <em>Location</em> were
+removed but could be analysed at a later date. <br></li>
+<li>The <em>County</em>, <em>Weekday</em>, and <em>City</em> columns
+were converted to factor to aid analysis.<br></li>
+<li>The data was converted to a spatial version using the package sf and
+the UTM map projection for Iowa was applied. A spatial version of the
+data for point package analysis (IA_market.ppp) was created.<br></li>
+</ol>
+<p><br><br></p>
+</div>
+</div>
+<div id="exploratory-analysis" class="section level1">
+<h1>Exploratory analysis</h1>
+</div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p>Tong, D., Ren, F., &amp; Mack, J. (2012). Locating
+farmers’ markets with an incorporation of spatio-temporal variation.
+Socio-Economic Planning Sciences, 46(2), 149-156. <a
+href="https://www.sciencedirect.com/science/article/pii/S0038012111000346"
+class="uri">https://www.sciencedirect.com/science/article/pii/S0038012111000346</a><a
+href="#fnref1" class="footnote-back">↩︎</a></p></li>
+<li id="fn2"><p>Mack, J., &amp; Tong, D. (2015). Characterizing the
+spatial and temporal patterns of farmers’ market visits. Applied
+Geography, 63, 43-54. <a
+href="https://www.sciencedirect.com/science/article/pii/S0143622815001496"
+class="uri">https://www.sciencedirect.com/science/article/pii/S0143622815001496</a><a
+href="#fnref2" class="footnote-back">↩︎</a></p></li>
+<li id="fn3"><p>Sage, J. L. (2012). A geographic exploration of the
+social and economic sustainability of farmers’ markets and the rural
+communities that make them work. Washington State University. PhD Thesis
+<a href="https://www.proquest.com/docview/1032783987"
+class="uri">https://www.proquest.com/docview/1032783987</a><a
+href="#fnref3" class="footnote-back">↩︎</a></p></li>
+<li id="fn4"><p><a href="https://geodata.iowa.gov/maps/farmers-markets"
+class="uri">https://geodata.iowa.gov/maps/farmers-markets</a><a
+href="#fnref4" class="footnote-back">↩︎</a></p></li>
+</ol>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+<script>
+$(document).ready(function () {
+  window.initializeCodeFolding("show" === "show");
+});
+</script>
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -52,3 +52,5 @@ navbar:
     menu: 
     - text: "Background workings"
       href: in_WorkedExample_Workings.html
+    - text: "Example Report"
+      href: in_WorkedExample_Report.html

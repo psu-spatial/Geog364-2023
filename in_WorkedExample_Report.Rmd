@@ -1,0 +1,249 @@
+---
+title: "Worked Example - A Tourism Focused Analysis of Iowan Farmers Markets"
+author: "Dr Helen Greatrex"
+output: 
+  html_document:
+    code_folding: show
+    theme:
+      color-contrast-warnings: false
+      bg: "white"
+      fg: "#97a4b8"
+      primary: "black"
+      secondary: "#2a5736"
+      base_font:
+        google: Prompt
+      heading_font:
+        google: Proza Libre
+---
+
+
+
+# IMPORTANT
+
+This report is the level I would expect from a graduate student with
+this assignment, but I want you to aim high. The entire thing from start to end took me 3 hrs, so it's also possible for you by the end of the
+semester.\
+
+**WANT TO DOWNLOAD THE UNDERLYING CODE?  CLICK HERE:**
+
+
+```{r setup, include=FALSE,echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE,dpi = 300, dev = "svg")
+
+# invisible data read
+library(tidyverse)
+library(sp)
+library(sf)
+library(readxl)
+library(skimr)
+library(tmap)
+library(viridis)
+library(usmap)
+library(rnaturalearth)
+library(ggpubr)
+library(gridExtra)
+library(ceramic)
+library(leaflet)
+library(leaflet.extras)
+library(leaflet.providers)
+library(raster)
+library(ggmap)
+library(dismo)
+library(maps)
+
+
+as.Date_origin <- function(x){
+  format.Date(as.Date(x, origin = '1970-01-01'), format = '%b-%d')
+}
+
+Sys.setenv(MAPBOX_API_KEY="pk.eyJ1IjoiaGdyZWF0cmV4IiwiYSI6ImNrbmdpNDN6djBkZTQydXBhNDc1enJjZnkifQ.xQWYvOFK5BKQoNWoOacDgA")
+
+
+```
+
+# Background R Set-Up
+
+*Note, I would normally hide this entire section, using code chunk
+option include=FALSE so that so they are invisible. I want you to keep
+them in, so I can see your code.*
+
+```{r, results=FALSE,warning=FALSE,message=FALSE}
+# Stop warnings printing
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+```
+
+```{r}
+# Libraries
+library(sp)
+library(sf)
+library(tidyverse)
+library(tmap)
+library(readxl)
+library(skimr)
+library(spatstat)
+```
+
+To see how I came up with this specific code, see the background
+workings.
+
+```{r}
+# INITIAL CODE
+# clear the workspace
+rm(list=ls())
+
+# Read in the data
+IA_market   <- readxl::read_excel("./Data/Farmers_Markets_Iowa.xlsx",na="NA")
+
+# Remove unreal longitudes
+IA_market <- IA_market[which(IA_market$X > -990),]
+
+# Remvbe NAs
+IA_market <- IA_market[complete.cases(IA_market$X), ]
+IA_market <- IA_market[complete.cases(IA_market$Y), ]
+
+# Remove that one point outside Iowa
+IA_market <- IA_market[which(IA_market$X < -90),]
+
+# Choose Columns
+IA_market <- IA_market[,c("X","Y","FID","City","County", "Market_Name","Weekday")]
+
+# Make family/grouped/categorical variables into factors
+IA_market$City <- as.factor(IA_market$City)
+IA_market$County <- as.factor(IA_market$County)
+IA_market$Weekday <- as.factor(IA_market$Weekday)
+
+# Rename
+names(IA_market)[1] <- "Longitude" 
+names(IA_market)[2] <- "Latitude" 
+
+# Make spatial
+IA_market.sf <- st_as_sf(IA_market,coords=c("Longitude","Latitude"), crs=4326)
+
+# Make a UTM version
+IA_market.sf.utm <- st_transform(IA_market.sf,3744)
+
+# Make a ppp version
+IA_market.ppp <- as.ppp(IA_market.sf.utm)
+
+```
+
+# Introduction
+
+[Intended Audience:]{.underline} Matt Kodis, Research Analyst at Iowa
+Tourism (<https://www.traveliowa.com/contact-us/>). I have been asked to
+provide a spatial analysis of farmers markets in the State, to support
+tourism efforts.
+
+## Background
+
+[![The Des Moines Farmers Market, Iowa. Picture sourced from The
+DSMPartnership
+https://www.dsmpartnership.com/downtowndsmusa/news-blog/blog/how-to-navigate-the-downtown-farmers-market-in-2022](Figures/Report_Fig1_Market.jpeg)](https://www.dsmpartnership.com/downtowndsmusa/news-blog/blog/how-to-navigate-the-downtown-farmers-market-in-2022)
+
+There are over 200 farmers markets in Iowa, providing direct marketing
+outlets for fresh locally grown produce; baked goods; and a variety of
+products from eggs to meat, wine, cheese and crafts.
+
+Understanding the spatial pattern of farmers markets is crucial for
+enhancing our tourism strategies in Iowa. It allows us to make informed
+decisions that can significantly impact our marketing efforts and the
+overall visitor experience. First and foremost, having this knowledge
+enables us to effectively target and engage potential tourists. We can
+tailor our promotional materials and itineraries to highlight the
+farmers markets that align with their interests and preferences. It's
+not just about quantity; it's about showcasing the right markets in the
+right places to attract the right audience.
+
+There has been some research on this topic in other areas of the USA.
+For example, Tong et al[^1] (2012) theoretically modeled the placement
+of new markets in Arizona; Mack and Tong[^2] (2015) used surveys to
+characterize the spatial and temporal patterns of farmers' market
+visits; and Sage[^3] (2012) used point pattern analysis to consider the
+pattern of market locations in Washington State.
+
+[^1]: Tong, D., Ren, F., & Mack, J. (2012). Locating farmers' markets
+    with an incorporation of spatio-temporal variation. Socio-Economic
+    Planning Sciences, 46(2), 149-156.
+    <https://www.sciencedirect.com/science/article/pii/S0038012111000346>
+
+[^2]: Mack, J., & Tong, D. (2015). Characterizing the spatial and
+    temporal patterns of farmers' market visits. Applied Geography, 63,
+    43-54.
+    <https://www.sciencedirect.com/science/article/pii/S0143622815001496>
+
+[^3]: Sage, J. L. (2012). A geographic exploration of the social and
+    economic sustainability of farmers' markets and the rural
+    communities that make them work. Washington State University. PhD
+    Thesis <https://www.proquest.com/docview/1032783987>
+
+## Dataset
+
+The specific dataset I am using for this analysis is obtained from the
+Iowa State GIS portal[^4], of 175 markets in 2018. This reported that
+the original source of the data was the Iowa Department of Agriculture
+and Land Stewardship Data Directory
+([https://www.idalsdata.org/](https://www.idalsdata.org/fmnp/index.cfm?fuseaction=main.formFarmersMarketDirectory).)),
+which contains the details of all licensed farmers markets currently in
+Iowa. The data is collected from license records, so should be complete
+across the state.
+
+[^4]: <https://geodata.iowa.gov/maps/farmers-markets>
+
+Importantly, the GIS portal was last updated on 15 November 2018 - so
+the data I am analyzing is not fully up to date. For example, my
+analysis will not reflect recent updates or closures due to the COVID
+pandemic. Given time for a more detailed analysis, I would pull the most
+recent data directly from IDALS.
+
+The data will also not cover markets in other States that are just on
+the border with Iowa. This means we might get 'edge effects' in our
+spatial analysis. For example, as shown in the Figure below - there are
+towns to the West of Iowa that spread across the border. It would be
+reasonable to assume there were more than 2 markets in this town, but we
+only have data for the Iowan side.
+
+[![Edge effects in Iowan Markets. Map annotated, with the original
+obtained from from
+https://geodata.iowa.gov/datasets/iowa::farmers-markets/](Figures/Report_Fig2_MarketEdge.png)](https://geodata.iowa.gov/datasets/iowa::farmers-markets/)
+
+### Structure of the data
+
+As shown below in the code, there are 165 markets available for study
+after missing data was taken into account. The location is stored in
+Lat/Long format and the data has these variables available for study.
+
+-   `Longitude` : The longitude of each market in degrees
+
+-   `Latitude` : The latitude of each market in degrees
+
+-   `FID` : This is the unique ID of each market applied by the Iowa GIS
+    portal
+
+-   `City` : The name of the city the market is held in
+
+-   `County` : The name of the Iowa county the market is held in
+
+-   `Market_Name` : The name of the market
+
+-   `Weekday` : The day of the week that the market is held on
+
+<br><br>
+
+## Quality control/Data wrangling
+
+Some quality control was carried out before the data was analysed:
+
+1.  A few markets had corrupted or missing locations. These were
+    removed. <br>
+2.  Only relevant variables were kept for analysis. The columns
+    *Open_Hours*, *Open_Dates* and *Location* were removed but could be
+    analysed at a later date. <br>
+3.   The *County*, *Weekday*, and *City* columns were converted to
+    factor to aid analysis.<br>
+4.  The data was converted to a spatial version using the package sf and
+    the UTM map projection for Iowa was applied. A spatial version of
+    the data for point package analysis (IA_market.ppp) was created.<br>
+
+<br><br>
+
+# Exploratory analysis

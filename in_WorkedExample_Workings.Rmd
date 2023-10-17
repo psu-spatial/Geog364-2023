@@ -335,3 +335,5 @@ IA_market.ppp <- as.ppp(IA_market.sf.utm)
 plot(IA_market.ppp)
 ```
 
+
+
