@@ -14,8 +14,14 @@ make it 'spatial' and to do some point pattern analysis.
 
 # Step 1\| Reflect on feedback
 
-Here are some common issues in Project 1. See if yours relate! You will
-get specific feedback at the end of Oct 17.
+<br>
+
+
+
+<details>
+
+<summary>[**Click to read some common issues in Project
+1**]{.underline}</summary>
 
 <br>
 
@@ -81,6 +87,10 @@ for something like this: <br>
 ```{r, echo=FALSE}
 knitr::include_graphics("./Figures/Proj_Fig2_LabPartner.png")
 ```
+
+<br><br>
+
+</details>
 
 <br><br>
 
@@ -348,11 +358,13 @@ help.
 Now your data is better organised, start to do some exploratory
 analysis. Imagine giving a presentation to your report reader on the
 data. What are its features, what's the range, make some maps.
-Interesting patterns?
+Interesting patterns?  Relate it all back to your report reader.
 
-Relate it all back to your report reader.
+Your write up should (including code as relevant)
 
-Look at R graph gallery online for cool summary plots.
+ - Include a clear picture of the dataset's population e.g. what is the object of analysis (what does each row refer to?), what is the space-time range of the data.  What columns are there (or refer the reader to higher up), how much data is there
+ 
+ - What are its key features and patterns?  Any outliers? Interesting issues.  Try making histograms/boxplots/ridgeline plots of interesting variables.  Or you can make interactive scatterplots to look at the relationship between them. See TUTORIAL 8 for more and look at R graph gallery online for cool summary plots.
 
 <br><br>
 

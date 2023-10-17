@@ -1,0 +1,1245 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Tutorial 7: Summarising Data</title>
+
+<script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<script src="site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
+<script src="site_libs/plotly-binding-4.10.2/plotly.js"></script>
+<script src="site_libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="site_libs/crosstalk-1.2.0/css/crosstalk.min.css" rel="stylesheet" />
+<script src="site_libs/crosstalk-1.2.0/js/crosstalk.min.js"></script>
+<link href="site_libs/plotly-htmlwidgets-css-2.11.1/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="site_libs/plotly-main-2.11.1/plotly-latest.min.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #204a87; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">GEOG 364 Lab Book</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Tutorials
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_Tutorial01WhatisR.html">1. What is R?</a>
+    </li>
+    <li>
+      <a href="in_Tutorial02SetUp.html">2. General Set-Up</a>
+    </li>
+    <li>
+      <a href="in_Tutorial03LabSetUp.html">3. Lab Set-Up</a>
+    </li>
+    <li>
+      <a href="in_Tutorial04ConsoleBasics.html">4. Console Basics</a>
+    </li>
+    <li>
+      <a href="in_Tutorial05ReadingInData.html">5. Reading in Data</a>
+    </li>
+    <li>
+      <a href="in_Tutorial06DataWrangling.html">6. Data wrangling</a>
+    </li>
+    <li>
+      <a href="in_Tutorial07DataSummaries.html">7. Data summaries</a>
+    </li>
+    <li>
+      <a href="in_Tutorial08Plots.html">8. Plotting data</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Labs
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_G364_Lab0_FAQ.html">Lab FAQ</a>
+    </li>
+    <li>
+      <a href="in_G364_Lab1_2324.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="in_G364_Lab2_Basics.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="in_G364_Lab3_PointPattern.html">Lab 3A</a>
+    </li>
+    <li>
+      <a href="in_G364_Lab3B_PointPatternDist.html">Lab 3B</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Project instructions
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_G364_Project2.html">Project 2</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Tutorial 7: Summarising Data</h1>
+
+</div>
+
+
+<p><br><br></p>
+<div id="where-to-get-plot-code-and-examples" class="section level1">
+<h1>Where to get plot code and examples</h1>
+<p>Here is how I make plots. There are three places I visit
+constantly:</p>
+<ul>
+<li><a href="https://www.r-graph-gallery.com/"
+class="uri">https://www.r-graph-gallery.com/</a></li>
+<li><a href="https://indrajeetpatil.github.io/ggstatsplot/"
+class="uri">https://indrajeetpatil.github.io/ggstatsplot/</a></li>
+<li><a href="https://r-charts.com/distribution/"
+class="uri">https://r-charts.com/distribution/</a></li>
+<li><a href="https://flowingdata.com/"
+class="uri">https://flowingdata.com/</a></li>
+</ul>
+<p>For plots, we have <em>many</em> choices. We can use what is built
+into R, or.. use the ggplot system where you add on layers to your plot
+using the + symbol, or use specialist packages such as ggstatplot or
+beeswarm.</p>
+<p>If you are new to data visualisation, read these two articles</p>
+<ul>
+<li><a
+href="https://flowingdata.com/2014/10/23/moving-past-default-charts/"
+class="uri">https://flowingdata.com/2014/10/23/moving-past-default-charts/</a></li>
+<li><a
+href="https://flowingdata.com/2012/05/15/how-to-visualize-and-compare-distributions/"
+class="uri">https://flowingdata.com/2012/05/15/how-to-visualize-and-compare-distributions/</a></li>
+</ul>
+<div id="how-to-decide-what-to-do" class="section level2">
+<h2>How to decide what to do</h2>
+<p>Plots are designed to do two things, allow you to see something in
+the data that you couldn’t see in the numbers, plus communicate output
+in a compelling way. Going beyond the basics or knowing the limitations
+of a plot will help you do this, so in these examples I have provided a
+range of complexity.</p>
+<p>So far, I have focused on plots that slow you to visualise the
+distribution of your response variable. You do not need to use them all!
+Choose ones that work for you and your data.</p>
+<ol style="list-style-type: decimal">
+<li>Boxplots</li>
+<li>Histograms</li>
+<li>Violin plots (half boxplot half histogram)</li>
+<li>Beeswarm</li>
+</ol>
+</div>
+</div>
+<div id="basic-plots" class="section level1">
+<h1>Basic plots</h1>
+<div id="boxplots" class="section level2">
+<h2>Boxplots</h2>
+<p>Boxplots have been around over 40 years! See their history and
+evolution here: <a href="http://vita.had.co.nz/papers/boxplots.pdf"
+class="uri">http://vita.had.co.nz/papers/boxplots.pdf</a></p>
+<p>In terms of your reports, you need to think of 3 things: - Why you
+are making the plot (quick look vs publication worthy final graphic) -
+What aspects of the data do you want to highlight (lots of data,
+comparing groups, weird distributions..) - What are your final
+requirements and personal style (colorblind friendly, you’re drawn to a
+certain type of plot..)</p>
+<p>So for boxplots.. they are especially good at allowing you to compare
+different groups of things or to look for multiple groups in a single
+response variable. Here is a beautiful example made by Marcus Beckman on
+dissertation lengths.</p>
+<p><a
+href="https://beckmw.wordpress.com/2014/07/15/average-dissertation-and-thesis-length-take-two/%20and%20code%20here:%20https://github.com/fawda123/diss_proc">https://beckmw.wordpress.com/2014/07/15/average-dissertation-and-thesis-length-take-two/
+and code here: https://github.com/fawda123/diss_proc</a> )</p>
+<p>If there are only one or two variables, I often jump to the violin or
+histogram plots as they show more detail.</p>
+<p>So.. how to make these yourselves. You have a range of options!</p>
+<div id="basics-single-boxplot" class="section level3">
+<h3>Basics (single boxplot)</h3>
+<p>Here is the most basic boxplot you can make. I often start with this
+for my own use when exploring the data, then later decide which plots to
+“make pretty”.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">boxplot</span>(HousesNY<span class="sc">$</span>Price)</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p>We can make better boxplots in base R (e.g. using no special
+packages/libraries). See this tutorial for all the details: <a
+href="https://www.datamentor.io/r-programming/box-plot/"
+class="uri">https://www.datamentor.io/r-programming/box-plot/</a> which
+goes through exactly what each line means.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="co"># one big command on separate lines</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">boxplot</span>(HousesNY<span class="sc">$</span>Price,</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>        <span class="at">main =</span> <span class="st">&quot;House prices of Canton NY sample&quot;</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>        <span class="at">xlab =</span> <span class="st">&quot;Price (Thousand USD)&quot;</span>,</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>        <span class="at">col =</span> <span class="st">&quot;light blue&quot;</span>,</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>        <span class="at">border =</span> <span class="st">&quot;dark blue&quot;</span>,</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>        <span class="at">horizontal =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>        <span class="at">notch =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p>There are specific plotting packages, the most famous being ggplot2
+(there are data camp courses on it). The absolute basics. Here x is
+blank because we just want to look at the price column alone.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" tabindex="-1"></a><span class="fu">ggplot</span>(HousesNY, <span class="fu">aes</span>(<span class="at">x =</span><span class="st">&quot;&quot;</span>, <span class="at">y =</span> Price)) <span class="sc">+</span>    <span class="do">## this loads the data</span></span>
+<span id="cb3-4"><a href="#cb3-4" tabindex="-1"></a>   <span class="fu">geom_boxplot</span>()                            <span class="do">## and we choose a boxplot</span></span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>Note for now, think of the %&gt;% symbol and + symbol also as “one
+command on multiple lines..”. They allow you to build up layers of the
+plot. Data camp has more on this.</p>
+<p>But with these we can easily do more sophisticated things. For
+example, here’s how to see the underlying data, which allows us to see
+something of the background distribution</p>
+<p><a href="https://r-charts.com/distribution/box-plot-jitter-ggplot2/"
+class="uri">https://r-charts.com/distribution/box-plot-jitter-ggplot2/</a></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># Basic box plot</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">ggplot</span>(HousesNY, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> Price)) <span class="sc">+</span> </span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a>  <span class="fu">geom_jitter</span>()</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+</div>
+<div id="comparing-groups" class="section level3">
+<h3>Comparing groups</h3>
+<p>The basic code to see a boxplot split by group, in this case the
+price per number of beds:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">boxplot</span>(HousesNY<span class="sc">$</span>Price <span class="sc">~</span> HousesNY<span class="sc">$</span>Beds)</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<p>The advantage of this is that you can be sure that you really did
+plot your columns of choice (e.g. you didn’t mistakenly label anything).
+Note, if you use a comma, rather than the “~” symbol, you will make one
+for each column - which is normally not useful!</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">boxplot</span>(HousesNY<span class="sc">$</span>Price,  HousesNY<span class="sc">$</span>Beds)</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<p><br></p>
+<p>In GGplot comparing different groups:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># Libraries</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="fu">library</span>(hrbrthemes)</span>
+<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a></span>
+<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="co"># tell R that the beds column is categorical</span></span>
+<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a>HousesNY<span class="sc">$</span>Beds <span class="ot">&lt;-</span> <span class="fu">factor</span>(HousesNY<span class="sc">$</span>Beds,</span>
+<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a>                     <span class="at">levels=</span><span class="fu">c</span>(<span class="fu">min</span>(HousesNY<span class="sc">$</span>Beds)<span class="sc">:</span><span class="fu">max</span>(HousesNY<span class="sc">$</span>Beds)))</span>
+<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb7-11"><a href="#cb7-11" tabindex="-1"></a>  <span class="fu">ggplot</span>(HousesNY, <span class="fu">aes</span>(<span class="at">x=</span>Beds, <span class="at">y=</span>Price)) <span class="sc">+</span></span>
+<span id="cb7-12"><a href="#cb7-12" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() </span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<p>Or getting more complex</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co"># Libraries</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="fu">library</span>(hrbrthemes)</span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="fu">library</span>(viridis)</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="co"># tell R that the beds column is categorical</span></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="co"># I already did this in the table section</span></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="co">#HousesNY$Beds &lt;- as.factor(HousesNY$Beds)</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a>HousesNY <span class="sc">%&gt;%</span></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a>  <span class="fu">ggplot</span>( <span class="fu">aes</span>(<span class="at">x=</span>Beds, <span class="at">y=</span>Price, <span class="at">fill=</span>Beds) )<span class="sc">+</span></span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a>    <span class="fu">scale_fill_viridis</span>(<span class="at">discrete =</span> <span class="cn">TRUE</span>, <span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a>    <span class="fu">geom_jitter</span>(<span class="at">color=</span><span class="st">&quot;black&quot;</span>, <span class="at">size=</span><span class="fl">0.5</span>, <span class="at">alpha=</span><span class="fl">0.8</span>) <span class="sc">+</span></span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;Beds&quot;</span>)</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<p>or dotplots..</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">ggplot</span>(HousesNY,  <span class="fu">aes</span>(<span class="at">x=</span>Beds, <span class="at">y=</span>Price, <span class="at">fill=</span>Beds)) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>() <span class="sc">+</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>  <span class="fu">geom_dotplot</span>(<span class="at">binaxis =</span> <span class="st">&quot;y&quot;</span>, <span class="at">stackdir =</span> <span class="st">&quot;center&quot;</span>, <span class="at">dotsize =</span> <span class="fl">0.5</span>,<span class="at">binwidth=</span><span class="dv">7</span>)</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p>There are MANY more options, plus code here: <a
+href="https://www.r-graph-gallery.com/boxplot.html"
+class="uri">https://www.r-graph-gallery.com/boxplot.html</a></p>
+<p>and a delightful tutorial here: <a
+href="https://www.r-bloggers.com/2021/11/how-to-make-stunning-boxplots-in-r-a-complete-guide-with-ggplot2/"
+class="uri">https://www.r-bloggers.com/2021/11/how-to-make-stunning-boxplots-in-r-a-complete-guide-with-ggplot2/</a></p>
+</div>
+<div id="sophisticated" class="section level3">
+<h3>Sophisticated</h3>
+<p>Finally, we <em>can</em> get super fancy in base R - it’s often a
+good way to learn how to code. I like this example because it shows many
+different aspects/useful commands in R programming. <a
+href="http://www.opiniomics.org/beautiful-boxplots-in-base-r/"
+class="uri">http://www.opiniomics.org/beautiful-boxplots-in-base-r/</a></p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">library</span>(RColorBrewer)</span>
+<span id="cb10-2"><a href="#cb10-2" tabindex="-1"></a></span>
+<span id="cb10-3"><a href="#cb10-3" tabindex="-1"></a><span class="co"># create colours and colour matrix (for points)</span></span>
+<span id="cb10-4"><a href="#cb10-4" tabindex="-1"></a>m     <span class="ot">&lt;-</span> <span class="fu">as.matrix</span>(HousesNY<span class="sc">$</span>Price)</span>
+<span id="cb10-5"><a href="#cb10-5" tabindex="-1"></a></span>
+<span id="cb10-6"><a href="#cb10-6" tabindex="-1"></a>col_main   <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(<span class="fu">brewer.pal</span>(<span class="dv">12</span>, <span class="st">&quot;Set3&quot;</span>), <span class="at">alpha=</span><span class="cn">TRUE</span>)(<span class="fu">ncol</span>(m))</span>
+<span id="cb10-7"><a href="#cb10-7" tabindex="-1"></a>col_transp <span class="ot">&lt;-</span> colorspace<span class="sc">::</span><span class="fu">adjust_transparency</span>(col_main, <span class="at">alpha =</span> .<span class="dv">3</span>)</span>
+<span id="cb10-8"><a href="#cb10-8" tabindex="-1"></a></span>
+<span id="cb10-9"><a href="#cb10-9" tabindex="-1"></a>colsm   <span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">rep</span>(col_main, <span class="at">each=</span><span class="fu">nrow</span>(m)), <span class="at">ncol=</span><span class="fu">ncol</span>(m))</span>
+<span id="cb10-10"><a href="#cb10-10" tabindex="-1"></a>colsm_tr <span class="ot">&lt;-</span><span class="fu">matrix</span>(<span class="fu">rep</span>(col_transp, <span class="at">each=</span><span class="fu">nrow</span>(m)), <span class="at">ncol=</span><span class="fu">ncol</span>(m))</span>
+<span id="cb10-11"><a href="#cb10-11" tabindex="-1"></a></span>
+<span id="cb10-12"><a href="#cb10-12" tabindex="-1"></a></span>
+<span id="cb10-13"><a href="#cb10-13" tabindex="-1"></a><span class="co"># create some random data for jitter</span></span>
+<span id="cb10-14"><a href="#cb10-14" tabindex="-1"></a>r <span class="ot">&lt;-</span>  (<span class="fu">matrix</span>(<span class="fu">runif</span>(<span class="fu">nrow</span>(m)<span class="sc">*</span><span class="fu">ncol</span>(m)), <span class="at">nrow=</span><span class="fu">nrow</span>(m), <span class="at">ncol=</span><span class="fu">ncol</span>(m)) <span class="sc">/</span> <span class="dv">2</span>) <span class="sc">-</span> <span class="fl">0.25</span></span>
+<span id="cb10-15"><a href="#cb10-15" tabindex="-1"></a></span>
+<span id="cb10-16"><a href="#cb10-16" tabindex="-1"></a><span class="co"># get the greys (stolen from https://github.com/zonination/perceptions/blob/master/percept.R)</span></span>
+<span id="cb10-17"><a href="#cb10-17" tabindex="-1"></a>palette <span class="ot">&lt;-</span> <span class="fu">brewer.pal</span>(<span class="st">&quot;Greys&quot;</span>, <span class="at">n=</span><span class="dv">9</span>)</span>
+<span id="cb10-18"><a href="#cb10-18" tabindex="-1"></a>color.background <span class="ot">=</span> palette[<span class="dv">2</span>]</span>
+<span id="cb10-19"><a href="#cb10-19" tabindex="-1"></a>color.grid.major <span class="ot">=</span> palette[<span class="dv">5</span>]</span>
+<span id="cb10-20"><a href="#cb10-20" tabindex="-1"></a></span>
+<span id="cb10-21"><a href="#cb10-21" tabindex="-1"></a><span class="co"># set graphical area</span></span>
+<span id="cb10-22"><a href="#cb10-22" tabindex="-1"></a><span class="fu">par</span>(<span class="at">bty=</span><span class="st">&quot;n&quot;</span>, <span class="at">bg=</span>palette[<span class="dv">2</span>], <span class="at">mar=</span><span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">8</span>,<span class="dv">3</span>,<span class="dv">1</span>))</span>
+<span id="cb10-23"><a href="#cb10-23" tabindex="-1"></a></span>
+<span id="cb10-24"><a href="#cb10-24" tabindex="-1"></a><span class="co"># plot initial boxplot</span></span>
+<span id="cb10-25"><a href="#cb10-25" tabindex="-1"></a><span class="fu">boxplot</span>(m<span class="sc">~</span><span class="fu">col</span>(m), <span class="at">horizontal=</span><span class="cn">TRUE</span>, <span class="at">outline=</span><span class="cn">FALSE</span>, <span class="at">lty=</span><span class="dv">1</span>, </span>
+<span id="cb10-26"><a href="#cb10-26" tabindex="-1"></a>        <span class="at">staplewex=</span><span class="dv">0</span>, <span class="at">boxwex=</span><span class="fl">0.8</span>, <span class="at">boxlwd=</span><span class="dv">1</span>, <span class="at">medlwd=</span><span class="dv">1</span>, </span>
+<span id="cb10-27"><a href="#cb10-27" tabindex="-1"></a>        <span class="at">col=</span>colsm_tr, <span class="at">xaxt=</span><span class="st">&quot;n&quot;</span>, <span class="at">yaxt=</span><span class="st">&quot;n&quot;</span>,<span class="at">xlab=</span><span class="st">&quot;&quot;</span>,<span class="at">ylab=</span><span class="st">&quot;&quot;</span>)</span>
+<span id="cb10-28"><a href="#cb10-28" tabindex="-1"></a></span>
+<span id="cb10-29"><a href="#cb10-29" tabindex="-1"></a><span class="co"># plot gridlines</span></span>
+<span id="cb10-30"><a href="#cb10-30" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">pretty</span>(m,<span class="dv">10</span>)) {</span>
+<span id="cb10-31"><a href="#cb10-31" tabindex="-1"></a>    <span class="fu">lines</span>(<span class="fu">c</span>(i,i), <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">20</span>), <span class="at">col=</span>palette[<span class="dv">4</span>])</span>
+<span id="cb10-32"><a href="#cb10-32" tabindex="-1"></a>}</span>
+<span id="cb10-33"><a href="#cb10-33" tabindex="-1"></a></span>
+<span id="cb10-34"><a href="#cb10-34" tabindex="-1"></a><span class="co"># plot points</span></span>
+<span id="cb10-35"><a href="#cb10-35" tabindex="-1"></a><span class="fu">points</span>(m, <span class="fu">col</span>(m)<span class="sc">+</span>r, <span class="at">col=</span>colsm, <span class="at">pch=</span><span class="dv">16</span>)</span>
+<span id="cb10-36"><a href="#cb10-36" tabindex="-1"></a></span>
+<span id="cb10-37"><a href="#cb10-37" tabindex="-1"></a><span class="co"># overlay boxplot</span></span>
+<span id="cb10-38"><a href="#cb10-38" tabindex="-1"></a><span class="fu">boxplot</span>(m<span class="sc">~</span><span class="fu">col</span>(m), <span class="at">horizontal=</span><span class="cn">TRUE</span>, <span class="at">outline=</span><span class="cn">FALSE</span>, <span class="at">lty=</span><span class="dv">1</span>, </span>
+<span id="cb10-39"><a href="#cb10-39" tabindex="-1"></a>        <span class="at">staplewex=</span><span class="dv">0</span>, <span class="at">boxwex=</span><span class="fl">0.8</span>, <span class="at">boxlwd=</span><span class="dv">1</span>, <span class="at">medlwd=</span><span class="dv">1</span>, <span class="at">col=</span>colsm_tr, </span>
+<span id="cb10-40"><a href="#cb10-40" tabindex="-1"></a>        <span class="at">add=</span><span class="cn">TRUE</span>, <span class="at">xaxt=</span><span class="st">&quot;n&quot;</span>, <span class="at">yaxt=</span><span class="st">&quot;n&quot;</span>)</span>
+<span id="cb10-41"><a href="#cb10-41" tabindex="-1"></a></span>
+<span id="cb10-42"><a href="#cb10-42" tabindex="-1"></a><span class="co"># add axes and title</span></span>
+<span id="cb10-43"><a href="#cb10-43" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side=</span><span class="dv">1</span>, <span class="at">at=</span><span class="fu">pretty</span>(m,<span class="dv">10</span>), <span class="at">col.axis=</span>palette[<span class="dv">7</span>], </span>
+<span id="cb10-44"><a href="#cb10-44" tabindex="-1"></a>     <span class="at">cex.axis=</span><span class="fl">0.8</span>, <span class="at">lty=</span><span class="dv">0</span>, <span class="at">tick=</span><span class="cn">NA</span>, <span class="at">line=</span><span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb10-45"><a href="#cb10-45" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side=</span><span class="dv">1</span>, <span class="at">at=</span><span class="dv">50</span>, <span class="at">labels=</span><span class="st">&quot;Price (Thousand USD)&quot;</span>, </span>
+<span id="cb10-46"><a href="#cb10-46" tabindex="-1"></a>     <span class="at">lty=</span><span class="dv">0</span>, <span class="at">tick=</span><span class="cn">NA</span>, <span class="at">col.axis=</span>palette[<span class="dv">7</span>])</span>
+<span id="cb10-47"><a href="#cb10-47" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side=</span><span class="dv">2</span>, <span class="at">at=</span><span class="dv">1</span>, <span class="at">col.axis=</span>palette[<span class="dv">7</span>], <span class="at">cex.axis=</span><span class="fl">0.8</span>, </span>
+<span id="cb10-48"><a href="#cb10-48" tabindex="-1"></a>     <span class="at">lty=</span><span class="dv">0</span>, <span class="at">tick=</span><span class="cn">NA</span>, <span class="at">labels=</span><span class="st">&quot;Sample 1&quot;</span>, <span class="at">las=</span><span class="dv">2</span>)</span>
+<span id="cb10-49"><a href="#cb10-49" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side=</span><span class="dv">2</span>, <span class="at">at=</span><span class="dv">17</span><span class="sc">/</span><span class="dv">2</span>, <span class="at">labels=</span><span class="st">&quot;Phrase&quot;</span>, <span class="at">col.axis=</span>palette[<span class="dv">7</span>], </span>
+<span id="cb10-50"><a href="#cb10-50" tabindex="-1"></a>     <span class="at">lty=</span><span class="dv">0</span>, <span class="at">tick=</span><span class="cn">NA</span>, <span class="at">las=</span><span class="dv">3</span>, <span class="at">line=</span><span class="dv">6</span>)</span>
+<span id="cb10-51"><a href="#cb10-51" tabindex="-1"></a><span class="fu">title</span>(<span class="st">&quot;House Prices in Canton NY&quot;</span>)</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>Or if you wish to do the rainbow many group boxplot at the beginning,
+the code is here : <a
+href="https://github.com/fawda123/diss_proc/blob/master/diss_plot.R"
+class="uri">https://github.com/fawda123/diss_proc/blob/master/diss_plot.R</a></p>
+<p><br> <br></p>
+</div>
+</div>
+<div id="histograms" class="section level2">
+<h2>Histograms</h2>
+<p>Especially just looking at a single response variable, it’s useful to
+look immediately at the distribution itself. Histograms are great for
+this, although you must be careful that the bin size doesn’t impact your
+perception of results. Adding in a boxplot is often useful</p>
+<p>Here is the absolute basic histogram</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">hist</span>(HousesNY<span class="sc">$</span>Price)</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p>Or changing the bin size</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="fu">hist</span>(HousesNY<span class="sc">$</span>Price,<span class="at">br=</span><span class="dv">40</span>)</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-14-1.png" width="672" /></p>
+<p>In GGPlot 2, it’s also easy</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>HousesNY, <span class="fu">aes</span>(<span class="at">x=</span>Price)) <span class="sc">+</span> </span>
+<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">20</span>) </span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<p>Often, a boxplot AND a histogram is useful as it allows you to see a
+sense of the data shape and its underlying symmetry. For example, in
+base R</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="co"># Layout to split the screen</span></span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a>graphics<span class="sc">::</span><span class="fu">layout</span>(<span class="fu">matrix</span>(<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>),<span class="dv">2</span>,<span class="dv">1</span>, <span class="at">byrow=</span><span class="cn">TRUE</span>),  </span>
+<span id="cb14-3"><a href="#cb14-3" tabindex="-1"></a>       <span class="at">height =</span> <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">7</span>))</span>
+<span id="cb14-4"><a href="#cb14-4" tabindex="-1"></a> </span>
+<span id="cb14-5"><a href="#cb14-5" tabindex="-1"></a><span class="co"># Draw the boxplot and the histogram </span></span>
+<span id="cb14-6"><a href="#cb14-6" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">3.1</span>, .<span class="dv">5</span>, <span class="fl">2.1</span>))</span>
+<span id="cb14-7"><a href="#cb14-7" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" tabindex="-1"></a>data_to_plot <span class="ot">&lt;-</span> HousesNY<span class="sc">$</span>Price</span>
+<span id="cb14-9"><a href="#cb14-9" tabindex="-1"></a></span>
+<span id="cb14-10"><a href="#cb14-10" tabindex="-1"></a>rangeplot <span class="ot">&lt;-</span> <span class="fu">pretty</span>(data_to_plot,<span class="dv">10</span>)</span>
+<span id="cb14-11"><a href="#cb14-11" tabindex="-1"></a></span>
+<span id="cb14-12"><a href="#cb14-12" tabindex="-1"></a><span class="fu">boxplot</span>(data_to_plot,<span class="at">col =</span> <span class="st">&quot;light blue&quot;</span>,</span>
+<span id="cb14-13"><a href="#cb14-13" tabindex="-1"></a>        <span class="at">border =</span> <span class="st">&quot;dark blue&quot;</span>,<span class="at">xaxt=</span><span class="st">&quot;n&quot;</span>,<span class="at">frame=</span><span class="cn">FALSE</span>,<span class="at">xlim=</span><span class="fu">c</span>(<span class="fl">0.75</span>,<span class="fl">1.25</span>),</span>
+<span id="cb14-14"><a href="#cb14-14" tabindex="-1"></a>        <span class="at">horizontal =</span> <span class="cn">TRUE</span>,<span class="at">notch =</span> <span class="cn">TRUE</span>,<span class="at">ylim=</span><span class="fu">c</span>(<span class="fu">min</span>(rangeplot),<span class="fu">max</span>(rangeplot)))</span>
+<span id="cb14-15"><a href="#cb14-15" tabindex="-1"></a></span>
+<span id="cb14-16"><a href="#cb14-16" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mar=</span><span class="fu">c</span>(<span class="dv">3</span>, <span class="fl">3.1</span>, .<span class="dv">5</span>, <span class="fl">2.1</span>))</span>
+<span id="cb14-17"><a href="#cb14-17" tabindex="-1"></a><span class="fu">hist</span>(data_to_plot , <span class="at">breaks=</span><span class="dv">20</span> , </span>
+<span id="cb14-18"><a href="#cb14-18" tabindex="-1"></a>     <span class="at">col=</span><span class="fu">grey</span>(<span class="fl">0.3</span>) , <span class="at">border=</span>F , </span>
+<span id="cb14-19"><a href="#cb14-19" tabindex="-1"></a>     <span class="at">tcl=</span><span class="sc">-</span>.<span class="dv">25</span>,<span class="at">mgp=</span><span class="fu">c</span>(<span class="fl">1.75</span>,.<span class="dv">5</span>,<span class="dv">0</span>),</span>
+<span id="cb14-20"><a href="#cb14-20" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;&quot;</span> , <span class="at">xlab=</span><span class="st">&quot;Price of houses in Canton NY&quot;</span>, </span>
+<span id="cb14-21"><a href="#cb14-21" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="fu">min</span>(rangeplot),<span class="fu">max</span>(rangeplot)))</span>
+<span id="cb14-22"><a href="#cb14-22" tabindex="-1"></a><span class="fu">box</span>();<span class="fu">grid</span>();</span>
+<span id="cb14-23"><a href="#cb14-23" tabindex="-1"></a><span class="fu">hist</span>(data_to_plot , <span class="at">breaks=</span><span class="dv">20</span> , <span class="at">add=</span><span class="cn">TRUE</span>,</span>
+<span id="cb14-24"><a href="#cb14-24" tabindex="-1"></a>     <span class="at">col=</span><span class="fu">grey</span>(<span class="fl">0.3</span>) , <span class="at">border=</span>F , <span class="at">axis=</span><span class="cn">FALSE</span>,</span>
+<span id="cb14-25"><a href="#cb14-25" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="fu">min</span>(rangeplot),<span class="fu">max</span>(rangeplot)))</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-16-1.png" width="672" /></p>
+<p>And the same with ggplot2:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">library</span>(ggExtra)</span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a></span>
+<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(<span class="at">data=</span>HousesNY, <span class="fu">aes</span>(<span class="at">x=</span>Price)) <span class="sc">+</span> </span>
+<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">y =</span> <span class="fl">0.01</span>), <span class="at">alpha =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">bins=</span><span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="at">na.rm=</span>T)</span>
+<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a></span>
+<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a><span class="fu">ggMarginal</span>(p, <span class="at">type=</span><span class="st">&quot;boxplot&quot;</span>, <span class="at">margins =</span> <span class="st">&quot;x&quot;</span>)</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
+<p>I also love the ggstatplot version</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">library</span>(ggstatsplot)</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="do">## plot</span></span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a><span class="fu">gghistostats</span>(</span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>  <span class="at">data       =</span> HousesNY, <span class="do">## dataframe from which variable is to be taken</span></span>
+<span id="cb16-5"><a href="#cb16-5" tabindex="-1"></a>  <span class="at">x          =</span> Price, <span class="do">## numeric variable whose distribution is of interest</span></span>
+<span id="cb16-6"><a href="#cb16-6" tabindex="-1"></a>  <span class="at">title      =</span> <span class="st">&quot;Price of sampled houses in Canton NY&quot;</span>, <span class="do">## title for the plot</span></span>
+<span id="cb16-7"><a href="#cb16-7" tabindex="-1"></a>  <span class="at">caption    =</span> <span class="st">&quot;Source: Zillow&quot;</span>,</span>
+<span id="cb16-8"><a href="#cb16-8" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;parametric&quot;</span>,</span>
+<span id="cb16-9"><a href="#cb16-9" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="cn">NULL</span>,<span class="at">subtitle=</span><span class="cn">FALSE</span>,</span>
+<span id="cb16-10"><a href="#cb16-10" tabindex="-1"></a>  ggthemes<span class="sc">::</span><span class="fu">theme_tufte</span>(),</span>
+<span id="cb16-11"><a href="#cb16-11" tabindex="-1"></a>  <span class="at">binwidth   =</span> <span class="dv">8</span>) <span class="do">## binwidth value (experiment)</span></span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-18-1.png" width="672" /></p>
+<p>Or their version that includes a lot of associated statistics. You
+can turn many of these on and off</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a><span class="fu">library</span>(ggstatsplot)</span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a><span class="do">## plot</span></span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a><span class="fu">gghistostats</span>(</span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>  <span class="at">data       =</span> HousesNY, <span class="do">## dataframe from which variable is to be taken</span></span>
+<span id="cb17-6"><a href="#cb17-6" tabindex="-1"></a>  <span class="at">x          =</span> Price, <span class="do">## numeric variable whose distribution is of interest</span></span>
+<span id="cb17-7"><a href="#cb17-7" tabindex="-1"></a>  <span class="at">title      =</span> <span class="st">&quot;Price of sampled houses in Canton NY&quot;</span>, <span class="do">## title for the plot</span></span>
+<span id="cb17-8"><a href="#cb17-8" tabindex="-1"></a>  <span class="at">caption    =</span> <span class="st">&quot;Source: Zillow&quot;</span>,</span>
+<span id="cb17-9"><a href="#cb17-9" tabindex="-1"></a>  <span class="at">type =</span> <span class="st">&quot;parametric&quot;</span>,</span>
+<span id="cb17-10"><a href="#cb17-10" tabindex="-1"></a>  <span class="at">xlab =</span> <span class="cn">NULL</span>,</span>
+<span id="cb17-11"><a href="#cb17-11" tabindex="-1"></a>  ggthemes<span class="sc">::</span><span class="fu">theme_tufte</span>(),</span>
+<span id="cb17-12"><a href="#cb17-12" tabindex="-1"></a>  <span class="at">binwidth   =</span> <span class="dv">8</span>) <span class="do">## binwidth value (experiment)</span></span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
+<div id="adding-a-density-function" class="section level3">
+<h3>Adding a density function</h3>
+<p>Sometimes seeing a smoothed line helps draw the eye to
+distributions</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">hist</span>(HousesNY<span class="sc">$</span>Price, <span class="at">prob =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Canton Prices with density curve&quot;</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a><span class="fu">lines</span>(<span class="fu">density</span>(HousesNY<span class="sc">$</span>Price), <span class="at">col =</span> <span class="dv">4</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a><span class="fu">box</span>()</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-20-1.png" width="672" /></p>
+</div>
+<div id="adding-a-distribution" class="section level3">
+<h3>Adding a distribution</h3>
+<p>Let’s say you want to make plots similar to the ones in the lectures
+where there is your chosen distribution on top.</p>
+<p>If you know the distribution, you can simply add it on top as a
+line</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>mysample <span class="ot">&lt;-</span> HousesNY<span class="sc">$</span>Price</span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a></span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a>plotmin <span class="ot">&lt;-</span> <span class="fu">mean</span>(mysample) <span class="sc">-</span> <span class="fu">sd</span>(mysample)<span class="sc">*</span><span class="dv">3</span></span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a>plotmax <span class="ot">&lt;-</span>  <span class="fu">mean</span>(mysample) <span class="sc">+</span> <span class="fu">sd</span>(mysample)<span class="sc">*</span><span class="dv">3</span></span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a></span>
+<span id="cb19-6"><a href="#cb19-6" tabindex="-1"></a><span class="co"># Points for the normal equation line</span></span>
+<span id="cb19-7"><a href="#cb19-7" tabindex="-1"></a>NormCurve_x <span class="ot">&lt;-</span> <span class="fu">seq</span>(plotmin,plotmax, <span class="at">length =</span> <span class="dv">40</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" tabindex="-1"></a><span class="co"># Normal curve calculation for each point</span></span>
+<span id="cb19-10"><a href="#cb19-10" tabindex="-1"></a>NormCurve_y <span class="ot">&lt;-</span> <span class="fu">dnorm</span>(NormCurve_x, <span class="at">mean =</span> <span class="fu">mean</span>(mysample), <span class="at">sd =</span> <span class="fu">sd</span>(mysample))</span>
+<span id="cb19-11"><a href="#cb19-11" tabindex="-1"></a></span>
+<span id="cb19-12"><a href="#cb19-12" tabindex="-1"></a><span class="co"># make sure this is density not raw frequency</span></span>
+<span id="cb19-13"><a href="#cb19-13" tabindex="-1"></a><span class="fu">hist</span>(mysample , <span class="at">breaks=</span><span class="dv">20</span> , <span class="at">freq=</span><span class="cn">FALSE</span>,</span>
+<span id="cb19-14"><a href="#cb19-14" tabindex="-1"></a>     <span class="at">col=</span><span class="fu">grey</span>(<span class="fl">0.5</span>) , <span class="at">border=</span>F , </span>
+<span id="cb19-15"><a href="#cb19-15" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(plotmin,plotmax),</span>
+<span id="cb19-16"><a href="#cb19-16" tabindex="-1"></a>     <span class="at">tcl=</span><span class="sc">-</span>.<span class="dv">25</span>,<span class="at">mgp=</span><span class="fu">c</span>(<span class="fl">1.75</span>,.<span class="dv">5</span>,<span class="dv">0</span>),</span>
+<span id="cb19-17"><a href="#cb19-17" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;&quot;</span> , <span class="at">xlab=</span><span class="st">&quot;Price of houses in Canton NY&quot;</span>)</span>
+<span id="cb19-18"><a href="#cb19-18" tabindex="-1"></a><span class="co"># add the normal curve (THIS NEEDS TO BE IN THE SAME CODE CHUNK)</span></span>
+<span id="cb19-19"><a href="#cb19-19" tabindex="-1"></a><span class="fu">lines</span>(NormCurve_x, NormCurve_y, <span class="at">col =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb19-20"><a href="#cb19-20" tabindex="-1"></a><span class="fu">box</span>()</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-21-1.png" width="672" /></p>
+<p>We could plot any old curve this way, it doesn’t have to be “fit” to
+our data. For example here is a random gamma function</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a>mysample <span class="ot">&lt;-</span> HousesNY<span class="sc">$</span>Price</span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a></span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a><span class="co"># Points for the normal equation line</span></span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a>GammaCurve_x <span class="ot">&lt;-</span> <span class="fu">seq</span>(plotmin,plotmax, <span class="at">length =</span> <span class="dv">60</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a>GammaCurve_y <span class="ot">&lt;-</span> <span class="fu">dgamma</span>(GammaCurve_x,<span class="at">shape =</span> <span class="dv">2</span>)</span>
+<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a></span>
+<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a><span class="co"># make sure this is density not raw frequency</span></span>
+<span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a><span class="fu">hist</span>(mysample , <span class="at">breaks=</span><span class="dv">20</span> , <span class="at">freq=</span><span class="cn">FALSE</span>,</span>
+<span id="cb20-9"><a href="#cb20-9" tabindex="-1"></a>     <span class="at">col=</span><span class="fu">grey</span>(<span class="fl">0.5</span>) , <span class="at">border=</span>F , </span>
+<span id="cb20-10"><a href="#cb20-10" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(plotmin,plotmax),</span>
+<span id="cb20-11"><a href="#cb20-11" tabindex="-1"></a>     <span class="at">tcl=</span><span class="sc">-</span>.<span class="dv">25</span>,<span class="at">mgp=</span><span class="fu">c</span>(<span class="fl">1.75</span>,.<span class="dv">5</span>,<span class="dv">0</span>),</span>
+<span id="cb20-12"><a href="#cb20-12" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;&quot;</span> , <span class="at">xlab=</span><span class="st">&quot;Price of houses in Canton NY&quot;</span>)</span>
+<span id="cb20-13"><a href="#cb20-13" tabindex="-1"></a><span class="co"># add the normal curve (THIS NEEDS TO BE IN THE SAME CODE CHUNK)</span></span>
+<span id="cb20-14"><a href="#cb20-14" tabindex="-1"></a><span class="fu">lines</span>(GammaCurve_x, GammaCurve_y, <span class="at">col =</span> <span class="dv">2</span>, <span class="at">lwd =</span> <span class="dv">2</span>)</span>
+<span id="cb20-15"><a href="#cb20-15" tabindex="-1"></a><span class="fu">box</span>()</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-22-1.png" width="672" /></p>
+</div>
+<div id="comparing-groups-1" class="section level3">
+<h3>Comparing groups</h3>
+<p>Or you can easily compare two datasets, tutorial for this plot here:
+<a href="https://www.r-graph-gallery.com/histogram_several_group.html"
+class="uri">https://www.r-graph-gallery.com/histogram_several_group.html</a></p>
+<p><br> <br></p>
+</div>
+</div>
+<div id="scatterplots" class="section level2">
+<h2>Scatterplots</h2>
+</div>
+</div>
+<div id="basics" class="section level1">
+<h1>Basics</h1>
+<p>Here is the absolute basic scatterplot</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="co"># you can either do plot(x, y)</span></span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a><span class="co"># OR (recommended), use the ~ to say plot(y~x) </span></span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a><span class="co"># e.g. y depends on x</span></span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a></span>
+<span id="cb21-5"><a href="#cb21-5" tabindex="-1"></a><span class="fu">plot</span>(HousesNY<span class="sc">$</span>Price <span class="sc">~</span> HousesNY<span class="sc">$</span>Beds)</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-23-1.png" width="672" /></p>
+<p>There are many things we can change, see the help file for the
+<code>par</code> command for more.</p>
+<p>For example, here is an ugly plot showing as many options as I can
+think of!</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a><span class="fu">plot</span>(HousesNY<span class="sc">$</span>Price <span class="sc">~</span> HousesNY<span class="sc">$</span>Beds,</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">7</span>), <span class="co">#xlimits</span></span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>     <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">40</span>,<span class="dv">220</span>), <span class="co">#ylimits</span></span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a>     <span class="at">xlab=</span><span class="fu">list</span>(<span class="st">&quot;Beds&quot;</span>,<span class="at">cex=</span>.<span class="dv">8</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">font=</span><span class="dv">2</span>), <span class="co"># play with x-label</span></span>
+<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a>     <span class="at">ylab=</span><span class="fu">list</span>(<span class="st">&quot;Price&quot;</span>,<span class="at">cex=</span><span class="fl">1.2</span>,<span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">font=</span><span class="dv">3</span>), <span class="co"># play with x-label</span></span>
+<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Ugly feature plot&quot;</span>,</span>
+<span id="cb22-7"><a href="#cb22-7" tabindex="-1"></a>     <span class="at">cex=</span><span class="fl">1.2</span>, <span class="co">#point size</span></span>
+<span id="cb22-8"><a href="#cb22-8" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">16</span>, <span class="co"># symbol shape (try plot(1:24,1:24,pch=1:24 to see them all))</span></span>
+<span id="cb22-9"><a href="#cb22-9" tabindex="-1"></a>     <span class="at">tcl=</span><span class="sc">-</span>.<span class="dv">25</span>, <span class="co"># smaller tick marks</span></span>
+<span id="cb22-10"><a href="#cb22-10" tabindex="-1"></a>     <span class="at">mgp=</span><span class="fu">c</span>(<span class="fl">1.75</span>,.<span class="dv">5</span>,<span class="dv">0</span>)) <span class="co"># move the x/y labels around</span></span>
+<span id="cb22-11"><a href="#cb22-11" tabindex="-1"></a></span>
+<span id="cb22-12"><a href="#cb22-12" tabindex="-1"></a><span class="fu">grid</span>() <span class="co">#  add a grid</span></span>
+<span id="cb22-13"><a href="#cb22-13" tabindex="-1"></a></span>
+<span id="cb22-14"><a href="#cb22-14" tabindex="-1"></a><span class="co"># lines means &quot;add points on top&quot;</span></span>
+<span id="cb22-15"><a href="#cb22-15" tabindex="-1"></a><span class="fu">lines</span>(HousesNY<span class="sc">$</span>Price <span class="sc">~</span> HousesNY<span class="sc">$</span>Beds, </span>
+<span id="cb22-16"><a href="#cb22-16" tabindex="-1"></a>     <span class="at">type=</span><span class="st">&quot;p&quot;</span>, <span class="co"># p for points, &quot;l&quot; for lines, &quot;o&quot; for both, &quot;h for bars</span></span>
+<span id="cb22-17"><a href="#cb22-17" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">7</span>), <span class="co">#xlimits</span></span>
+<span id="cb22-18"><a href="#cb22-18" tabindex="-1"></a>     <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">40</span>,<span class="dv">220</span>), <span class="co">#ylimits</span></span>
+<span id="cb22-19"><a href="#cb22-19" tabindex="-1"></a>     <span class="at">col=</span><span class="st">&quot;yellow&quot;</span>,</span>
+<span id="cb22-20"><a href="#cb22-20" tabindex="-1"></a>     <span class="at">cex=</span>.<span class="dv">5</span>, <span class="co">#point size</span></span>
+<span id="cb22-21"><a href="#cb22-21" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">4</span>) <span class="co"># move the x/y labels around</span></span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p>To add a line, you can use the abline command IN THE SAME CODE CHUNK.
+For example</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">plot</span>(HousesNY<span class="sc">$</span>Price <span class="sc">~</span> HousesNY<span class="sc">$</span>Beds,</span>
+<span id="cb23-2"><a href="#cb23-2" tabindex="-1"></a>     <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">7</span>), <span class="co">#xlimits</span></span>
+<span id="cb23-3"><a href="#cb23-3" tabindex="-1"></a>     <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">40</span>,<span class="dv">220</span>), <span class="co">#ylimits</span></span>
+<span id="cb23-4"><a href="#cb23-4" tabindex="-1"></a>     <span class="at">xlab=</span><span class="fu">list</span>(<span class="st">&quot;Beds&quot;</span>,<span class="at">cex=</span>.<span class="dv">8</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">font=</span><span class="dv">2</span>), <span class="co"># play with x-label</span></span>
+<span id="cb23-5"><a href="#cb23-5" tabindex="-1"></a>     <span class="at">ylab=</span><span class="fu">list</span>(<span class="st">&quot;Price&quot;</span>,<span class="at">cex=</span><span class="fl">1.2</span>,<span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">font=</span><span class="dv">3</span>), <span class="co"># play with x-label</span></span>
+<span id="cb23-6"><a href="#cb23-6" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;&quot;</span>, <span class="co"># no title</span></span>
+<span id="cb23-7"><a href="#cb23-7" tabindex="-1"></a>     <span class="at">cex=</span><span class="fl">1.2</span>, <span class="co">#point size</span></span>
+<span id="cb23-8"><a href="#cb23-8" tabindex="-1"></a>     <span class="at">pch=</span><span class="dv">16</span>, <span class="co"># symbol shape (try plot(1:24,1:24,pch=1:24 to see them all))</span></span>
+<span id="cb23-9"><a href="#cb23-9" tabindex="-1"></a>     <span class="at">tcl=</span><span class="sc">-</span>.<span class="dv">25</span>, <span class="co"># smaller tick marks</span></span>
+<span id="cb23-10"><a href="#cb23-10" tabindex="-1"></a>     <span class="at">mgp=</span><span class="fu">c</span>(<span class="fl">1.75</span>,.<span class="dv">5</span>,<span class="dv">0</span>)) <span class="co"># move the x/y labels around</span></span>
+<span id="cb23-11"><a href="#cb23-11" tabindex="-1"></a></span>
+<span id="cb23-12"><a href="#cb23-12" tabindex="-1"></a><span class="co"># add vertical line at 3.5</span></span>
+<span id="cb23-13"><a href="#cb23-13" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="fl">5.5</span>,<span class="at">col=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb23-14"><a href="#cb23-14" tabindex="-1"></a><span class="co"># add horizontal line at the mean of price</span></span>
+<span id="cb23-15"><a href="#cb23-15" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="fu">mean</span>(HousesNY<span class="sc">$</span>Price)) </span>
+<span id="cb23-16"><a href="#cb23-16" tabindex="-1"></a><span class="co"># add line of best fit</span></span>
+<span id="cb23-17"><a href="#cb23-17" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(HousesNY<span class="sc">$</span>Price <span class="sc">~</span> HousesNY<span class="sc">$</span>Beds),<span class="at">col=</span><span class="st">&quot;blue&quot;</span>,<span class="at">lty=</span><span class="st">&quot;dotted&quot;</span>,<span class="at">lwd=</span><span class="dv">3</span>) </span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-25-1.png" width="672" /></p>
+<div id="more-advanced" class="section level2">
+<h2>More advanced</h2>
+<p>GGPlot also has basic and advanced options. From the basics:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a><span class="co">#</span></span>
+<span id="cb24-3"><a href="#cb24-3" tabindex="-1"></a><span class="fu">ggplot</span>(HousesNY, <span class="fu">aes</span>(<span class="at">x=</span>Beds, <span class="at">y=</span>Price)) <span class="sc">+</span> </span>
+<span id="cb24-4"><a href="#cb24-4" tabindex="-1"></a>    <span class="fu">geom_point</span>()</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-26-1.png" width="672" /></p>
+<p>To more advanced:</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb25-2"><a href="#cb25-2" tabindex="-1"></a><span class="fu">library</span>(hrbrthemes)</span>
+<span id="cb25-3"><a href="#cb25-3" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" tabindex="-1"></a><span class="co"># use options!</span></span>
+<span id="cb25-5"><a href="#cb25-5" tabindex="-1"></a><span class="fu">ggplot</span>(HousesNY, <span class="fu">aes</span>(<span class="at">x=</span>Beds, <span class="at">y=</span>Price)) <span class="sc">+</span> </span>
+<span id="cb25-6"><a href="#cb25-6" tabindex="-1"></a>    <span class="fu">geom_point</span>(</span>
+<span id="cb25-7"><a href="#cb25-7" tabindex="-1"></a>        <span class="at">color=</span><span class="st">&quot;black&quot;</span>,</span>
+<span id="cb25-8"><a href="#cb25-8" tabindex="-1"></a>        <span class="at">fill=</span><span class="st">&quot;#69b3a2&quot;</span>,</span>
+<span id="cb25-9"><a href="#cb25-9" tabindex="-1"></a>        <span class="at">shape=</span><span class="dv">22</span>,</span>
+<span id="cb25-10"><a href="#cb25-10" tabindex="-1"></a>        <span class="at">alpha=</span><span class="fl">0.5</span>,</span>
+<span id="cb25-11"><a href="#cb25-11" tabindex="-1"></a>        <span class="at">size=</span><span class="dv">6</span>,</span>
+<span id="cb25-12"><a href="#cb25-12" tabindex="-1"></a>        <span class="at">stroke =</span> <span class="dv">1</span></span>
+<span id="cb25-13"><a href="#cb25-13" tabindex="-1"></a>        ) <span class="sc">+</span></span>
+<span id="cb25-14"><a href="#cb25-14" tabindex="-1"></a>    <span class="fu">theme_ipsum</span>()</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-27-1.png" width="672" /></p>
+<p>Adding a line of best fit is also easy, but fits less easily with R’s
+modelling commands:</p>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" tabindex="-1"></a><span class="co"># Library</span></span>
+<span id="cb26-2"><a href="#cb26-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb26-3"><a href="#cb26-3" tabindex="-1"></a><span class="fu">library</span>(hrbrthemes)</span>
+<span id="cb26-4"><a href="#cb26-4" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" tabindex="-1"></a><span class="co"># Create dummy data</span></span>
+<span id="cb26-6"><a href="#cb26-6" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb26-7"><a href="#cb26-7" tabindex="-1"></a>  <span class="at">cond =</span> <span class="fu">rep</span>(<span class="fu">c</span>(<span class="st">&quot;condition_1&quot;</span>, <span class="st">&quot;condition_2&quot;</span>), <span class="at">each=</span><span class="dv">10</span>), </span>
+<span id="cb26-8"><a href="#cb26-8" tabindex="-1"></a>  <span class="at">my_x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>,<span class="at">sd=</span><span class="dv">9</span>), </span>
+<span id="cb26-9"><a href="#cb26-9" tabindex="-1"></a>  <span class="at">my_y =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">100</span> <span class="sc">+</span> <span class="fu">rnorm</span>(<span class="dv">100</span>,<span class="at">sd=</span><span class="dv">16</span>) </span>
+<span id="cb26-10"><a href="#cb26-10" tabindex="-1"></a>)</span>
+<span id="cb26-11"><a href="#cb26-11" tabindex="-1"></a></span>
+<span id="cb26-12"><a href="#cb26-12" tabindex="-1"></a><span class="co"># Basic scatter plot.</span></span>
+<span id="cb26-13"><a href="#cb26-13" tabindex="-1"></a>p1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span>my_x, <span class="at">y=</span>my_y)) <span class="sc">+</span> </span>
+<span id="cb26-14"><a href="#cb26-14" tabindex="-1"></a>  <span class="fu">geom_point</span>( <span class="at">color=</span><span class="st">&quot;#69b3a2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb26-15"><a href="#cb26-15" tabindex="-1"></a>  <span class="fu">theme_ipsum</span>()</span>
+<span id="cb26-16"><a href="#cb26-16" tabindex="-1"></a> </span>
+<span id="cb26-17"><a href="#cb26-17" tabindex="-1"></a><span class="co"># with linear trend</span></span>
+<span id="cb26-18"><a href="#cb26-18" tabindex="-1"></a>p2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span>my_x, <span class="at">y=</span>my_y)) <span class="sc">+</span></span>
+<span id="cb26-19"><a href="#cb26-19" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb26-20"><a href="#cb26-20" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm , <span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">se=</span><span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb26-21"><a href="#cb26-21" tabindex="-1"></a>  <span class="fu">theme_ipsum</span>()</span>
+<span id="cb26-22"><a href="#cb26-22" tabindex="-1"></a></span>
+<span id="cb26-23"><a href="#cb26-23" tabindex="-1"></a><span class="co"># linear trend + confidence interval</span></span>
+<span id="cb26-24"><a href="#cb26-24" tabindex="-1"></a>p3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(data, <span class="fu">aes</span>(<span class="at">x=</span>my_x, <span class="at">y=</span>my_y)) <span class="sc">+</span></span>
+<span id="cb26-25"><a href="#cb26-25" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb26-26"><a href="#cb26-26" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method=</span>lm , <span class="at">color=</span><span class="st">&quot;red&quot;</span>, <span class="at">fill=</span><span class="st">&quot;#69b3a2&quot;</span>, <span class="at">se=</span><span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb26-27"><a href="#cb26-27" tabindex="-1"></a>  <span class="fu">theme_ipsum</span>()</span>
+<span id="cb26-28"><a href="#cb26-28" tabindex="-1"></a></span>
+<span id="cb26-29"><a href="#cb26-29" tabindex="-1"></a>p1</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a>p2</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-28-2.png" width="672" /></p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" tabindex="-1"></a>p3</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-28-3.png" width="672" /></p>
+</div>
+<div id="interactive" class="section level2">
+<h2>Interactive!</h2>
+<p>Or using the plotly library to make your plots interactive (really
+useful, try zooming in or clicking on a few points)</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" tabindex="-1"></a><span class="co"># create the plot, save it as &quot;p&quot; rather than print immediately</span></span>
+<span id="cb29-2"><a href="#cb29-2" tabindex="-1"></a>myplot <span class="ot">&lt;-</span>   <span class="fu">ggplot</span>(HousesNY, <span class="fu">aes</span>(<span class="at">x=</span>Beds, <span class="at">y=</span>Price, <span class="at">label=</span>Baths)) <span class="sc">+</span> </span>
+<span id="cb29-3"><a href="#cb29-3" tabindex="-1"></a>            <span class="fu">geom_point</span>(<span class="at">alpha=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb29-4"><a href="#cb29-4" tabindex="-1"></a>            <span class="fu">theme_classic</span>()</span>
+<span id="cb29-5"><a href="#cb29-5" tabindex="-1"></a>            </span>
+<span id="cb29-6"><a href="#cb29-6" tabindex="-1"></a><span class="co"># and plot interactively</span></span>
+<span id="cb29-7"><a href="#cb29-7" tabindex="-1"></a><span class="fu">ggplotly</span>(myplot)</span></code></pre></div>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-098a1f3b4e1fd3e3ba9c" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-098a1f3b4e1fd3e3ba9c">{"x":{"data":[{"x":[2,5,3,2,2,1,1,3,3,2,2,2,2,3,2,2,3,2,3,2,3,3,4,3,2,1,2,2,3,2,2,2,2,2,2,1,2,2,2,3,1,3,3,3,3,2,3,2,3,3,4,3,2],"y":[57.600000000000001,120,150,143,92.5,50,89,140,197.5,125.09999999999999,175,60,138.5,160,63.5,107,185,82.700000000000003,75,118,87.5,67.5,105,114,100.5,78,99,144,179,110,175,100,53,92,127,120.5,72,95,38.5,139,75,174,119,89,75.099999999999994,92.5,141,82,162,195,190,115,87],"text":["Beds: 3<br />Price:  57.6<br />Baths: 2.0","Beds: 6<br />Price: 120.0<br />Baths: 2.0","Beds: 4<br />Price: 150.0<br />Baths: 2.0","Beds: 3<br />Price: 143.0<br />Baths: 2.0","Beds: 3<br />Price:  92.5<br />Baths: 1.0","Beds: 2<br />Price:  50.0<br />Baths: 1.0","Beds: 2<br />Price:  89.0<br />Baths: 2.0","Beds: 4<br />Price: 140.0<br />Baths: 3.0","Beds: 4<br />Price: 197.5<br />Baths: 2.5","Beds: 3<br />Price: 125.1<br />Baths: 2.0","Beds: 3<br />Price: 175.0<br />Baths: 2.0","Beds: 3<br />Price:  60.0<br />Baths: 1.0","Beds: 3<br />Price: 138.5<br />Baths: 2.0","Beds: 4<br />Price: 160.0<br />Baths: 2.0","Beds: 3<br />Price:  63.5<br />Baths: 2.0","Beds: 3<br />Price: 107.0<br />Baths: 1.0","Beds: 4<br />Price: 185.0<br />Baths: 3.5","Beds: 3<br />Price:  82.7<br />Baths: 1.0","Beds: 4<br />Price:  75.0<br />Baths: 2.0","Beds: 3<br />Price: 118.0<br />Baths: 1.0","Beds: 4<br />Price:  87.5<br />Baths: 2.0","Beds: 4<br />Price:  67.5<br />Baths: 1.0","Beds: 5<br />Price: 105.0<br />Baths: 2.0","Beds: 4<br />Price: 114.0<br />Baths: 2.0","Beds: 3<br />Price: 100.5<br />Baths: 2.0","Beds: 2<br />Price:  78.0<br />Baths: 1.0","Beds: 3<br />Price:  99.0<br />Baths: 1.0","Beds: 3<br />Price: 144.0<br />Baths: 1.5","Beds: 4<br />Price: 179.0<br />Baths: 2.0","Beds: 3<br />Price: 110.0<br />Baths: 1.5","Beds: 3<br />Price: 175.0<br />Baths: 2.0","Beds: 3<br />Price: 100.0<br />Baths: 2.0","Beds: 3<br />Price:  53.0<br />Baths: 1.0","Beds: 3<br />Price:  92.0<br />Baths: 2.0","Beds: 3<br />Price: 127.0<br />Baths: 2.0","Beds: 2<br />Price: 120.5<br />Baths: 2.0","Beds: 3<br />Price:  72.0<br />Baths: 2.0","Beds: 3<br />Price:  95.0<br />Baths: 2.0","Beds: 3<br />Price:  38.5<br />Baths: 1.0","Beds: 4<br />Price: 139.0<br />Baths: 2.0","Beds: 2<br />Price:  75.0<br />Baths: 2.0","Beds: 4<br />Price: 174.0<br />Baths: 3.0","Beds: 4<br />Price: 119.0<br />Baths: 2.0","Beds: 4<br />Price:  89.0<br />Baths: 1.0","Beds: 4<br />Price:  75.1<br />Baths: 2.0","Beds: 3<br />Price:  92.5<br />Baths: 2.0","Beds: 4<br />Price: 141.0<br />Baths: 1.0","Beds: 3<br />Price:  82.0<br />Baths: 3.0","Beds: 4<br />Price: 162.0<br />Baths: 1.5","Beds: 4<br />Price: 195.0<br />Baths: 3.0","Beds: 5<br />Price: 190.0<br />Baths: 3.5","Beds: 4<br />Price: 115.0<br />Baths: 2.0","Beds: 3<br />Price:  87.0<br />Baths: 1.5"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":"rgba(0,0,0,1)","opacity":0.5,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":"rgba(0,0,0,1)"}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null}],"layout":{"margin":{"t":26.228310502283108,"r":7.3059360730593621,"b":40.182648401826498,"l":43.105022831050235},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,5.5999999999999996],"tickmode":"array","ticktext":["2","3","4","5","6"],"tickvals":[1,2,3,4,5],"categoryorder":"array","categoryarray":["2","3","4","5","6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"Beds","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[30.550000000000001,205.44999999999999],"tickmode":"array","ticktext":["50","100","150","200"],"tickvals":[50,100,150,200],"categoryorder":"array","categoryarray":["50","100","150","200"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"Price","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"5b824fe01cd5":{"x":{},"y":{},"label":{},"type":"scatter"}},"cur_data":"5b824fe01cd5","visdat":{"5b824fe01cd5":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p>It’s also very easy to add in color to see another variable. For
+example</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" tabindex="-1"></a><span class="co"># create the plot, save it as &quot;p&quot; rather than print immediately</span></span>
+<span id="cb30-2"><a href="#cb30-2" tabindex="-1"></a>myplot <span class="ot">&lt;-</span>   <span class="fu">ggplot</span>(HousesNY, <span class="fu">aes</span>(<span class="at">x=</span>Beds, <span class="at">y=</span>Price,<span class="at">color=</span>Baths)) <span class="sc">+</span> </span>
+<span id="cb30-3"><a href="#cb30-3" tabindex="-1"></a>            <span class="fu">geom_point</span>(<span class="at">alpha=</span>.<span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb30-4"><a href="#cb30-4" tabindex="-1"></a>            <span class="fu">theme_classic</span>()<span class="sc">+</span></span>
+<span id="cb30-5"><a href="#cb30-5" tabindex="-1"></a>            <span class="fu">scale_color_gradient</span>(<span class="at">low=</span><span class="st">&quot;blue&quot;</span>, <span class="at">high=</span><span class="st">&quot;red&quot;</span>)</span>
+<span id="cb30-6"><a href="#cb30-6" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" tabindex="-1"></a><span class="co"># and plot interactively</span></span>
+<span id="cb30-8"><a href="#cb30-8" tabindex="-1"></a><span class="fu">ggplotly</span>(myplot)</span></code></pre></div>
+<div class="plotly html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-d37af5932b4115d32e46" style="width:672px;height:480px;"></div>
+<script type="application/json" data-for="htmlwidget-d37af5932b4115d32e46">{"x":{"data":[{"x":[2,5,3,2,2,1,1,3,3,2,2,2,2,3,2,2,3,2,3,2,3,3,4,3,2,1,2,2,3,2,2,2,2,2,2,1,2,2,2,3,1,3,3,3,3,2,3,2,3,3,4,3,2],"y":[57.600000000000001,120,150,143,92.5,50,89,140,197.5,125.09999999999999,175,60,138.5,160,63.5,107,185,82.700000000000003,75,118,87.5,67.5,105,114,100.5,78,99,144,179,110,175,100,53,92,127,120.5,72,95,38.5,139,75,174,119,89,75.099999999999994,92.5,141,82,162,195,190,115,87],"text":["Beds: 3<br />Price:  57.6<br />Baths: 2.0","Beds: 6<br />Price: 120.0<br />Baths: 2.0","Beds: 4<br />Price: 150.0<br />Baths: 2.0","Beds: 3<br />Price: 143.0<br />Baths: 2.0","Beds: 3<br />Price:  92.5<br />Baths: 1.0","Beds: 2<br />Price:  50.0<br />Baths: 1.0","Beds: 2<br />Price:  89.0<br />Baths: 2.0","Beds: 4<br />Price: 140.0<br />Baths: 3.0","Beds: 4<br />Price: 197.5<br />Baths: 2.5","Beds: 3<br />Price: 125.1<br />Baths: 2.0","Beds: 3<br />Price: 175.0<br />Baths: 2.0","Beds: 3<br />Price:  60.0<br />Baths: 1.0","Beds: 3<br />Price: 138.5<br />Baths: 2.0","Beds: 4<br />Price: 160.0<br />Baths: 2.0","Beds: 3<br />Price:  63.5<br />Baths: 2.0","Beds: 3<br />Price: 107.0<br />Baths: 1.0","Beds: 4<br />Price: 185.0<br />Baths: 3.5","Beds: 3<br />Price:  82.7<br />Baths: 1.0","Beds: 4<br />Price:  75.0<br />Baths: 2.0","Beds: 3<br />Price: 118.0<br />Baths: 1.0","Beds: 4<br />Price:  87.5<br />Baths: 2.0","Beds: 4<br />Price:  67.5<br />Baths: 1.0","Beds: 5<br />Price: 105.0<br />Baths: 2.0","Beds: 4<br />Price: 114.0<br />Baths: 2.0","Beds: 3<br />Price: 100.5<br />Baths: 2.0","Beds: 2<br />Price:  78.0<br />Baths: 1.0","Beds: 3<br />Price:  99.0<br />Baths: 1.0","Beds: 3<br />Price: 144.0<br />Baths: 1.5","Beds: 4<br />Price: 179.0<br />Baths: 2.0","Beds: 3<br />Price: 110.0<br />Baths: 1.5","Beds: 3<br />Price: 175.0<br />Baths: 2.0","Beds: 3<br />Price: 100.0<br />Baths: 2.0","Beds: 3<br />Price:  53.0<br />Baths: 1.0","Beds: 3<br />Price:  92.0<br />Baths: 2.0","Beds: 3<br />Price: 127.0<br />Baths: 2.0","Beds: 2<br />Price: 120.5<br />Baths: 2.0","Beds: 3<br />Price:  72.0<br />Baths: 2.0","Beds: 3<br />Price:  95.0<br />Baths: 2.0","Beds: 3<br />Price:  38.5<br />Baths: 1.0","Beds: 4<br />Price: 139.0<br />Baths: 2.0","Beds: 2<br />Price:  75.0<br />Baths: 2.0","Beds: 4<br />Price: 174.0<br />Baths: 3.0","Beds: 4<br />Price: 119.0<br />Baths: 2.0","Beds: 4<br />Price:  89.0<br />Baths: 1.0","Beds: 4<br />Price:  75.1<br />Baths: 2.0","Beds: 3<br />Price:  92.5<br />Baths: 2.0","Beds: 4<br />Price: 141.0<br />Baths: 1.0","Beds: 3<br />Price:  82.0<br />Baths: 3.0","Beds: 4<br />Price: 162.0<br />Baths: 1.5","Beds: 4<br />Price: 195.0<br />Baths: 3.0","Beds: 5<br />Price: 190.0<br />Baths: 3.5","Beds: 4<br />Price: 115.0<br />Baths: 2.0","Beds: 3<br />Price:  87.0<br />Baths: 1.5"],"type":"scatter","mode":"markers","marker":{"autocolorscale":false,"color":["rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(237,0,68,1)","rgba(215,0,114,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(255,0,0,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(0,0,255,1)","rgba(141,0,206,1)","rgba(186,0,159,1)","rgba(141,0,206,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(237,0,68,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(237,0,68,1)","rgba(141,0,206,1)","rgba(237,0,68,1)","rgba(255,0,0,1)","rgba(186,0,159,1)","rgba(141,0,206,1)"],"opacity":0.5,"size":5.6692913385826778,"symbol":"circle","line":{"width":1.8897637795275593,"color":["rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(237,0,68,1)","rgba(215,0,114,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(255,0,0,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(0,0,255,1)","rgba(141,0,206,1)","rgba(186,0,159,1)","rgba(141,0,206,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(237,0,68,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(186,0,159,1)","rgba(186,0,159,1)","rgba(0,0,255,1)","rgba(237,0,68,1)","rgba(141,0,206,1)","rgba(237,0,68,1)","rgba(255,0,0,1)","rgba(186,0,159,1)","rgba(141,0,206,1)"]}},"hoveron":"points","showlegend":false,"xaxis":"x","yaxis":"y","hoverinfo":"text","frame":null},{"x":[1],"y":[50],"name":"99_6ccb91eea3e6eb102a64eebb95be0905","type":"scatter","mode":"markers","opacity":0,"hoverinfo":"skip","showlegend":false,"marker":{"color":[0,1],"colorscale":[[0,"#0000FF"],[0.0033444816053512126,"#0F00FE"],[0.0066889632107023367,"#1900FD"],[0.01003344481605355,"#2000FD"],[0.013377926421404673,"#2600FC"],[0.016722408026755887,"#2B00FB"],[0.02006688963210701,"#2F00FA"],[0.023411371237458223,"#3300F9"],[0.026755852842809347,"#3700F8"],[0.03010033444816056,"#3A00F8"],[0.033444816053511683,"#3E00F7"],[0.036789297658862893,"#4100F6"],[0.04013377926421402,"#4400F5"],[0.04347826086956523,"#4600F4"],[0.046822742474916357,"#4900F3"],[0.050167224080267567,"#4B00F3"],[0.053511705685618693,"#4E00F2"],[0.056856187290969903,"#5000F1"],[0.06020066889632103,"#5200F0"],[0.06354515050167224,"#5400EF"],[0.066889632107023367,"#5600EF"],[0.070234113712374577,"#5800EE"],[0.073578595317725787,"#5A00ED"],[0.076923076923076913,"#5C00EC"],[0.08026755852842804,"#5E00EB"],[0.08361204013377925,"#6000EB"],[0.08695652173913046,"#6200EA"],[0.090301003344481587,"#6300E9"],[0.093645484949832797,"#6500E8"],[0.096989966555183924,"#6700E7"],[0.10033444816053513,"#6800E6"],[0.10367892976588626,"#6A00E6"],[0.10702341137123747,"#6B00E5"],[0.1103678929765886,"#6D00E4"],[0.11371237458193981,"#6E00E3"],[0.11705685618729093,"#7000E2"],[0.12040133779264214,"#7100E2"],[0.12374581939799327,"#7200E1"],[0.12709030100334448,"#7400E0"],[0.1304347826086957,"#7500DF"],[0.13377926421404682,"#7600DE"],[0.13712374581939796,"#7800DE"],[0.14046822742474915,"#7900DD"],[0.14381270903010038,"#7A00DC"],[0.14715719063545149,"#7B00DB"],[0.15050167224080263,"#7D00DA"],[0.15384615384615383,"#7E00DA"],[0.15719063545150505,"#7F00D9"],[0.16053511705685616,"#8000D8"],[0.16387959866220739,"#8100D7"],[0.1672240802675585,"#8200D6"],[0.17056856187290972,"#8400D5"],[0.17391304347826084,"#8500D5"],[0.17725752508361206,"#8600D4"],[0.18060200668896317,"#8700D3"],[0.1839464882943144,"#8800D2"],[0.18729096989966551,"#8900D1"],[0.19063545150501673,"#8A00D1"],[0.19397993311036785,"#8B00D0"],[0.19732441471571907,"#8C00CF"],[0.20066889632107027,"#8D00CE"],[0.20401337792642141,"#8E00CD"],[0.20735785953177252,"#8F00CD"],[0.21070234113712374,"#9000CC"],[0.21404682274247494,"#9100CB"],[0.21739130434782608,"#9200CA"],[0.22073578595317719,"#9300CA"],[0.22408026755852842,"#9400C9"],[0.22742474916387961,"#9400C8"],[0.23076923076923075,"#9500C7"],[0.23411371237458187,"#9600C6"],[0.23745819397993309,"#9700C6"],[0.24080267558528429,"#9800C5"],[0.24414715719063543,"#9900C4"],[0.24749163879598654,"#9A00C3"],[0.25083612040133774,"#9B00C2"],[0.25418060200668896,"#9B00C2"],[0.25752508361204018,"#9C00C1"],[0.2608695652173913,"#9D00C0"],[0.26421404682274241,"#9E00BF"],[0.26755852842809363,"#9F00BE"],[0.27090301003344486,"#9F00BE"],[0.27424749163879597,"#A000BD"],[0.27759197324414708,"#A100BC"],[0.28093645484949831,"#A200BB"],[0.28428093645484953,"#A300BA"],[0.28762541806020064,"#A300BA"],[0.29096989966555176,"#A400B9"],[0.29431438127090298,"#A500B8"],[0.2976588628762542,"#A600B7"],[0.30100334448160532,"#A600B7"],[0.30434782608695643,"#A700B6"],[0.30769230769230765,"#A800B5"],[0.31103678929765888,"#A800B4"],[0.31438127090300999,"#A900B3"],[0.3177257525083611,"#AA00B3"],[0.32107023411371233,"#AB00B2"],[0.32441471571906355,"#AB00B1"],[0.32775919732441477,"#AC00B0"],[0.33110367892976589,"#AD00AF"],[0.334448160535117,"#AD00AF"],[0.33779264214046822,"#AE00AE"],[0.34113712374581945,"#AF00AD"],[0.34448160535117056,"#AF00AC"],[0.34782608695652167,"#B000AC"],[0.3511705685618729,"#B100AB"],[0.35451505016722412,"#B100AA"],[0.35785953177257523,"#B200A9"],[0.36120401337792635,"#B300A8"],[0.36454849498327757,"#B300A8"],[0.3678929765886288,"#B400A7"],[0.37123745819397991,"#B400A6"],[0.37458193979933102,"#B500A5"],[0.37792642140468224,"#B600A5"],[0.38127090301003347,"#B600A4"],[0.38461538461538458,"#B700A3"],[0.38795986622073569,"#B700A2"],[0.39130434782608692,"#B800A1"],[0.39464882943143814,"#B900A1"],[0.39799331103678937,"#B900A0"],[0.40133779264214053,"#BA009F"],[0.40468227424749159,"#BA009E"],[0.40802675585284282,"#BB009E"],[0.41137123745819404,"#BC009D"],[0.41471571906354504,"#BC009C"],[0.41806020066889626,"#BD009B"],[0.42140468227424749,"#BD009B"],[0.42474916387959849,"#BE009A"],[0.42809364548494988,"#BE0099"],[0.43143812709030094,"#BF0098"],[0.43478260869565216,"#BF0097"],[0.43812709030100339,"#C00097"],[0.44147157190635439,"#C10096"],[0.44481605351170578,"#C10095"],[0.44816053511705684,"#C20094"],[0.45150501672240806,"#C20094"],[0.45484949832775923,"#C30093"],[0.45819397993311028,"#C30092"],[0.46153846153846151,"#C40091"],[0.46488294314381273,"#C40091"],[0.46822742474916373,"#C50090"],[0.47157190635451512,"#C5008F"],[0.47491638795986618,"#C6008E"],[0.47826086956521741,"#C6008D"],[0.48160535117056857,"#C7008D"],[0.48494983277591963,"#C7008C"],[0.48829431438127086,"#C8008B"],[0.49163879598662208,"#C8008A"],[0.49498327759197308,"#C9008A"],[0.49832775919732447,"#C90089"],[0.50167224080267547,"#CA0088"],[0.50501672240802675,"#CA0087"],[0.50836120401337792,"#CB0087"],[0.51170568561872898,"#CB0086"],[0.51505016722408037,"#CC0085"],[0.51839464882943143,"#CC0084"],[0.52173913043478259,"#CD0084"],[0.52508361204013387,"#CD0083"],[0.52842809364548482,"#CE0082"],[0.5317725752508361,"#CE0081"],[0.53511705685618727,"#CE0080"],[0.53846153846153832,"#CF0080"],[0.54180602006688972,"#CF007F"],[0.54515050167224077,"#D0007E"],[0.54849498327759194,"#D0007D"],[0.55183946488294322,"#D1007D"],[0.55518394648829417,"#D1007C"],[0.55852842809364545,"#D2007B"],[0.56187290969899661,"#D2007A"],[0.56521739130434767,"#D3007A"],[0.56856187290969906,"#D30079"],[0.57190635451505012,"#D30078"],[0.57525083612040129,"#D40077"],[0.57859531772575257,"#D40077"],[0.58193979933110351,"#D50076"],[0.5852842809364549,"#D50075"],[0.58862876254180596,"#D60074"],[0.59197324414715724,"#D60074"],[0.59531772575250841,"#D60073"],[0.59866220735785947,"#D70072"],[0.60200668896321063,"#D70071"],[0.60535117056856191,"#D80071"],[0.60869565217391286,"#D80070"],[0.61204013377926425,"#D8006F"],[0.61538461538461531,"#D9006E"],[0.61872909698996659,"#D9006E"],[0.62207357859531776,"#DA006D"],[0.62541806020066881,"#DA006C"],[0.62876254180601998,"#DA006B"],[0.63210702341137126,"#DB006A"],[0.63545150501672221,"#DB006A"],[0.6387959866220736,"#DC0069"],[0.64214046822742465,"#DC0068"],[0.64548494983277593,"#DC0067"],[0.6488294314381271,"#DD0067"],[0.65217391304347816,"#DD0066"],[0.65551839464882955,"#DE0065"],[0.65886287625418061,"#DE0064"],[0.66220735785953178,"#DE0064"],[0.66555183946488294,"#DF0063"],[0.668896321070234,"#DF0062"],[0.67224080267558528,"#E00061"],[0.67558528428093645,"#E00061"],[0.67892976588628751,"#E00060"],[0.6822742474916389,"#E1005F"],[0.68561872909698995,"#E1005E"],[0.68896321070234112,"#E1005E"],[0.69230769230769229,"#E2005D"],[0.69565217391304335,"#E2005C"],[0.69899665551839463,"#E3005B"],[0.7023411371237458,"#E3005B"],[0.70568561872909685,"#E3005A"],[0.70903010033444824,"#E40059"],[0.7123745819397993,"#E40058"],[0.71571906354515047,"#E40057"],[0.71906354515050164,"#E50057"],[0.72240802675585269,"#E50056"],[0.72575250836120409,"#E50055"],[0.72909698996655514,"#E60054"],[0.73244147157190631,"#E60054"],[0.73578595317725759,"#E60053"],[0.73913043478260865,"#E70052"],[0.74247491638795982,"#E70051"],[0.74581939799331098,"#E80050"],[0.74916387959866204,"#E80050"],[0.75250836120401343,"#E8004F"],[0.75585284280936449,"#E9004E"],[0.75919732441471566,"#E9004D"],[0.76254180602006694,"#E9004D"],[0.76588628762541799,"#EA004C"],[0.76923076923076916,"#EA004B"],[0.77257525083612033,"#EA004A"],[0.77591973244147139,"#EB0049"],[0.77926421404682278,"#EB0049"],[0.78260869565217384,"#EB0048"],[0.785953177257525,"#EC0047"],[0.78929765886287628,"#EC0046"],[0.79264214046822734,"#EC0046"],[0.79598662207357873,"#ED0045"],[0.79933110367892968,"#ED0044"],[0.80267558528428096,"#ED0043"],[0.80602006688963213,"#EE0042"],[0.80936454849498318,"#EE0042"],[0.81270903010033435,"#EE0041"],[0.81605351170568563,"#EF0040"],[0.8193979933110368,"#EF003F"],[0.82274247491638786,"#EF003E"],[0.82608695652173902,"#F0003D"],[0.8294314381270903,"#F0003D"],[0.83277591973244147,"#F0003C"],[0.83612040133779253,"#F0003B"],[0.8394648829431437,"#F1003A"],[0.84280936454849498,"#F10039"],[0.84615384615384615,"#F10038"],[0.8494983277591972,"#F20038"],[0.85284280936454837,"#F20037"],[0.85618729096989965,"#F20036"],[0.85953177257525082,"#F30035"],[0.8628762541806021,"#F30034"],[0.86622073578595304,"#F30033"],[0.86956521739130432,"#F40032"],[0.87290969899665549,"#F40032"],[0.87625418060200677,"#F40031"],[0.87959866220735772,"#F50030"],[0.882943143812709,"#F5002F"],[0.88628762541806017,"#F5002E"],[0.88963210702341144,"#F5002D"],[0.89297658862876239,"#F6002C"],[0.89632107023411367,"#F6002B"],[0.89966555183946484,"#F6002A"],[0.90301003344481612,"#F70029"],[0.90635451505016706,"#F70028"],[0.90969899665551834,"#F70027"],[0.91304347826086951,"#F80026"],[0.91638795986622079,"#F80025"],[0.91973244147157174,"#F80024"],[0.92307692307692302,"#F80023"],[0.92642140468227419,"#F90022"],[0.92976588628762546,"#F90021"],[0.93311036789297663,"#F90020"],[0.93645484949832769,"#FA001F"],[0.93979933110367886,"#FA001E"],[0.94314381270903014,"#FA001D"],[0.94648829431438131,"#FA001B"],[0.94983277591973236,"#FB001A"],[0.95317725752508353,"#FB0019"],[0.95652173913043481,"#FB0018"],[0.95986622073578598,"#FC0016"],[0.96321070234113704,"#FC0015"],[0.96655518394648821,"#FC0013"],[0.96989966555183948,"#FC0012"],[0.97324414715719065,"#FD0010"],[0.97658862876254171,"#FD000F"],[0.97993311036789288,"#FD000D"],[0.98327759197324416,"#FE000B"],[0.98662207357859533,"#FE0008"],[0.98996655518394638,"#FE0006"],[0.99331103678929755,"#FE0004"],[0.99665551839464883,"#FF0002"],[1,"#FF0000"]],"colorbar":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"thickness":23.039999999999996,"title":"Baths","titlefont":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"tickmode":"array","ticktext":["1.0","1.5","2.0","2.5","3.0","3.5"],"tickvals":[0,0.20000000000000001,0.40000000000000002,0.59999999999999998,0.80000000000000004,1],"tickfont":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"ticklen":2,"len":0.5}},"xaxis":"x","yaxis":"y","frame":null}],"layout":{"margin":{"t":26.228310502283108,"r":7.3059360730593621,"b":40.182648401826498,"l":43.105022831050235},"plot_bgcolor":"rgba(255,255,255,1)","paper_bgcolor":"rgba(255,255,255,1)","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724},"xaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[0.40000000000000002,5.5999999999999996],"tickmode":"array","ticktext":["2","3","4","5","6"],"tickvals":[1,2,3,4,5],"categoryorder":"array","categoryarray":["2","3","4","5","6"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"y","title":{"text":"Beds","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"yaxis":{"domain":[0,1],"automargin":true,"type":"linear","autorange":false,"range":[30.550000000000001,205.44999999999999],"tickmode":"array","ticktext":["50","100","150","200"],"tickvals":[50,100,150,200],"categoryorder":"array","categoryarray":["50","100","150","200"],"nticks":null,"ticks":"outside","tickcolor":"rgba(51,51,51,1)","ticklen":3.6529680365296811,"tickwidth":0.66417600664176002,"showticklabels":true,"tickfont":{"color":"rgba(77,77,77,1)","family":"","size":11.68949771689498},"tickangle":-0,"showline":true,"linecolor":"rgba(0,0,0,1)","linewidth":0.66417600664176002,"showgrid":false,"gridcolor":null,"gridwidth":0,"zeroline":false,"anchor":"x","title":{"text":"Price","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}},"hoverformat":".2f"},"shapes":[{"type":"rect","fillcolor":null,"line":{"color":null,"width":0,"linetype":[]},"yref":"paper","xref":"paper","x0":0,"x1":1,"y0":0,"y1":1}],"showlegend":false,"legend":{"bgcolor":"rgba(255,255,255,1)","bordercolor":"transparent","borderwidth":1.8897637795275593,"font":{"color":"rgba(0,0,0,1)","family":"","size":11.68949771689498},"title":{"text":"","font":{"color":"rgba(0,0,0,1)","family":"","size":14.611872146118724}}},"hovermode":"closest","barmode":"relative"},"config":{"doubleClick":"reset","modeBarButtonsToAdd":["hoverclosest","hovercompare"],"showSendToCloud":false},"source":"A","attrs":{"5b82655a3e82":{"x":{},"y":{},"colour":{},"type":"scatter"}},"cur_data":"5b82655a3e82","visdat":{"5b82655a3e82":["function (y) ","x"]},"highlight":{"on":"plotly_click","persistent":false,"dynamic":false,"selectize":false,"opacityDim":0.20000000000000001,"selected":{"opacity":1},"debounce":0},"shinyEvents":["plotly_hover","plotly_click","plotly_selected","plotly_relayout","plotly_brushed","plotly_brushing","plotly_clickannotation","plotly_doubleclick","plotly_deselect","plotly_afterplot","plotly_sunburstclick"],"base_url":"https://plot.ly"},"evals":[],"jsHooks":[]}</script>
+<p>Many more interactive options in this tutorial: <a
+href="https://plotly.com/r/line-and-scatter/"
+class="uri">https://plotly.com/r/line-and-scatter/</a></p>
+</div>
+</div>
+<div id="other-cool-plots-to-try" class="section level1">
+<h1>Other Cool plots to try</h1>
+<div id="violin-plots" class="section level2">
+<h2>Violin plots</h2>
+<p>Violin plots combine the simplicity of a boxplot with a sense of the
+underlying distribution. This is useful when you want a sense of both
+the symmetry of the data and the underlying distribution. Highly
+recommended! For a single variable, consider a box-plot-with-histogram
+(see below).</p>
+<p>There are MANY on R graph gallery with code you can copy/edit: <a
+href="https://www.r-graph-gallery.com/violin.html"
+class="uri">https://www.r-graph-gallery.com/violin.html</a></p>
+<p>For example, for our data:</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" tabindex="-1"></a><span class="co"># fill=name allow to automatically dedicate a color for each group</span></span>
+<span id="cb31-2"><a href="#cb31-2" tabindex="-1"></a><span class="fu">ggplot</span>(HousesNY, <span class="fu">aes</span>(<span class="at">x=</span>Beds, <span class="at">y=</span>Price, <span class="at">fill=</span>Beds)) <span class="sc">+</span> </span>
+<span id="cb31-3"><a href="#cb31-3" tabindex="-1"></a>   <span class="fu">geom_violin</span>()</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-31-1.png" width="672" /></p>
+<p>There’s also a <em>beautiful</em> package called
+<code>ggstatsplot</code> which allows a lot of detail (<a
+href="https://indrajeetpatil.github.io/ggstatsplot/"
+class="uri">https://indrajeetpatil.github.io/ggstatsplot/</a>)</p>
+<p>For example, I love the plot below because it shows how much data in
+each group.</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" tabindex="-1"></a><span class="co"># you might need to first install this.</span></span>
+<span id="cb32-2"><a href="#cb32-2" tabindex="-1"></a><span class="fu">library</span>(ggstatsplot)</span>
+<span id="cb32-3"><a href="#cb32-3" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" tabindex="-1"></a><span class="co"># i&#39;m changing the middle mean point to be dark blue</span></span>
+<span id="cb32-5"><a href="#cb32-5" tabindex="-1"></a></span>
+<span id="cb32-6"><a href="#cb32-6" tabindex="-1"></a><span class="fu">ggbetweenstats</span>(<span class="at">data =</span> HousesNY,<span class="at">x =</span> Beds,<span class="at">y =</span> Price, </span>
+<span id="cb32-7"><a href="#cb32-7" tabindex="-1"></a>               <span class="at">centrality.point.args=</span><span class="fu">list</span>(<span class="at">color =</span> <span class="st">&quot;darkblue&quot;</span>))</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-32-1.png" width="672" /></p>
+<p>Or we can customise it even more using this tutorial to get results
+like this (<a
+href="https://www.r-graph-gallery.com/web-violinplot-with-ggstatsplot.html"
+class="uri">https://www.r-graph-gallery.com/web-violinplot-with-ggstatsplot.html</a>)</p>
+<p><br> <br></p>
+</div>
+<div id="ridgeline-plots" class="section level2">
+<h2>Ridgeline plots</h2>
+<p>These are another way of looking at histograms for different groups.
+They work especially when your grouping data is ORDINAL (has some
+inherent order). So bedrooms would be a good example</p>
+<p>Two great pages here:</p>
+<ul>
+<li><p><a href="https://www.data-to-viz.com/graph/ridgeline.html"
+class="uri">https://www.data-to-viz.com/graph/ridgeline.html</a></p></li>
+<li><p><a href="https://r-charts.com/distribution/ggridges/"
+class="uri">https://r-charts.com/distribution/ggridges/</a></p></li>
+</ul>
+<p>We can use histograms or smoothed density lines <a
+href="https://www.data-to-viz.com/graph/ridgeline.html"
+class="uri">https://www.data-to-viz.com/graph/ridgeline.html</a></p>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" tabindex="-1"></a><span class="fu">library</span>(ggridges)</span>
+<span id="cb33-2"><a href="#cb33-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb33-3"><a href="#cb33-3" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" tabindex="-1"></a>HousesNY <span class="sc">%&gt;%</span></span>
+<span id="cb33-5"><a href="#cb33-5" tabindex="-1"></a>  <span class="fu">ggplot</span>( <span class="fu">aes</span>(<span class="at">y=</span>Beds, <span class="at">x=</span>Price,  <span class="at">fill=</span>Beds)) <span class="sc">+</span></span>
+<span id="cb33-6"><a href="#cb33-6" tabindex="-1"></a>    <span class="fu">geom_density_ridges</span>(<span class="at">alpha=</span><span class="fl">0.6</span>, <span class="at">stat=</span><span class="st">&quot;binline&quot;</span>) <span class="sc">+</span></span>
+<span id="cb33-7"><a href="#cb33-7" tabindex="-1"></a>    <span class="fu">scale_fill_viridis</span>(<span class="at">discrete=</span><span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb33-8"><a href="#cb33-8" tabindex="-1"></a>    <span class="fu">scale_color_viridis</span>(<span class="at">discrete=</span><span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb33-9"><a href="#cb33-9" tabindex="-1"></a>    <span class="fu">theme_ipsum</span>() <span class="sc">+</span></span>
+<span id="cb33-10"><a href="#cb33-10" tabindex="-1"></a>    <span class="fu">theme</span>(</span>
+<span id="cb33-11"><a href="#cb33-11" tabindex="-1"></a>      <span class="at">legend.position=</span><span class="st">&quot;none&quot;</span>,</span>
+<span id="cb33-12"><a href="#cb33-12" tabindex="-1"></a>      <span class="at">panel.spacing =</span> <span class="fu">unit</span>(<span class="fl">0.1</span>, <span class="st">&quot;lines&quot;</span>),</span>
+<span id="cb33-13"><a href="#cb33-13" tabindex="-1"></a>      <span class="at">strip.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">8</span>)</span>
+<span id="cb33-14"><a href="#cb33-14" tabindex="-1"></a>    ) <span class="sc">+</span></span>
+<span id="cb33-15"><a href="#cb33-15" tabindex="-1"></a>    <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb33-16"><a href="#cb33-16" tabindex="-1"></a>    <span class="fu">ylab</span>(<span class="st">&quot;Number of Bedrooms&quot;</span>)</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-33-1.png" width="672" /></p>
+<p>All of these are from <a
+href="https://r-charts.com/distribution/ggridges/"
+class="uri">https://r-charts.com/distribution/ggridges/</a></p>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" tabindex="-1"></a><span class="fu">library</span>(ggridges)</span>
+<span id="cb34-2"><a href="#cb34-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb34-3"><a href="#cb34-3" tabindex="-1"></a></span>
+<span id="cb34-4"><a href="#cb34-4" tabindex="-1"></a><span class="fu">ggplot</span>(HousesNY, <span class="fu">aes</span>(<span class="at">x =</span> Price, <span class="at">y =</span> Beds, <span class="at">fill =</span> <span class="fu">stat</span>(x))) <span class="sc">+</span></span>
+<span id="cb34-5"><a href="#cb34-5" tabindex="-1"></a>  <span class="fu">geom_density_ridges_gradient</span>() <span class="sc">+</span></span>
+<span id="cb34-6"><a href="#cb34-6" tabindex="-1"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">name =</span> <span class="st">&quot;Depth&quot;</span>, <span class="at">option =</span> <span class="st">&quot;C&quot;</span>) <span class="sc">+</span></span>
+<span id="cb34-7"><a href="#cb34-7" tabindex="-1"></a>  <span class="fu">coord_cartesian</span>(<span class="at">clip =</span> <span class="st">&quot;off&quot;</span>) <span class="sc">+</span> <span class="co"># To avoid cut off</span></span>
+<span id="cb34-8"><a href="#cb34-8" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<p>We can also make the colours more meaningful, for example adding
+quantiles to show the median and interquartile range</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" tabindex="-1"></a><span class="fu">ggplot</span>(HousesNY, <span class="fu">aes</span>(<span class="at">x =</span> Price, <span class="at">y =</span> Beds, <span class="at">fill =</span> <span class="fu">stat</span>(quantile))) <span class="sc">+</span></span>
+<span id="cb35-2"><a href="#cb35-2" tabindex="-1"></a>  <span class="fu">stat_density_ridges</span>(<span class="at">quantile_lines =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb35-3"><a href="#cb35-3" tabindex="-1"></a>                      <span class="at">calc_ecdf =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb35-4"><a href="#cb35-4" tabindex="-1"></a>                      <span class="at">geom =</span> <span class="st">&quot;density_ridges_gradient&quot;</span>) <span class="sc">+</span></span>
+<span id="cb35-5"><a href="#cb35-5" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">name =</span> <span class="st">&quot;&quot;</span>)</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-35-1.png" width="672" /></p>
+<p>or highlighting tails</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" tabindex="-1"></a><span class="fu">ggplot</span>(HousesNY, <span class="fu">aes</span>(<span class="at">x =</span> Price, <span class="at">y =</span> Beds, <span class="at">fill =</span> <span class="fu">stat</span>(quantile))) <span class="sc">+</span></span>
+<span id="cb36-2"><a href="#cb36-2" tabindex="-1"></a>  <span class="fu">stat_density_ridges</span>(<span class="at">quantile_lines =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb36-3"><a href="#cb36-3" tabindex="-1"></a>                      <span class="at">calc_ecdf =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb36-4"><a href="#cb36-4" tabindex="-1"></a>                      <span class="at">geom =</span> <span class="st">&quot;density_ridges_gradient&quot;</span>,</span>
+<span id="cb36-5"><a href="#cb36-5" tabindex="-1"></a>                      <span class="at">quantiles =</span> <span class="fu">c</span>(<span class="fl">0.05</span>, <span class="fl">0.95</span>)) <span class="sc">+</span></span>
+<span id="cb36-6"><a href="#cb36-6" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">name =</span> <span class="st">&quot;Proportion&quot;</span>, </span>
+<span id="cb36-7"><a href="#cb36-7" tabindex="-1"></a>                    <span class="at">values =</span> <span class="fu">c</span>(<span class="st">&quot;#E2FFF2&quot;</span>, <span class="st">&quot;white&quot;</span>, <span class="st">&quot;#B0E0E6&quot;</span>),</span>
+<span id="cb36-8"><a href="#cb36-8" tabindex="-1"></a>                    <span class="at">labels =</span> <span class="fu">c</span>(<span class="st">&quot;(0, 5%]&quot;</span>, <span class="st">&quot;(5%, 95%]&quot;</span>, <span class="st">&quot;(95%, 1]&quot;</span>))</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
+</div>
+<div id="beeswarm-plots" class="section level2">
+<h2>Beeswarm plots</h2>
+<p>These are cool. As described here: <a
+href="https://www.rhoworld.com/i-swarm-you-swarm-we-all-swarm-for-beeswarm-plots-0/#:~:text=What%20is%20a%20beeswarm%20plot%3F&amp;text=A%20beeswarm%20plot%20improves%20upon,bees%20buzzing%20about%20their%20hive.">Rhoworld
+Beeswarm blog</a></p>
+<p><em>“But what is a beeswarm plot? … A beeswarm plot improves upon the
+random jittering approach to move data points the minimum distance away
+from one another to avoid overlays. The result is a plot where you can
+see each distinct data point, like so: It looks a bit like a friendly
+swarm of bees buzzing about their hive.”</em></p>
+<p>It’s often used for professional visualisation, see here for many
+examples: <a href="https://flowingdata.com/charttype/beeswarm"
+class="uri">https://flowingdata.com/charttype/beeswarm</a></p>
+<p>Especially for the first, you can see the distribution clearly, also
+with the amount of data. With the second, you can see the mitigating
+impact of a second variable.</p>
+<p>To make easy ones you can install a new packages “beeswarm”</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&quot;beeswarm&quot;</span>)</span>
+<span id="cb37-2"><a href="#cb37-2" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="#cb37-3" tabindex="-1"></a><span class="fu">beeswarm</span>(HousesNY<span class="sc">$</span>Price,</span>
+<span id="cb37-4"><a href="#cb37-4" tabindex="-1"></a>         <span class="at">vertical =</span> <span class="cn">FALSE</span>, <span class="at">method =</span> <span class="st">&quot;hex&quot;</span>)</span></code></pre></div>
+<p><img src="in_Tutorial08Plots_files/figure-html/unnamed-chunk-37-1.png" width="672" /></p>
+<p>This is a little boring for my 58 data points! (although perhaps it
+does show that 58 points is barely a big enough sample to know an
+underlying model..)</p>
+<p>There are also MANY cool interactive ones on graph gallery</p>
+<p><br> <br></p>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

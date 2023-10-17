@@ -27,7 +27,9 @@ navbar:
     - text: "6. Data wrangling"
       href: in_Tutorial06DataWrangling.html  
     - text: "7. Data summaries"
-      href: in_Tutorial07DataSummaries.html       
+      href: in_Tutorial07DataSummaries.html  
+    - text: "8. Plotting data"
+      href: in_Tutorial08Plots.html          
   - text: "Labs"  
     menu: 
     - text: "Lab FAQ"
