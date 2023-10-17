@@ -1,0 +1,202 @@
+---
+title: "Tutorial 7: Summarising Data"
+output:
+  html_document:
+    toc: true
+    toc_float: yes
+    toc_depth: 2
+    df_print: paged
+    theme: flatly
+    highlight: tango
+---
+
+```{r setup, include=FALSE}
+# OPTIONS -----------------------------------------------
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning=FALSE, 
+                      message = FALSE)
+```
+
+```{r, include=FALSE}
+# PACKAGES-----------------------------------------------
+# Tutorial packages
+library(vembedr)
+library(skimr)
+library(yarrr)
+library(RColorBrewer)
+library(GGally) 
+library(tidyverse)
+library(plotly)
+library(readxl)
+library(rvest)
+library(biscale)
+library(tidycensus)
+library(cowplot)
+library(units)
+```
+
+<br><br>
+
+This tutorial covers loads of summary statistics that might be useful.
+
+<br>
+
+# 1. General pointers
+
+Here's the structure of EVERY command in R.
+
+```{r, eval=FALSE}
+
+output_variable  <- COMMAND( input_variable , other_options)
+
+```
+
+-   **`COMMAND`** is the function used to read the data
+    -   e.g.,**`read.csv`** for CSV files <br><br>
+-   **`input_variable"`** should be replaced with the case sensitive R variable you want to apply it to. Look at your environment tab to see what you have saved. <br><br>
+-   **`other_options`** includes (optional) additional options for your
+    command
+    -   e.g. nrow specifies the number of rows within the read.csv()
+        command <br><br>
+-   **`"output_variable"`** is the name of the variable you
+    choose to assign your data to.
+    -   e.g `x <- 5` assigns the number 5 to a variable called x <br>
+        Then x <- 5+x, will first calculate the answer (5+5), then 
+        OVERWRITE the x with the answer e.g x = 10
+         
+
+
+
+<br><br>
+
+# 7. Summarising data
+
+Here I will show a few examples for the a non spatial dataset on houseprices.
+
+First I load the data here
+
+```{r,warning=FALSE,message=FALSE}
+data("HousesNY", package = "Stat2Data")
+```
+
+<br><br>
+
+## 7.1. Looking at the data itself 
+
+To have a look at the data there are many options. You can:
+
+-   click on its name in the environment tab
+-   Type its name into the console or into a code chunk (e.g. for our table, type `piratedataset` into the console or a code chunk)
+-   Run the command `View(variable_name)` (View is a command from the tidyverse package).<br> This will open the data in a new tab. DON'T PUT THIS IN A CODE CHUNK.
+-   Run the command `head(variable_name)` to see the first 6 lines or so (good for quick checks)
+-   Run the command `glimpse(variable_name)` to get a nice summary.
+-   Run the command `names(variable_name)` to get the column names.
+
+DO NOT PUT View(dataname) into a code chunk (or remove it before you knit). It breaks R-studio sometimes
+
+<br>
+
+For example
+
+```{r, eval=FALSE}
+# Note, there are sometimes more columns to the right, use the arrow to see
+head(HousesNY)
+```
+
+To see what the column names are, you can use the `names(dataset)` command. 
+I use this in the console A LOT for copy/pasting names into my code/report.
+
+```{r}
+names(HousesNY)
+```
+
+Or the glimpse command:
+
+```{r, eval=FALSE}
+glimpse(HousesNY)
+```
+
+<br> <br>
+
+## 7.2. Number of rows and columns
+
+To find the number of rows and columns, these are useful. Or look at the environment tab, or some summaries include it
+
+```{r, eval=FALSE}
+nrow(HousesNY)
+ncol(HousesNY)
+```
+
+
+```{r, eval=FALSE}
+#or both dimensions
+dim(HousesNY)
+```
+
+## 7.3. Finding the type of data
+
+To see what type of data R *thinks* you have, try the class command
+
+```{r, eval=FALSE}
+class(HousesNY)
+```
+
+or for a column
+
+```{r, eval=FALSE}
+class(HousesNY$Price)
+```
+
+
+<br><br>
+
+## 7.4.  Single column statistics
+
+Or you can do things manually, using the \$ symbol to choose a column. All of this is for the price column
+
+```{r, eval=FALSE}
+mean(HousesNY$Price)
+median(HousesNY$Price)
+mode(HousesNY$Price)
+sd(HousesNY$Price)
+var(HousesNY$Price)
+IQR(HousesNY$Price)
+range(HousesNY$Price)
+```
+
+
+<br><br>
+
+## 7.5.  Useful summaries
+
+To look at the summaries there are a load of options. Choose your favourites:
+
+-   `summary(dataset)`
+-   `skim(dataset)` in the skimr package
+-   `summarize(dataset)` in the papeR package. This looks pretty powerful, I'm just learning it
+
+None are better or worse than others - simply choose what works for you in the moment.
+
+```{r, eval=FALSE}
+summary(HousesNY)
+```
+
+```{r, eval=FALSE}
+library(skimr) # you would need to install this
+skim(HousesNY)
+```
+
+```{r, eval=FALSE}
+library(pillar) # you would need to install this
+glimpse(HousesNY)
+```
+
+or
+
+```{r, eval=FALSE}
+str(HousesNY)
+```
+
+
+
+

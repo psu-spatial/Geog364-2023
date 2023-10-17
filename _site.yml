@@ -23,7 +23,11 @@ navbar:
     - text: "4. Console Basics"
       href: in_Tutorial04ConsoleBasics.html
     - text: "5. Reading in Data"
-      href: in_Tutorial05ReadingInData.html     
+      href: in_Tutorial05ReadingInData.html  
+    - text: "6. Data wrangling"
+      href: in_Tutorial06Wrangling.html  
+    - text: "7. Data summaries"
+      href: in_Tutorial07DataSummaries.html       
   - text: "Labs"  
     menu: 
     - text: "Lab FAQ"
