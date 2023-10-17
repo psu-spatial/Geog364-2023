@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+
+
+<title>Tutorial 5: Reading In Data</title>
+
+<script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+<style type="text/css">
+  code {
+    white-space: pre;
+  }
+  .sourceCode {
+    overflow: visible;
+  }
+</style>
+<style type="text/css" data-origin="pandoc">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  background-color: #f8f8f8; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ef2929; } /* Alert */
+code span.an { color: #8f5902; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #204a87; } /* Attribute */
+code span.bn { color: #0000cf; } /* BaseN */
+code span.cf { color: #204a87; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4e9a06; } /* Char */
+code span.cn { color: #8f5902; } /* Constant */
+code span.co { color: #8f5902; font-style: italic; } /* Comment */
+code span.cv { color: #8f5902; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #8f5902; font-weight: bold; font-style: italic; } /* Documentation */
+code span.dt { color: #204a87; } /* DataType */
+code span.dv { color: #0000cf; } /* DecVal */
+code span.er { color: #a40000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #0000cf; } /* Float */
+code span.fu { color: #204a87; font-weight: bold; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #8f5902; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #204a87; font-weight: bold; } /* Keyword */
+code span.op { color: #ce5c00; font-weight: bold; } /* Operator */
+code span.ot { color: #8f5902; } /* Other */
+code span.pp { color: #8f5902; font-style: italic; } /* Preprocessor */
+code span.sc { color: #ce5c00; font-weight: bold; } /* SpecialChar */
+code span.ss { color: #4e9a06; } /* SpecialString */
+code span.st { color: #4e9a06; } /* String */
+code span.va { color: #000000; } /* Variable */
+code span.vs { color: #4e9a06; } /* VerbatimString */
+code span.wa { color: #8f5902; font-weight: bold; font-style: italic; } /* Warning */
+
+</style>
+<script>
+// apply pandoc div.sourceCode style to pre.sourceCode instead
+(function() {
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    if (sheets[i].ownerNode.dataset["origin"] !== "pandoc") continue;
+    try { var rules = sheets[i].cssRules; } catch (e) { continue; }
+    var j = 0;
+    while (j < rules.length) {
+      var rule = rules[j];
+      // check if there is a div.sourceCode rule
+      if (rule.type !== rule.STYLE_RULE || rule.selectorText !== "div.sourceCode") {
+        j++;
+        continue;
+      }
+      var style = rule.style.cssText;
+      // check if color or background-color is set
+      if (rule.style.color === '' && rule.style.backgroundColor === '') {
+        j++;
+        continue;
+      }
+      // replace div.sourceCode by a pre.sourceCode rule
+      sheets[i].deleteRule(j);
+      sheets[i].insertRule('pre.sourceCode{' + style + '}', j);
+    }
+  }
+})();
+</script>
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">GEOG 364 Lab Book</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Tutorials
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_Tutorial01WhatisR.html">1. What is R?</a>
+    </li>
+    <li>
+      <a href="in_Tutorial02SetUp.html">2. General Set-Up</a>
+    </li>
+    <li>
+      <a href="in_Tutorial03LabSetUp.html">3. Lab Set-Up</a>
+    </li>
+    <li>
+      <a href="in_Tutorial04ConsoleBasics.html">4. Console Basics</a>
+    </li>
+    <li>
+      <a href="in_Tutorial05ReadingInData.html">5. Reading in Data</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Labs
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_G364_Lab0_FAQ.html">Lab FAQ</a>
+    </li>
+    <li>
+      <a href="in_G364_Lab1_2324.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="in_G364_Lab2_Basics.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="in_G364_Lab3_PointPattern.html">Lab 3A</a>
+    </li>
+    <li>
+      <a href="in_G364_Lab3B_PointPatternDist.html">Lab 3B</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Project
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_G364_Project2.html">Project 2</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">Tutorial 5: Reading In Data</h1>
+
+</div>
+
+
+<p><br><br></p>
+<p>This tutorial covers reading in every type of file I can think
+of.</p>
+<p><br></p>
+<div id="general-pointers" class="section level1">
+<h1>1. General pointers</h1>
+<p>Here’s the structure of EVERY command in R.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>name_youre_saving_it_as  <span class="ot">&lt;-</span> <span class="fu">COMMAND</span>( <span class="st">&quot;InputFilename.Extension&quot;</span> , other_options)</span></code></pre></div>
+<ul>
+<li><strong><code>COMMAND</code></strong> is the function used to read
+the data
+<ul>
+<li>e.g.,<strong><code>read.csv</code></strong> for CSV files
+<br><br></li>
+</ul></li>
+<li><strong><code>"InputFilename.Extension"</code></strong> should be
+replaced with your file name. <br><br></li>
+<li><strong><code>other_options</code></strong> includes (optional)
+additional options for your command
+<ul>
+<li>e.g. nrow specifies the number of rows within the read.csv() command
+<br><br></li>
+</ul></li>
+<li><strong><code>"name_youre_saving_it_as"</code></strong> is the name
+of the variable you choose to assign your data to.
+<ul>
+<li>e.g <code>x &lt;- 5</code> assigns the number 5 to a variable called
+x <br><br></li>
+</ul></li>
+</ul>
+<p>Using this format, here’s an example of how to read the first two
+rows of a .csv file called “myfrost.csv,” save it as the variable
+“froooostdata,” and summarize it:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>froooostdata  <span class="ot">&lt;-</span> <span class="fu">read.csv</span>( <span class="st">&quot;myfrost.csv&quot;</span> , <span class="at">nrow=</span><span class="dv">2</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">summary</span>(froooostdata)</span></code></pre></div>
+<details>
+<summary>
+<u><strong>Didn’t work? Click here to see a few common
+mistakes/issues</strong></u>
+</summary>
+<p><br></p>
+<p><u><strong>Mistake 1</strong></u></p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="co">#Incorrect</span></span>
+<span id="cb3-2"><a href="#cb3-2" tabindex="-1"></a><span class="fu">summary</span>(<span class="st">&quot;myfrost.csv&quot;</span>)</span></code></pre></div>
+<p>This will summarize the WORD “myfrost.csv” as a character string. To
+summarize data, you must first load it into R and assign it to a
+variable using &lt;-.</p>
+<hr />
+<p><u><strong>Mistake 2</strong></u></p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co">#Incorrect</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">&quot;myfrost.csv&quot;</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="fu">summary</span>(myfrost)</span></code></pre></div>
+<p>The first line loads the data into R but doesn’t save it as a
+variable, so it will print the data on the screen. The second line then
+attempts to summarize a non-existent variable named myfrost, which will
+crash.</p>
+<hr />
+</details>
+<p><br><br></p>
+</div>
+<div id="organizing-your-data" class="section level1">
+<h1>2. Organizing your data</h1>
+<p>You should be running a PROJECT. If so:</p>
+<ul>
+<li>either place your files in your main project folder.</li>
+<li>OR create a sub-folder and put your data in there.</li>
+</ul>
+<p>If your files are in the main folder, you do not need to use setwd()
+or add an address. Commands like this will work.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;filename.csv&quot;</span>)</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">&quot;filename.shp&quot;</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;filename.txt&quot;</span>)</span></code></pre></div>
+<p>If you use a sub-folder, you need to add the location of the
+sub-folder to your command. Lets imagine my folder is called Dbata
+(mis-spelled so you can see there’s nothing special about the name), I
+would adjust the commands to look like this</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./Dbata/filename.csv&quot;</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">&quot;./Dbata/filename.shp&quot;</span>)</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">read.table</span>(<span class="st">&quot;./Dbata/filename.txt&quot;</span>)</span></code></pre></div>
+<p>The “.” means “look inside the current project folder”, then the
+“/Data” means look for a subfolder called Dbata.</p>
+<hr />
+<p><br><br></p>
+</div>
+<div id="read-in-common-data-types" class="section level1">
+<h1>3. Read in common data types</h1>
+<div id="csv-files" class="section level2">
+<h2>3.1. .csv files</h2>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a> mydata  <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;filename.csv&quot;</span>)</span></code></pre></div>
+<p>or</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a> <span class="fu">library</span>(tidyverse) </span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a> mydata  <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;filename.csv&quot;</span>)</span></code></pre></div>
+<details>
+<summary>
+<u><strong>Click here to see a tutorial on these commands</strong></u>
+</summary>
+<p><br></p>
+<p>There are two ways of doing this:</p>
+<p><br></p>
+<p><code>read.csv()</code> : If your file is small, then this command
+works without loading any packages at all.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;filename.csv&quot;</span>)</span></code></pre></div>
+<p>For example, if I had a dataset called trees in a subfolder called
+data, I would run</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>trees.data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;./data/trees.csv&quot;</span>)</span></code></pre></div>
+<hr />
+<p><br><br></p>
+<p><code>read_csv()</code> : This is a more sophisticated way to read in
+csv data - it is much faster for large datasets. You first need to add
+<code>library(tidyverse)</code> to your library code chunk at the top of
+your script and run:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse) <span class="co"># put this in your library code chunk at the top</span></span>
+<span id="cb11-2"><a href="#cb11-2" tabindex="-1"></a>mydata <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;filename.csv&quot;</span>)</span></code></pre></div>
+<p>For example,</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a>trees.data <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;trees.csv&quot;</span>)</span></code></pre></div>
+<p><br><br></p>
+</details>
+<p><br><br></p>
+</div>
+<div id="txt-files" class="section level2">
+<h2>3.2. .txt files</h2>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a> mydata  <span class="ot">&lt;-</span> <span class="fu">read.txt</span>(<span class="st">&quot;filename.txt&quot;</span>)</span></code></pre></div>
+<p>or</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a> <span class="fu">library</span>(tidyverse) </span>
+<span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a> mydata  <span class="ot">&lt;-</span> <span class="fu">read_lines</span>(<span class="st">&quot;filename.txt&quot;</span>)</span></code></pre></div>
+<details>
+<summary>
+<u><strong>Click here to see a tutorial on these commands</strong></u>
+</summary>
+<p><br></p>
+<p><br><br></p>
+</details>
+<p><br><br></p>
+</div>
+<div id="xlsx-and-.xls-files" class="section level2">
+<h2>3.3. .xlsx and .xls files</h2>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a> <span class="fu">library</span>(readxl) </span>
+<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a> mydata  <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;filename.xlsx&quot;</span>)</span></code></pre></div>
+<details>
+<summary>
+<u><strong>Click here to see a tutorial on this command</strong></u>
+</summary>
+<p><br></p>
+<p><br><br></p>
+</details>
+<p><br><br></p>
+</div>
+<div id="shp-shape-files" class="section level2">
+<h2>3.3. .shp Shape Files</h2>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a> <span class="fu">library</span>(sf) </span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a> mydata  <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">&quot;filename.shp&quot;</span>)</span></code></pre></div>
+<p>IMPORTANT! For this to work, there should be MANY sub-files with the
+same name but different extension in your folder (e.g. filename.shp,
+filename.dbx..). You need to put ALL of them in your folder, then this
+single command reads them in.</p>
+<p><br></p>
+<details>
+<summary>
+<u><strong>Click here to see a tutorial on this command</strong></u>
+</summary>
+<p><br></p>
+<p><br><br></p>
+</details>
+<p><br><br></p>
+</div>
+<div id="geo" class="section level2">
+<h2>3.4. .geo</h2>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a> <span class="fu">library</span>(sf) </span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a> mydata  <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">&quot;filename.shp&quot;</span>)</span></code></pre></div>
+<p>IMPORTANT! For this to work, there should be MANY sub-files with the
+same name but different extension in your folder (e.g. filename.shp,
+filename.dbx..). You need to put ALL of them in your folder, then this
+single command reads them in.</p>
+<p><br></p>
+<details>
+<summary>
+<u><strong>Click here to see a tutorial on this command</strong></u>
+</summary>
+<p><br></p>
+<p><br><br></p>
+</details>
+<p><br><br></p>
+<p><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br></p>
+<p><br><br><br></p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="co"># FILE| .csv </span></span>
+<span id="cb18-2"><a href="#cb18-2" tabindex="-1"></a><span class="co">#______________________________________</span></span>
+<span id="cb18-3"><a href="#cb18-3" tabindex="-1"></a> mydata  <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;filename.csv&quot;</span>)</span>
+<span id="cb18-4"><a href="#cb18-4" tabindex="-1"></a> <span class="co"># or</span></span>
+<span id="cb18-5"><a href="#cb18-5" tabindex="-1"></a> <span class="fu">library</span>(tidyverse) </span>
+<span id="cb18-6"><a href="#cb18-6" tabindex="-1"></a> mydata  <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;filename.csv&quot;</span>)</span>
+<span id="cb18-7"><a href="#cb18-7" tabindex="-1"></a></span>
+<span id="cb18-8"><a href="#cb18-8" tabindex="-1"></a> </span>
+<span id="cb18-9"><a href="#cb18-9" tabindex="-1"></a><span class="co"># FILE| .txt (tab separated)</span></span>
+<span id="cb18-10"><a href="#cb18-10" tabindex="-1"></a><span class="co">#______________________________________</span></span>
+<span id="cb18-11"><a href="#cb18-11" tabindex="-1"></a> mydata  <span class="ot">&lt;-</span> <span class="fu">read.txt</span>(<span class="st">&quot;filename.txt&quot;</span>,<span class="at">sep=</span><span class="st">&quot;</span><span class="sc">\t</span><span class="st">&quot;</span>, <span class="at">header=</span><span class="cn">TRUE</span>)</span>
+<span id="cb18-12"><a href="#cb18-12" tabindex="-1"></a></span>
+<span id="cb18-13"><a href="#cb18-13" tabindex="-1"></a></span>
+<span id="cb18-14"><a href="#cb18-14" tabindex="-1"></a><span class="co"># FILE| .xls or xlsx</span></span>
+<span id="cb18-15"><a href="#cb18-15" tabindex="-1"></a><span class="co">#______________________________________</span></span>
+<span id="cb18-16"><a href="#cb18-16" tabindex="-1"></a> <span class="fu">library</span>(readxl) </span>
+<span id="cb18-17"><a href="#cb18-17" tabindex="-1"></a> mydata  <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;filename.xlsx&quot;</span>)</span>
+<span id="cb18-18"><a href="#cb18-18" tabindex="-1"></a></span>
+<span id="cb18-19"><a href="#cb18-19" tabindex="-1"></a> </span>
+<span id="cb18-20"><a href="#cb18-20" tabindex="-1"></a><span class="co"># FILE| Shape-files.  </span></span>
+<span id="cb18-21"><a href="#cb18-21" tabindex="-1"></a><span class="co"># There should be MANY sub-files with the same name </span></span>
+<span id="cb18-22"><a href="#cb18-22" tabindex="-1"></a><span class="co"># but different extension in your folder (e.g. filename.shp, filename.dbx..)</span></span>
+<span id="cb18-23"><a href="#cb18-23" tabindex="-1"></a><span class="co"># You need ALL of them in your folder, then this single command reads them in</span></span>
+<span id="cb18-24"><a href="#cb18-24" tabindex="-1"></a><span class="co">#______________________________________</span></span>
+<span id="cb18-25"><a href="#cb18-25" tabindex="-1"></a>  <span class="fu">library</span>(sf) </span>
+<span id="cb18-26"><a href="#cb18-26" tabindex="-1"></a>  mydata  <span class="ot">&lt;-</span> <span class="fu">st_read</span>(<span class="st">&quot;filename.shp&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>

@@ -1,6 +1,14 @@
 ---
 title: "Lab 3B: Point Pattern Distance"
 subtitle: <h4 style="font-style:normal">Lab 3 is split into two parts to match the lectures</h4>
+output:
+  html_document:
+    toc: true
+    toc_float: yes
+    toc_depth: 4
+    df_print: paged
+    theme: flatly
+    highlight: tango
 ---
 
 ```{=html}
@@ -40,9 +48,10 @@ pre code {
 ```
 \
 
-```{r setup, include=FALSE}
+```{r, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
 ```
+
 
 ```{r,include=FALSE,echo=FALSE}
 # invisible data read

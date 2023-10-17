@@ -22,6 +22,8 @@ navbar:
       href: in_Tutorial03LabSetUp.html
     - text: "4. Console Basics"
       href: in_Tutorial04ConsoleBasics.html
+    - text: "5. Reading in Data"
+      href: in_Tutorial05ReadingInData.html     
   - text: "Labs"  
     menu: 
     - text: "Lab FAQ"
@@ -34,3 +36,9 @@ navbar:
       href: in_G364_Lab3_PointPattern.html   
     - text: "Lab 3B"
       href: in_G364_Lab3B_PointPatternDist.html        
+  - text: "Project"  
+    menu: 
+    - text: "Project 2"
+      href: in_G364_Project2.html
+  - text: "Project WORKED EXAMPLES"  
+    menu: 

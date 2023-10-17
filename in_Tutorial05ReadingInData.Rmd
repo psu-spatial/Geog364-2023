@@ -1,0 +1,350 @@
+---
+title: "Tutorial 5: Reading In Data"
+output:
+  html_document:
+    toc: true
+    toc_float: yes
+    toc_depth: 2
+    df_print: paged
+    theme: flatly
+    highlight: tango
+---
+
+```{r setup, include=FALSE}
+# OPTIONS -----------------------------------------------
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning=FALSE, 
+                      message = FALSE)
+```
+
+```{r, include=FALSE}
+# PACKAGES-----------------------------------------------
+# Tutorial packages
+library(vembedr)
+library(skimr)
+library(yarrr)
+library(RColorBrewer)
+library(GGally) 
+library(tidyverse)
+library(plotly)
+library(readxl)
+library(rvest)
+library(biscale)
+library(tidycensus)
+library(cowplot)
+library(units)
+```
+
+<br><br>
+
+This tutorial covers reading in every type of file I can think of.
+
+<br>
+
+# 1. General pointers
+
+Here's the structure of EVERY command in R.
+
+```{r, eval=FALSE}
+
+name_youre_saving_it_as  <- COMMAND( "InputFilename.Extension" , other_options)
+
+```
+
+-   **`COMMAND`** is the function used to read the data
+    -   e.g.,**`read.csv`** for CSV files <br><br>
+-   **`"InputFilename.Extension"`** should be replaced with your file
+    name. <br><br>
+-   **`other_options`** includes (optional) additional options for your
+    command
+    -   e.g. nrow specifies the number of rows within the read.csv()
+        command <br><br>
+-   **`"name_youre_saving_it_as"`** is the name of the variable you
+    choose to assign your data to.
+    -   e.g `x <- 5` assigns the number 5 to a variable called x
+        <br><br>
+
+Using this format, here's an example of how to read the first two rows
+of a .csv file called "myfrost.csv," save it as the variable
+"froooostdata," and summarize it:
+
+```{r, eval=FALSE}
+froooostdata  <- read.csv( "myfrost.csv" , nrow=2)
+summary(froooostdata)
+```
+
+<details>
+
+<summary>[**Didn't work? Click here to see a few common
+mistakes/issues**]{.underline}</summary>
+
+<br>
+
+[**Mistake 1**]{.underline}
+
+```{r, eval=FALSE}
+#Incorrect
+summary("myfrost.csv")
+```
+
+This will summarize the WORD "myfrost.csv" as a character string. To
+summarize data, you must first load it into R and assign it to a
+variable using \<-.
+
+------------------------------------------------------------------------
+
+[**Mistake 2**]{.underline}
+
+```{r, eval=FALSE}
+#Incorrect
+read.csv("myfrost.csv")
+summary(myfrost)
+```
+
+The first line loads the data into R but doesn't save it as a variable,
+so it will print the data on the screen. The second line then attempts
+to summarize a non-existent variable named myfrost, which will crash.
+
+------------------------------------------------------------------------
+
+</details>
+
+<br><br>
+
+# 2. Organizing your data
+
+You should be running a PROJECT. If so:
+
+-   either place your files in your main project folder.
+-   OR create a sub-folder and put your data in there.
+
+If your files are in the main folder, you do not need to use setwd() or
+add an address. Commands like this will work.
+
+```{r, eval=FALSE}
+mydata <- read.csv("filename.csv")
+mydata <- st_read("filename.shp")
+mydata <- read.table("filename.txt")
+```
+
+If you use a sub-folder, you need to add the location of the sub-folder
+to your command. Lets imagine my folder is called Dbata (mis-spelled so
+you can see there's nothing special about the name), I would adjust the
+commands to look like this
+
+```{r, eval=FALSE}
+mydata <- read.csv("./Dbata/filename.csv")
+mydata <- st_read("./Dbata/filename.shp")
+mydata <- read.table("./Dbata/filename.txt")
+```
+
+The "." means "look inside the current project folder", then the "/Data"
+means look for a subfolder called Dbata.
+
+------------------------------------------------------------------------
+
+<br><br>
+
+# 3. Read in common data types
+
+## 3.1.  .csv files
+
+```{r, eval=FALSE}
+ mydata  <- read.csv("filename.csv")
+```
+
+or
+
+```{r, eval=FALSE}
+ library(tidyverse) 
+ mydata  <- read_csv("filename.csv")
+```
+
+<details>
+
+<summary>[**Click here to see a tutorial on these
+commands**]{.underline}</summary>
+
+<br>
+
+There are two ways of doing this:
+
+<br>
+
+`read.csv()` : If your file is small, then this command works without
+loading any packages at all.
+
+```{r, eval=FALSE}
+mydata <- read.csv("filename.csv")
+```
+
+For example, if I had a dataset called trees in a subfolder called data,
+I would run
+
+```{r, eval=FALSE}
+trees.data <- read.csv("./data/trees.csv")
+```
+
+------------------------------------------------------------------------
+
+<br><br>
+
+`read_csv()` : This is a more sophisticated way to read in csv data - it
+is much faster for large datasets. You first need to add
+`library(tidyverse)` to your library code chunk at the top of your
+script and run:
+
+```{r, eval=FALSE}
+library(tidyverse) # put this in your library code chunk at the top
+mydata <- read.csv("filename.csv")
+```
+
+For example,
+
+```{r, eval=FALSE}
+trees.data <- read_csv("trees.csv")
+```
+
+<br><br>
+
+</details>
+
+<br><br>
+
+## 3.2.  .txt files
+
+```{r, eval=FALSE}
+ mydata  <- read.txt("filename.txt")
+```
+
+or
+
+```{r, eval=FALSE}
+ library(tidyverse) 
+ mydata  <- read_lines("filename.txt")
+```
+
+<details>
+
+<summary>[**Click here to see a tutorial on these
+commands**]{.underline}</summary>
+
+<br>
+
+<br><br>
+
+</details>
+
+<br><br>
+
+## 3.3.  .xlsx and .xls files
+
+```{r, eval=FALSE}
+ library(readxl) 
+ mydata  <- read_excel("filename.xlsx")
+```
+
+<details>
+
+<summary>[**Click here to see a tutorial on this
+command**]{.underline}</summary>
+
+<br>
+
+<br><br>
+
+</details>
+
+<br><br>
+
+## 3.3. .shp Shape Files
+
+```{r, eval=FALSE}
+ library(sf) 
+ mydata  <- st_read("filename.shp")
+```
+
+IMPORTANT! For this to work, there should be MANY sub-files with the
+same name but different extension in your folder (e.g. filename.shp,
+filename.dbx..). You need to put ALL of them in your folder, then this
+single command reads them in.
+
+<br>
+
+<details>
+
+<summary>[**Click here to see a tutorial on this
+command**]{.underline}</summary>
+
+<br>
+
+<br><br>
+
+</details>
+
+<br><br>
+
+## 3.4.  .geo
+
+```{r, eval=FALSE}
+ library(sf) 
+ mydata  <- st_read("filename.shp")
+```
+
+IMPORTANT! For this to work, there should be MANY sub-files with the
+same name but different extension in your folder (e.g. filename.shp,
+filename.dbx..). You need to put ALL of them in your folder, then this
+single command reads them in.
+
+<br>
+
+<details>
+
+<summary>[**Click here to see a tutorial on this
+command**]{.underline}</summary>
+
+<br>
+
+<br><br>
+
+</details>
+
+<br><br>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<br><br><br>
+
+```{r, eval=FALSE}
+
+# FILE| .csv 
+#______________________________________
+ mydata  <- read.csv("filename.csv")
+ # or
+ library(tidyverse) 
+ mydata  <- read_csv("filename.csv")
+
+ 
+# FILE| .txt (tab separated)
+#______________________________________
+ mydata  <- read.txt("filename.txt",sep="\t", header=TRUE)
+
+
+# FILE| .xls or xlsx
+#______________________________________
+ library(readxl) 
+ mydata  <- read_excel("filename.xlsx")
+
+ 
+# FILE| Shape-files.  
+# There should be MANY sub-files with the same name 
+# but different extension in your folder (e.g. filename.shp, filename.dbx..)
+# You need ALL of them in your folder, then this single command reads them in
+#______________________________________
+  library(sf) 
+  mydata  <- st_read("filename.shp")
+  
+  
+  
+  
+```
