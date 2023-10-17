@@ -2,11 +2,6 @@
 title: "GEOG 364 Project Part 2"
 author: "Dr Greatrex"
 date: "`r Sys.Date()`"
-output:
-  prettydoc::html_pretty:
-    theme: cayman
-    highlight: github
-    toc: true
 ---
 
 Welcome to part 2 of your projects!
@@ -25,10 +20,11 @@ make it 'spatial' and to do some point pattern analysis.
 
 <br>
 
-Go to the assignment page on Canvas -
-<https://psu.instructure.com/courses/2260204/assignments/15503679> - and
-take a look at your feedback for Lab 1. See the screenshot above for
-where to click.
+Go to the assignment page on Canvas and take a look at your feedback for
+Lab 1. See the screenshot above for where to click.
+<https://psu.instructure.com/courses/2260204/assignments/15503679>
+
+<br>
 
 <details>
 
@@ -108,12 +104,26 @@ knitr::include_graphics("./Figures/Proj_Fig2_LabPartner.png")
 
 # Step 2\| Improve report readability
 
-## Load your report
+<br>
+
+## 2A. Load your report
 
 We are using the same report as for Project 1. So open your Project 1
 folder/.Rproj and open your report. Scroll to the top!
 
-## 2A. Code chunk options
+<br>
+
+## 2B. Add your names/email ID to the top
+
+**At the top of your report in italic, add your scenario - and make sure
+to add your names/email ID if you are working as a pair. Otherwise it's
+really hard to match them on Canvas.**
+
+You can also add an author line in your YAML code at the top
+
+<br>
+
+## 2C. Add Code chunk options
 
 First, let's get rid of all of the 'library loading text' that happens
 when you press knit. Underneath your YAML code and at the top of your
@@ -138,17 +148,37 @@ There are a lot of other code chunk options out there, from pre-defining
 the size of figures, to changing colors. See this tutorial for more:
 <https://yihui.org/knitr/options/>
 
+<br>
+
+## 2D. Tidy up your report & code
+
+Now work through any code you already have and tidy up:
+
+-   Remove any code that uses interactive commands like
+    "install.packages()" or "View()" or "file.choose()"
+
+-   Remove any code that prints out entire datasets. (replace them with
+    `head(dataset)` to see the first 6 lines)
+
+-   Move all your library() commands to the library code chunk at the
+    top.
+
+-   Generally tidy up. Need any more/better headings/sub-headings? Done
+    a spell check? Does it look good when you knit?
+
 <br><br>
 
-## 2B. Choosing an audience
+# Step 3\| Choosing an audience
 
 I want these reports to be something you could show on Github or to a
 future employer/grad-school. This means that (although I know it's not a
-writing course), many of you do need to add in more details about your
-topic.
+writing course), of you need to add more details about your topic.
 
-The easiest way to do this is to write your report up for some imaginary
-senior person. For example:
+**The easiest way to do this is to write your report up for some
+imaginary senior person or imagine you're writing a blog for a data
+science website.**
+
+For example:
 
 -   You might analyse sports stadium data for a new billionaire who
     wants to build a new stadium in a new town but hasn't decided where.
@@ -162,98 +192,161 @@ senior person. For example:
     called in to arbitrate. Or maybe you're exploring data to go into a
     newspaper expose.
 
-Note,I have said someone who is "new". This is so you can imagine
-explaining the topic to them from scratch. They're not going to know any
-background information or jargon.
+-   You're writing an article for a newspaper of your choice, or
+    [www.flowingdata.com](www.flowingdata.com)
 
-This approach is also useful because it forces you to choose a 'useful'
-study area. In the California pollution example, the story makes sense
-that you would choose data from 2002 and an area covering the California
-campuses.
-
-Your stories can be imaginary, outlandish and ridiculous! Maybe you're a
-writing a report for aliens from Mars about which areas to avoid UFO
-sightings. Or you're writing a report for President Obama in planning a
-new initiative, or your great Aunt
-[Tegwyn](https://www.youtube.com/watch?app=desktop&v=rsEzaqSMZCQ)[^1] in
-deciding where to retire\... I really don't care :)
+-   Your stories can be imaginary, outlandish and ridiculous! Maybe
+    you're a writing a report for aliens from Mars about how to avoid
+    UFO sightings. Or you're writing a report for President Obama in
+    planning a new initiative, or a report for your grandma
+    [Tegwyn](https://www.youtube.com/watch?app=desktop&v=rsEzaqSMZCQ)[^1]
+    in deciding where to retire\... I really don't care :) What I'm
+    looking for is a good reason for you to look at your dataset and to
+    define a 'useful' spatial and temporal extent.
 
 [^1]: (my auntie's name)
 
-What I'm looking for is a good reason for you to look at your dataset
-and to define a 'useful' spatial and temporal extent.
+**This approach is also useful because it forces you to choose a useful
+study area.** <br> In the California pollution example, the story makes
+sense that you would choose data from 2002 and an area covering the
+California campuses.
 
-Finally, in each case you don't have to answer a specific question.
-"Spatially exploring dataset YY to allow..." is enough.
+**Imagine your person is new to the job. or imagine your report will be
+published online.. so you need to explain the topic to them from
+scratch. They're not going to know any background information or
+jargon.**
+
+Finally, in each case you don't have to answer a specific research
+question. *"Spatially exploring dataset YY to provide information
+on...... "* is enough.
+
+If you want to write in a different language with an English translation
+below, then that is also fine.
 
 <br>
 
-### YOUR CHALLENGE
+#### HELP! I can't think of anyone..
 
-Decide on a potential audience for your work that follows the guidelines
-above. If you are stuck, ask around in the lab! Or ask chat GPT.....
+If you are stuck, ask around in the lab! Or ask chat GPT.....
 
 ![](Figures/Proj_Fig4_ChatGPT.png)
 
-**At the top of your report in italic, add your scenario - and make sure
-to add your names/email ID if you are working as a pair.**
+<br>
 
-For the rest of your project, you are writing a report to this person!
-Think about what language would be professional, how you can introduce
-the dataset to them. Can you include relevant (cited) photos/pictures?
-And/Or talk about a relevant underlying issue? (say food deserts...), or
-cite related research.
+### 3.1 Your challenge
 
-Even before you read in the data, from what you know, you can write
-about what limitations might the data have in being useful (for example
-COVID data = locational fallacy).
+1.  Choose a potential person/reason for writing your report, following
+    the guidelines above. <br>\
+2.  Now consider [why]{.underline} that person might care about this,
+    make up a scenario. Consider what language would be professional and
+    how you can introduce the dataset to them. <br> <br>
 
 **Now include more information in your introduction/background.**
 
--   For individual labs, I'm looking for at least 200 words in your
-    introduction/background (before you read in the data) including at
-    least one image and one cited & relevant research paper/report
+-   [For individual projects:]{.underline}
 
--   If you're working with a lab partner, I'm looking for at least 350
-    words in your introduction/background (before you read in the data)
-    including at least TWO images and TWO cited & relevant research
-    papers/report
+    -   I'm looking for at least 200 words in your
+        introduction/background (before you read in the data) including
+        at least one image and one cited & relevant research
+        paper/report. To find relevant research papers/reports typing
+        your subject into <https://scholar.google.com/> (e.g. building
+        stadiums, fire impact in New Zealand..)
 
-To find relevant research papers/reports typing your subject into
-<https://scholar.google.com/> (e.g. building stadiums, fire impact in
-New Zeoland..)
+        -   This should include background about the topic itself (for
+            style/level, imagine you are writing a blog)
+
+        -   You should also include a paragraph on the limitations of
+            this dataset for solving their issues. For example, maybe
+            you only have one year of data (or your data was collected
+            during COVID), or the locational fallacy/non-uniformity of
+            space is going to impact your analysis. <br>
+
+    -   I also want a bullet point list of the columns in your dataset,
+        for each one explaining what it is, what its name is and units.
+        If your data is really messy or has lots of columns you don't
+        need, come back to this after you have tidied up in Step 4. <br>
+        <br>
+
+-   [If you're working with a lab partner]{.underline}
+
+    -   I'm looking for at least 350 words in your
+        introduction/background (before you read in the data) including
+        at least TWO images and TWO cited & relevant research
+        papers/report. To find relevant research papers/reports typing
+        your subject into <https://scholar.google.com/> (e.g. building
+        stadiums, fire impact in New Zealand..)
+
+        -   This should include background about the topic itself (for
+            style/level, imagine you are writing a blog).
+
+        -   You should also include a paragraph on the limitations of
+            this dataset for solving their issues. For example, maybe
+            you only have one year of data (or your data was collected
+            during COVID), or the locational fallacy/non-uniformity of
+            space is going to impact your analysis. <br>
+
+    -   I also want a bullet point list of the columns in your dataset,
+        for each one explaining what it is, what its name is and units.
+        If your data is really messy or has lots of columns you don't
+        need, come back to this after you have tidied up in Step 4.
 
 <br><br>
 
-## 2C. Tidy up your code
+# Step 4\| Reading in your data
 
-Now work through the code you already have and tidy up. For example,
-remove any code that uses interactive commands like "install.packages()" or "View()".
+Most of you have now managed this. Just in case, here is a new tutorial
+that should go through all the possible data types. [Tutorial 5 -
+reading in
+data](https://psu-spatial.github.io/Geog364-2023/in_Tutorial05ReadingInData.html).
 
-Also remove any lines that print out entire datasets. (replace them with `head(dataset)` to see the first 6 lines.
+Also, if you talked about issues in your project 1, I am custom
+answering each person - so check canvas!
 
-And just generally tidy up. Need any more/better headings/sub-headings? Done a spell check?  Does it look good when you knit?
+If yours isn't in the tutorial or STILL doesn't work, try googling or
+'chatGPT'ing' a query like "read .asds data into R" and you'll probably
+find a tutorial.
 
-# Step 3 Reading in your data
+<br><br>
 
-Most of you have now managed this.  Just in case, here is a new tutorial that should go through all the possible data types.
+# Step 5\| Data wrangling (important)
 
+Even if you have started to do some analysis, I want you to first look
+at this section. There are certain things that you can do to make your
+data more manageable. These include removing missing values, renaming
+columns, sub-setting the columns you want, looking at a smaller spatial
+area etc etc.
 
+These are all included in Tutorial 6 - Data Wrangling.
 
-# Step 4 Data wrangling
-- NA Omit
-- Subset in size
-- Dates
+**Please follow Tutorial 6, then write up a paragraph under a heading
+called Data Wrangling to explain everything you did.**
 
-# Step 5 Making it spatial
+<br><br>
+
+# Step 6\| Spatial wrangling
+
+We now want to make a range of spatial versions of your data type, and
+sort out map projections.
+
+<br><br>
+
+# Step 7\| Exploratory analysis
+
 Get from 2022
 
-# Step 6 Making maps
-Get from 2022
+<br><br>
 
+# Step 8\| Point Pattern Analysis
 
-# Step 7 Point Pattern Analysis
-1 global, 1 local
+You are not being graded on this until Project 3, but try some of the
+techniques you learned in Lab 3. For example, you could conduct a
+quadrat analysis, a nearest neighbour analysis, make some Kernel
+smoothed plots, conduct a Ripley's K analysis.
 
+To see an excellent example of how to integrate these into your write
+up, see Wartman's analysis of earthquake damage.
 
+<https://psu.instructure.com/courses/2260204/files/folder/4_General%20Readings?preview=155077626>
 
+You don't need to write this much! But see how they talk about the
+output from different techniques..
