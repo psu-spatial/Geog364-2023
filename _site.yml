@@ -36,9 +36,7 @@ navbar:
       href: in_G364_Lab3_PointPattern.html   
     - text: "Lab 3B"
       href: in_G364_Lab3B_PointPatternDist.html        
-  - text: "Project"  
+  - text: "Project instructions"  
     menu: 
     - text: "Project 2"
       href: in_G364_Project2.html
-  - text: "Project WORKED EXAMPLES"  
-    menu: 

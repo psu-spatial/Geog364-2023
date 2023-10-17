@@ -236,7 +236,9 @@ And just generally tidy up. Need any more/better headings/sub-headings? Done a s
 
 # Step 3 Reading in your data
 
-To add last night's tutorial
+Most of you have now managed this.  Just in case, here is a new tutorial that should go through all the possible data types.
+
+
 
 # Step 4 Data wrangling
 - NA Omit
