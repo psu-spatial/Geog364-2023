@@ -14,22 +14,8 @@ make it 'spatial' and to do some point pattern analysis.
 
 # Step 1\| Reflect on feedback
 
-<br>
-
-![](Figures/Proj_Fig1_Rubric.png){width="700"}
-
-<br>
-
-Go to the assignment page on Canvas and take a look at your feedback for
-Lab 1. See the screenshot above for where to click.
-<https://psu.instructure.com/courses/2260204/assignments/15503679>
-
-<br>
-
-<details>
-
-<summary>[**Now, click to read some common issues in Project
-1**]{.underline}</summary>
+Here are some common issues in Project 1. See if yours relate! You will
+get specific feedback at the end of Oct 17.
 
 <br>
 
@@ -95,10 +81,6 @@ for something like this: <br>
 ```{r, echo=FALSE}
 knitr::include_graphics("./Figures/Proj_Fig2_LabPartner.png")
 ```
-
-<br><br>
-
-</details>
 
 <br><br>
 
@@ -310,16 +292,44 @@ find a tutorial.
 
 # Step 5\| Data wrangling (important)
 
+DO NOT SKIP THIS
+
 Even if you have started to do some analysis, I want you to first look
 at this section. There are certain things that you can do to make your
 data more manageable. These include removing missing values, renaming
 columns, sub-setting the columns you want, looking at a smaller spatial
 area etc etc.
 
-These are all included in Tutorial 6 - Data Wrangling.
+**Using [Tutorial
+6](https://psu-spatial.github.io/Geog364-2023/in_Tutorial06DataWrangling.html)
+and [Tutorial
+7](https://psu-spatial.github.io/Geog364-2023/in_Tutorial07DataSummaries.html),
+I want you to make a heading called Data Wrangling, complete each of
+these tasks and write up a paragraph where you tell me what you did.**
 
-**Please follow Tutorial 6, then write up a paragraph under a heading
-called Data Wrangling to explain everything you did.**
+1.  Decide on which columns you need. e.g. you want your locations and a
+    few good columns with variables in, but you don't need all the
+    "notes" columns etc
+
+    1.  Tutorial 7 will help you explore your data
+
+    2.  Now use Tutorial 6B to subset to ONLY those columns and rename
+        them to something sensible. Summarise in your paragraph what you
+        removed.
+
+    3.  Go back to your write-up at the top and edit your bullet point
+        list to talk about each column and its units.
+
+2.  Remove rows where there are missing coordinates (e.g. long and lat)
+    using tutorial 7.\
+
+3.  Look for values that clearly aren't real using the summaries and
+    things like histograms. Set those values to NA using tutorial 6A.
+    Tell me what you did.\
+
+4.  Decide if you want to subset huge datasets to individual
+    countries/regions and use Tutorial 6C and 6D to help you do it. Or
+    think through what your report reader might like
 
 <br><br>
 
@@ -328,11 +338,21 @@ called Data Wrangling to explain everything you did.**
 We now want to make a range of spatial versions of your data type, and
 sort out map projections.
 
+If it's not already spatial, try st_as_sf() and I will provide custom
+help.
+
 <br><br>
 
 # Step 7\| Exploratory analysis
 
-Get from 2022
+Now your data is better organised, start to do some exploratory
+analysis. Imagine giving a presentation to your report reader on the
+data. What are its features, what's the range, make some maps.
+Interesting patterns?
+
+Relate it all back to your report reader.
+
+Look at R graph gallery online for cool summary plots.
 
 <br><br>
 

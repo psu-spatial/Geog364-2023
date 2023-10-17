@@ -504,19 +504,8 @@ analysis.</p>
 <p><br><br></p>
 <div id="step-1-reflect-on-feedback" class="section level1">
 <h1>Step 1| Reflect on feedback</h1>
-<p><br></p>
-<p><img src="Figures/Proj_Fig1_Rubric.png" width="700" /></p>
-<p><br></p>
-<p>Go to the assignment page on Canvas and take a look at your feedback
-for Lab 1. See the screenshot above for where to click. <a
-href="https://psu.instructure.com/courses/2260204/assignments/15503679"
-class="uri">https://psu.instructure.com/courses/2260204/assignments/15503679</a></p>
-<p><br></p>
-<details>
-<summary>
-<u><strong>Now, click to read some common issues in Project
-1</strong></u>
-</summary>
+<p>Here are some common issues in Project 1. See if yours relate! You
+will get specific feedback at the end of Oct 17.</p>
 <p><br></p>
 <p><u><strong>ISSUE 1: I couldn’t read in my data:</strong></u></p>
 <p>I’ve tried to provide custom feedback here to get your dataset
@@ -563,8 +552,6 @@ to spend time working out if you were working solo or not.</p>
 write-up who did what. As described in your initial quizzes, I’m looking
 for something like this: <br></p>
 <p><img src="Figures/Proj_Fig2_LabPartner.png" width="823" /></p>
-<p><br><br></p>
-</details>
 <p><br><br></p>
 </div>
 <div id="step-2-improve-report-readability" class="section level1">
@@ -751,26 +738,60 @@ find a tutorial.</p>
 </div>
 <div id="step-5-data-wrangling-important" class="section level1">
 <h1>Step 5| Data wrangling (important)</h1>
+<p>DO NOT SKIP THIS</p>
 <p>Even if you have started to do some analysis, I want you to first
 look at this section. There are certain things that you can do to make
 your data more manageable. These include removing missing values,
 renaming columns, sub-setting the columns you want, looking at a smaller
 spatial area etc etc.</p>
-<p>These are all included in Tutorial 6 - Data Wrangling.</p>
-<p><strong>Please follow Tutorial 6, then write up a paragraph under a
-heading called Data Wrangling to explain everything you
+<p><strong>Using <a
+href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial06DataWrangling.html">Tutorial
+6</a> and <a
+href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial07DataSummaries.html">Tutorial
+7</a>, I want you to make a heading called Data Wrangling, complete each
+of these tasks and write up a paragraph where you tell me what you
 did.</strong></p>
+<ol style="list-style-type: decimal">
+<li><p>Decide on which columns you need. e.g. you want your locations
+and a few good columns with variables in, but you don’t need all the
+“notes” columns etc</p>
+<ol style="list-style-type: decimal">
+<li><p>Tutorial 7 will help you explore your data</p></li>
+<li><p>Now use Tutorial 6B to subset to ONLY those columns and rename
+them to something sensible. Summarise in your paragraph what you
+removed.</p></li>
+<li><p>Go back to your write-up at the top and edit your bullet point
+list to talk about each column and its units.</p></li>
+</ol></li>
+<li><p>Remove rows where there are missing coordinates (e.g. long and
+lat) using tutorial 7.<br />
+</p></li>
+<li><p>Look for values that clearly aren’t real using the summaries and
+things like histograms. Set those values to NA using tutorial 6A. Tell
+me what you did.<br />
+</p></li>
+<li><p>Decide if you want to subset huge datasets to individual
+countries/regions and use Tutorial 6C and 6D to help you do it. Or think
+through what your report reader might like</p></li>
+</ol>
 <p><br><br></p>
 </div>
 <div id="step-6-spatial-wrangling" class="section level1">
 <h1>Step 6| Spatial wrangling</h1>
 <p>We now want to make a range of spatial versions of your data type,
 and sort out map projections.</p>
+<p>If it’s not already spatial, try st_as_sf() and I will provide custom
+help.</p>
 <p><br><br></p>
 </div>
 <div id="step-7-exploratory-analysis" class="section level1">
 <h1>Step 7| Exploratory analysis</h1>
-<p>Get from 2022</p>
+<p>Now your data is better organised, start to do some exploratory
+analysis. Imagine giving a presentation to your report reader on the
+data. What are its features, what’s the range, make some maps.
+Interesting patterns?</p>
+<p>Relate it all back to your report reader.</p>
+<p>Look at R graph gallery online for cool summary plots.</p>
 <p><br><br></p>
 </div>
 <div id="step-8-point-pattern-analysis" class="section level1">

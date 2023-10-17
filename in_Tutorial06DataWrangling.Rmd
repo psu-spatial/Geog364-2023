@@ -39,9 +39,106 @@ library(units)
 
 This tutorial covers subsetting, filtering, removing missing values..
 
-# 6.1 Choosing rows/filtering
+# 6.3 Removing missing values
 
-## 6.1A The dplyr filter command (tidyverse)
+## 6.3.1 na.omit
+
+The na.omit command will remove any row with ANY missing value. Note I'm overwriting my variable with the smaller one. It's up to you if you want to do this or make a new variable
+
+```{r, eval=FALSE}
+frost <- na.omit(frost)
+```
+
+<br>
+
+## 6.3.2 Missing values in single columns
+
+If you want to only remove rows with missing values in a single column, this type of command works.
+
+
+```{r, eval=FALSE}
+frost <- frost[which(is.na(frost$Latitude) ==FALSE), ] 
+frost <- frost[which(is.na(frost$Longitude) ==FALSE), ] 
+
+```
+
+E.g. take the frost table and ONLY include values where the longitude is not missing.   Note, this can be any column name at all.
+
+<br><br>
+
+
+## Turning values into NA
+
+Sometimes, you have -999 or something as NA.  You can apply a RULE using the filter command below or like this to make them actually NAs
+
+```{r}
+frost$Dist_to_Coast[frost$Dist_to_Coast < -0]   <- NA
+```
+
+E.g. here I select all the distance to coasts that are less than 0 (e.g impossible) and set them to NA.
+
+
+<br>
+
+# 6.2 Choosing columns
+
+Sometimes you don't want all the columns. You can subset in a few ways.
+
+For example, here are the frost data columns
+```{r}
+names(frost)
+```
+
+I can choose which column NUMBERS I want like this
+
+```{r}
+# choose columns 1 6 and 2 in that order
+frostnew <- frost[,c(1,6,2)]
+
+#print the first 2 rows.
+frostnew[1:2, ]
+```
+
+or the names like this
+
+```{r}
+# choose columns 1 6 and 2 in that order
+frostnew <- frost[,c("Dist_to_Coast","State","Latitude")]
+
+#print the first 2 rows.
+frostnew[1:2, ]
+```
+
+<br><br>
+
+# 6.3 Renaming columns
+
+Good column names don't have spaces or special characters. You can either rename in excel or using the names command  e.g.
+
+```{r}
+names(frostnew)
+```
+
+
+```{r}
+names(frostnew)[3]
+```
+
+```{r}
+names(frostnew)[3] <- "hellloooooo"
+```
+
+```{r}
+summary(frostnew)
+```
+
+
+<br><br>
+
+
+# 6.4 Choosing rows/filtering
+
+## 6.4A The dplyr filter command (tidyverse)
 
 Filtering means selecting rows/observations based on their values. To filter in R, use the command `filter()` from the dplyr package. I tend to write it as `dplyr:filter()` to force it to be correct. Visually, filtering rows looks like this.
 
@@ -131,9 +228,9 @@ airportwarm
 ```
 
 
-# 6.2 Sorting data
+# 6.5 Sorting data
 
-## 6.2A The dplyr arrange command (tidyverse)
+## 6.5A The dplyr arrange command (tidyverse)
 
 \
 
