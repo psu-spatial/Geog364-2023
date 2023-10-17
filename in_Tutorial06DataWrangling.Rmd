@@ -1,0 +1,152 @@
+---
+title: "Tutorial 6: Filtering Summarising Data"
+output:
+  html_document:
+    toc: true
+    toc_float: yes
+    toc_depth: 2
+    df_print: paged
+    theme: flatly
+    highlight: tango
+---
+
+```{r setup, include=FALSE}
+# OPTIONS -----------------------------------------------
+knitr::opts_chunk$set(echo = TRUE, 
+                      warning=FALSE, 
+                      message = FALSE)
+```
+
+```{r, include=FALSE}
+# PACKAGES-----------------------------------------------
+# Tutorial packages
+library(vembedr)
+library(skimr)
+library(yarrr)
+library(RColorBrewer)
+library(GGally) 
+library(tidyverse)
+library(plotly)
+library(readxl)
+library(rvest)
+library(biscale)
+library(tidycensus)
+library(cowplot)
+library(units)
+```
+
+<br><br>
+
+This tutorial covers subsetting, filtering, removing missing values..
+
+# 6.1 Choosing rows/filtering
+
+## 6.1A The dplyr filter command (tidyverse)
+
+Filtering means selecting rows/observations based on their values. To filter in R, use the command `filter()` from the dplyr package. I tend to write it as `dplyr:filter()` to force it to be correct. Visually, filtering rows looks like this.
+
+```{r, echo=FALSE, fig.align='center',out.width="80%"}
+knitr::include_graphics('./Figures/fig30_DplyrFilter.png')
+```
+First, make sure that this library is in your library code chunk and that you have run it.
+
+```{r,eval=FALSE}
+library(tidyverse)
+```
+
+
+Let's filter our frost data.
+```{r}
+frost <- read_excel("./Data/DataG364_frostday.xlsx")
+names(frost)
+```
+
+
+```{r}
+head(frost)
+```
+
+Here we can apply the filter command to choose specific rows that meet certain criteria. There are a few filter commands out there, so I'm specifying I want the dplyr one. 
+
+
+```{r, results="hide"}
+dplyr::filter(frost, State == "FL")
+```
+
+ - The double equal operator `==` means equal to. The command is telling R to keep the rows in *frost* where the *State* column equals "FL".
+
+ - Note, there's no <- so I'm printing the results out on the screen. If you want to save your result, put `answer <- dplyr::filter(frost, State == "FL")`
+
+<br><br>
+
+### Several categories
+
+If you want a few categories, choose the %in% operator, using the `c()` command to stick together the categories you want. For example, here are states in Florida and Virginia.
+
+```{r, results="hide"}
+filter(frost, State %in% c("FL","VA"))
+```
+
+We can also explicitly exclude cases and keep everything else by using the not equal operator `!=`. The following code *excludes* airport stations.
+
+```{r, results="hide"}
+filter(frost, Type_Fake != "Airport")
+```
+
+### Greater or lesser
+
+What about filtering if a row has a value greater than a specified value? For example, Stations with an elevation greater than 500 feet?
+
+```{r, results="hide"}
+filter(frost, Elevation > 500)
+```
+
+Or less-than-or-equal-to 200 feet.
+
+```{r, results="hide"}
+
+# or save the result to a new variable
+lowland_stations <- filter(frost, Elevation < 200)
+summary(lowland_stations)
+```
+
+<br>
+
+### Complex commands
+
+In addition to comparison operators, filtering may also utilize logical operators that make multiple selections. There are three basic logical operators: `&` (and), `|` (or), and `!` (not). We can keep Stations with an *Elevation* greater than 300 **and** *State* in Alabama `&`.
+
+```{r, results="hide"}
+filter(frost, Elevation > 300 & State == "AL")
+```
+
+Use `|` to keep Stations with a *Type_Fake* of "Airport" **or** a last spring frost date after April (\~ day 90 of the year).
+
+```{r, results="hide"}
+airportwarm <- filter(frost, 
+                      Type_Fake == "Airport" | Avg_DOY_SpringFrost > 90 )
+
+airportwarm
+
+```
+
+
+# 6.2 Sorting data
+
+## 6.2A The dplyr arrange command (tidyverse)
+
+\
+
+We use the `arrange()` function to sort a data frame by one or more variables. You might want to do this to get a sense of which cases have the highest or lowest values in your data set or sort counties by their name. For example, let's sort in ascending order by elevation.
+
+```{r}
+arrange(frost, Latitude)
+```
+
+By default, `arrange()` sorts in ascending order. We can sort by a variable in descending order by using the `desc()` function on the variable we want to sort by. For example, to sort the dataframe by *Avg_DOY_SpringFrost* in descending order we use
+
+```{r}
+arrange(frost, desc(Avg_DOY_SpringFrost))
+```
+
+<br> <br>

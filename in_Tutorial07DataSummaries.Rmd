@@ -41,7 +41,7 @@ This tutorial covers loads of summary statistics that might be useful.
 
 <br>
 
-# 1. General pointers
+# General pointers
 
 Here's the structure of EVERY command in R.
 
@@ -199,4 +199,36 @@ str(HousesNY)
 
 
 
+## 7.6  "Group_by" Statistics per group
+
+What if you want to find more sophisticated statistics e.g. the avergae price per size of house.
+
+Here we use the `group_by()` and `summarise()` commands and save our answers to a new variable.
+
+**We are making use of the pipe symbol, %\>%, which takes the answer from group_by and sends it directly to the summarise command**
+
+Here is some data on frost dates at weather stations (i'll update on house data later)
+
+```{r}
+
+frost    <- readxl::read_excel("./Data/DataG364_frostday.xlsx")
+head(frost)
+```
+
+To summarise results by the type of weather station:
+
+```{r}
+frost.summary.type <- group_by(frost, by=Type_Fake) %>%
+                          summarise(mean(Latitude),
+                                    max(Latitude),
+                                    min(Dist_to_Coast))
+frost.summary.type
+```
+
+Here, my code is:
+
+-   Splitting up the frost data by the Type_Fake column<br>(e.g. one group for City, one for Airport and one for Agricultural Research)
+-   For the data rows in *each group*, calculating the mean latitude, the maximum latitude and the minimum distance to the coast
+-   Saving the result to a new variable called frost.summary.type.
+-   Printing the results on the screen e.g. the furthest North/maximum latitude of rows tagged Agricultural_Research_Station is 36.32 degrees.
 

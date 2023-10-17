@@ -25,7 +25,7 @@ navbar:
     - text: "5. Reading in Data"
       href: in_Tutorial05ReadingInData.html  
     - text: "6. Data wrangling"
-      href: in_Tutorial06Wrangling.html  
+      href: in_Tutorial06DataWrangling.html  
     - text: "7. Data summaries"
       href: in_Tutorial07DataSummaries.html       
   - text: "Labs"  

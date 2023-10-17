@@ -432,7 +432,7 @@ div.tocify {
       <a href="in_Tutorial05ReadingInData.html">5. Reading in Data</a>
     </li>
     <li>
-      <a href="in_Tutorial06Wrangling.html">6. Data wrangling</a>
+      <a href="in_Tutorial06DataWrangling.html">6. Data wrangling</a>
     </li>
     <li>
       <a href="in_Tutorial07DataSummaries.html">7. Data summaries</a>
@@ -497,7 +497,7 @@ div.tocify {
 useful.</p>
 <p><br></p>
 <div id="general-pointers" class="section level1">
-<h1>1. General pointers</h1>
+<h1>General pointers</h1>
 <p>Here’s the structure of EVERY command in R.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a>output_variable  <span class="ot">&lt;-</span> <span class="fu">COMMAND</span>( input_variable , other_options)</span></code></pre></div>
 <ul>
@@ -616,6 +616,48 @@ you in the moment.</p>
 <span id="cb14-2"><a href="#cb14-2" tabindex="-1"></a><span class="fu">glimpse</span>(HousesNY)</span></code></pre></div>
 <p>or</p>
 <div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="fu">str</span>(HousesNY)</span></code></pre></div>
+</div>
+<div id="group_by-statistics-per-group" class="section level2">
+<h2>7.6 “Group_by” Statistics per group</h2>
+<p>What if you want to find more sophisticated statistics e.g. the
+avergae price per size of house.</p>
+<p>Here we use the <code>group_by()</code> and <code>summarise()</code>
+commands and save our answers to a new variable.</p>
+<p><strong>We are making use of the pipe symbol, %&gt;%, which takes the
+answer from group_by and sends it directly to the summarise
+command</strong></p>
+<p>Here is some data on frost dates at weather stations (i’ll update on
+house data later)</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a>frost    <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">&quot;./Data/DataG364_frostday.xlsx&quot;</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a><span class="fu">head</span>(frost)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Station"],"name":[1],"type":["chr"],"align":["left"]},{"label":["State"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Type_Fake"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Avg_DOY_SpringFrost"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Latitude"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Longitude"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Elevation"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Dist_to_Coast"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"Valley","2":"AL","3":"City","4":"109.88","5":"34.57","6":"-85.62","7":"1020","8":"294.992"},{"1":"Union","2":"AL","3":"City","4":"82.27","5":"32.02","6":"-85.75","7":"440","8":"121.515"},{"1":"Saint","2":"AL","3":"Airport","4":"99.85","5":"34.17","6":"-86.82","7":"800","8":"252.062"},{"1":"Fernandina","2":"FL","3":"City","4":"46.89","5":"30.67","6":"-81.47","7":"13","8":"1.148"},{"1":"Lake","2":"FL","3":"City","4":"60.65","5":"30.18","6":"-82.60","7":"195","8":"62.972"},{"1":"West","2":"GA","3":"City","4":"85.63","5":"32.87","6":"-85.18","7":"575","8":"187.456"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>To summarise results by the type of weather station:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" tabindex="-1"></a>frost.summary.type <span class="ot">&lt;-</span> <span class="fu">group_by</span>(frost, <span class="at">by=</span>Type_Fake) <span class="sc">%&gt;%</span></span>
+<span id="cb17-2"><a href="#cb17-2" tabindex="-1"></a>                          <span class="fu">summarise</span>(<span class="fu">mean</span>(Latitude),</span>
+<span id="cb17-3"><a href="#cb17-3" tabindex="-1"></a>                                    <span class="fu">max</span>(Latitude),</span>
+<span id="cb17-4"><a href="#cb17-4" tabindex="-1"></a>                                    <span class="fu">min</span>(Dist_to_Coast))</span>
+<span id="cb17-5"><a href="#cb17-5" tabindex="-1"></a>frost.summary.type</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["by"],"name":[1],"type":["chr"],"align":["left"]},{"label":["mean(Latitude)"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["max(Latitude)"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["min(Dist_to_Coast)"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"Agricultural_Research_Station","2":"33.66875","3":"36.32","4":"4.948"},{"1":"Airport","2":"34.40682","3":"37.33","4":"45.426"},{"1":"City","2":"33.72789","3":"36.50","4":"1.148"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>Here, my code is:</p>
+<ul>
+<li>Splitting up the frost data by the Type_Fake column<br>(e.g. one
+group for City, one for Airport and one for Agricultural Research)</li>
+<li>For the data rows in <em>each group</em>, calculating the mean
+latitude, the maximum latitude and the minimum distance to the
+coast</li>
+<li>Saving the result to a new variable called frost.summary.type.</li>
+<li>Printing the results on the screen e.g. the furthest North/maximum
+latitude of rows tagged Agricultural_Research_Station is 36.32
+degrees.</li>
+</ul>
 </div>
 </div>
 
