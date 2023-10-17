@@ -1,0 +1,337 @@
+---
+title: "Worked Example - Background workings"
+subtitle: <h5 style="font-style:normal">GEOG-364 - Spatial Analysis</h4>
+output: 
+  html_document:
+    toc: true
+    toc_depth: 4
+    toc_float: true
+    theme: flatly
+---
+
+
+<style>
+p.comment {
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 0px;
+border-radius: 5px;
+font-style: normal;
+}
+
+h1.title {
+  font-weight: bold;
+  font-family: Arial;  
+}
+
+h2.title {
+  font-family: Arial;  
+}
+
+</style>
+
+
+<style type="text/css">
+ TOC {
+  font-size: 12px;
+  font-family: Arial;
+}
+</style>
+
+\
+```{r setup, include=FALSE,echo=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE,dpi = 300, dev = "svg")
+
+# invisible data read
+library(tidyverse)
+library(sp)
+library(sf)
+library(readxl)
+library(skimr)
+library(tmap)
+library(viridis)
+library(usmap)
+library(rnaturalearth)
+library(ggpubr)
+library(gridExtra)
+library(ceramic)
+library(leaflet)
+library(leaflet.extras)
+library(leaflet.providers)
+library(raster)
+library(ggmap)
+library(dismo)
+library(maps)
+
+
+as.Date_origin <- function(x){
+  format.Date(as.Date(x, origin = '1970-01-01'), format = '%b-%d')
+}
+
+Sys.setenv(MAPBOX_API_KEY="pk.eyJ1IjoiaGdyZWF0cmV4IiwiYSI6ImNrbmdpNDN6djBkZTQydXBhNDc1enJjZnkifQ.xQWYvOFK5BKQoNWoOacDgA")
+
+
+```
+
+
+<style>
+p.comment {
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 0px;
+border-radius: 5px;
+font-style: normal;
+}
+
+h1.title {
+  font-weight: bold;
+  font-family: Arial;  
+}
+
+h2.title {
+  font-family: Arial;  
+}
+
+</style>
+
+
+<style type="text/css">
+#TOC {
+  font-size: 11px;
+  font-family: Arial;
+}
+</style>
+
+# What is this?
+
+In part 2 (to be uploaded), I show my actual example report analysing farmers markets in Iowa. So you can see what I would actually submit in the next section.
+
+These are my background workings - all my text are things I might think in my head, you don't need to write all of this.  But I hope you can follow this and do something similar for your own work.
+
+<br><br>
+
+
+# 1. Set up and libraries
+
+My example tutorial is set in Iowa on farmers markets.  First, set up libraries
+
+```{r, results=FALSE,warning=FALSE,message=FALSE}
+
+library(sp)
+library(sf)
+library(tidyverse)
+library(tmap)
+library(readxl)
+library(skimr)
+library(spatstat)
+
+```
+
+
+<br><br>
+
+
+# 2. Read in the data
+
+Now I will read in my data, on farmers markets in Iowa.  Sometimes adding in the na option helps R recognise missing values, so I will try that.
+
+
+```{r}
+IA_market   <- readxl::read_excel("./Data/Farmers_Markets_Iowa.xlsx",na="NA")
+```
+
+
+```{r}
+names(IA_market)
+```
+
+OK, I can see I have the columns above and when I click on the IA_market name in the Environment tab I can see more details. First, I'll take a quick look at the summary.
+
+```{r}
+summary(IA_market)
+```
+
+<br><br>
+
+
+# 3. Initial quality control
+
+From the summary above, I can see some weird issues.   
+
+## 3.1. Problem with X
+
+Hmm there is a very small longitude value in X that can't exist
+
+```{r}
+# get rid of the row with the weird value
+# I could also set it to NA
+IA_market <- IA_market[which(IA_market$X > -990),]
+
+# and print the summary
+summary(IA_market[,c("X","Y")])
+
+
+```
+
+OK that looks better.
+
+<br><br>
+
+
+## 2. Remove all the rows with missing locations
+
+I know I don't need any row with missing location data, so let's remove
+
+```{r}
+IA_market <- IA_market[complete.cases(IA_market$X), ]
+
+IA_market <- IA_market[complete.cases(IA_market$Y), ]
+
+```
+
+<br><br>
+
+# 4. Choose Columns
+
+I don't need all this data, so let's keep things neat.
+
+I quite like the glimpse function from tidyverse for this. Here are my columns (same as name command)
+
+```{r}
+glimpse(IA_market)
+```
+
+ - I know from google that FID is a federal identifier that might be useful, so I'll keep that.  
+ - Looking at the data, "location" is the full address, so let's remove that.
+ - All the data is in Iowa, so let's remove State
+ - Open_Hours and Open Dates feels too complicated, so i'm removing them
+ 
+```{r}
+IA_market <- IA_market[,c("X","Y","FID",
+                                        "City","County",
+                                        "Market_Name",
+                                        "Weekday")]
+summary(IA_market)
+
+```
+
+<br><br>
+
+# 5. Create families of grouped data
+
+Some of my data like market name is going to be unique to each market. Others like weekday could be considered data groups/families. In R this is called a factor.
+
+To know the difference, I am thinking about whether it is useful to make a summary table of counts for that value
+
+So 
+
+```{r}
+IA_market$City <- as.factor(IA_market$City)
+IA_market$County <- as.factor(IA_market$County)
+IA_market$Weekday <- as.factor(IA_market$Weekday)
+
+```
+
+Now when I summarise, I can immediately see that there are 12 markets on Fridays.
+
+```{r}
+summary(IA_market)
+```
+
+<br><br>
+
+
+# 6. Rename columns
+
+I know my X and Y data are really latitude and longitude, so I will rename them. to make sure I don't mess up, lots of printing out
+
+```{r}
+names(IA_market)[1] 
+names(IA_market)[1] <- "Longitude" 
+names(IA_market)[1] 
+
+names(IA_market)[2] 
+names(IA_market)[2] <- "Latitude" 
+names(IA_market)[2] 
+
+summary(IA_market)
+```
+
+<br><br>
+
+
+# 7. Make a spatial version
+
+OK I know my data is in Lat/Long, so when I make it spatial, I include the crs code 4326 (yours is almost certainly likely to be the same)
+
+```{r}
+# I know that it was in lat/long originally, hence the crs
+IA_market.sf <- st_as_sf(IA_market,
+                         coords=c("Longitude","Latitude"),
+                         crs=4326)
+
+
+# make a quick plot
+tmap_mode("view")
+qtm(st_geometry(IA_market.sf))
+```
+
+<br><br>
+
+
+# 8. More quality control 
+
+You can see in the plot above that there appears to be one point that is not in Iowa. So now I will look at the long/lat columns. I can also filter my data in the View tab.
+
+Note i'm doing this on the original data not the sf.
+
+```{r}
+summary(IA_market[,1:2])
+hist(IA_market$Longitude)
+
+```
+
+I feel that maybe that point at Long \~ -88 is wrong. Let's take a look.
+
+```{r}
+
+IA_market[IA_market$Longitude > -90,]
+
+```
+
+I'm guessing there's a typo - so I could just google this and fix it! but for now, let's remove and try again.
+
+```{r}
+# choose all the other ones, note the <= instead of >
+IA_market <- IA_market[which(IA_market$Longitude < -90),]
+
+# RECREATE THE SPATIAL DATA 
+IA_market.sf <- st_as_sf(IA_market,coords=c("Longitude","Latitude"),
+                         crs=4326)
+
+# make a quick plot
+tmap_mode("view")
+qtm(IA_market.sf)
+```
+
+Much better.  Now let's change to a local map projection of my choice.I am choosing UTM Iowa from Tutorial 9.
+
+```{r}
+# And change to a map projection of your choice. 
+IA_market.sf.utm <- st_transform(IA_market.sf,3744)
+
+# make a quick plot
+tmap_mode("view")
+qtm(st_geometry(IA_market.sf.utm))
+
+```
+
+and let's make it a ppp variable using spatstat. Looking good!
+
+```{r}
+IA_market.ppp <- as.ppp(IA_market.sf.utm)
+plot(IA_market.ppp)
+```
+

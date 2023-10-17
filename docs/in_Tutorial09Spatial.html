@@ -11,7 +11,7 @@
 
 
 
-<title>Worked Example 1 - Background workings</title>
+<title>Tutorial 9: Spatial 101</title>
 
 <script src="site_libs/header-attrs-2.22/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -35,17 +35,6 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
-<script src="site_libs/htmlwidgets-1.6.2/htmlwidgets.js"></script>
-<link href="site_libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
-<script src="site_libs/leaflet-1.3.1/leaflet.js"></script>
-<link href="site_libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
-<script src="site_libs/proj4-2.6.2/proj4.min.js"></script>
-<script src="site_libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
-<link href="site_libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
-<script src="site_libs/leaflet-binding-2.2.0/leaflet.js"></script>
-<script src="site_libs/leaflet-providers-1.13.0/leaflet-providers_1.13.0.js"></script>
-<script src="site_libs/leaflet-providers-plugin-2.2.0/leaflet-providers-plugin.js"></script>
-<script src="site_libs/clipboard-0.0.1/setClipboardText.js"></script>
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -492,6 +481,18 @@ div.tocify {
     </li>
   </ul>
 </li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Project WORKED EXAMPLE
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_WorkedExample_Workings.html">Background workings</a>
+    </li>
+  </ul>
+</li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
@@ -504,10 +505,7 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Worked Example 1 - Background workings</h1>
-<h3 class="subtitle"><h5 style="font-style:normal"><br />
-GEOG-364 - Spatial Analysis<br />
-</h4></h3>
+<h1 class="title toc-ignore">Tutorial 9: Spatial 101</h1>
 
 </div>
 
@@ -540,222 +538,452 @@ h2.title {
 </style>
 <p><br />
 </p>
-<style>
-p.comment {
-background-color: #DBDBDB;
-padding: 10px;
-border: 1px solid black;
-margin-left: 0px;
-border-radius: 5px;
-font-style: normal;
-}
-
-h1.title {
-  font-weight: bold;
-  font-family: Arial;  
-}
-
-h2.title {
-  font-family: Arial;  
-}
-
-</style>
-<style type="text/css">
-#TOC {
-  font-size: 11px;
-  font-family: Arial;
-}
-</style>
-<div id="what-is-this" class="section level1">
-<h1>What is this?</h1>
-<p>In the next section, I include an example report analysing farmers
-markets in Iowa.</p>
-<p>This is my background workings - all my text are things I might think
-in my head, you don’t need to write all of this.</p>
-<p>You can see what I would actually submit in the next section.</p>
-<div id="set-up-and-libraries" class="section level2">
-<h2>Set up and libraries</h2>
-<p>My example tutorial is set in Iowa on farmers markets. First, set up
-libraries</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">library</span>(sp)</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="fu">library</span>(sf)</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="fu">library</span>(tmap)</span>
-<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="fu">library</span>(skimr)</span></code></pre></div>
-</div>
-<div id="read-in-the-data" class="section level2">
-<h2>Read in the data</h2>
-<p>Now I will read in my data, on farmers markets in Iowa. Sometimes
-adding in the na option helps, so I will try that.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>IA_farmersmarket   <span class="ot">&lt;-</span> readxl<span class="sc">::</span><span class="fu">read_excel</span>(<span class="st">&quot;./Data/Farmers_Markets_Iowa.xlsx&quot;</span>,<span class="at">na=</span><span class="st">&quot;NA&quot;</span>)</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">names</span>(IA_farmersmarket)</span></code></pre></div>
-<pre><code>##  [1] &quot;X&quot;           &quot;Y&quot;           &quot;FID&quot;         &quot;City&quot;        &quot;County&quot;     
-##  [6] &quot;Location&quot;    &quot;Market_Name&quot; &quot;Open_Dates&quot;  &quot;Open_Hours&quot;  &quot;State&quot;      
-## [11] &quot;Weekday&quot;</code></pre>
-<p>OK, I can see I have the columns above and if I click on its name in
-the Environment tab I can see more details. First, I’ll take a quick
-look at the summary.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">summary</span>(IA_farmersmarket)</span></code></pre></div>
-<pre><code>##        X                 Y              FID            City          
-##  Min.   :-999.00   Min.   :37.29   Min.   :  1.0   Length:175        
-##  1st Qu.: -94.37   1st Qu.:41.36   1st Qu.: 44.5   Class :character  
-##  Median : -93.18   Median :41.71   Median : 88.0   Mode  :character  
-##  Mean   : -98.37   Mean   :41.86   Mean   : 88.0                     
-##  3rd Qu.: -91.69   3rd Qu.:42.48   3rd Qu.:131.5                     
-##  Max.   : -87.12   Max.   :43.43   Max.   :175.0                     
-##  NA&#39;s   :3         NA&#39;s   :5                                         
-##     County            Location         Market_Name         Open_Dates       
-##  Length:175         Length:175         Length:175         Length:175        
-##  Class :character   Class :character   Class :character   Class :character  
-##  Mode  :character   Mode  :character   Mode  :character   Mode  :character  
-##                                                                             
-##                                                                             
-##                                                                             
-##                                                                             
-##   Open_Hours           State             Weekday         
-##  Length:175         Length:175         Length:175        
-##  Class :character   Class :character   Class :character  
-##  Mode  :character   Mode  :character   Mode  :character  
-##                                                          
-##                                                          
-##                                                          
-## </code></pre>
-</div>
-<div id="initial-quality-control" class="section level2">
-<h2>Initial quality control</h2>
-<p>From this, I can see some weird things!</p>
-<div id="problem-with-x" class="section level3">
-<h3>1. Problem with X</h3>
-<p>Hmm there is a very small longitude value in X that can’t exist</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="co"># get rid of the row with the weird value</span></span>
-<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="co"># I could also set it to NA</span></span>
-<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a>IA_farmersmarket <span class="ot">&lt;-</span> IA_farmersmarket[<span class="fu">which</span>(IA_farmersmarket<span class="sc">$</span>X <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">990</span>),]</span>
-<span id="cb6-4"><a href="#cb6-4" tabindex="-1"></a></span>
-<span id="cb6-5"><a href="#cb6-5" tabindex="-1"></a><span class="co"># and print the summary</span></span>
-<span id="cb6-6"><a href="#cb6-6" tabindex="-1"></a><span class="fu">summary</span>(IA_farmersmarket[,<span class="fu">c</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;Y&quot;</span>)])</span></code></pre></div>
-<pre><code>##        X                Y        
-##  Min.   :-96.56   Min.   :37.29  
-##  1st Qu.:-94.34   1st Qu.:41.36  
-##  Median :-93.10   Median :41.70  
-##  Mean   :-93.11   Mean   :41.85  
-##  3rd Qu.:-91.69   3rd Qu.:42.48  
-##  Max.   :-87.12   Max.   :43.43  
-##                   NA&#39;s   :5</code></pre>
-<p>OK that looks better.</p>
-</div>
-<div id="remove-all-the-rows-with-missing-locations"
-class="section level3">
-<h3>3. Remove all the rows with missing locations</h3>
-<p>I know I don’t need any row with missing location data, so let’s
-remove</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a>IA_farmersmarket <span class="ot">&lt;-</span> IA_farmersmarket[<span class="fu">complete.cases</span>(IA_farmersmarket<span class="sc">$</span>X), ]</span>
-<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a>IA_farmersmarket <span class="ot">&lt;-</span> IA_farmersmarket[<span class="fu">complete.cases</span>(IA_farmersmarket<span class="sc">$</span>Y), ]</span></code></pre></div>
-</div>
-</div>
-<div id="choose-columns" class="section level2">
-<h2>Choose Columns</h2>
-<p>I don’t need all this data, so let’s keep things neat.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="fu">names</span>(IA_farmersmarket)</span></code></pre></div>
-<pre><code>##  [1] &quot;X&quot;           &quot;Y&quot;           &quot;FID&quot;         &quot;City&quot;        &quot;County&quot;     
-##  [6] &quot;Location&quot;    &quot;Market_Name&quot; &quot;Open_Dates&quot;  &quot;Open_Hours&quot;  &quot;State&quot;      
-## [11] &quot;Weekday&quot;</code></pre>
-<div id="check-for-missing-values." class="section level3">
-<h3>Check for missing values.</h3>
-<p>I quite like the skim function from skimr for this. Here are my
-columns (same as name command)</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="fu">glimpse</span>(IA_farmersmarket)</span></code></pre></div>
-<pre><code>## Rows: 166
-## Columns: 11
-## $ X           &lt;dbl&gt; -95.13766, -91.17124, -95.74293, -93.68677, -93.92560, -91…
-## $ Y           &lt;dbl&gt; 43.36571, 40.81963, 41.04704, 41.61103, 40.62401, 40.53341…
-## $ FID         &lt;dbl&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 15, 16, 17, 18,…
-## $ City        &lt;chr&gt; &quot;Arnolds Park&quot;, &quot;West Burlington&quot;, &quot;Glenwood&quot;, &quot;Des Moines…
-## $ County      &lt;chr&gt; &quot;DICKINSON&quot;, &quot;DES MOINES&quot;, &quot;MILLS&quot;, &quot;POLK&quot;, &quot;DECATUR&quot;, &quot;LE…
-## $ Location    &lt;chr&gt; &quot;Arnolds Park&quot;, &quot;609 S. Gear Avenue&quot;, &quot;418 E Sharp St&quot;, &quot;4…
-## $ Market_Name &lt;chr&gt; &quot;Akron Farmers Market&quot;, &quot;Ames - North Grand Farmers Market…
-## $ Open_Dates  &lt;chr&gt; &quot;06/28/2018 - 09/13/2018&quot;, &quot;06/16/2018 - 10/27/2018&quot;, &quot;05/…
-## $ Open_Hours  &lt;chr&gt; &quot;04:30 PM - 06:30 PM&quot;, &quot;09:00 AM - 12:00 PM&quot;, &quot;04:00 PM - …
-## $ State       &lt;chr&gt; &quot;IA&quot;, &quot;IA&quot;, &quot;IA&quot;, &quot;IA&quot;, &quot;IA&quot;, &quot;IA&quot;, &quot;IA&quot;, &quot;IA&quot;, &quot;IA&quot;, &quot;IA&quot;…
-## $ Weekday     &lt;chr&gt; &quot;Thursday&quot;, &quot;Saturday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Wednesda…</code></pre>
+<div id="tutorial-9-spatial-101" class="section level2">
+<h2>Tutorial 9: Spatial 101</h2>
+<p>JUST WANT A WORKED EXAMPLE? SCROLL TO THE END</p>
+<p>This tutorial is all about creating and manipulating spatial data</p>
 <ul>
-<li>I know from google that FID is a federal identifier that might be
-useful, so I’ll keep that.<br />
-</li>
-<li>Looking at the data, “location” is the full address, so let’s remove
-that.</li>
-<li>All the data is in Iowa, so let’s remove State</li>
-<li>Open_Hours and Open Dates feels too complicated, so i’m removing
-them</li>
+<li><p><a href="#Tut9a_basics"><strong>Tutorial 9A: Spatial
+basics</strong></a> <br></p>
+<ol style="list-style-type: lower-alpha">
+<li><a href="#Tut9aa_whatisit">Why treat spatial differently</a>
+<br></li>
+<li><a href="#Tut9ab_proj">Map projections</a></li>
+</ol>
+<p><br></p></li>
+<li><p><a href="#Tut9b_vector"><strong>Tutorial 9B: Vector
+Data</strong></a> <br></p>
+<ol style="list-style-type: lower-alpha">
+<li><p><a href="#Tut9ba_mark">Marked data</a> <br></p></li>
+<li><p><a href="#Tut9bb_convert">Converting existing data to
+“spatial”</a> <br></p></li>
+<li><p><a href="#Tut9bc_read">Reading in spatial vector data from
+file</a> <br></p></li>
+<li><p><a href="#Tut9bd_manip">Manipulating vector data</a>
+<br></p></li>
+<li><p><a href="#Tut9be_plot">Plotting vector data</a></p></li>
+</ol>
+<p><br></p></li>
+<li><p><a href="#Tut9c_raster"><strong>Tutorial 9C: Raster
+data</strong></a></p>
+<ol style="list-style-type: lower-alpha">
+<li><a href="#Tut9ca_basic">To come!</a></li>
+</ol></li>
 </ul>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a>IA_farmersmarket <span class="ot">&lt;-</span> IA_farmersmarket[,<span class="fu">c</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;Y&quot;</span>,<span class="st">&quot;FID&quot;</span>,</span>
-<span id="cb13-2"><a href="#cb13-2" tabindex="-1"></a>                                        <span class="st">&quot;City&quot;</span>,<span class="st">&quot;County&quot;</span>,</span>
-<span id="cb13-3"><a href="#cb13-3" tabindex="-1"></a>                                        <span class="st">&quot;Market_Name&quot;</span>,</span>
-<span id="cb13-4"><a href="#cb13-4" tabindex="-1"></a>                                        <span class="st">&quot;Weekday&quot;</span>)]</span>
-<span id="cb13-5"><a href="#cb13-5" tabindex="-1"></a><span class="fu">summary</span>(IA_farmersmarket)</span></code></pre></div>
-<pre><code>##        X                Y              FID             City          
-##  Min.   :-96.56   Min.   :37.29   Min.   :  1.00   Length:166        
-##  1st Qu.:-94.24   1st Qu.:41.36   1st Qu.: 44.25   Class :character  
-##  Median :-93.10   Median :41.70   Median : 85.50   Mode  :character  
-##  Mean   :-93.07   Mean   :41.85   Mean   : 85.81                     
-##  3rd Qu.:-91.67   3rd Qu.:42.48   3rd Qu.:126.75                     
-##  Max.   :-87.12   Max.   :43.43   Max.   :175.00                     
-##     County          Market_Name          Weekday         
-##  Length:166         Length:166         Length:166        
-##  Class :character   Class :character   Class :character  
-##  Mode  :character   Mode  :character   Mode  :character  
-##                                                          
-##                                                          
-## </code></pre>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="co"># Note, X and Y because that&#39;s what the columns are called. </span></span>
-<span id="cb15-2"><a href="#cb15-2" tabindex="-1"></a><span class="co"># I know that it was in lat/long originally, hence the crs</span></span>
-<span id="cb15-3"><a href="#cb15-3" tabindex="-1"></a>IA_farmersmarket.sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(IA_farmersmarket,<span class="at">coords=</span><span class="fu">c</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;Y&quot;</span>),<span class="at">crs=</span><span class="dv">4326</span>)</span>
-<span id="cb15-4"><a href="#cb15-4" tabindex="-1"></a></span>
-<span id="cb15-5"><a href="#cb15-5" tabindex="-1"></a><span class="co"># And change to a map projection of your choice. I am choosing UTM Iowa</span></span>
-<span id="cb15-6"><a href="#cb15-6" tabindex="-1"></a>IA_farmersmarket.sf <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(IA_farmersmarket.sf,<span class="dv">3744</span>)</span>
-<span id="cb15-7"><a href="#cb15-7" tabindex="-1"></a></span>
-<span id="cb15-8"><a href="#cb15-8" tabindex="-1"></a><span class="co"># make a quick plot</span></span>
-<span id="cb15-9"><a href="#cb15-9" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">&quot;view&quot;</span>)</span>
-<span id="cb15-10"><a href="#cb15-10" tabindex="-1"></a><span class="fu">qtm</span>(<span class="fu">st_geometry</span>(IA_farmersmarket.sf))</span></code></pre></div>
-<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-41f324bc52cc8162cd9d" style="width:2100px;height:1500px;"></div>
-<script type="application/json" data-for="htmlwidget-41f324bc52cc8162cd9d">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"createMapPane","args":["tmap401",401]},{"method":"createMapPane","args":["tmap402",402]},{"method":"addProviderTiles","args":["Esri.WorldGrayCanvas",null,"Esri.WorldGrayCanvas",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap",null,"OpenStreetMap",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldTopoMap",null,"Esri.WorldTopoMap",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addCircleMarkers","args":[[43.36570700000222,40.8196330000025,41.0470440000023,41.61103300000236,40.62401500000239,40.53341400000251,42.39653800000221,41.66186500000244,37.2941130000028,40.39345200000251,40.63263080000251,40.67677200000236,40.72953000000248,40.73762900000234,40.73825280000234,40.75168200000246,40.75168200000246,40.75756700000242,40.76309400000231,40.81034510000251,40.8150220000025,40.8150220000025,40.9568640000025,40.96580000000249,41.00863000000246,41.0099980000025,41.01029770000247,41.01166670000233,41.01722000000243,41.01722000000243,41.01882000000245,41.01954900000241,41.02666670000244,41.02728000000233,41.03416800000239,41.03416800000239,41.05010061000245,41.25336800000229,41.26100200000227,41.29504000000241,41.29504000000241,41.29839770000248,41.3189055000024,41.31959100000241,41.33460600000239,41.35661700000238,41.35661700000238,41.39271500000241,41.40387700000232,41.40387700000232,41.40412900000241,41.40422800000233,41.4045300000024,41.42588000000249,41.44650000000247,41.4766120000023,41.47956900000236,41.49498200000239,41.50219556000246,41.51989300000252,41.52005200000251,41.52005200000251,41.52264400000237,41.5250960000025,41.52518000000249,41.5625690000025,41.5625690000025,41.57911700000238,41.58380100000227,41.58529800000236,41.59209100000237,41.59909800000236,41.59949900000237,41.60867700000234,41.62471500000235,41.62613800000237,41.6466930000023,41.6466930000023,41.65965500000246,41.66008000000246,41.67125900000247,41.67296200000237,41.67845900000245,41.68437400000236,41.69185000000234,41.7003210000024,41.72963700000237,41.77209450000248,41.83844100000235,41.87242100000251,41.89128000000238,41.89705150000243,41.92397300000246,41.97681000000243,41.99563200000239,42.01573200000238,42.01666670000233,42.01784000000229,42.02506960000235,42.02724500000243,42.02724500000243,42.02724500000243,42.03603000000233,42.03647600000244,42.04415000000242,42.04972500000235,42.04972500000235,42.0504310000024,42.06565100000229,42.06565100000229,42.06914600000248,42.10830700000245,42.10830700000245,42.16525300000242,42.22398000000241,42.23721040000246,42.23721040000246,42.26788900000229,42.34532400000226,42.36058330000235,42.36164900000237,42.39744000000228,42.39769000000238,42.4687730000024,42.46942900000238,42.47727200000239,42.48177000000242,42.48397800000243,42.4927641000024,42.49506000000239,42.4908195330022,42.50322000000231,42.50477200000231,42.50608100000246,42.51770000000239,42.51963000000234,42.52914390000229,42.53591200000238,42.64496100000225,42.67331700000242,42.68311100000241,42.6904560000024,42.72477070000237,42.72505400000238,42.7318190000023,42.73683600000233,42.74852800000222,42.78013000000244,42.83091000000218,43.06786700000227,43.06786700000227,43.06814200000234,43.11105200000223,43.11105200000223,43.12716700000223,43.13757100000223,43.13932000000229,43.14937300000232,43.18050000000219,43.2632520000023,43.27676000000239,43.36369000000235,43.37250500000236,43.40206100000223,43.42555600000222,43.42555600000222],[-95.13766000000213,-91.17124500000209,-95.74292900000218,-93.68677400000215,-93.92559500000216,-91.4159390000021,-96.35078800000215,-92.00966900000211,-87.11893500000198,-91.3828120000021,-91.31408940000209,-94.71611900000217,-91.96143000000211,-95.03608300000219,-95.03651940000219,-92.41494800000213,-92.41494800000213,-93.31748000000215,-95.37508370000218,-91.10003360000209,-91.1440050000021,-91.1440050000021,-91.5471960000021,-91.55355000000209,-92.43337000000211,-91.95850400000212,-91.9632328000021,-95.22722220000217,-92.43634000000212,-92.43634000000212,-92.43005000000211,-93.30655800000214,-92.80527780000213,-95.21415000000216,-93.76661700000216,-93.76661700000216,-94.38532591000205,-95.85164600000218,-95.84895300000217,-92.64413000000214,-92.64413000000214,-91.69174460000211,-93.09743690000214,-93.09732400000213,-94.01335900000213,-93.57936100000215,-93.57936100000215,-93.27751900000213,-94.99636100000215,-94.99636100000215,-92.91835000000214,-95.01352100000216,-92.91934000000212,-91.04853800000208,-91.02994000000207,-95.33937500000216,-93.67769300000215,-93.48589500000213,-94.31849062000217,-90.58107000000206,-90.57896300000206,-90.57896300000206,-93.60290500000212,-90.50229800000206,-90.50317000000206,-90.57541700000206,-90.57541700000206,-93.70888500000213,-95.84661900000216,-93.62040000000215,-93.60037900000214,-93.50325800000213,-93.66063900000215,-93.87806700000215,-93.58189500000215,-93.67715400000215,-95.33898000000217,-95.33898000000217,-91.52926700000209,-91.5290450000021,-91.34671000000209,-93.69767800000214,-91.58379400000209,-93.96001200000214,-94.36496000000214,-93.05467100000212,-93.60855100000215,-91.12840320000208,-94.10656940000214,-90.17863500000205,-93.60693000000214,-92.27987220000209,-91.42002100000209,-91.6649550000021,-92.57832300000211,-92.91166200000211,-94.37666670000213,-95.36433000000214,-93.61535150000215,-91.65753200000211,-91.65753200000211,-91.65753200000211,-93.87969200000214,-91.68281600000209,-91.57945000000208,-93.62247500000213,-93.62247500000213,-92.90971200000212,-94.87197100000216,-94.87197100000216,-90.65113300000206,-91.27948000000208,-91.27948000000208,-92.0229420000021,-91.8735500000021,-91.18680060000209,-91.18680060000209,-94.73319200000213,-95.46869000000216,-93.10347380000212,-92.76853200000208,-94.63375000000215,-92.4557200000021,-91.89509600000208,-92.35694100000211,-92.29013800000209,-91.11216000000208,-91.45540600000209,-92.34296310000211,-92.3432850000021,-96.40817928300217,-94.16124000000215,-94.16261700000213,-90.66529800000207,-92.45625000000209,-93.26305400000211,-94.53414210000214,-92.44815100000208,-95.19994500000215,-91.91350600000209,-91.53652600000207,-91.91291900000209,-92.4680460000021,-92.4674340000021,-93.73284900000213,-93.36992200000212,-95.55390900000215,-91.09502000000208,-96.55729700000217,-94.23670200000211,-94.23670200000211,-92.67759700000211,-94.68256800000212,-94.68256800000212,-95.14569100000215,-95.14538300000214,-93.3781700000021,-93.24729000000212,-95.85332500000213,-93.63859800000212,-91.47491000000205,-92.55620000000209,-92.11843100000209,-94.82865100000213,-95.11409000000212,-95.11409000000212],[2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"st_geometry(IA_farmersmarket.sf)",{"interactive":true,"className":"","pane":"tmap401","stroke":true,"color":"#666666","weight":1,"opacity":0.5,"fill":true,"fillColor":["#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000"],"fillOpacity":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},null,null,null,null,[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLayersControl","args":[["Esri.WorldGrayCanvas","OpenStreetMap","Esri.WorldTopoMap"],"st_geometry(IA_farmersmarket.sf)",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":false,"updateWhenIdle":true,"position":"bottomright"}]}],"limits":{"lat":[37.2941130000028,43.42555600000222],"lng":[-96.55729700000217,-87.11893500000198]},"fitBounds":[37.2941130000028,-96.55729700000217,43.42555600000222,-87.11893500000198,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\n      'position': 'relative',\n      'bottomleft':  '0px',\n      'background-color': 'rgba(255, 255, 255, 0.7)',\n      'box-shadow': '0 0 2px #bbb',\n      'background-clip': 'padding-box',\n      'margin': '0',\n      'padding-left': '5px',\n      'color': '#333',\n      'font': '9px/1.5 \"Helvetica Neue\", Arial, Helvetica, sans-serif',\n      'z-index': '700',\n      });\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+<p><br></p>
+<div style="margin-bottom:25px;">
+
 </div>
-<div id="trouble-shooting" class="section level3">
-<h3>Trouble shooting</h3>
-<p>You can see in the plot above that there appears to be one point that
-is not in Iowa. So now I will look at the long/lat columns.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="fu">summary</span>(IA_farmersmarket<span class="sc">$</span>X)</span></code></pre></div>
-<pre><code>##    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-##  -96.56  -94.24  -93.10  -93.07  -91.67  -87.12</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a><span class="fu">hist</span>(IA_farmersmarket<span class="sc">$</span>X)</span></code></pre></div>
-<p><img src="in_Tutorial09Spatial_files/figure-html/unnamed-chunk-10-1.svg" width="2100" /></p>
-<p>I feel that maybe that point at Long ~ -88 is wrong. Let’s take a
-look.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a>IA_farmersmarket[IA_farmersmarket<span class="sc">$</span>X <span class="sc">&gt;</span> <span class="sc">-</span><span class="dv">90</span>,]</span></code></pre></div>
+</div>
+<div id="Tut9a_basics" class="section level2">
+<h2>Tutorial 9A: Spatial basics</h2>
+<p><br></p>
+<div id="Tut9aa_whatisit" class="section level3">
+<h3>Why treat spatial differently</h3>
+<p>Geographical data needs special treatment. As well as standard data
+analysis, we need to tell R that our data has a spatial location on the
+Earth’s surface. R needs to understand what units our spatial location
+is in (e.g. metres, degrees..) and how we want the data to appear on
+plots and maps. R also needs to understand the different types of vector
+data (e.g. what we mean by a “polygon” or “point”).</p>
+<p>To achieve this there are some specialist “spatial” types of data we
+need to use and several spatial data packages.</p>
+<p>We’re going to split this tutorial by vector and raster (field)
+data</p>
+<p><br></p>
+</div>
+<div id="Tut9ab_proj" class="section level3">
+<h3>Map Projections</h3>
+<p>See here for a great overview: <a
+href="https://source.opennews.org/articles/choosing-right-map-projection/"
+class="uri">https://source.opennews.org/articles/choosing-right-map-projection/</a></p>
+<p>At its simplest, think of our map projections as the “units” of the
+x-y-z coordinates of geographic data. For example, here is the same map,
+but in two different projections.</p>
+<ul>
+<li><p>On the left, the figure is in latitiude/longitude in units of
+degrees.</p></li>
+<li><p>On the right the same map is in UTM. In the UTM system, the Earth
+is divided into 60 zones. Northing values are given by the metres north,
+or south (in the southern hemisphere) of the equator. Easting values are
+established as the number of metres from the central meridian of a
+zone.</p></li>
+</ul>
+<div class="figure" style="text-align: center">
+<img src="Figures/fig31_MapProjections.png" alt="*Examples of geographic coordinate systems for raster data (WGS 84; left, in Lon/Lat degrees) and projected (NAD83 / UTM zone 12N; right, in metres), figure from https://geocompr.robinlovelace.net/spatial-class.html*" width="80%" />
+<p class="caption">
+<em>Examples of geographic coordinate systems for raster data (WGS 84;
+left, in Lon/Lat degrees) and projected (NAD83 / UTM zone 12N; right, in
+metres), figure from <a
+href="https://geocompr.robinlovelace.net/spatial-class.html"
+class="uri">https://geocompr.robinlovelace.net/spatial-class.html</a></em>
+</p>
+</div>
+<p>You can see the UTM zone here</p>
+<div class="figure" style="text-align: center">
+<img src="Figures/fig32_UTM.png" alt="Zone 12N: https://epsg.io/32612" width="45%" />
+<p class="caption">
+Zone 12N: <a href="https://epsg.io/32612"
+class="uri">https://epsg.io/32612</a>
+</p>
+</div>
+<p>Each map projection has a unique numeric code called an EPSG code. To
+find them, I tend to use these resources, but in this course I will try
+to provide the codes</p>
+<ul>
+<li>google &amp; reading the dataset documentation</li>
+<li><a href="https://epsg.io" class="uri">https://epsg.io</a></li>
+<li><a
+href="https://mangomap.com/robertyoung/maps/69585/what-utm-zone-am-i-in-"
+class="uri">https://mangomap.com/robertyoung/maps/69585/what-utm-zone-am-i-in-</a></li>
+</ul>
+<p class="comment">
+<strong>R is stupid. It has no idea what units or projection your
+coordinates are in</strong>
+</p>
+<p><strong>We need to tell R what units/projection/EPSG code your data
+is orginally in</strong></p>
+<p><strong>THEN we need to convert it to the units/projection/EPSG we
+need for analysis</strong></p>
+<p>We will go into how to do this in each tutorial.</p>
+<p><br></p>
+<div style="margin-bottom:25px;">
+
+</div>
+</div>
+</div>
+<div id="Tut9b_vector" class="section level2">
+<h2>Tutorial 9B: Vector Data</h2>
+<p>As you know, vector data are “objects” you can “pick up and move
+around” on a map. So points, lines, polygons, volumes etc.</p>
+<p>There are several families of commands available to manipulate vector
+spatial data.</p>
+<ul>
+<li><strong>sp</strong> : The original spatial package.
+<ul>
+<li>Find a detailed tutorial here: <a
+href="https://rspatial.org/raster/spatial/3-vectordata.html"
+class="uri">https://rspatial.org/raster/spatial/3-vectordata.html</a>
+<br></li>
+</ul></li>
+<li><strong>terra</strong> : Another new spatial package that we shall
+ignore.
+<ul>
+<li>Detailed tutorial here: <a
+href="https://rspatial.org/terra/spatial/3-vectordata.html"
+class="uri">https://rspatial.org/terra/spatial/3-vectordata.html</a>
+<br></li>
+</ul></li>
+<li><strong>sf</strong> : A newer spatial package that fits into the
+tidyverse family.
+<ul>
+<li>Detailed tutorial here: <a
+href="https://r-spatial.github.io/sf/articles/sf1.html"
+class="uri">https://r-spatial.github.io/sf/articles/sf1.html</a>
+<br></li>
+</ul></li>
+<li><strong>spatstat</strong>: A specific package for point pattern
+analysis</li>
+</ul>
+<p>Spatial data packages are like competing mafia families. Some
+commands will only work with one spatial data type, so normally I will
+store my spatial data as each type. e.g. I will name my variables:</p>
+<ul>
+<li>mydata : My raw data (R doesn’t understand this is spatial)</li>
+<li>mydata.sp : The sp version of my data</li>
+<li>mydata.sf : The sf version of my data</li>
+</ul>
+<p><br></p>
+<div id="Tut9ba_mark" class="section level3">
+<h3>a. Marked data</h3>
+<p>It is very important to understand whether your spatial data is
+“marked”.</p>
+<p><strong>Un-marked</strong> vector data means that we just know about
+the <em>location</em> of the spatial objects (points, polygons..). For
+example, the location of crimes, the location of city boundaries etc. We
+can assess if these objects are clustered together, spread out etc..</p>
+<p><img src="in_Tutorial09Spatial_files/figure-html/unnamed-chunk-1-1.svg" width="2100" /></p>
+<p><strong>Marked</strong> vector data has some attribute e.g. we know
+some <em>information</em> about each point/polygon. For example, with
+our weather station data, we know marks such as the Elevation at each
+location, the distance to the ocean and the average last frost date:</p>
+<p><img src="in_Tutorial09Spatial_files/figure-html/unnamed-chunk-2-1.svg" width="2100" /></p>
+<p><br></p>
+<div style="margin-bottom:25px;">
+
+</div>
+</div>
+<div id="Tut9bb_convert" class="section level3">
+<h3>b. Converting a data.frame in R to spatial sf</h3>
+<p>This is only one route, but it’s the one I use</p>
+<div
+id="step-1-check-what-columns-your-x-and-y-coordinates-are-stored-in."
+class="section level4">
+<h4><strong>Step 1: Check what columns your x and y coordinates are
+stored in.</strong></h4>
+<p>Look at your data! View your data table and note what the column
+names your x and y data is stored in. Note, these don’t have to be fancy
+spatial names, they can be “elephanT” and “popcorn”.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">head</span>(frost)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["X"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Y"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["FID"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["City"],"name":[4],"type":["chr"],"align":["left"]},{"label":["County"],"name":[5],"type":["chr"],"align":["left"]},{"label":["Market_Name"],"name":[6],"type":["chr"],"align":["left"]},{"label":["Weekday"],"name":[7],"type":["chr"],"align":["left"]}],"data":[{"1":"-87.11893","2":"37.29411","3":"9","4":"Central City","5":"LINN","6":"Atlantic Farmers Market - Saturdays","7":"Thursday"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["Station"],"name":[1],"type":["chr"],"align":["left"]},{"label":["State"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Type_Fake"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Avg_DOY_SpringFrost"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Latitude"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Longitude"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Elevation"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["Dist_to_Coast"],"name":[8],"type":["dbl"],"align":["right"]}],"data":[{"1":"Valley","2":"AL","3":"City","4":"109.88","5":"34.57","6":"-85.62","7":"1020","8":"294.992"},{"1":"Union","2":"AL","3":"City","4":"82.27","5":"32.02","6":"-85.75","7":"440","8":"121.515"},{"1":"Saint","2":"AL","3":"Airport","4":"99.85","5":"34.17","6":"-86.82","7":"800","8":"252.062"},{"1":"Fernandina","2":"FL","3":"City","4":"46.89","5":"30.67","6":"-81.47","7":"13","8":"1.148"},{"1":"Lake","2":"FL","3":"City","4":"60.65","5":"30.18","6":"-82.60","7":"195","8":"62.972"},{"1":"West","2":"GA","3":"City","4":"85.63","5":"32.87","6":"-85.18","7":"575","8":"187.456"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<p>I’m guessing there’s a typo - so I could just google this and fix it!
-but for now, let’s remove and try again.</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="co"># choose all the other ones, note the &lt;= instead of &gt;</span></span>
-<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>IA_farmersmarket <span class="ot">&lt;-</span> IA_farmersmarket[IA_farmersmarket<span class="sc">$</span>X <span class="sc">&lt;=</span> <span class="sc">-</span><span class="dv">90</span>,]</span>
-<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a><span class="co"># Note, X and Y because that&#39;s what the columns are called. </span></span>
-<span id="cb20-5"><a href="#cb20-5" tabindex="-1"></a><span class="co"># I know that it was in lat/long originally, hence the crs</span></span>
-<span id="cb20-6"><a href="#cb20-6" tabindex="-1"></a>IA_farmersmarket.sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(IA_farmersmarket,<span class="at">coords=</span><span class="fu">c</span>(<span class="st">&quot;X&quot;</span>,<span class="st">&quot;Y&quot;</span>),<span class="at">crs=</span><span class="dv">4326</span>)</span>
-<span id="cb20-7"><a href="#cb20-7" tabindex="-1"></a></span>
-<span id="cb20-8"><a href="#cb20-8" tabindex="-1"></a><span class="co"># And change to a map projection of your choice. I am choosing UTM Iowa</span></span>
-<span id="cb20-9"><a href="#cb20-9" tabindex="-1"></a>IA_farmersmarket.sf <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(IA_farmersmarket.sf,<span class="dv">3744</span>)</span>
-<span id="cb20-10"><a href="#cb20-10" tabindex="-1"></a></span>
-<span id="cb20-11"><a href="#cb20-11" tabindex="-1"></a><span class="co"># make a quick plot</span></span>
-<span id="cb20-12"><a href="#cb20-12" tabindex="-1"></a><span class="fu">tmap_mode</span>(<span class="st">&quot;view&quot;</span>)</span>
-<span id="cb20-13"><a href="#cb20-13" tabindex="-1"></a><span class="fu">qtm</span>(<span class="fu">st_geometry</span>(IA_farmersmarket.sf))</span></code></pre></div>
-<div class="leaflet html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-ade607e15d1d11a949ab" style="width:2100px;height:1500px;"></div>
-<script type="application/json" data-for="htmlwidget-ade607e15d1d11a949ab">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"createMapPane","args":["tmap401",401]},{"method":"createMapPane","args":["tmap402",402]},{"method":"addProviderTiles","args":["Esri.WorldGrayCanvas",null,"Esri.WorldGrayCanvas",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["OpenStreetMap",null,"OpenStreetMap",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addProviderTiles","args":["Esri.WorldTopoMap",null,"Esri.WorldTopoMap",{"minZoom":0,"maxZoom":18,"tileSize":256,"subdomains":"abc","errorTileUrl":"","tms":false,"noWrap":false,"zoomOffset":0,"zoomReverse":false,"opacity":1,"zIndex":1,"detectRetina":false,"pane":"tilePane"}]},{"method":"addCircleMarkers","args":[[43.36570700000222,40.8196330000025,41.0470440000023,41.61103300000236,40.62401500000239,40.53341400000251,42.39653800000221,41.66186500000244,40.39345200000251,40.63263080000251,40.67677200000236,40.72953000000248,40.73762900000234,40.73825280000234,40.75168200000246,40.75168200000246,40.75756700000242,40.76309400000231,40.81034510000251,40.8150220000025,40.8150220000025,40.9568640000025,40.96580000000249,41.00863000000246,41.0099980000025,41.01029770000247,41.01166670000233,41.01722000000243,41.01722000000243,41.01882000000245,41.01954900000241,41.02666670000244,41.02728000000233,41.03416800000239,41.03416800000239,41.05010061000245,41.25336800000229,41.26100200000227,41.29504000000241,41.29504000000241,41.29839770000248,41.3189055000024,41.31959100000241,41.33460600000239,41.35661700000238,41.35661700000238,41.39271500000241,41.40387700000232,41.40387700000232,41.40412900000241,41.40422800000233,41.4045300000024,41.42588000000249,41.44650000000247,41.4766120000023,41.47956900000236,41.49498200000239,41.50219556000246,41.51989300000252,41.52005200000251,41.52005200000251,41.52264400000237,41.5250960000025,41.52518000000249,41.5625690000025,41.5625690000025,41.57911700000238,41.58380100000227,41.58529800000236,41.59209100000237,41.59909800000236,41.59949900000237,41.60867700000234,41.62471500000235,41.62613800000237,41.6466930000023,41.6466930000023,41.65965500000246,41.66008000000246,41.67125900000247,41.67296200000237,41.67845900000245,41.68437400000236,41.69185000000234,41.7003210000024,41.72963700000237,41.77209450000248,41.83844100000235,41.87242100000251,41.89128000000238,41.89705150000243,41.92397300000246,41.97681000000243,41.99563200000239,42.01573200000238,42.01666670000233,42.01784000000229,42.02506960000235,42.02724500000243,42.02724500000243,42.02724500000243,42.03603000000233,42.03647600000244,42.04415000000242,42.04972500000235,42.04972500000235,42.0504310000024,42.06565100000229,42.06565100000229,42.06914600000248,42.10830700000245,42.10830700000245,42.16525300000242,42.22398000000241,42.23721040000246,42.23721040000246,42.26788900000229,42.34532400000226,42.36058330000235,42.36164900000237,42.39744000000228,42.39769000000238,42.4687730000024,42.46942900000238,42.47727200000239,42.48177000000242,42.48397800000243,42.4927641000024,42.49506000000239,42.4908195330022,42.50322000000231,42.50477200000231,42.50608100000246,42.51770000000239,42.51963000000234,42.52914390000229,42.53591200000238,42.64496100000225,42.67331700000242,42.68311100000241,42.6904560000024,42.72477070000237,42.72505400000238,42.7318190000023,42.73683600000233,42.74852800000222,42.78013000000244,42.83091000000218,43.06786700000227,43.06786700000227,43.06814200000234,43.11105200000223,43.11105200000223,43.12716700000223,43.13757100000223,43.13932000000229,43.14937300000232,43.18050000000219,43.2632520000023,43.27676000000239,43.36369000000235,43.37250500000236,43.40206100000223,43.42555600000222,43.42555600000222],[-95.13766000000213,-91.17124500000209,-95.74292900000218,-93.68677400000215,-93.92559500000216,-91.4159390000021,-96.35078800000215,-92.00966900000211,-91.3828120000021,-91.31408940000209,-94.71611900000217,-91.96143000000211,-95.03608300000219,-95.03651940000219,-92.41494800000213,-92.41494800000213,-93.31748000000215,-95.37508370000218,-91.10003360000209,-91.1440050000021,-91.1440050000021,-91.5471960000021,-91.55355000000209,-92.43337000000211,-91.95850400000212,-91.9632328000021,-95.22722220000217,-92.43634000000212,-92.43634000000212,-92.43005000000211,-93.30655800000214,-92.80527780000213,-95.21415000000216,-93.76661700000216,-93.76661700000216,-94.38532591000205,-95.85164600000218,-95.84895300000217,-92.64413000000214,-92.64413000000214,-91.69174460000211,-93.09743690000214,-93.09732400000213,-94.01335900000213,-93.57936100000215,-93.57936100000215,-93.27751900000213,-94.99636100000215,-94.99636100000215,-92.91835000000214,-95.01352100000216,-92.91934000000212,-91.04853800000208,-91.02994000000207,-95.33937500000216,-93.67769300000215,-93.48589500000213,-94.31849062000217,-90.58107000000206,-90.57896300000206,-90.57896300000206,-93.60290500000212,-90.50229800000206,-90.50317000000206,-90.57541700000206,-90.57541700000206,-93.70888500000213,-95.84661900000216,-93.62040000000215,-93.60037900000214,-93.50325800000213,-93.66063900000215,-93.87806700000215,-93.58189500000215,-93.67715400000215,-95.33898000000217,-95.33898000000217,-91.52926700000209,-91.5290450000021,-91.34671000000209,-93.69767800000214,-91.58379400000209,-93.96001200000214,-94.36496000000214,-93.05467100000212,-93.60855100000215,-91.12840320000208,-94.10656940000214,-90.17863500000205,-93.60693000000214,-92.27987220000209,-91.42002100000209,-91.6649550000021,-92.57832300000211,-92.91166200000211,-94.37666670000213,-95.36433000000214,-93.61535150000215,-91.65753200000211,-91.65753200000211,-91.65753200000211,-93.87969200000214,-91.68281600000209,-91.57945000000208,-93.62247500000213,-93.62247500000213,-92.90971200000212,-94.87197100000216,-94.87197100000216,-90.65113300000206,-91.27948000000208,-91.27948000000208,-92.0229420000021,-91.8735500000021,-91.18680060000209,-91.18680060000209,-94.73319200000213,-95.46869000000216,-93.10347380000212,-92.76853200000208,-94.63375000000215,-92.4557200000021,-91.89509600000208,-92.35694100000211,-92.29013800000209,-91.11216000000208,-91.45540600000209,-92.34296310000211,-92.3432850000021,-96.40817928300217,-94.16124000000215,-94.16261700000213,-90.66529800000207,-92.45625000000209,-93.26305400000211,-94.53414210000214,-92.44815100000208,-95.19994500000215,-91.91350600000209,-91.53652600000207,-91.91291900000209,-92.4680460000021,-92.4674340000021,-93.73284900000213,-93.36992200000212,-95.55390900000215,-91.09502000000208,-96.55729700000217,-94.23670200000211,-94.23670200000211,-92.67759700000211,-94.68256800000212,-94.68256800000212,-95.14569100000215,-95.14538300000214,-93.3781700000021,-93.24729000000212,-95.85332500000213,-93.63859800000212,-91.47491000000205,-92.55620000000209,-92.11843100000209,-94.82865100000213,-95.11409000000212,-95.11409000000212],[2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619,2.82842712474619],[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],"st_geometry(IA_farmersmarket.sf)",{"interactive":true,"className":"","pane":"tmap401","stroke":true,"color":"#666666","weight":1,"opacity":0.5,"fill":true,"fillColor":["#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000","#000000"],"fillOpacity":[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]},null,null,null,null,[null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null,null],{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]},{"method":"addLayersControl","args":[["Esri.WorldGrayCanvas","OpenStreetMap","Esri.WorldTopoMap"],"st_geometry(IA_farmersmarket.sf)",{"collapsed":true,"autoZIndex":true,"position":"topleft"}]},{"method":"addScaleBar","args":[{"maxWidth":100,"metric":true,"imperial":false,"updateWhenIdle":true,"position":"bottomright"}]}],"limits":{"lat":[40.39345200000251,43.42555600000222],"lng":[-96.55729700000217,-90.17863500000205]},"fitBounds":[40.39345200000251,-96.55729700000217,43.42555600000222,-90.17863500000205,[]]},"evals":[],"jsHooks":{"render":[{"code":"function(el, x, data) {\n  return (\n      function(el, x, data) {\n      // get the leaflet map\n      var map = this; //HTMLWidgets.find('#' + el.id);\n      // we need a new div element because we have to handle\n      // the mouseover output separately\n      // debugger;\n      function addElement () {\n      // generate new div Element\n      var newDiv = $(document.createElement('div'));\n      // append at end of leaflet htmlwidget container\n      $(el).append(newDiv);\n      //provide ID and style\n      newDiv.addClass('lnlt');\n      newDiv.css({\n      'position': 'relative',\n      'bottomleft':  '0px',\n      'background-color': 'rgba(255, 255, 255, 0.7)',\n      'box-shadow': '0 0 2px #bbb',\n      'background-clip': 'padding-box',\n      'margin': '0',\n      'padding-left': '5px',\n      'color': '#333',\n      'font': '9px/1.5 \"Helvetica Neue\", Arial, Helvetica, sans-serif',\n      'z-index': '700',\n      });\n      return newDiv;\n      }\n\n\n      // check for already existing lnlt class to not duplicate\n      var lnlt = $(el).find('.lnlt');\n\n      if(!lnlt.length) {\n      lnlt = addElement();\n\n      // grab the special div we generated in the beginning\n      // and put the mousmove output there\n\n      map.on('mousemove', function (e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                           ' lon: ' + (e.latlng.lng).toFixed(5) +\n                           ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                           ' | zoom: ' + map.getZoom() +\n                           ' | x: ' + L.CRS.EPSG3857.project(e.latlng).x.toFixed(0) +\n                           ' | y: ' + L.CRS.EPSG3857.project(e.latlng).y.toFixed(0) +\n                           ' | epsg: 3857 ' +\n                           ' | proj4: +proj=merc +a=6378137 +b=6378137 +lat_ts=0.0 +lon_0=0.0 +x_0=0.0 +y_0=0 +k=1.0 +units=m +nadgrids=@null +no_defs ');\n      } else {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      }\n      });\n\n      // remove the lnlt div when mouse leaves map\n      map.on('mouseout', function (e) {\n      var strip = document.querySelector('.lnlt');\n      if( strip !==null) strip.remove();\n      });\n\n      };\n\n      //$(el).keypress(67, function(e) {\n      map.on('preclick', function(e) {\n      if (e.originalEvent.ctrlKey) {\n      if (document.querySelector('.lnlt') === null) lnlt = addElement();\n      lnlt.text(\n                      ' lon: ' + (e.latlng.lng).toFixed(5) +\n                      ' | lat: ' + (e.latlng.lat).toFixed(5) +\n                      ' | zoom: ' + map.getZoom() + ' ');\n      var txt = document.querySelector('.lnlt').textContent;\n      console.log(txt);\n      //txt.innerText.focus();\n      //txt.select();\n      setClipboardText('\"' + txt + '\"');\n      }\n      });\n\n      }\n      ).call(this.getMap(), el, x, data);\n}","data":null}]}}</script>
+<p>Here, we can see that the data coordinates are in columns called
+“Longitude” and “Latitude”.</p>
+<p><br></p>
 </div>
+<div
+id="step-2-check-what-map-projections-your-x-and-y-coordinates-are-stored-in."
+class="section level4">
+<h4><strong>Step 2: Check what map projections your x and y coordinates
+are stored in.</strong></h4>
+<p>Look at the data inside your x and y columns. Is it
+longitude/latitude in degrees? A large number (likely metres in UTM),
+something else? Look at the documentation of your data for clues. If you
+can find the map projection your data is in then you can google the CRS
+code.</p>
+<p>If your data is in long/lat degrees, then the CRS code 4326 should
+work. (I got that from this pdf: <a
+href="https://www.nceas.ucsb.edu/sites/default/files/2020-04/OverviewCoordinateReferenceSystems.pdf"
+class="uri">https://www.nceas.ucsb.edu/sites/default/files/2020-04/OverviewCoordinateReferenceSystems.pdf</a>)</p>
+<p><br></p>
+</div>
+<div id="step-3-convert-to-sf-using-the-st_as_sf-command"
+class="section level4">
+<h4><strong>Step 3 Convert to sf using the st_as_sf
+command</strong></h4>
+<p><code>st_as_sf (tablename, coords=c(XColumnName,YColumnName),crs=MapProjection)</code></p>
+<p>For example for our frost data, here is how I turned it into a sf
+spatial data format. From step 2, I know this is in long/lat coordinates
+and the crs is 4326.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>frost.sf <span class="ot">&lt;-</span> <span class="fu">st_as_sf</span>(frost,<span class="at">coords=</span><span class="fu">c</span>(<span class="st">&quot;Longitude&quot;</span>,<span class="st">&quot;Latitude&quot;</span>),<span class="at">crs=</span><span class="dv">4326</span>)</span></code></pre></div>
+<p>Now I can check I did it correctly. Here is my attempt at plotting
+the long/lat data directly. It doesn’t look much like the USA!</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="fu">plot</span>(frost<span class="sc">$</span>Longitude,frost<span class="sc">$</span>Latitude)</span></code></pre></div>
+<p><img src="in_Tutorial09Spatial_files/figure-html/unnamed-chunk-5-1.svg" width="2100" /></p>
+<p>But here you can see the shapes of the USA. R has also tried to plot
+the marks. All the spatial commands will now work.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">plot</span>(frost.sf)</span></code></pre></div>
+<p><img src="in_Tutorial09Spatial_files/figure-html/unnamed-chunk-6-1.svg" width="2100" /></p>
+<p><br></p>
+</div>
+<div id="step-4.-check-your-map-projection" class="section level4">
+<h4><strong>Step 4. Check your map projection </strong></h4>
+<p>There are a LOAD of ways to check the map projection of your data.
+Perhaps the easiest are the <code>st_crs</code> and <code>crs</code>
+commands:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="fu">st_crs</span>(frost.sf)</span></code></pre></div>
+<pre><code>## Coordinate Reference System:
+##   User input: EPSG:4326 
+##   wkt:
+## GEOGCRS[&quot;WGS 84&quot;,
+##     ENSEMBLE[&quot;World Geodetic System 1984 ensemble&quot;,
+##         MEMBER[&quot;World Geodetic System 1984 (Transit)&quot;],
+##         MEMBER[&quot;World Geodetic System 1984 (G730)&quot;],
+##         MEMBER[&quot;World Geodetic System 1984 (G873)&quot;],
+##         MEMBER[&quot;World Geodetic System 1984 (G1150)&quot;],
+##         MEMBER[&quot;World Geodetic System 1984 (G1674)&quot;],
+##         MEMBER[&quot;World Geodetic System 1984 (G1762)&quot;],
+##         MEMBER[&quot;World Geodetic System 1984 (G2139)&quot;],
+##         ELLIPSOID[&quot;WGS 84&quot;,6378137,298.257223563,
+##             LENGTHUNIT[&quot;metre&quot;,1]],
+##         ENSEMBLEACCURACY[2.0]],
+##     PRIMEM[&quot;Greenwich&quot;,0,
+##         ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##     CS[ellipsoidal,2],
+##         AXIS[&quot;geodetic latitude (Lat)&quot;,north,
+##             ORDER[1],
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##         AXIS[&quot;geodetic longitude (Lon)&quot;,east,
+##             ORDER[2],
+##             ANGLEUNIT[&quot;degree&quot;,0.0174532925199433]],
+##     USAGE[
+##         SCOPE[&quot;Horizontal component of 3D system.&quot;],
+##         AREA[&quot;World.&quot;],
+##         BBOX[-90,-180,90,180]],
+##     ID[&quot;EPSG&quot;,4326]]</code></pre>
+<p><br></p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co"># written like this to force the projection command specifically from the raster package</span></span>
+<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a>raster<span class="sc">::</span><span class="fu">projection</span>(frost.sf)</span></code></pre></div>
+<pre><code>## [1] &quot;+proj=longlat +datum=WGS84 +no_defs&quot;</code></pre>
+<p>Here we can see that we assigned our data to be in Lat/Long, with a
+datum (the shape of the world) of WGS 84 and EPSG/CRS code 4326.</p>
+<p>You can use this command on any sf data to check.</p>
+<p><br></p>
+</div>
+<div id="step-5.-assign-a-new-map-projection" class="section level4">
+<h4><strong>Step 5. Assign a new map projection </strong></h4>
+<p>When we do our plots and analyses, we will often need many layers of
+data - for example, our points, state borders, city locations, a raster
+map of temperatures..</p>
+<p>Chances are each of these layers is stored using different map
+projections and units. This means that they won’t plot correctly!</p>
+<p>So it’s good practice to make sure all your layers have the same map
+projection. We do this using the st_transform command:</p>
+<p><code>yoursfvariable &lt;- st_transform (yoursfvariable, crs=NEWNUMBER)</code></p>
+<p>E.g apply the st_transform command to your sf data with the new crs,
+then assign the output to a variable of the same name to overwrite, or a
+new name to create a new version with our new projection.</p>
+<p><br></p>
+<p>For example, to transform our data to the UTM (the map projection in
+meters):</p>
+<ol style="list-style-type: decimal">
+<li>Go here: <a
+href="https://mangomap.com/robertyoung/maps/69585/what-utm-zone-am-i-in-"
+class="uri">https://mangomap.com/robertyoung/maps/69585/what-utm-zone-am-i-in-</a>
+and choose the zone you want.
+<ul>
+<li><em>I chose a generic US East Coast zone: UTM Zone: 18N.</em></li>
+</ul></li>
+<li>You can also choose a “datum” (the shape of the earth’s spheroid).
+<ul>
+<li><em>For us, let’s always choose <strong>WGS 84</strong></em></li>
+</ul></li>
+<li>Search for the CRS code of that zone here: <a href="https://epsg.io"
+class="uri">https://epsg.io</a> . E.g search
+<code>UTM Zone XX WGS 84</code>
+<ul>
+<li><em>For example for me: <a
+href="https://epsg.io/?q=UTM+zone+18N+WGS+84"
+class="uri">https://epsg.io/?q=UTM+zone+18N+WGS+84</a></em></li>
+<li><em>This brought up code 32618: <a href="https://epsg.io/32618"
+class="uri">https://epsg.io/32618</a></em></li>
+</ul></li>
+<li>Apply the command. Here I made three versions, one with lat/long,
+one with UTM and one with a polar stereographic projection. I often add
+the projection to the end of the variable name to keep things neat.</li>
+</ol>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a>frost.sf.lonlat <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(frost.sf, <span class="dv">4326</span>)</span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a>frost.sf.utm <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(frost.sf, <span class="dv">32618</span>)</span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a>frost.sf.polar <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(frost.sf, <span class="dv">3995</span>)</span></code></pre></div>
+<p><br></p>
+<p>Let’s see what we did</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a>raster<span class="sc">::</span><span class="fu">projection</span>(frost.sf.lonlat)</span></code></pre></div>
+<pre><code>## [1] &quot;+proj=longlat +datum=WGS84 +no_defs&quot;</code></pre>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" tabindex="-1"></a><span class="co"># YOU CAN SEE THE MAP UNITS ARE IN METRES!</span></span>
+<span id="cb12-2"><a href="#cb12-2" tabindex="-1"></a><span class="fu">crs</span>(frost.sf.utm)</span></code></pre></div>
+<pre><code>## [1] &quot;PROJCRS[\&quot;WGS 84 / UTM zone 18N\&quot;,\n    BASEGEOGCRS[\&quot;WGS 84\&quot;,\n        ENSEMBLE[\&quot;World Geodetic System 1984 ensemble\&quot;,\n            MEMBER[\&quot;World Geodetic System 1984 (Transit)\&quot;],\n            MEMBER[\&quot;World Geodetic System 1984 (G730)\&quot;],\n            MEMBER[\&quot;World Geodetic System 1984 (G873)\&quot;],\n            MEMBER[\&quot;World Geodetic System 1984 (G1150)\&quot;],\n            MEMBER[\&quot;World Geodetic System 1984 (G1674)\&quot;],\n            MEMBER[\&quot;World Geodetic System 1984 (G1762)\&quot;],\n            MEMBER[\&quot;World Geodetic System 1984 (G2139)\&quot;],\n            ELLIPSOID[\&quot;WGS 84\&quot;,6378137,298.257223563,\n                LENGTHUNIT[\&quot;metre\&quot;,1]],\n            ENSEMBLEACCURACY[2.0]],\n        PRIMEM[\&quot;Greenwich\&quot;,0,\n            ANGLEUNIT[\&quot;degree\&quot;,0.0174532925199433]],\n        ID[\&quot;EPSG\&quot;,4326]],\n    CONVERSION[\&quot;UTM zone 18N\&quot;,\n        METHOD[\&quot;Transverse Mercator\&quot;,\n            ID[\&quot;EPSG\&quot;,9807]],\n        PARAMETER[\&quot;Latitude of natural origin\&quot;,0,\n            ANGLEUNIT[\&quot;degree\&quot;,0.0174532925199433],\n            ID[\&quot;EPSG\&quot;,8801]],\n        PARAMETER[\&quot;Longitude of natural origin\&quot;,-75,\n            ANGLEUNIT[\&quot;degree\&quot;,0.0174532925199433],\n            ID[\&quot;EPSG\&quot;,8802]],\n        PARAMETER[\&quot;Scale factor at natural origin\&quot;,0.9996,\n            SCALEUNIT[\&quot;unity\&quot;,1],\n            ID[\&quot;EPSG\&quot;,8805]],\n        PARAMETER[\&quot;False easting\&quot;,500000,\n            LENGTHUNIT[\&quot;metre\&quot;,1],\n            ID[\&quot;EPSG\&quot;,8806]],\n        PARAMETER[\&quot;False northing\&quot;,0,\n            LENGTHUNIT[\&quot;metre\&quot;,1],\n            ID[\&quot;EPSG\&quot;,8807]]],\n    CS[Cartesian,2],\n        AXIS[\&quot;(E)\&quot;,east,\n            ORDER[1],\n            LENGTHUNIT[\&quot;metre\&quot;,1]],\n        AXIS[\&quot;(N)\&quot;,north,\n            ORDER[2],\n            LENGTHUNIT[\&quot;metre\&quot;,1]],\n    USAGE[\n        SCOPE[\&quot;Engineering survey, topographic mapping.\&quot;],\n        AREA[\&quot;Between 78°W and 72°W, northern hemisphere between equator and 84°N, onshore and offshore. Bahamas. Canada - Nunavut; Ontario; Quebec. Colombia. Cuba. Ecuador. Greenland. Haiti. Jamaica. Panama. Turks and Caicos Islands. United States (USA). Venezuela.\&quot;],\n        BBOX[0,-78,84,-72]],\n    ID[\&quot;EPSG\&quot;,32618]]&quot;</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" tabindex="-1"></a><span class="fu">crs</span>(frost.sf.polar)</span></code></pre></div>
+<pre><code>## [1] &quot;PROJCRS[\&quot;WGS 84 / Arctic Polar Stereographic\&quot;,\n    BASEGEOGCRS[\&quot;WGS 84\&quot;,\n        ENSEMBLE[\&quot;World Geodetic System 1984 ensemble\&quot;,\n            MEMBER[\&quot;World Geodetic System 1984 (Transit)\&quot;],\n            MEMBER[\&quot;World Geodetic System 1984 (G730)\&quot;],\n            MEMBER[\&quot;World Geodetic System 1984 (G873)\&quot;],\n            MEMBER[\&quot;World Geodetic System 1984 (G1150)\&quot;],\n            MEMBER[\&quot;World Geodetic System 1984 (G1674)\&quot;],\n            MEMBER[\&quot;World Geodetic System 1984 (G1762)\&quot;],\n            MEMBER[\&quot;World Geodetic System 1984 (G2139)\&quot;],\n            ELLIPSOID[\&quot;WGS 84\&quot;,6378137,298.257223563,\n                LENGTHUNIT[\&quot;metre\&quot;,1]],\n            ENSEMBLEACCURACY[2.0]],\n        PRIMEM[\&quot;Greenwich\&quot;,0,\n            ANGLEUNIT[\&quot;degree\&quot;,0.0174532925199433]],\n        ID[\&quot;EPSG\&quot;,4326]],\n    CONVERSION[\&quot;Arctic Polar Stereographic\&quot;,\n        METHOD[\&quot;Polar Stereographic (variant B)\&quot;,\n            ID[\&quot;EPSG\&quot;,9829]],\n        PARAMETER[\&quot;Latitude of standard parallel\&quot;,71,\n            ANGLEUNIT[\&quot;degree\&quot;,0.0174532925199433],\n            ID[\&quot;EPSG\&quot;,8832]],\n        PARAMETER[\&quot;Longitude of origin\&quot;,0,\n            ANGLEUNIT[\&quot;degree\&quot;,0.0174532925199433],\n            ID[\&quot;EPSG\&quot;,8833]],\n        PARAMETER[\&quot;False easting\&quot;,0,\n            LENGTHUNIT[\&quot;metre\&quot;,1],\n            ID[\&quot;EPSG\&quot;,8806]],\n        PARAMETER[\&quot;False northing\&quot;,0,\n            LENGTHUNIT[\&quot;metre\&quot;,1],\n            ID[\&quot;EPSG\&quot;,8807]]],\n    CS[Cartesian,2],\n        AXIS[\&quot;easting (X)\&quot;,south,\n            MERIDIAN[90,\n                ANGLEUNIT[\&quot;degree\&quot;,0.0174532925199433]],\n            ORDER[1],\n            LENGTHUNIT[\&quot;metre\&quot;,1]],\n        AXIS[\&quot;northing (Y)\&quot;,south,\n            MERIDIAN[180,\n                ANGLEUNIT[\&quot;degree\&quot;,0.0174532925199433]],\n            ORDER[2],\n            LENGTHUNIT[\&quot;metre\&quot;,1]],\n    USAGE[\n        SCOPE[\&quot;Polar research.\&quot;],\n        AREA[\&quot;Northern hemisphere - north of 60°N onshore and offshore, including Arctic.\&quot;],\n        BBOX[60,-180,90,180]],\n    ID[\&quot;EPSG\&quot;,3995]]&quot;</code></pre>
+<p><img src="in_Tutorial09Spatial_files/figure-html/unnamed-chunk-13-1.svg" width="2100" /><img src="in_Tutorial09Spatial_files/figure-html/unnamed-chunk-13-2.svg" width="2100" /><img src="in_Tutorial09Spatial_files/figure-html/unnamed-chunk-13-3.svg" width="2100" /></p>
+<p><br></p>
+</div>
+<div id="step-6.-make-a-sp-version" class="section level4">
+<h4><strong>Step 6. Make a sp version </strong></h4>
+<p>Now we have the data in the projection we want, let’s store an sp
+version just in case we need it.</p>
+<p>To do this we use the “as” command. change the sf format to “Spatial”
+(sp) format.</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" tabindex="-1"></a><span class="co"># </span><span class="al">NOTE</span><span class="co">, I have changed the variable name from sf to sp!</span></span>
+<span id="cb16-2"><a href="#cb16-2" tabindex="-1"></a>frost.sp.lonlat <span class="ot">&lt;-</span> <span class="fu">as</span>(frost.sf.lonlat, <span class="st">&quot;Spatial&quot;</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" tabindex="-1"></a>frost.sp.utm <span class="ot">&lt;-</span> <span class="fu">as</span>(frost.sf.utm, <span class="st">&quot;Spatial&quot;</span>)</span>
+<span id="cb16-4"><a href="#cb16-4" tabindex="-1"></a>frost.sp.polar <span class="ot">&lt;-</span> <span class="fu">as</span>(frost.sf.polar, <span class="st">&quot;Spatial&quot;</span>)</span></code></pre></div>
+<p>For some commands, you might get an error using the sf version, so
+now you also have a convenient sp version</p>
+</div>
+<div id="step-7.-all-commands" class="section level4">
+<h4><strong>Step 7. ALL COMMANDS </strong></h4>
+<p>Here are all the commands in one place for future labs. See how i’m
+using code comments to keep things neat.</p>
+<pre><code>## [1] &quot;Station&quot;             &quot;State&quot;               &quot;Type_Fake&quot;          
+## [4] &quot;Avg_DOY_SpringFrost&quot; &quot;Latitude&quot;            &quot;Longitude&quot;          
+## [7] &quot;Elevation&quot;           &quot;Dist_to_Coast&quot;</code></pre>
+<p>The advantage of naming them this way is that it’s now really easy to
+find stuff in your environment tab. For example I can immediately see
+that if I want the latlon sf version of the frost dataset, I would go to
+frost.sf.lonlat</p>
+<p><img src="Figures/fig33_NamingConventions.png" width="80%" style="display: block; margin: auto;" /></p>
+<p><br></p>
+<div style="margin-bottom:25px;">
+
+</div>
+</div>
+</div>
+<div id="Tut9bc_read" class="section level3">
+<h3>c. Using RNaturalEarth built-in vector datasets</h3>
+<p>Let’s now also include some vector-line data on top of our points,
+but adding in some regional administrative boundaries. In later labs, we
+will learn how to read in vector data from a file, but this time we are
+going to use data that is already built into R.</p>
+<p>This is part of the <code>rnaturalearth</code> package, which links
+automatically with the “Natural Earth” dataset, found here: <a
+href="https://www.naturalearthdata.com/features/"
+class="uri">https://www.naturalearthdata.com/features/</a></p>
+<p>First, download the high-resolution data in rnaturalearth by running
+this command in the CONSOLE:</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" tabindex="-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;ropenscilabs/rnaturalearthhires&quot;</span>)</span></code></pre></div>
+<p>For administrative border data, we can use the
+<code>ne_countries</code> or the <code>ne_states</code>commands.</p>
+<p>For example, ne_countries will load the entire world borders and
+assign it to a variable called worldborder.</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="co"># You can choose if you want the output to be sf or sp data</span></span>
+<span id="cb19-2"><a href="#cb19-2" tabindex="-1"></a>worldborder.sf <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">scale =</span> <span class="st">&quot;medium&quot;</span>, <span class="at">returnclass =</span> <span class="st">&quot;sf&quot;</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" tabindex="-1"></a><span class="co"># st_geometry just means plot the borders</span></span>
+<span id="cb19-5"><a href="#cb19-5" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(worldborder.sf))</span></code></pre></div>
+<p><img src="in_Tutorial09Spatial_files/figure-html/unnamed-chunk-17-1.svg" width="2100" /></p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" tabindex="-1"></a><span class="co"># You can choose if you want the output to be sf or sp data</span></span>
+<span id="cb20-2"><a href="#cb20-2" tabindex="-1"></a>UK.country.sf <span class="ot">&lt;-</span> <span class="fu">ne_countries</span>(<span class="at">country=</span><span class="st">&quot;united kingdom&quot;</span>,<span class="at">returnclass =</span> <span class="st">&quot;sf&quot;</span>,<span class="at">scale =</span> <span class="st">&quot;medium&quot;</span>)</span>
+<span id="cb20-3"><a href="#cb20-3" tabindex="-1"></a></span>
+<span id="cb20-4"><a href="#cb20-4" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(UK.country.sf))</span></code></pre></div>
+<p><img src="in_Tutorial09Spatial_files/figure-html/unnamed-chunk-18-1.svg" width="2100" /></p>
+<p>If you want states/regions for your country, you can use the command
+<code>ne_states()</code>.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="co"># You can choose if you want the output to be sf or sp data</span></span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>UK.regions.sf <span class="ot">&lt;-</span> <span class="fu">ne_states</span>(<span class="at">country=</span><span class="st">&quot;united kingdom&quot;</span>,<span class="at">returnclass =</span> <span class="st">&quot;sf&quot;</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" tabindex="-1"></a></span>
+<span id="cb21-4"><a href="#cb21-4" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(UK.regions.sf))</span></code></pre></div>
+<p><img src="in_Tutorial09Spatial_files/figure-html/unnamed-chunk-19-1.svg" width="2100" /></p>
+<p>Let’s improve our frost plot</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" tabindex="-1"></a>US.states.sf <span class="ot">&lt;-</span>  <span class="fu">ne_states</span>(<span class="at">country=</span><span class="st">&quot;united states of america&quot;</span>,<span class="at">returnclass =</span> <span class="st">&quot;sf&quot;</span>)</span>
+<span id="cb22-2"><a href="#cb22-2" tabindex="-1"></a><span class="co"># Transform to UTM</span></span>
+<span id="cb22-3"><a href="#cb22-3" tabindex="-1"></a>US.states.sf.utm <span class="ot">&lt;-</span> <span class="fu">st_transform</span>(US.states.sf,<span class="at">crs=</span><span class="dv">32618</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" tabindex="-1"></a></span>
+<span id="cb22-5"><a href="#cb22-5" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(frost.sf.utm),<span class="at">col=</span><span class="st">&quot;red&quot;</span>,<span class="at">pch=</span><span class="dv">16</span>)</span>
+<span id="cb22-6"><a href="#cb22-6" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(US.states.sf.utm),<span class="at">add=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="in_Tutorial09Spatial_files/figure-html/unnamed-chunk-20-1.svg" width="2100" /></p>
+<p><br></p>
+<div style="margin-bottom:25px;">
+
+</div>
+</div>
+<div id="Tut9bd_manip" class="section level3">
+<h3>d. Manipulating sf data</h3>
+<p>Manipulating your spatial data is actually exactly the same as
+manipulating your dataframes. You can access columns, filter, select etc
+in exactly the same way. You might simply see some additional messages
+saying that the data comes from a “spatial” data frame.</p>
+<p>For example, to print the first 10 rows:</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" tabindex="-1"></a><span class="fu">head</span>(frost.sf.lonlat)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Station"],"name":[1],"type":["chr"],"align":["left"]},{"label":["State"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Type_Fake"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Avg_DOY_SpringFrost"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Elevation"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Dist_to_Coast"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["geometry"],"name":[7],"type":["sf_POINT"],"align":["right"]}],"data":[{"1":"Valley","2":"AL","3":"City","4":"109.88","5":"1020","6":"294.992","7":"<sf_POINT>"},{"1":"Union","2":"AL","3":"City","4":"82.27","5":"440","6":"121.515","7":"<sf_POINT>"},{"1":"Saint","2":"AL","3":"Airport","4":"99.85","5":"800","6":"252.062","7":"<sf_POINT>"},{"1":"Fernandina","2":"FL","3":"City","4":"46.89","5":"13","6":"1.148","7":"<sf_POINT>"},{"1":"Lake","2":"FL","3":"City","4":"60.65","5":"195","6":"62.972","7":"<sf_POINT>"},{"1":"West","2":"GA","3":"City","4":"85.63","5":"575","6":"187.456","7":"<sf_POINT>"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>To filter for just Florida and Alabama stations below 500feet and
+save to a new variable</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" tabindex="-1"></a>frost.FL.sf.lonlat <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(frost.sf.lonlat, State <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;FL&quot;</span>,<span class="st">&quot;AL&quot;</span>))</span>
+<span id="cb24-2"><a href="#cb24-2" tabindex="-1"></a>frost.FL.sf.lonlat <span class="ot">&lt;-</span> dplyr<span class="sc">::</span><span class="fu">filter</span>(frost.sf.lonlat, Elevation <span class="sc">&lt;</span> <span class="dv">500</span>)</span></code></pre></div>
+<p>To make a table of stations in each state in our new dataset</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" tabindex="-1"></a><span class="fu">table</span>(frost.FL.sf.lonlat<span class="sc">$</span>State,frost.FL.sf.lonlat<span class="sc">$</span>Type_Fake)</span></code></pre></div>
+<pre><code>##     
+##      Agricultural_Research_Station Airport City
+##   AL                             1       0    1
+##   FL                             1       0    5
+##   GA                             3       3    5
+##   NC                             0       1    7
+##   SC                             4       2    3
+##   VA                             0       3    0</code></pre>
+<p>Or check the maximum elevation in our new dataset</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" tabindex="-1"></a><span class="fu">max</span>(frost.FL.sf.lonlat<span class="sc">$</span>Elevation)</span></code></pre></div>
+<pre><code>## [1] 490</code></pre>
+<p><br></p>
+<div style="margin-bottom:25px;">
+
+</div>
+<hr />
 </div>
 </div>
 
