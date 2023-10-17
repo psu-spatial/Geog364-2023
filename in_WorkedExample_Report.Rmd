@@ -7,7 +7,7 @@ output:
     theme:
       color-contrast-warnings: false
       bg: "white"
-      fg: "#97a4b8"
+      fg: "black"
       primary: "black"
       secondary: "#2a5736"
       base_font:
@@ -81,6 +81,7 @@ library(tmap)
 library(readxl)
 library(skimr)
 library(spatstat)
+library(ggstatsplot)
 ```
 
 To see how I came up with this specific code, see the background
@@ -107,10 +108,21 @@ IA_market <- IA_market[which(IA_market$X < -90),]
 # Choose Columns
 IA_market <- IA_market[,c("X","Y","FID","City","County", "Market_Name","Weekday")]
 
+# set up a new column
+IA_market$Weekend <- IA_market$Weekday
+#and edit the two categories
+IA_market$Weekend[which(IA_market$Weekday %in% c("Saturday",
+                                         "Sunday"))] <- "Weekend"
+
+IA_market$Weekend[which(IA_market$Weekday %in% c("Monday","Tuesday",
+                                         "Wednesday","Thursday",                                                "Friday"))] <- "Weekday"
+
+
 # Make family/grouped/categorical variables into factors
 IA_market$City <- as.factor(IA_market$City)
 IA_market$County <- as.factor(IA_market$County)
 IA_market$Weekday <- as.factor(IA_market$Weekday)
+IA_market$Weekend <- as.factor(IA_market$Weekend)
 
 # Rename
 names(IA_market)[1] <- "Longitude" 
@@ -246,4 +258,61 @@ Some quality control was carried out before the data was analysed:
 
 <br><br>
 
-# Exploratory analysis
+# Exploratory analysis 
+
+```{r}
+# Again, professionally I would hide this code chunk and use 
+# "inline code" to show my results.  
+#  Please leave yours visible for grading
+
+# Rows/columns
+dim(IA_market)
+
+# summary
+summary(IA_market)
+
+```
+
+```{r}
+table(IA_market$Weekday)
+```
+
+
+There are `r nrow(IA_market.sf)` in the dataset.  The majority of the markets happen on weekdays. For tourism, it might be worth considering the markets that are open on weekends [note - I then went back up to the top and added in the weekend column].  
+
+
+As expected, most markets happen in towns and cities. A glance at the spatial distribution  also suggests that there are more markets open at weekends in major cities and in the North East of Iowa.
+
+```{r}
+qtm(IA_market.sf.utm, dots.col = "Weekend")
+```
+
+We could investigate this by looking at a boxplot of the latitudes of the two classes of market. 
+
+```{r}
+ggbetweenstats(data = IA_market,x = Weekend,y = Latitude, 
+               centrality.point.args=list(color = "darkblue"))
+```
+
+ This doesn't show much different, so maybe markets that are BOTH weekday and weekend are plotted on top of each other.  Let's check
+ 
+```{r}
+IA_market.sf.utm.Weekend <- IA_market.sf.utm[which(IA_market.sf.utm$Weekend == "Weekend"),]
+
+IA_market.sf.utm.Weekday <- IA_market.sf.utm[which(IA_market.sf.utm$Weekend == "Weekday"),]
+```
+
+
+```{r}
+qtm(IA_market.sf.utm.Weekend)
+```
+ 
+```{r}
+qtm(IA_market.sf.utm.Weekday)
+``` 
+ 
+Yes - this shows that many points were on top of each other. [Note, in a professional report this would all go in background workings, but for you I want to see it!] 
+ 
+ETC ETC.
+For example if you have numeric values, you could make histograms
+
