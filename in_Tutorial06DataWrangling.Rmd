@@ -55,12 +55,12 @@ frost <- na.omit(frost)
 
 ## 6.3.2 Missing values in single columns
 
-If you want to only remove rows with missing values in a single column, this type of command works.
+If you want to only remove rows with missing values in a single column, we can use the complete cases command
 
 
 ```{r, eval=FALSE}
-frost <- frost[which(is.na(frost$Latitude) ==FALSE), ] 
-frost <- frost[which(is.na(frost$Longitude) ==FALSE), ] 
+frost <- frost[complete.cases(frost$Latitude), ]
+frost <- frost[complete.cases(frost$Longitude), ]
 
 ```
 

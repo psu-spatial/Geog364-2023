@@ -514,9 +514,9 @@ want to do this or make a new variable</p>
 <div id="missing-values-in-single-columns" class="section level2">
 <h2>6.3.2 Missing values in single columns</h2>
 <p>If you want to only remove rows with missing values in a single
-column, this type of command works.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>frost <span class="ot">&lt;-</span> frost[<span class="fu">which</span>(<span class="fu">is.na</span>(frost<span class="sc">$</span>Latitude) <span class="sc">==</span><span class="cn">FALSE</span>), ] </span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>frost <span class="ot">&lt;-</span> frost[<span class="fu">which</span>(<span class="fu">is.na</span>(frost<span class="sc">$</span>Longitude) <span class="sc">==</span><span class="cn">FALSE</span>), ] </span></code></pre></div>
+column, we can use the complete cases command</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>frost <span class="ot">&lt;-</span> frost[<span class="fu">complete.cases</span>(frost<span class="sc">$</span>Latitude), ]</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>frost <span class="ot">&lt;-</span> frost[<span class="fu">complete.cases</span>(frost<span class="sc">$</span>Longitude), ]</span></code></pre></div>
 <p>E.g. take the frost table and ONLY include values where the longitude
 is not missing. Note, this can be any column name at all.</p>
 <p><br><br></p>
