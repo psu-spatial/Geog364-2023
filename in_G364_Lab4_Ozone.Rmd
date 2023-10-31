@@ -1,0 +1,343 @@
+---
+title: "Lab 4: Voronoi Polygons & Ozone pollution"
+subtitle: <h4 style="font-style:normal">One week lab!</h4>
+output:
+  html_document:
+    toc: true
+    toc_float: yes
+    toc_depth: 4
+    df_print: paged
+    theme: flatly
+    highlight: tango
+---
+
+```{=html}
+<style>
+p.comment {
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 0px;
+border-radius: 5px;
+font-style: normal;
+}
+
+h1.title {
+  font-weight: bold;
+  font-family: Arial;  
+}
+
+h2.title {
+  font-family: Arial;  
+}
+
+</style>
+```
+```{=html}
+<style type="text/css">
+#TOC {
+  font-size: 12px;
+  font-family: Arial;
+}
+
+pre code {
+  font-size: 13px; /* Adjust the font size as needed */
+  white-space: pre-wrap;
+}
+</style>
+```
+\
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+```
+
+# 1. Overview
+
+**Welcome to Lab 4.** The objective of this lab is to introduce you to
+the concept of Voronoi polygons and demonstrate their practical
+application in designing an air quality monitoring network for
+California. You will learn how to create Voronoi polygons from ozone
+measurement data, identify suitable monitoring station locations, and
+explore the significance of such a network in air quality management.
+You will also compare this with spatial demographic data from the
+CDC/ATSDR Social Vulnerability Index. <br><br>
+
+See the rubric on canvas (this is up!) for how it will be graded and the
+checklist at the end for what you need for 100%. <br><br>
+
+See The Canvas page here, or go to canvas for assignment guidelines. You
+can use either the website base RStudio/Posit Cloud OR R-Desktop for
+this lab.<br><br>
+
+**This is a ONE WEEK LAB.**
+
+<br><br>
+
+
+<br>
+
+```{r,include=FALSE,echo=FALSE}
+# invisible data read
+library(tidyverse)
+library(sp)
+library(sf)
+library(readxl)
+library(skimr)
+library(tmap)
+library(viridis)
+library(kableExtra)
+library(spatstat)
+library(spatstat.data)
+library(car)
+
+data(longleaf)
+market    <- read_csv("./Data/Farmers_Markets_NYShort.csv")
+market.sp <- st_as_sf(market,coords=c("Longitude","Latitude"),crs=4326)
+
+```
+
+# 2. Background (please read!)
+
+<br>
+
+## A. Ozone pollution
+
+<br> 
+
+
+![*Ozone in LA.Figure from
+<https://www.rifs-potsdam.de/en/news/new-database-global-surface-ozone-levels-shows-regions-most-affected-air-pollution>*](Figures/Lab4Fig1%20Smog%20Daniel%20Stein.png){width="800"}
+
+<br>
+
+![*Figure from Oregon Dept
+Ecology*[^1]](Figures/Lab4Fig1%20Ozone.jpeg){width="500"}
+
+[^1]: <https://ecology.wa.gov/Air-Climate/Air-quality/Air-quality-targets/Air-quality-standards/Ozone-pollution>
+
+<br>
+
+As the global population and city sizes increase, it is increasingly
+important to understand atmospheric air pollution. Two major pollutants
+include Ozone (O3) and particulates (PM 2.5). In this lab, we will map
+them and explore their impact on populations in California. <br>
+
+Ozone is a naturally occurring molecule made up of three Oxygen atoms.
+90% of the plant's ozone exists in the "ozone layer", which exists
+approximately 20-25km above sea level, in the stratosphere.
+Stratospheric ozone is crucial for human life, as it absorbs damaging
+solar ultra-violet radiation (see the "ozone hole" for the importance of
+natural ozone). <br>
+
+10% of the planet's ozone is found in the lowest levels of the
+atmosphere, in the air which we breathe. It is created when pollutants
+such as NOx and VOCs (emitted by cars and industry) react with sunlight.
+Strong evidence exists that the risk of premature death increases with
+higher levels of ozone. High levels of ozone can cause immediate health
+problems such as asthma. Over the longer term, ozone exposure can
+exacerbate pre-existing lung and heart health problems. Read more here:
+<https://aircentraltexas.org/en/regional-air-quality/who-is-at-risk>
+<br>
+
+It is important to map the spread of ozone to support public health
+policy. We have access to a point dataset of ozone data, showing the
+location of the monitoring network. We also have access to demographic
+data from the US census and their Social Vulnerability Index. We will
+use Voronoi polygons to assess the intersection between these and the
+impact on environmental justice.
+
+<br><br>
+
+## B. Voronoi Polygons
+
+<br>
+
+#### What are they?
+
+![*These are voronoi polygons.*](Figures/Lab4Fig2%20voronoi.png)
+
+<br>
+
+Read these two articles on voronoi polygons to understand more:
+
+-   <https://fbellelli.com/posts/2021-07-08-the-fascinating-world-of-voronoi-diagrams/>
+-   <https://gisgeography.com/voronoi-diagram-thiessen-polygons/>
+
+<br>
+
+Here is how they might be useful in our case:
+
+#### Air Quality Monitoring Network Design:
+
+When setting up or optimizing an air quality monitoring network, Voronoi
+polygons can help determine the optimal locations for monitoring
+stations. Each monitoring station can be located at the centroid of its
+corresponding Voronoi polygon, ensuring that the network covers the
+entire area efficiently.
+
+#### Environmental Justice Studies:
+
+Voronoi polygons can be utilized in environmental justice studies to
+assess whether certain communities, particularly those with vulnerable
+populations, are disproportionately affected by high ozone levels. AND
+if those communities have a dense enough monitoring network.
+Understanding ozone concentration patterns can contribute to health risk
+assessments. By overlaying Voronoi polygons with demographic data, you
+can assess the exposure of different populations to high ozone levels,
+potentially leading to health warnings or policy recommendations.
+
+#### Identifying Ozone Hotspots:
+
+Voronoi polygons can help identify areas with high ozone concentrations,
+known as "ozone hotspots." By visualizing the Voronoi polygons, you can
+quickly pinpoint regions where ozone levels are consistently elevated.
+This information is crucial for understanding air quality and targeting
+pollution control efforts. Not the best way but fast
+
+#### Pollution Source Identification:
+
+Voronoi diagrams can assist in identifying potential sources of ozone
+pollution. High ozone concentrations in a specific Voronoi polygon could
+indicate nearby pollution sources that need further investigation. This
+can be valuable for regulatory agencies and environmental scientists.
+Not the best way but fast
+
+#### Data Validation and Quality Control:
+
+Voronoi diagrams can be used to validate and control the quality of
+ozone measurement data. Outliers or inconsistencies in data within a
+Voronoi polygon may indicate measurement errors or the need for further
+investigation.
+
+<br><br>
+
+# 3. Data (please read!)
+
+<br>
+
+## A. Ozone Data
+
+Ozone measurements were taken across the State of California. Population
+density has also been recorded at each site using this source:
+<https://sedac.ciesin.columbia.edu/data/set/gpw-v4-population-density-rev11>.
+
+-   The units of the ozone measurements are in "1000 parts per billion".
+-   The units of population density are people per square km.
+
+<br>
+
+## B. SOVI Social Vulnerability Index
+
+![*The components of SOVI*](Figures/Lab4Fig3%20SOVI.png){width="500"}
+
+<br>
+
+SOVI, or the Social Vulnerability Index, is a quantitative measure used
+to assess the resilience and susceptibility of communities to various
+hazards and disasters, such as natural disasters or public health
+crises. It considers factors like socioeconomic status, access to
+resources, and community infrastructure to determine the level of
+vulnerability within a given population. It is based on US-Census data,
+so we have variables as vector POLYGONS (either census tracts or
+counties). There are many places to access and download the data.
+
+-   Read more here:
+    <https://sc.edu/study/colleges_schools/artsandsciences/centers_and_institutes/hvri/data_and_resources/sovi/index.php>
+
+-   <br> Here's the SOVI "recipe"
+    <https://sc.edu/study/colleges_schools/artsandsciences/centers_and_institutes/hvri/documents/sovi/sovi_recipe_2016.pdf>
+
+-   <br> You can see what individual column names mean here. \
+    I suggest using Edit/Find or Ctrl-F to quickly search for what you
+    need
+    <https://www.atsdr.cdc.gov/placeandhealth/svi/documentation/pdf/SVI2020Documentation_08.05.22.pdf>
+
+<br><br>
+
+# 4. Getting started.
+
+<br>
+
+To make it easier for a one week lab, I have provided much of the code
+and data. FIRST, GO BACK AND READ THE BACKGROUND ABOVE.
+
+<br><br>
+
+## A. Create your project
+
+In Desktop R, select your 364 directory, create a new project, then name
+the project Lab 3. If you are stuck on this process, see these tutorials
+
+         
+ - For R-Desktop, see [Tutorial 3B](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Projects_using_Desktop)
+
+ - For Posit Cloud, see [Tutorial 3C](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Projects_using_Rstudioposit_Cloud)
+    <br><br>
+
+
+You can check this has worked by looking on the file explorer on your
+computer, then selecting your GEOG364 folder and checking that a Lab 4
+folder has appeared with your `.Proj` file inside it. This is what you
+double click to access this lab in R.
+
+<br><br>
+
+## B. Get the lab script and data
+
+Go to [CANVAS LAB
+4](https://psu.instructure.com/courses/2260204/assignments/15455245),
+download the lab report template and the ozone dataset. Rename the lab
+report to include your email ID and place in your Lab 4 folder.
+
+<br><br>
+
+# 5. Your analysis
+
+Open your lab script and follow the instructions. Most of the code
+chunks will run automatically. Some, I might ask you to edit.
+
+<br><br>
+
+# 6. Submitting your work
+
+Remember to save your work throughout and to spell check! (next to the
+save button). Now, press the knit button one final time.
+
+On R-Desktop
+
+-   If you have not made any mistakes in the code then R should create a
+    html file in your lab 4 folder which includes your answers.
+
+-   If you look at your lab 4 folder on your computer, you should see
+    the html there - complete with a very recent time-stamp. Double
+    click on the html file. This will open it in your web-browser.\
+    CHECK THAT THIS IS WHAT YOU WANT TO SUBMIT.<br>
+
+On Rstudio cloud,
+
+-   See [TUTORIAL 3 Cloud - LINK
+    FIXED](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Projects_using_Rstudioposit_Cloud)
+    for how to download your files <br>
+
+Finally, go to Canvas and submit BOTH your html and your .Rmd file in
+Lab 3.
+
+```{r, echo=FALSE}
+knitr::include_graphics("./Figures/LabFig_WhatToSubmit.png")
+```
+
+<br><br>
+
+## How am I graded?
+
+Overall, here is what your lab should correspond to:
+
+```{r, echo=FALSE}
+rubric <- readxl::read_excel("in_G364_Lab0Rubric.xlsx")
+knitr::kable(rubric) %>%   
+  kable_classic_2() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
+
+
+```

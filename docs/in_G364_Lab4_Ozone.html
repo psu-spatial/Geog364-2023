@@ -11,7 +11,7 @@
 
 
 
-<title>Lab 1: R Introduction</title>
+<title>Lab 4: Voronoi Polygons &amp; Ozone pollution</title>
 
 <script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -412,171 +412,288 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Lab 1: R Introduction</h1>
+<h1 class="title toc-ignore">Lab 4: Voronoi Polygons &amp; Ozone
+pollution</h1>
+<h3 class="subtitle"><h4 style="font-style:normal"><br />
+One week lab!<br />
+</h4></h3>
 
 </div>
 
 
-<p>The aim of Lab 1 is to get comfortable in R and in R-Markdown and to
-make sure that both are installed properly. It is a “one week lab” and
-you can find the Canvas page here: <a
-href="https://psu.instructure.com/courses/2260204/assignments/15455191"
-class="uri">https://psu.instructure.com/courses/2260204/assignments/15455191</a></p>
-<p>Instructions are below, linking to relevant tutorials in the
-tutorials tab. If I suggest using a tutorial, the answers WILL be
-there.</p>
-<p>Finally, if the labs are causing major problems or you have any other
-software issue, talk to Dr Greatrex or Harman. What do I mean by
-struggling? More than 15-20 minutes without progress.</p>
+<style>
+p.comment {
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 0px;
+border-radius: 5px;
+font-style: normal;
+}
+
+h1.title {
+  font-weight: bold;
+  font-family: Arial;  
+}
+
+h2.title {
+  font-family: Arial;  
+}
+
+</style>
+<style type="text/css">
+#TOC {
+  font-size: 12px;
+  font-family: Arial;
+}
+
+pre code {
+  font-size: 13px; /* Adjust the font size as needed */
+  white-space: pre-wrap;
+}
+</style>
+<p><br />
+</p>
+<div id="overview" class="section level1">
+<h1>1. Overview</h1>
+<p><strong>Welcome to Lab 4.</strong> The objective of this lab is to
+introduce you to the concept of Voronoi polygons and demonstrate their
+practical application in designing an air quality monitoring network for
+California. You will learn how to create Voronoi polygons from ozone
+measurement data, identify suitable monitoring station locations, and
+explore the significance of such a network in air quality management.
+You will also compare this with spatial demographic data from the
+CDC/ATSDR Social Vulnerability Index. <br><br></p>
+<p>See the rubric on canvas (this is up!) for how it will be graded and
+the checklist at the end for what you need for 100%. <br><br></p>
+<p>See The Canvas page here, or go to canvas for assignment guidelines.
+You can use either the website base RStudio/Posit Cloud OR R-Desktop for
+this lab.<br><br></p>
+<p><strong>This is a ONE WEEK LAB.</strong></p>
+<p><br><br></p>
 <p><br></p>
-<div id="lab-instructions" class="section level1">
-<h1>Lab instructions</h1>
-<div id="a.-select-lab-groups" class="section level2">
-<h2>A. Select Lab Groups</h2>
-<p>We will be doing an in-class exercise to choose lab groups</p>
+</div>
+<div id="background-please-read" class="section level1">
+<h1>2. Background (please read!)</h1>
+<p><br></p>
+<div id="a.-ozone-pollution" class="section level2">
+<h2>A. Ozone pollution</h2>
+<p><br></p>
+<div class="float">
+<img src="Figures/Lab4Fig1%20Smog%20Daniel%20Stein.png" width="800"
+alt="Ozone in LA.Figure from https://www.rifs-potsdam.de/en/news/new-database-global-surface-ozone-levels-shows-regions-most-affected-air-pollution" />
+<div class="figcaption"><em>Ozone in LA.Figure from <a
+href="https://www.rifs-potsdam.de/en/news/new-database-global-surface-ozone-levels-shows-regions-most-affected-air-pollution"
+class="uri">https://www.rifs-potsdam.de/en/news/new-database-global-surface-ozone-levels-shows-regions-most-affected-air-pollution</a></em></div>
+</div>
+<p><br></p>
+<div class="float">
+<img src="Figures/Lab4Fig1%20Ozone.jpeg" width="500"
+alt="Figure from Oregon Dept Ecology" />
+<div class="figcaption"><em>Figure from Oregon Dept Ecology</em><a
+href="#fn1" class="footnote-ref" id="fnref1"><sup>1</sup></a></div>
+</div>
+<p><br></p>
+<p>As the global population and city sizes increase, it is increasingly
+important to understand atmospheric air pollution. Two major pollutants
+include Ozone (O3) and particulates (PM 2.5). In this lab, we will map
+them and explore their impact on populations in California. <br></p>
+<p>Ozone is a naturally occurring molecule made up of three Oxygen
+atoms. 90% of the plant’s ozone exists in the “ozone layer”, which
+exists approximately 20-25km above sea level, in the stratosphere.
+Stratospheric ozone is crucial for human life, as it absorbs damaging
+solar ultra-violet radiation (see the “ozone hole” for the importance of
+natural ozone). <br></p>
+<p>10% of the planet’s ozone is found in the lowest levels of the
+atmosphere, in the air which we breathe. It is created when pollutants
+such as NOx and VOCs (emitted by cars and industry) react with sunlight.
+Strong evidence exists that the risk of premature death increases with
+higher levels of ozone. High levels of ozone can cause immediate health
+problems such as asthma. Over the longer term, ozone exposure can
+exacerbate pre-existing lung and heart health problems. Read more here:
+<a
+href="https://aircentraltexas.org/en/regional-air-quality/who-is-at-risk"
+class="uri">https://aircentraltexas.org/en/regional-air-quality/who-is-at-risk</a>
+<br></p>
+<p>It is important to map the spread of ozone to support public health
+policy. We have access to a point dataset of ozone data, showing the
+location of the monitoring network. We also have access to demographic
+data from the US census and their Social Vulnerability Index. We will
+use Voronoi polygons to assess the intersection between these and the
+impact on environmental justice.</p>
+<p><br><br></p>
+</div>
+<div id="b.-voronoi-polygons" class="section level2">
+<h2>B. Voronoi Polygons</h2>
+<p><br></p>
+<div id="what-are-they" class="section level4">
+<h4>What are they?</h4>
+<div class="float">
+<img src="Figures/Lab4Fig2%20voronoi.png"
+alt="These are voronoi polygons." />
+<div class="figcaption"><em>These are voronoi polygons.</em></div>
+</div>
+<p><br></p>
+<p>Read these two articles on voronoi polygons to understand more:</p>
 <ul>
-<li>WEDNESDAY LAB: Please fill in this survey: <a
-href="https://forms.gle/Uf7T5Hh7895Y7G6DA"
-class="uri">https://forms.gle/Uf7T5Hh7895Y7G6DA</a><br />
-</li>
-<li>FRIDAY LAB - same link but <strong>wait until Friday</strong></li>
+<li><a
+href="https://fbellelli.com/posts/2021-07-08-the-fascinating-world-of-voronoi-diagrams/"
+class="uri">https://fbellelli.com/posts/2021-07-08-the-fascinating-world-of-voronoi-diagrams/</a></li>
+<li><a
+href="https://gisgeography.com/voronoi-diagram-thiessen-polygons/"
+class="uri">https://gisgeography.com/voronoi-diagram-thiessen-polygons/</a></li>
+</ul>
+<p><br></p>
+<p>Here is how they might be useful in our case:</p>
+</div>
+<div id="air-quality-monitoring-network-design" class="section level4">
+<h4>Air Quality Monitoring Network Design:</h4>
+<p>When setting up or optimizing an air quality monitoring network,
+Voronoi polygons can help determine the optimal locations for monitoring
+stations. Each monitoring station can be located at the centroid of its
+corresponding Voronoi polygon, ensuring that the network covers the
+entire area efficiently.</p>
+</div>
+<div id="environmental-justice-studies" class="section level4">
+<h4>Environmental Justice Studies:</h4>
+<p>Voronoi polygons can be utilized in environmental justice studies to
+assess whether certain communities, particularly those with vulnerable
+populations, are disproportionately affected by high ozone levels. AND
+if those communities have a dense enough monitoring network.
+Understanding ozone concentration patterns can contribute to health risk
+assessments. By overlaying Voronoi polygons with demographic data, you
+can assess the exposure of different populations to high ozone levels,
+potentially leading to health warnings or policy recommendations.</p>
+</div>
+<div id="identifying-ozone-hotspots" class="section level4">
+<h4>Identifying Ozone Hotspots:</h4>
+<p>Voronoi polygons can help identify areas with high ozone
+concentrations, known as “ozone hotspots.” By visualizing the Voronoi
+polygons, you can quickly pinpoint regions where ozone levels are
+consistently elevated. This information is crucial for understanding air
+quality and targeting pollution control efforts. Not the best way but
+fast</p>
+</div>
+<div id="pollution-source-identification" class="section level4">
+<h4>Pollution Source Identification:</h4>
+<p>Voronoi diagrams can assist in identifying potential sources of ozone
+pollution. High ozone concentrations in a specific Voronoi polygon could
+indicate nearby pollution sources that need further investigation. This
+can be valuable for regulatory agencies and environmental scientists.
+Not the best way but fast</p>
+</div>
+<div id="data-validation-and-quality-control" class="section level4">
+<h4>Data Validation and Quality Control:</h4>
+<p>Voronoi diagrams can be used to validate and control the quality of
+ozone measurement data. Outliers or inconsistencies in data within a
+Voronoi polygon may indicate measurement errors or the need for further
+investigation.</p>
+<p><br><br></p>
+</div>
+</div>
+</div>
+<div id="data-please-read" class="section level1">
+<h1>3. Data (please read!)</h1>
+<p><br></p>
+<div id="a.-ozone-data" class="section level2">
+<h2>A. Ozone Data</h2>
+<p>Ozone measurements were taken across the State of California.
+Population density has also been recorded at each site using this
+source: <a
+href="https://sedac.ciesin.columbia.edu/data/set/gpw-v4-population-density-rev11"
+class="uri">https://sedac.ciesin.columbia.edu/data/set/gpw-v4-population-density-rev11</a>.</p>
+<ul>
+<li>The units of the ozone measurements are in “1000 parts per
+billion”.</li>
+<li>The units of population density are people per square km.</li>
 </ul>
 <p><br></p>
 </div>
-<div id="b.-review-faq" class="section level2">
-<h2>B. Review FAQ</h2>
-<p>Review <a
-href="https://psu-spatial.github.io/Geog364-2023/in_G364_Lab0_FAQ.html">The
-LAB FAQ LINK FIXED</a> - you can find it in the Labs menu at the top of
-the page. It explains</p>
+<div id="b.-sovi-social-vulnerability-index" class="section level2">
+<h2>B. SOVI Social Vulnerability Index</h2>
+<div class="float">
+<img src="Figures/Lab4Fig3%20SOVI.png" width="500"
+alt="The components of SOVI" />
+<div class="figcaption"><em>The components of SOVI</em></div>
+</div>
+<p><br></p>
+<p>SOVI, or the Social Vulnerability Index, is a quantitative measure
+used to assess the resilience and susceptibility of communities to
+various hazards and disasters, such as natural disasters or public
+health crises. It considers factors like socioeconomic status, access to
+resources, and community infrastructure to determine the level of
+vulnerability within a given population. It is based on US-Census data,
+so we have variables as vector POLYGONS (either census tracts or
+counties). There are many places to access and download the data.</p>
 <ul>
-<li>What you need to submit</li>
-<li>How you are graded and where the rubric is</li>
-<li>The late policy</li>
-<li>What counts as cheating</li>
+<li><p>Read more here: <a
+href="https://sc.edu/study/colleges_schools/artsandsciences/centers_and_institutes/hvri/data_and_resources/sovi/index.php"
+class="uri">https://sc.edu/study/colleges_schools/artsandsciences/centers_and_institutes/hvri/data_and_resources/sovi/index.php</a></p></li>
+<li><p><br> Here’s the SOVI “recipe” <a
+href="https://sc.edu/study/colleges_schools/artsandsciences/centers_and_institutes/hvri/documents/sovi/sovi_recipe_2016.pdf"
+class="uri">https://sc.edu/study/colleges_schools/artsandsciences/centers_and_institutes/hvri/documents/sovi/sovi_recipe_2016.pdf</a></p></li>
+<li><p><br> You can see what individual column names mean here.<br />
+I suggest using Edit/Find or Ctrl-F to quickly search for what you need
+<a
+href="https://www.atsdr.cdc.gov/placeandhealth/svi/documentation/pdf/SVI2020Documentation_08.05.22.pdf"
+class="uri">https://www.atsdr.cdc.gov/placeandhealth/svi/documentation/pdf/SVI2020Documentation_08.05.22.pdf</a></p></li>
 </ul>
+<p><br><br></p>
+</div>
+</div>
+<div id="getting-started." class="section level1">
+<h1>4. Getting started.</h1>
 <p><br></p>
-</div>
-<div id="c.-learn-about-r-r-studio-and-markdown" class="section level2">
-<h2>C. Learn about R, R-studio and Markdown</h2>
-<p>Follow <a
-href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial01WhatisR.html">TUTORIAL
-1</a> to learn about R, R-studio and Markdown.</p>
-<p><br></p>
-</div>
-<div id="d.-initial-semester-set-up" class="section level2">
-<h2>D. Initial Semester set-up</h2>
-<p>Follow <a
-href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial02SetUp.html">TUTORIAL
-2</a> to install everything needed for the GEOG-364 this semester.</p>
-<p><br></p>
-</div>
-<div id="e.-lab-1-set-up" class="section level2">
-<h2>E. Lab 1 set-up</h2>
-<p>I strongly suggest you CLOSELY follow <a
-href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html">TUTORIAL
-3 - CORRECT LINK</a> to install everything needed for lab 1. By the end
-of Tutorial 3, you should be running an R-project for Lab 1, which is
-placed inside a GEOG364 folder on your computer. Your global settings
-should be adjusted - and you have opened, knitted and removed the
-“friendly text” below your YAML code. You should know what things like
-YAML code are!</p>
-<p>You should now have a blank file in front of you, other than the YAML
-code. If not, ask for help.</p>
-<p>Final hint, to help with formatting, you might find it easier to use
-the markdown visual text editor through clicking the button on the top
-left. Here’s the difference between writing your reports in ‘source’
-mode (near the top left) vs ‘visual’ mode.</p>
-<p><img
-src="https://quarto.org/docs/get-started/hello/images/rstudio-source-visual.png" /></p>
-<p><br></p>
-</div>
-<div id="f.-comprehension-questions" class="section level2">
-<h2>F. Comprehension questions</h2>
-<ol style="list-style-type: decimal">
-<li><p>Write the word <em>Introduction</em> in the main body of the text
-- make it a Header 1 format. Leave a few blank lines above and below it.
-Press knit, check it worked.</p></li>
-<li><p>Now copy each of the questions below into your report. Make each
-one “Header 3” format.</p></li>
-<li><p>Underneath each question write your answer. At least 3 or 4
-sentences for each one. <br></p>
-<ol style="list-style-type: decimal">
-<li><p>QUESTION 1: <br>In your own words, explain the course late
-policy<br> <em>Hint, <a
-href="https://psu-spatial.github.io/Geog364-2023/in_G364_Lab0_FAQ.html">Lab
-FAQs</a>)</em> <br></p></li>
-<li><p>QUESTION 2: <br>When are Dr G’s office hours? Should I email or
-Canvas Message to get help fast? <em>Hint, see <a
-href="https://psu.instructure.com/courses/2260204">Canvas</a></em>
-<br></p></li>
-<li><p>QUESTION 3: <br>Are you allowed to copy/paste anyone else’s code
-or text in your submission? Explain your answer. <em>Hint, <a
-href="https://psu-spatial.github.io/Geog364-2023/in_G364_Lab0_FAQ.html">Lab
-FAQs</a>)</em> <br></p></li>
-<li><p>QUESTION 4: <br>Use something like Spotify (a computer programme
-that plays custom playlists of music) to explain the difference between
-R and R-Studio. <em>Hint, <a
-href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial01WhatisR.html">Tutorial
-1</a>)</em> <br></p></li>
-<li><p>QUESTION 5: <br>Explain the range of different formats a markdown
-document can be made into. <em>Hint, <a
-href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial01WhatisR.html">Tutorial
-1</a>)</em><br></p></li>
-</ol></li>
-</ol>
-</div>
-<div id="f.-code-showcase" class="section level2">
-<h2>F. Code showcase</h2>
-<p>Now, leave another new blank line and add a new Level 1 Header called
-<em>“Code Showcase”</em>. Add a blank line afterwards too - the reason
-for all the blank lines is that R formatting often gets messed up with
-not enough blank lines, but it will ignore excess ones.</p>
-<p>Create a separate code chunk for each problem below. <br></p>
-<p><img src="Figures/LabFig1_CodeChunk.png" width="954" /></p>
-<p>Inside <strong>use R code</strong> to calculate the answers. You HAVE
-to show the code You’re allowed to either use separate code chunks or
-one large one with all the commands. <br><br></p>
-<p>IF YOU DON’T IMMEDIATELY KNOW HOW TO DO THESE,FOLLOW <a
-href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial04ConsoleBasics.html">Tutorial
-4</a> INCLUDING THE VIDEO!</p>
-<ol style="list-style-type: decimal">
-<li>103<sup>3</sup> (e.g <code>103*103*103</code>, or
-<code>103^3</code>) <br><br />
-</li>
-<li>The co-sine of your age (google is your friend, google R function or
-example for cosine) <br><br />
-</li>
-<li>How many characters are in <a
-href="https://www.bbcamerica.com/anglophenia/2015/09/how-to-pronounce-the-longest-place-name-in-the-u-k">the
-longest town name in Wales</a>
-<em>Llanfairpwllgwyngyllgogerychwyrndrobwllllantysiliogogogoch</em>.
-<br><br />
-
+<p>To make it easier for a one week lab, I have provided much of the
+code and data. FIRST, GO BACK AND READ THE BACKGROUND ABOVE.</p>
+<p><br><br></p>
+<div id="a.-create-your-project" class="section level2">
+<h2>A. Create your project</h2>
+<p>In Desktop R, select your 364 directory, create a new project, then
+name the project Lab 3. If you are stuck on this process, see these
+tutorials</p>
 <ul>
-<li>Hint 1, remember you can copy paste this name into your code.
-<br></li>
-<li>Hint 2, the command is available in the tutorials..</li>
-<li>Hint 3, you can google any R command, try googling the <em>“R
-command for number of characters in a word”</em>.<br><br></li>
-</ul></li>
-</ol>
-<p>Press “knit” at the top of the screen . If you have a made a mistake
-and it doesn’t knit, stop and fix before continuing.</p>
-<p><br></p>
+<li><p>For R-Desktop, see <a
+href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Projects_using_Desktop">Tutorial
+3B</a></p></li>
+<li><p>For Posit Cloud, see <a
+href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Projects_using_Rstudioposit_Cloud">Tutorial
+3C</a> <br><br></p></li>
+</ul>
+<p>You can check this has worked by looking on the file explorer on your
+computer, then selecting your GEOG364 folder and checking that a Lab 4
+folder has appeared with your <code>.Proj</code> file inside it. This is
+what you double click to access this lab in R.</p>
+<p><br><br></p>
 </div>
-<div id="h.-submitting-your-lab" class="section level2">
-<h2>H. Submitting your Lab</h2>
+<div id="b.-get-the-lab-script-and-data" class="section level2">
+<h2>B. Get the lab script and data</h2>
+<p>Go to <a
+href="https://psu.instructure.com/courses/2260204/assignments/15455245">CANVAS
+LAB 4</a>, download the lab report template and the ozone dataset.
+Rename the lab report to include your email ID and place in your Lab 4
+folder.</p>
+<p><br><br></p>
+</div>
+</div>
+<div id="your-analysis" class="section level1">
+<h1>5. Your analysis</h1>
+<p>Open your lab script and follow the instructions. Most of the code
+chunks will run automatically. Some, I might ask you to edit.</p>
+<p><br><br></p>
+</div>
+<div id="submitting-your-work" class="section level1">
+<h1>6. Submitting your work</h1>
 <p>Remember to save your work throughout and to spell check! (next to
 the save button). Now, press the knit button one final time.</p>
 <p>On R-Desktop</p>
 <ul>
 <li><p>If you have not made any mistakes in the code then R should
-create a html file in your lab 1 folder which includes your
+create a html file in your lab 4 folder which includes your
 answers.</p></li>
-<li><p>If you look at your lab 1 folder on your computer, you should see
-this there - complete with a very recent time-stamp. Double click on the
-html file. This will open it in your web-browser.<br />
+<li><p>If you look at your lab 4 folder on your computer, you should see
+the html there - complete with a very recent time-stamp. Double click on
+the html file. This will open it in your web-browser.<br />
 CHECK THAT THIS IS WHAT YOU WANT TO SUBMIT.<br></p></li>
 </ul>
 <p>On Rstudio cloud,</p>
@@ -586,14 +703,11 @@ href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Proj
 3 Cloud - LINK FIXED</a> for how to download your files <br></li>
 </ul>
 <p>Finally, go to Canvas and submit BOTH your html and your .Rmd file in
-Lab 1.</p>
+Lab 3.</p>
 <p><img src="Figures/LabFig_WhatToSubmit.png" width="1673" /></p>
-<p><br></p>
-<div id="how-am-i-graded" class="section level3">
-<h3>How am I graded?</h3>
-<p>Look on Canvas, there will be a SPECIFIC RUBRIC that we use to grade
-your lab. USE IT!!! It should allow you to predict your grade. We will
-also include comments with our feedback in every lab.</p>
+<p><br><br></p>
+<div id="how-am-i-graded" class="section level2">
+<h2>How am I graded?</h2>
 <p>Overall, here is what your lab should correspond to:</p>
 <table class=" lightable-classic-2 table table-striped table-hover table-responsive" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
 <thead>
@@ -707,6 +821,14 @@ Didn’t submit, or incredibly limited attempt. 
 </table>
 </div>
 </div>
+<div class="footnotes footnotes-end-of-document">
+<hr />
+<ol>
+<li id="fn1"><p><a
+href="https://ecology.wa.gov/Air-Climate/Air-quality/Air-quality-targets/Air-quality-standards/Ozone-pollution"
+class="uri">https://ecology.wa.gov/Air-Climate/Air-quality/Air-quality-targets/Air-quality-standards/Ozone-pollution</a><a
+href="#fnref1" class="footnote-back">↩︎</a></p></li>
+</ol>
 </div>
 
 
