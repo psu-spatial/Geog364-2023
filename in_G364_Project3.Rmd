@@ -438,28 +438,66 @@ about the patterns you see. You could also do things like make
 scatterplots between two of your variables (using plotly if you want to
 go interactive).
 
-### [**Idea 3:**]{.underline}
+<br><br>
 
-<br>
+### [**Idea 3: OCEAN - coastline and reef border data**]{.underline}<br>
 
--   Suitable for
+-   Suitable for OCEAN projects. This is just border data, but it might
+    make your maps look better.
 
--   Requires the and packages. Make sure they are in your library code
-    chunk that that it has run successfully
+-   Requires the `rnaturalearth` packages. Make sure it is in your
+    library code chunk that that it has run successfully
 
 <br>
 
 #### Code to read in the data
 
-Follow this tutorial for getting it read into R. XXX
+This data comes from the `rnaturalearth` package, which links automatically
+with the \"Natural Earth\" dataset, found here:
+<https://www.naturalearthdata.com/features/> First, download the
+high-resolution data in rnaturalearth by running this command in the
+console. You might first need to install the remotes package from the app store.
+
+```{r, eval=FALSE}         
+remotes::install_github("ropenscilabs/rnaturalearthhires")
+```
+
+<br>
+
+Now make sure that rnaturalearth is in your library code chunk and you have re-run it. This code will then allow you to get coastline and reef borders
+
+```{r, eval=FALSE}
+coast.world.sf <- ne_coastline(returnclass = "sf")
+reefs.world.sf <- ne_download( scale = 'large', category="physical", type = 'reefs' ,returnclass = "sf")
+
+plot(st_geometry(reefs.world.sf),col="blue")
+plot(st_geometry(coast.world.sf),add=TRUE)
+```
 
 <br>
 
 #### Code to merge the data with your point data
 
-Follow this tutorial for merging with your point data,
+You can then use st_transform to convert it to your particular map projection and see my tutorials below for how I use this to add to maps of the data
+
+<br><br>
+
+### [**Idea 4: OCEAN Ocean depth**]{.underline}
 
 <br>
+
+-   Suitable for OCEAN projects
+
+-   Requires the `marmap` and `rnaturalearth` packages. Make sure they are in your
+    library code chunk that that it has run successfully
+
+<br>
+
+#### Code to read in the data AND merge with your dataset.
+
+Follow this tutorial - <https://psu-spatial.github.io/Geog364-2021/364Data_TutorialDownload.html#Ocean_floor_depth>  *note this link takes you to the 2021 lab tutorial, it will be updated
+ASAP, but remember come back to the 2023 page for instructions*
+
 
 #### Update your report
 
@@ -469,3 +507,46 @@ Follow this tutorial for merging with your point data,
     to go interactive).
 
 <br><br>
+
+
+
+### [**Idea 5: OCEAN Sea surface temperature change**]{.underline}
+
+<br>
+
+-   Suitable for OCEAN projects
+
+-   Requires the `raster` package. Make sure it is in your
+    library code chunk that that it has run successfully
+
+<br>
+
+#### Code to read in the data AND merge with your dataset.
+
+Follow this tutorial - <https://psu-spatial.github.io/Geog364-2021/364Data_TutorialDownload.html#Sea_Surface_Temperature_CHANGE>  *note this link takes you to the 2021 lab tutorial, it will be updated
+ASAP, but remember come back to the 2023 page for instructions*
+
+
+#### Update your report
+
+-   Make some plots and maps! You can see my examples in the tutorial.
+    Write about the patterns you see. You could also do things like make
+    scatterplots between two of your variables (using plotly if you want
+    to go interactive).
+
+<br><br>
+
+
+
+### [**Idea 6: Land Cover/Forest canopy/Concrete**]{.underline}
+
+<br>
+
+-   Suitable for USA based projects on land
+
+-   Requires the tigris and feddata packages. Make sure they are in your
+    library code chunk that that it has run successfully
+
+<https://psu-spatial.github.io/Geog364-2021/364Data_TutorialDownload.html#Land_Cover,_forest_canopy_or_concrete>
+
+Note, this is going to break due to the sf/sp transfer.  Getting it working now, but you can always look for feddata tutorials online.
