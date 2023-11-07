@@ -50,9 +50,13 @@ navbar:
     menu: 
     - text: "Project 2"
       href: in_G364_Project2.html
+    - text: "Project 3"
+      href: in_G364_Project3.html      
+    - text: "FINAL PROJECT RUBRIC"
+      href: in_G364_Project_FINALRUBRIC.html         
   - text: "Project WORKED EXAMPLE"  
     menu: 
     - text: "Background workings"
       href: in_WorkedExample_Workings.html
-    - text: "Example Report"
+    - text: "Example Report (up to the end of project 2)"
       href: in_WorkedExample_Report.html

@@ -1,0 +1,110 @@
+---
+title: "GEOG 364 Project Final rubric"
+author: "Dr Greatrex"
+date: "`r Sys.Date()`"
+---
+
+# Project Rubric
+
+This rubric gets updated each time to include what an A\* report will
+include. See if your report has everything.
+
+See if you have gotten everything so far:
+
+# [**Formats**]{.underline}
+
+#### By the end of project 2, an A\* report should have completed/included these things.
+
+-   You are using a professional format
+
+-   You have 'hidden' the output of your library code chunk.
+
+-   **A\* option.** You are also welcome to hide large code chunks, for
+    example by using 'include=FALSE' as a code chunk option, or code
+    folding in your yaml if your template allows it (some don't).
+    (<https://bookdown.org/yihui/rmarkdown-cookbook/fold-show.html>)
+
+-   You have an author addition to your YAML code. See here for how to
+    do it -
+    <https://zsmith27.github.io/rmarkdown_crash-course/lesson-4-yaml-headers.html>
+
+-   You have a table of contents. If you are using a prettydocs format,
+    you cannot make it 'float' (that's OK). But google the name of your
+    template and table of contents. Or R YAML code floating table of
+    contents.
+
+-   You have used headers and sub-headers to allow the reader to
+    navigate through the document. You can do this in view by selecting
+    the text and clicking the arrow next to "Normal". If you are in
+    source mode, see here
+    <https://ucsbcarpentry.github.io/R-markdown/03-headings-lists/index.html>
+
+-   You have LOOKED at your final knitted file and made sure its how you
+    expect.
+
+-   You have spell checked your work. (spell check is next to the knit
+    button - it's a bit rubbish in that it will also flag things like
+    web addresses, but it does the job)
+
+# [**Written content**]{.underline}
+
+#### By the end of project 2, an A\* report should have completed/included these things.
+
+-   You have written your report for a specific person/organisation (see
+    project 2). Read your text as though you were that person. Does it
+    make sense? Do you need to add in more background information?
+
+    -   Alternatively, imagine a future employer asks for a sample of
+        your data analysis and you have to send them this document
+        without being around to explain it. Have you introduced your
+        topic in clear language? Included diagrams or pictures? See my
+        worked example at the top for what I mean
+
+-   You have FULLY described your dataset. Where it came from, how it
+    was collected,
+
+-   You have a BULLET POINT LIST of each column, what it means and the
+    units it is in (see my worked example)
+
+-   You have talked about any limitations of this data for that
+    particular user. e.g. if it was collected in 2018, it won't include
+    the impacts of COVID.. or maybe one of the fallacies will be an
+    issue.
+
+-   You have discussed all the data wrangling and quality control that
+    you did (consider putting this as a sub-header to make it easy to
+    find)
+
+-   You have eloquently described your initial analysis in a way that is
+    useful to YOUR SPECIFIC READER. For example, maybe they might care
+    about what types of sharks there are, or how many in each state, or
+    that there are "less points in the west.." . E.g. there should be a
+    clear thread through the narrative
+
+# [**R code**]{.underline}
+
+#### By the end of project 2, an A\* report should have completed/included these things.
+
+-   You have read in your data
+
+-   You have conducted initial quality control and data wrangling. E.g.
+    removed missing values, filtered your data to a smaller area that
+    makes more sense for your project (or to do point pattern analysis
+    on).
+
+-   Your plots are self sufficient (e.g. you have good formatting, axis
+    names etc)
+
+-   You have conducted initial exploratory analysis
+
+-   You have made an sf version of your data
+
+-   You have chosen an appropriate map projection in metres (almost
+    certainly UTM for your location), converted your data and explained
+    to the reader what you did.
+
+-   You have made some initial maps of your data and explained them.
+
+-   A\* option. See the plotly library or
+    <https://r-graph-gallery.com/interactive-charts.html> and make some
+    of your charts interactive!

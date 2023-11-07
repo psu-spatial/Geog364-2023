@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+<meta charset="utf-8" />
+<meta name="generator" content="pandoc" />
+<meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+
+
+<meta name="author" content="Dr Greatrex" />
+
+<meta name="date" content="2023-11-07" />
+
+<title>GEOG 364 Project Part 3</title>
+
+<script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
+<script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link href="site_libs/bootstrap-3.3.5/css/flatly.min.css" rel="stylesheet" />
+<script src="site_libs/bootstrap-3.3.5/js/bootstrap.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/html5shiv.min.js"></script>
+<script src="site_libs/bootstrap-3.3.5/shim/respond.min.js"></script>
+<style>h1 {font-size: 34px;}
+       h1.title {font-size: 38px;}
+       h2 {font-size: 30px;}
+       h3 {font-size: 24px;}
+       h4 {font-size: 18px;}
+       h5 {font-size: 16px;}
+       h6 {font-size: 12px;}
+       code {color: inherit; background-color: rgba(0, 0, 0, 0.04);}
+       pre:not([class]) { background-color: white }</style>
+<script src="site_libs/jqueryui-1.13.2/jquery-ui.min.js"></script>
+<link href="site_libs/tocify-1.9.1/jquery.tocify.css" rel="stylesheet" />
+<script src="site_libs/tocify-1.9.1/jquery.tocify.js"></script>
+<script src="site_libs/navigation-1.1/tabsets.js"></script>
+<link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+
+<style type="text/css">
+  code{white-space: pre-wrap;}
+  span.smallcaps{font-variant: small-caps;}
+  span.underline{text-decoration: underline;}
+  div.column{display: inline-block; vertical-align: top; width: 50%;}
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+  ul.task-list{list-style: none;}
+    </style>
+
+
+
+
+
+
+
+
+
+
+<style type = "text/css">
+.main-container {
+  max-width: 940px;
+  margin-left: auto;
+  margin-right: auto;
+}
+img {
+  max-width:100%;
+}
+.tabbed-pane {
+  padding-top: 12px;
+}
+.html-widget {
+  margin-bottom: 20px;
+}
+button.code-folding-btn:focus {
+  outline: none;
+}
+summary {
+  display: list-item;
+}
+details > summary > p:only-child {
+  display: inline;
+}
+pre code {
+  padding: 0;
+}
+</style>
+
+
+<style type="text/css">
+.dropdown-submenu {
+  position: relative;
+}
+.dropdown-submenu>.dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -6px;
+  margin-left: -1px;
+  border-radius: 0 6px 6px 6px;
+}
+.dropdown-submenu:hover>.dropdown-menu {
+  display: block;
+}
+.dropdown-submenu>a:after {
+  display: block;
+  content: " ";
+  float: right;
+  width: 0;
+  height: 0;
+  border-color: transparent;
+  border-style: solid;
+  border-width: 5px 0 5px 5px;
+  border-left-color: #cccccc;
+  margin-top: 5px;
+  margin-right: -10px;
+}
+.dropdown-submenu:hover>a:after {
+  border-left-color: #adb5bd;
+}
+.dropdown-submenu.pull-left {
+  float: none;
+}
+.dropdown-submenu.pull-left>.dropdown-menu {
+  left: -100%;
+  margin-left: 10px;
+  border-radius: 6px 0 6px 6px;
+}
+</style>
+
+<script type="text/javascript">
+// manage active state of menu based on current page
+$(document).ready(function () {
+  // active menu anchor
+  href = window.location.pathname
+  href = href.substr(href.lastIndexOf('/') + 1)
+  if (href === "")
+    href = "index.html";
+  var menuAnchor = $('a[href="' + href + '"]');
+
+  // mark the anchor link active (and if it's in a dropdown, also mark that active)
+  var dropdown = menuAnchor.closest('li.dropdown');
+  if (window.bootstrap) { // Bootstrap 4+
+    menuAnchor.addClass('active');
+    dropdown.find('> .dropdown-toggle').addClass('active');
+  } else { // Bootstrap 3
+    menuAnchor.parent().addClass('active');
+    dropdown.addClass('active');
+  }
+
+  // Navbar adjustments
+  var navHeight = $(".navbar").first().height() + 15;
+  var style = document.createElement('style');
+  var pt = "padding-top: " + navHeight + "px; ";
+  var mt = "margin-top: -" + navHeight + "px; ";
+  var css = "";
+  // offset scroll position for anchor links (for fixed navbar)
+  for (var i = 1; i <= 6; i++) {
+    css += ".section h" + i + "{ " + pt + mt + "}\n";
+  }
+  style.innerHTML = "body {" + pt + "padding-bottom: 40px; }\n" + css;
+  document.head.appendChild(style);
+});
+</script>
+
+<!-- tabsets -->
+
+<style type="text/css">
+.tabset-dropdown > .nav-tabs {
+  display: inline-table;
+  max-height: 500px;
+  min-height: 44px;
+  overflow-y: auto;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.tabset-dropdown > .nav-tabs > li.active:before, .tabset-dropdown > .nav-tabs.nav-tabs-open:before {
+  content: "\e259";
+  font-family: 'Glyphicons Halflings';
+  display: inline-block;
+  padding: 10px;
+  border-right: 1px solid #ddd;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li.active:before {
+  content: "\e258";
+  font-family: 'Glyphicons Halflings';
+  border: none;
+}
+
+.tabset-dropdown > .nav-tabs > li.active {
+  display: block;
+}
+
+.tabset-dropdown > .nav-tabs > li > a,
+.tabset-dropdown > .nav-tabs > li > a:focus,
+.tabset-dropdown > .nav-tabs > li > a:hover {
+  border: none;
+  display: inline-block;
+  border-radius: 4px;
+  background-color: transparent;
+}
+
+.tabset-dropdown > .nav-tabs.nav-tabs-open > li {
+  display: block;
+  float: none;
+}
+
+.tabset-dropdown > .nav-tabs > li {
+  display: none;
+}
+</style>
+
+<!-- code folding -->
+
+
+
+<style type="text/css">
+
+#TOC {
+  margin: 25px 0px 20px 0px;
+}
+@media (max-width: 768px) {
+#TOC {
+  position: relative;
+  width: 100%;
+}
+}
+
+@media print {
+.toc-content {
+  /* see https://github.com/w3c/csswg-drafts/issues/4434 */
+  float: right;
+}
+}
+
+.toc-content {
+  padding-left: 30px;
+  padding-right: 40px;
+}
+
+div.main-container {
+  max-width: 1200px;
+}
+
+div.tocify {
+  width: 20%;
+  max-width: 260px;
+  max-height: 85%;
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+  div.tocify {
+    width: 25%;
+  }
+}
+
+@media (max-width: 767px) {
+  div.tocify {
+    width: 100%;
+    max-width: none;
+  }
+}
+
+.tocify ul, .tocify li {
+  line-height: 20px;
+}
+
+.tocify-subheader .tocify-item {
+  font-size: 0.90em;
+}
+
+.tocify .list-group-item {
+  border-radius: 0px;
+}
+
+
+</style>
+
+
+
+</head>
+
+<body>
+
+
+<div class="container-fluid main-container">
+
+
+<!-- setup 3col/9col grid for toc_float and main content  -->
+<div class="row">
+<div class="col-xs-12 col-sm-4 col-md-3">
+<div id="TOC" class="tocify">
+</div>
+</div>
+
+<div class="toc-content col-xs-12 col-sm-8 col-md-9">
+
+
+
+
+<div class="navbar navbar-default  navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbar" data-bs-target="#navbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="index.html">GEOG 364 Lab Book</a>
+    </div>
+    <div id="navbar" class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        <li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Tutorials
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_Tutorial01WhatisR.html">1. What is R?</a>
+    </li>
+    <li>
+      <a href="in_Tutorial02SetUp.html">2. General Set-Up</a>
+    </li>
+    <li>
+      <a href="in_Tutorial03LabSetUp.html">3. Lab Set-Up</a>
+    </li>
+    <li>
+      <a href="in_Tutorial04ConsoleBasics.html">4. Console Basics</a>
+    </li>
+    <li>
+      <a href="in_Tutorial05ReadingInData.html">5. Reading in Data</a>
+    </li>
+    <li>
+      <a href="in_Tutorial06DataWrangling.html">6. Data wrangling</a>
+    </li>
+    <li>
+      <a href="in_Tutorial07DataSummaries.html">7. Data summaries</a>
+    </li>
+    <li>
+      <a href="in_Tutorial08Plots.html">8. Plotting data</a>
+    </li>
+    <li>
+      <a href="in_Tutorial09Spatial.html">9. Spatial basics</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Labs
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_G364_Lab0_FAQ.html">Lab FAQ</a>
+    </li>
+    <li>
+      <a href="in_G364_Lab1_2324.html">Lab 1</a>
+    </li>
+    <li>
+      <a href="in_G364_Lab2_Basics.html">Lab 2</a>
+    </li>
+    <li>
+      <a href="in_G364_Lab3_PointPattern.html">Lab 3A</a>
+    </li>
+    <li>
+      <a href="in_G364_Lab3B_PointPatternDist.html">Lab 3B</a>
+    </li>
+    <li>
+      <a href="in_G364_Lab4_Ozone.html">Lab 4</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Project instructions
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_G364_Project2.html">Project 2</a>
+    </li>
+    <li>
+      <a href="in_G364_Project3.html">Project 3</a>
+    </li>
+    <li>
+      <a href="in_G364_Project_FINALRUBRIC.html">FINAL PROJECT RUBRIC</a>
+    </li>
+  </ul>
+</li>
+<li class="dropdown">
+  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Project WORKED EXAMPLE
+     
+    <span class="caret"></span>
+  </a>
+  <ul class="dropdown-menu" role="menu">
+    <li>
+      <a href="in_WorkedExample_Workings.html">Background workings</a>
+    </li>
+    <li>
+      <a href="in_WorkedExample_Report.html">Example Report (up to the end of project 2)</a>
+    </li>
+  </ul>
+</li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        
+      </ul>
+    </div><!--/.nav-collapse -->
+  </div><!--/.container -->
+</div><!--/.navbar -->
+
+<div id="header">
+
+
+
+<h1 class="title toc-ignore">GEOG 364 Project Part 3</h1>
+<h4 class="author">Dr Greatrex</h4>
+<h4 class="date">2023-11-07</h4>
+
+</div>
+
+
+<style>
+p.comment {
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 0px;
+border-radius: 5px;
+font-style: normal;
+}
+
+h1.title {
+  font-weight: bold;
+  font-family: Arial;  
+}
+
+h2.title {
+  font-family: Arial;  
+}
+
+</style>
+<style type="text/css">
+#TOC {
+  font-size: 12px;
+  font-family: Arial;
+}
+
+pre code {
+  font-size: 13px; /* Adjust the font size as needed */
+  white-space: pre-wrap;
+}
+</style>
+<p><br />
+</p>
+<p>Welcome to part 3 of your projects!</p>
+<p>The aim of this week is to continue to work on your reports
+(following the guidelines below), to do some point pattern analysis if
+you haven’t already, and add in additional datasets.</p>
+<p><br><br></p>
+<div id="step-0-important" class="section level1">
+<h1>Step 0| IMPORTANT</h1>
+<p>You might find that if you have updated R, it can’t find a few
+packages such as sp. Remove these lines from your library code chunk -
+it should then run. If we get errors, Harman and I will help you through
+them.</p>
+<p>The reason for this is the big R update.</p>
+<p><br><br></p>
+</div>
+<div id="step-1-getting-started" class="section level1">
+<h1>Step 1| Getting started</h1>
+<p><br></p>
+<p>You will be continuing with the same project folder/write up as
+before. So open up your project in R studio, making sure to open it by
+double clicking the .Rprog file on your computer (or open R studio go to
+“Open Project” and find your .Rproj file.</p>
+<p>It should say your project name at the top of the screen (remember
+Lab 2 for how to check you are in a project).</p>
+<p>To quickly make sure that everything is working well, go to the
+Session menu at the top, then click Restart R and run all chunks. This
+is essentially what you will do when you press knit.</p>
+<p><br><br></p>
+</div>
+<div id="step-2-feedback-is-up-reflect-on-feedback"
+class="section level1">
+<h1>Step 2| (FEEDBACK IS UP!) Reflect on feedback</h1>
+<p><br></p>
+<p><img src="Figures/Proj_Fig1_Rubric.png" width="700" /></p>
+<p><br></p>
+<p>Hi all, I’m very sorry that only a few of you got feedback for
+project 1. Know that I’m grading project stages now as they come in, so
+if you are running slower because of technical challenges then that is
+OK. If you canvas messaged me, I’m working on replying to you all.</p>
+<p><br></p>
+<p><u><strong>If you submitted project 2, then I have given you
+feedback.</strong></u> Go to the assignment page on Canvas and take a
+look at your feedback for Lab 2. See the screenshot above for where to
+click. <a
+href="https://psu.instructure.com/courses/2260204/assignments/15455259"
+class="uri">https://psu.instructure.com/courses/2260204/assignments/15455259</a>.</p>
+<p>The most common feedback was</p>
+<ul>
+<li><p>To keep tweaking the format e.g. put it on view mode and put in
+things like bullet points</p></li>
+<li><p>To actually write your report to a person or organisation (see
+project 2 instructions)</p></li>
+<li><p>To crop/filter your data to a smaller area. e.g. a single US
+state or X-Y box. To do this, see this tutorial <a
+href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial06DataWrangling.html"
+class="uri">https://psu-spatial.github.io/Geog364-2023/in_Tutorial06DataWrangling.html</a></p></li>
+</ul>
+<p><br><br></p>
+</div>
+<div id="step-3-check-your-report-has-everything"
+class="section level1">
+<h1>Step 3| Check your report has everything</h1>
+<p><br></p>
+<p>I have made a detailed rubric for your final report which includes
+everything from project 1 and 2. This is in the project menu underneath
+project 3.</p>
+<p>Go and re-read your report so far and check against this rubric to
+make sure it has everything.</p>
+<p><br><br></p>
+</div>
+<div id="step-4-point-pattern-analysis" class="section level1">
+<h1>Step 4| Point Pattern Analysis</h1>
+<p><br></p>
+<p>If you haven’t already, you will now conduct a point pattern analysis
+of your data similar to Lab 3B.</p>
+<ol style="list-style-type: decimal">
+<li><p>Make sure you have a UTM map projection version of your data. If
+you’re not sure what I mean, see here: <a
+href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial09Spatial.html#Step_5_Assign_a_new_map_projection_"
+class="uri">https://psu-spatial.github.io/Geog364-2023/in_Tutorial09Spatial.html#Step_5_Assign_a_new_map_projection_</a>
+(and scroll to the top of that tutorial to read about UTM and finding
+your own EPSG code)</p>
+<p><br></p></li>
+<li><p>Convert the utm version of your data to the ppp format. (<a
+href="https://psu-spatial.github.io/Geog364-2023/in_G364_Lab3B_PointPatternDist.html#5_Convert_to_ppp_format"
+class="uri">https://psu-spatial.github.io/Geog364-2023/in_G364_Lab3B_PointPatternDist.html#5_Convert_to_ppp_format</a>)</p>
+<p><br></p></li>
+<li><p>Conduct the following analyses on your dataset, where you both
+carry out the R code AND talk about the results in your text. If you
+want to see an excellent example of what I mean, see this paper on
+earthquake damage - <a
+href="https://psu.instructure.com/courses/2260204/pages/reading-wartman"
+class="uri">https://psu.instructure.com/courses/2260204/pages/reading-wartman</a>.
+You don’t need to write this much! But see how they talk about the
+output from different techniques.. <br></p>
+<ul>
+<li><ol style="list-style-type: upper-alpha">
+<li>A quadrat analysis, talking about MAUP.<br />
+<br></li>
+</ol></li>
+<li><ol start="2" style="list-style-type: upper-alpha">
+<li>Kernel density smoothing - at one or more bandwidths THAT MAKE SENSE
+FOR YOUR STORY e.g. are you looking for “more in the west rather than
+the east?” choose a large bandwidth. Are you looking for individual
+hotspots? Choose a small bandwidth<br />
+<br></li>
+</ol></li>
+<li><ol start="3" style="list-style-type: upper-alpha">
+<li>A nearest neighbour analysis including a hypothesis test neatly
+written up in the text including your H0, your H1, the test statistic,
+the p-value and your interpretation (see the McGrew textbook chapter 14,
+link in the point pattern lecture/lab 3A)<br />
+<br></li>
+</ol></li>
+<li><ol start="4" style="list-style-type: upper-alpha">
+<li>An L-Function analysis, explained in the text</li>
+</ol>
+<br></li>
+</ul></li>
+</ol>
+<p><br><br></p>
+</div>
+<div id="step-4-merging-with-new-datasets" class="section level1">
+<h1>Step 4| Merging with new datasets</h1>
+<p><br></p>
+<p>If you skipped here because you already did the point pattern
+analysis, have a look at this document - <a
+href="https://psu.instructure.com/courses/2260204/pages/reading-wartman"
+class="uri">https://psu.instructure.com/courses/2260204/pages/reading-wartman</a>
+. See if there are things you can add to your write up.</p>
+<p><br></p>
+<p>In the next part of the course, we will be looking at polygons and
+raster files. Equally R has MANY built in datasets, so I want you to be
+able to merge your data with new information.</p>
+<p><br></p>
+<div id="step-4a---initial-prep" class="section level2">
+<h2>Step 4A - Initial prep</h2>
+<p><br></p>
+<div id="check-your-sf-data" class="section level3">
+<h3>Check your sf data</h3>
+<p>We will be working with the <strong>sf</strong> version of your data.
+To check that this hasn’t been corrupted:.</p>
+<ul>
+<li><p>First, go to the <strong>Session</strong> menu at the very top,
+and click restart R and clear output. Then re-run all your code
+chunks.</p></li>
+<li><p>Then, in the console, type qtm(XXXXX) where XXXXX is the sf
+version of your data. If it doesn’t make a map, then you have
+accidentally overwritten it. Ask Harman for help.</p></li>
+</ul>
+<p><br></p>
+</div>
+<div id="subset-to-a-smaller-area" class="section level3">
+<h3>Subset to a smaller area</h3>
+<p>IF YOU HAVEN’T ALREADY, FILTER YOUR DATA TO ONE INDIVIDUAL STATE/OR
+X-Y BOX. You get to choose which one. You can always tweak your report
+reader so that they really care about one individual place..</p>
+<ul>
+<li><p>You can do this using <a
+href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial06DataWrangling.html"
+class="uri">https://psu-spatial.github.io/Geog364-2023/in_Tutorial06DataWrangling.html</a>.</p></li>
+<li><p>Or if you want to crop to an X-Y box or to directly crop your sf
+data, see here: <a
+href="https://psu-spatial.github.io/Geog364-2021/364Data_TutorialWranglePoint.html#Cropping_datazooming_in"
+class="uri">https://psu-spatial.github.io/Geog364-2021/364Data_TutorialWranglePoint.html#Cropping_datazooming_in</a></p></li>
+</ul>
+<p><br><br></p>
+</div>
+</div>
+<div id="step-4b---reading-inmerging-new-data" class="section level2">
+<h2>Step 4B - Reading in/merging new data</h2>
+<p><br></p>
+<p>IMPORTANT - I’M TRYING TO CHECK THESE ALL FOR THE BIG SF/SP SHIFT I
+WAS TALKING ABOUT.</p>
+<p>If you get weird errors, check once with Harman that it’s not a typo,
+send me a canvas message INCLUDING YOUR RMD FILE AND DATA, and move onto
+a new dataset.</p>
+<p><br><br></p>
+<p>When I say reading in/merging data, I mean that we will be adding
+information to your dataset from other sources. For example, this might
+be the ocean depth/temperature, the population density, the census
+poverty levels. You get to choose what makes sense for you.</p>
+<p>Uou will create two things for each new dataset. The first will be a
+polygon or raster file for your area of interest with that new data.
+Secondly, you will extract the values of those fields at each of our
+point locations (e.g. your dataset will have a load of new columns for
+elevation, poverty etc). All the code tutorials below for many options,
+but you are also welcome to add in your own data within reason. Get
+these easier one working before adding in your weird custom data. We
+won’t help you on custom data before you have done this- as it’s just a
+class report (maybe your report reader has weird ideas that nuclear
+power plants should only be on mountain tops..).</p>
+<p><br></p>
+<ul>
+<li><p><u><strong>For projects based in the USA,</strong></u> I want you
+to read-in/merge at least TWO other datasets.</p></li>
+<li><p><u><strong>For projects based outside the USA on
+land,</strong></u> I want you to try and read in two, but if elevation
+is the only one we can make work then that’s OK</p></li>
+<li><p><u><strong>For projects based in the ocean,</strong></u> scroll
+down to the ocean options</p></li>
+<li><p><u><strong>For any team looking within a
+sports-field</strong></u>, I am going to try and work on other things
+you can merge in, but it might be that you also read in a dataset of
+stadium locations for this part.</p></li>
+</ul>
+<p><br><br></p>
+<div id="idea-1-elevation" class="section level3">
+<h3><u><strong>Idea 1: Elevation</strong></u></h3>
+<p><br></p>
+<ul>
+<li><p>Suitable for any dataset on land.</p></li>
+<li><p>Requires the <code>elevatr</code> and <code>sf</code> packages.
+Make sure they are in your library code chunk that that it has run
+successfully</p></li>
+</ul>
+<p><br></p>
+<div id="code-to-read-in-the-data" class="section level4">
+<h4><strong>Code to read in the data</strong></h4>
+<p>Follow this tutorial for getting it read into R. HINT, just like in
+Lab 4, make sure to put echo=FALSE and include=FALSE in your code chunk
+options when reading in this dataset. Otherwise when you press knit,
+your report will fill up with “downloading” output.</p>
+<p><a
+href="https://psu-spatial.github.io/Geog364-2021/364Data_TutorialDownload.html#Elevation_data"
+class="uri">https://psu-spatial.github.io/Geog364-2021/364Data_TutorialDownload.html#Elevation_data</a>
+<em>note this link takes you to the 2021 lab tutorial, it will be
+updated ASAP, but remember come back to the 2023 page for
+instructions</em></p>
+<p><br></p>
+</div>
+<div id="code-to-merge-the-data-with-your-point-data"
+class="section level4">
+<h4>Code to merge the data with your point data</h4>
+<p>Follow this tutorial for merging with your point data, if you haven’t
+already</p>
+<p><a
+href="https://psu-spatial.github.io/Geog364-2021/364Data_TutorialWranglePoint.html#Extracting_point_values_from_rastersfields"
+class="uri">https://psu-spatial.github.io/Geog364-2021/364Data_TutorialWranglePoint.html#Extracting_point_values_from_rastersfields</a>
+<em>note this link takes you to the 2021 lab tutorial, it will be
+updated ASAP, but remember come back to the 2023 page for
+instructions</em></p>
+<p><br></p>
+</div>
+<div id="update-your-report" class="section level4">
+<h4>Update your report</h4>
+<ul>
+<li>Make some plots and maps! You can see my examples in the tutorial.
+Write about the patterns you see. You could also do things like make
+scatterplots between two of your variables (using plotly if you want to
+go interactive).</li>
+</ul>
+<p><br><br></p>
+</div>
+</div>
+<div id="idea-2-sovi-from-lab-4" class="section level3">
+<h3><u><strong>Idea 2: SOVI (from Lab 4)</strong></u></h3>
+<ul>
+<li><p>Suitable for any dataset in the USA which has been filtered to a
+single state</p></li>
+<li><p>Requires the <code>elevatr</code>, <code>sf</code>,
+<code>tigris</code> and <code>tidyverse</code> packages. Make sure they
+are in your library code chunk that that it has run
+successfully.</p></li>
+</ul>
+<p><br></p>
+<div id="code-to-read-in-the-data-1" class="section level4">
+<h4><strong>Code to read in the data</strong></h4>
+<p>This is fancy code that will get the SOVI data directly from the
+internet at census tract and county level. All you need to do is to
+change California to the US State of your choice and at the end, change
+to the map projection that matches YOUR data. You can read/talk about
+where the data comes from from Lab 4.</p>
+<p>For A* candidates, see if you can understand what each line is doing
+and why I’m doing it.</p>
+<p><br></p>
+<p><br></p>
+</div>
+<div id="code-to-merge-the-data-with-your-point-data-1"
+class="section level4">
+<h4><strong>Code to merge the data with your point data</strong></h4>
+<p>Follow this tutorial to merge your SOVI polygon data with your UTM
+point data. <a
+href="https://psu-spatial.github.io/Geog364-2021/364Data_TutorialWranglePoint.html#Extracting_point_values_from_polygons"
+class="uri">https://psu-spatial.github.io/Geog364-2021/364Data_TutorialWranglePoint.html#Extracting_point_values_from_polygons</a>
+.Or look up internet tutorials on the st_join command. Its important
+that you are trying to join data in the same map projection.</p>
+<p><br></p>
+</div>
+<div id="update-your-report-1" class="section level4">
+<h4><strong>Update your report</strong></h4>
+<p>Make some plots and maps! You can see my examples in the tutorial.
+Write about the patterns you see. You could also do things like make
+scatterplots between two of your variables (using plotly if you want to
+go interactive).</p>
+</div>
+</div>
+<div id="idea-3" class="section level3">
+<h3><u><strong>Idea 3:</strong></u></h3>
+<p><br></p>
+<ul>
+<li><p>Suitable for</p></li>
+<li><p>Requires the and packages. Make sure they are in your library
+code chunk that that it has run successfully</p></li>
+</ul>
+<p><br></p>
+<div id="code-to-read-in-the-data-2" class="section level4">
+<h4>Code to read in the data</h4>
+<p>Follow this tutorial for getting it read into R. XXX</p>
+<p><br></p>
+</div>
+<div id="code-to-merge-the-data-with-your-point-data-2"
+class="section level4">
+<h4>Code to merge the data with your point data</h4>
+<p>Follow this tutorial for merging with your point data,</p>
+<p><br></p>
+</div>
+<div id="update-your-report-2" class="section level4">
+<h4>Update your report</h4>
+<ul>
+<li>Make some plots and maps! You can see my examples in the tutorial.
+Write about the patterns you see. You could also do things like make
+scatterplots between two of your variables (using plotly if you want to
+go interactive).</li>
+</ul>
+<p><br><br></p>
+</div>
+</div>
+</div>
+</div>
+
+
+
+</div>
+</div>
+
+</div>
+
+<script>
+
+// add bootstrap table styles to pandoc tables
+function bootstrapStylePandocTables() {
+  $('tr.odd').parent('tbody').parent('table').addClass('table table-condensed');
+}
+$(document).ready(function () {
+  bootstrapStylePandocTables();
+});
+
+
+</script>
+
+<!-- tabsets -->
+
+<script>
+$(document).ready(function () {
+  window.buildTabsets("TOC");
+});
+
+$(document).ready(function () {
+  $('.tabset-dropdown > .nav-tabs > li').click(function () {
+    $(this).parent().toggleClass('nav-tabs-open');
+  });
+});
+</script>
+
+<!-- code folding -->
+
+<script>
+$(document).ready(function ()  {
+
+    // temporarily add toc-ignore selector to headers for the consistency with Pandoc
+    $('.unlisted.unnumbered').addClass('toc-ignore')
+
+    // move toc-ignore selectors from section div to header
+    $('div.section.toc-ignore')
+        .removeClass('toc-ignore')
+        .children('h1,h2,h3,h4,h5').addClass('toc-ignore');
+
+    // establish options
+    var options = {
+      selectors: "h1,h2,h3,h4",
+      theme: "bootstrap3",
+      context: '.toc-content',
+      hashGenerator: function (text) {
+        return text.replace(/[.\\/?&!#<>]/g, '').replace(/\s/g, '_');
+      },
+      ignoreSelector: ".toc-ignore",
+      scrollTo: 0
+    };
+    options.showAndHide = true;
+    options.smoothScroll = true;
+
+    // tocify
+    var toc = $("#TOC").tocify(options).data("toc-tocify");
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    script.src  = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML";
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+
+</body>
+</html>
