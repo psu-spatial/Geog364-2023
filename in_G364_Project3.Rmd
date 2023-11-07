@@ -265,23 +265,27 @@ If you get weird errors, check once with Harman that it's not a typo,
 send me a canvas message INCLUDING YOUR RMD FILE AND DATA, and move onto
 a new dataset.
 
-<br><br>
+<br>
 
 When I say reading in/merging data, I mean that we will be adding
 information to your dataset from other sources. For example, this might
 be the ocean depth/temperature, the population density, the census
-poverty levels. You get to choose what makes sense for you.
+poverty levels. You get to choose what makes sense for your reader.
 
-Uou will create two things for each new dataset. The first will be a
+<br>
+
+You will create two things for each new dataset. The first will be a
 polygon or raster file for your area of interest with that new data.
 Secondly, you will extract the values of those fields at each of our
 point locations (e.g. your dataset will have a load of new columns for
-elevation, poverty etc). All the code tutorials below for many options,
-but you are also welcome to add in your own data within reason. Get
-these easier one working before adding in your weird custom data. We
-won't help you on custom data before you have done this- as it's just a
-class report (maybe your report reader has weird ideas that nuclear
-power plants should only be on mountain tops..).
+elevation, poverty etc).
+
+I have included code tutorials below for many options, but you are also
+welcome to add in your own data (within reason). Get these easier one
+working before adding in your weird custom data. We won't help you on
+custom data before you have done this- as it's just a class report
+(maybe your report reader has weird ideas that nuclear power plants
+should only be placed at high elevations so you want to test this..).
 
 <br>
 
@@ -302,6 +306,26 @@ power plants should only be on mountain tops..).
 
 <br><br>
 
+### Index of tutorials
+
+First, you might have good luck asking ChatGPT!
+
+Here's the current index of my tutorials or scroll down
+
+1.  Global land - Elevation:
+
+2.  USA social data - SOVI
+
+3.  Ocean data - borders
+
+4.  Ocean data  - depth
+
+5.  Ocean data - sea surface temperature
+
+<br><br>
+
+## Secondary data tutorials
+
 ### [**Idea 1: Elevation**]{.underline}
 
 <br>
@@ -313,7 +337,7 @@ power plants should only be on mountain tops..).
 
 <br>
 
-#### **Code to read in the data**
+#### **Read in the data**
 
 Follow this tutorial for getting it read into R. HINT, just like in Lab
 4, make sure to put echo=FALSE and include=FALSE in your code chunk
@@ -324,25 +348,33 @@ your report will fill up with "downloading" output.
 *note this link takes you to the 2021 lab tutorial, it will be updated
 ASAP, but remember come back to the 2023 page for instructions*
 
+Also note, this might require variables created higher up in the
+tutorial, like border files. So if you get a "this variable doesn't
+exist error, use control-F to search the tutorial for that variable name
+and follow that earlier tutorial to create it.
+
 <br>
 
-#### Code to merge the data with your point data
+#### **Merge with your point data**
 
-Follow this tutorial for merging with your point data, if you haven't
-already
-
+Follow this tutorial for merging with your point data
 <https://psu-spatial.github.io/Geog364-2021/364Data_TutorialWranglePoint.html#Extracting_point_values_from_rastersfields>
-*note this link takes you to the 2021 lab tutorial, it will be updated
-ASAP, but remember come back to the 2023 page for instructions*
+*Note this link takes you to the 2021 lab tutorial, it will be updated
+ASAP, but remember come back to the 2023 page for instructions.*
+
+Also note, this might require variables created higher up in the
+tutorial, like border files. So if you get a "this variable doesn't
+exist error, use control-F to search the tutorial for that variable name
+and follow that earlier tutorial to create it.
 
 <br>
 
-#### Update your report
+#### **Update your report**
 
--   Make some plots and maps! You can see my examples in the tutorial.
-    Write about the patterns you see. You could also do things like make
-    scatterplots between two of your variables (using plotly if you want
-    to go interactive).
+Make some plots and maps! You can see my examples in the tutorial. Write
+about the patterns you see. You could also do things like make
+scatterplots between two of your variables (using plotly if you want to
+go interactive).
 
 <br><br>
 
@@ -357,7 +389,7 @@ ASAP, but remember come back to the 2023 page for instructions*
 
 <br>
 
-#### **Code to read in the data**
+#### **Read in the data**
 
 This is fancy code that will get the SOVI data directly from the
 internet at census tract and county level. All you need to do is to
@@ -421,13 +453,15 @@ county.sovi.sf <- st_transform(county.sovi.sf,3310)
 
 <br>
 
-#### **Code to merge the data with your point data**
+#### **Merge with your point data**
 
 Follow this tutorial to merge your SOVI polygon data with your UTM point
 data.
 <https://psu-spatial.github.io/Geog364-2021/364Data_TutorialWranglePoint.html#Extracting_point_values_from_polygons>
-.Or look up internet tutorials on the st_join command. Its important
-that you are trying to join data in the same map projection.
+.
+
+Or look up internet tutorials on the st_join command. Its important that
+you are trying to join data in the same map projection.
 
 <br>
 
@@ -450,21 +484,24 @@ go interactive).
 
 <br>
 
-#### Code to read in the data
+#### **Read in the data**
 
-This data comes from the `rnaturalearth` package, which links automatically
-with the \"Natural Earth\" dataset, found here:
+This data comes from the `rnaturalearth` package, which links
+automatically with the "Natural Earth" dataset, found here:
 <https://www.naturalearthdata.com/features/> First, download the
 high-resolution data in rnaturalearth by running this command in the
-console. You might first need to install the remotes package from the app store.
+console. You might first need to install the remotes package from the
+app store.
 
-```{r, eval=FALSE}         
+```{r, eval=FALSE}
 remotes::install_github("ropenscilabs/rnaturalearthhires")
 ```
 
 <br>
 
-Now make sure that rnaturalearth is in your library code chunk and you have re-run it. This code will then allow you to get coastline and reef borders
+Now make sure that rnaturalearth is in your library code chunk and you
+have re-run it. This code will then allow you to get coastline and reef
+borders
 
 ```{r, eval=FALSE}
 coast.world.sf <- ne_coastline(returnclass = "sf")
@@ -476,39 +513,45 @@ plot(st_geometry(coast.world.sf),add=TRUE)
 
 <br>
 
-#### Code to merge the data with your point data
+#### **Merge with your point data**
 
-You can then use st_transform to convert it to your particular map projection and see my tutorials below for how I use this to add to maps of the data
+You can then use st_transform to convert it to your particular map
+projection and see my tutorials below for how I use this to add to maps
+of the data
 
 <br><br>
 
 ### [**Idea 4: OCEAN Ocean depth**]{.underline}
 
-<br>
-
 -   Suitable for OCEAN projects
 
--   Requires the `marmap` and `rnaturalearth` packages. Make sure they are in your
-    library code chunk that that it has run successfully
+-   Requires the `marmap` and `rnaturalearth` packages. Make sure they
+    are in your library code chunk that that it has run successfully
 
 <br>
 
-#### Code to read in the data AND merge with your dataset.
+#### **ALL THE CODE**
 
-Follow this tutorial - <https://psu-spatial.github.io/Geog364-2021/364Data_TutorialDownload.html#Ocean_floor_depth>  *note this link takes you to the 2021 lab tutorial, it will be updated
+Follow this tutorial -
+<https://psu-spatial.github.io/Geog364-2021/364Data_TutorialDownload.html#Ocean_floor_depth>
+*note this link takes you to the 2021 lab tutorial, it will be updated
 ASAP, but remember come back to the 2023 page for instructions*
 
+Also note, this might require variables created higher up in the
+tutorial, like border files. So if you get a "this variable doesn't
+exist error, use control-F to search the tutorial for that variable name
+and follow that earlier tutorial to create it.
 
-#### Update your report
+<br>
 
--   Make some plots and maps! You can see my examples in the tutorial.
-    Write about the patterns you see. You could also do things like make
-    scatterplots between two of your variables (using plotly if you want
-    to go interactive).
+#### **Update your report**
+
+Make some plots and maps! You can see my examples in the tutorial. Write
+about the patterns you see. You could also do things like make
+scatterplots between two of your variables (using plotly if you want to
+go interactive).
 
 <br><br>
-
-
 
 ### [**Idea 5: OCEAN Sea surface temperature change**]{.underline}
 
@@ -516,27 +559,31 @@ ASAP, but remember come back to the 2023 page for instructions*
 
 -   Suitable for OCEAN projects
 
--   Requires the `raster` package. Make sure it is in your
-    library code chunk that that it has run successfully
+-   Requires the `raster` package. Make sure it is in your library code
+    chunk that that it has run successfully
 
 <br>
 
-#### Code to read in the data AND merge with your dataset.
+#### **ALL THE CODE**
 
-Follow this tutorial - <https://psu-spatial.github.io/Geog364-2021/364Data_TutorialDownload.html#Sea_Surface_Temperature_CHANGE>  *note this link takes you to the 2021 lab tutorial, it will be updated
+Follow this tutorial -
+<https://psu-spatial.github.io/Geog364-2021/364Data_TutorialDownload.html#Sea_Surface_Temperature_CHANGE>
+*note this link takes you to the 2021 lab tutorial, it will be updated
 ASAP, but remember come back to the 2023 page for instructions*
 
+Also note, this might require variables created higher up in the
+tutorial, like border files. So if you get a "this variable doesn't
+exist error, use control-F to search the tutorial for that variable name
+and follow that earlier tutorial to create it.
 
-#### Update your report
+#### **Update your report**
 
--   Make some plots and maps! You can see my examples in the tutorial.
-    Write about the patterns you see. You could also do things like make
-    scatterplots between two of your variables (using plotly if you want
-    to go interactive).
+Make some plots and maps! You can see my examples in the tutorial. Write
+about the patterns you see. You could also do things like make
+scatterplots between two of your variables (using plotly if you want to
+go interactive).
 
 <br><br>
-
-
 
 ### [**Idea 6: Land Cover/Forest canopy/Concrete**]{.underline}
 
@@ -549,4 +596,5 @@ ASAP, but remember come back to the 2023 page for instructions*
 
 <https://psu-spatial.github.io/Geog364-2021/364Data_TutorialDownload.html#Land_Cover,_forest_canopy_or_concrete>
 
-Note, this is going to break due to the sf/sp transfer.  Getting it working now, but you can always look for feddata tutorials online.
+Note, this is going to break due to the sf/sp transfer. Getting it
+working now, but you can always look for feddata tutorials online.

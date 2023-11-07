@@ -735,21 +735,24 @@ WAS TALKING ABOUT.</p>
 <p>If you get weird errors, check once with Harman that it’s not a typo,
 send me a canvas message INCLUDING YOUR RMD FILE AND DATA, and move onto
 a new dataset.</p>
-<p><br><br></p>
+<p><br></p>
 <p>When I say reading in/merging data, I mean that we will be adding
 information to your dataset from other sources. For example, this might
 be the ocean depth/temperature, the population density, the census
-poverty levels. You get to choose what makes sense for you.</p>
-<p>Uou will create two things for each new dataset. The first will be a
+poverty levels. You get to choose what makes sense for your reader.</p>
+<p><br></p>
+<p>You will create two things for each new dataset. The first will be a
 polygon or raster file for your area of interest with that new data.
 Secondly, you will extract the values of those fields at each of our
 point locations (e.g. your dataset will have a load of new columns for
-elevation, poverty etc). All the code tutorials below for many options,
-but you are also welcome to add in your own data within reason. Get
-these easier one working before adding in your weird custom data. We
-won’t help you on custom data before you have done this- as it’s just a
-class report (maybe your report reader has weird ideas that nuclear
-power plants should only be on mountain tops..).</p>
+elevation, poverty etc).</p>
+<p>I have included code tutorials below for many options, but you are
+also welcome to add in your own data (within reason). Get these easier
+one working before adding in your weird custom data. We won’t help you
+on custom data before you have done this- as it’s just a class report
+(maybe your report reader has weird ideas that nuclear power plants
+should only be placed at high elevations so you want to test
+this..).</p>
 <p><br></p>
 <ul>
 <li><p><u><strong>For projects based in the USA,</strong></u> I want you
@@ -765,6 +768,22 @@ you can merge in, but it might be that you also read in a dataset of
 stadium locations for this part.</p></li>
 </ul>
 <p><br><br></p>
+<div id="index-of-tutorials" class="section level3">
+<h3>Index of tutorials</h3>
+<p>First, you might have good luck asking ChatGPT!</p>
+<p>Here’s the current index of my tutorials or scroll down</p>
+<ol style="list-style-type: decimal">
+<li><p>Global land - Elevation:</p></li>
+<li><p>USA social data - SOVI</p></li>
+<li><p>Ocean data - borders</p></li>
+<li><p>Ocean data - depth</p></li>
+<li><p>Ocean data - sea surface temperature</p></li>
+</ol>
+<p><br><br></p>
+</div>
+</div>
+<div id="secondary-data-tutorials" class="section level2">
+<h2>Secondary data tutorials</h2>
 <div id="idea-1-elevation" class="section level3">
 <h3><u><strong>Idea 1: Elevation</strong></u></h3>
 <p><br></p>
@@ -775,8 +794,8 @@ Make sure they are in your library code chunk that that it has run
 successfully</p></li>
 </ul>
 <p><br></p>
-<div id="code-to-read-in-the-data" class="section level4">
-<h4><strong>Code to read in the data</strong></h4>
+<div id="read-in-the-data" class="section level4">
+<h4><strong>Read in the data</strong></h4>
 <p>Follow this tutorial for getting it read into R. HINT, just like in
 Lab 4, make sure to put echo=FALSE and include=FALSE in your code chunk
 options when reading in this dataset. Otherwise when you press knit,
@@ -787,29 +806,32 @@ class="uri">https://psu-spatial.github.io/Geog364-2021/364Data_TutorialDownload.
 <em>note this link takes you to the 2021 lab tutorial, it will be
 updated ASAP, but remember come back to the 2023 page for
 instructions</em></p>
+<p>Also note, this might require variables created higher up in the
+tutorial, like border files. So if you get a “this variable doesn’t
+exist error, use control-F to search the tutorial for that variable name
+and follow that earlier tutorial to create it.</p>
 <p><br></p>
 </div>
-<div id="code-to-merge-the-data-with-your-point-data"
-class="section level4">
-<h4>Code to merge the data with your point data</h4>
-<p>Follow this tutorial for merging with your point data, if you haven’t
-already</p>
-<p><a
+<div id="merge-with-your-point-data" class="section level4">
+<h4><strong>Merge with your point data</strong></h4>
+<p>Follow this tutorial for merging with your point data <a
 href="https://psu-spatial.github.io/Geog364-2021/364Data_TutorialWranglePoint.html#Extracting_point_values_from_rastersfields"
 class="uri">https://psu-spatial.github.io/Geog364-2021/364Data_TutorialWranglePoint.html#Extracting_point_values_from_rastersfields</a>
-<em>note this link takes you to the 2021 lab tutorial, it will be
+<em>Note this link takes you to the 2021 lab tutorial, it will be
 updated ASAP, but remember come back to the 2023 page for
-instructions</em></p>
+instructions.</em></p>
+<p>Also note, this might require variables created higher up in the
+tutorial, like border files. So if you get a “this variable doesn’t
+exist error, use control-F to search the tutorial for that variable name
+and follow that earlier tutorial to create it.</p>
 <p><br></p>
 </div>
 <div id="update-your-report" class="section level4">
-<h4>Update your report</h4>
-<ul>
-<li>Make some plots and maps! You can see my examples in the tutorial.
+<h4><strong>Update your report</strong></h4>
+<p>Make some plots and maps! You can see my examples in the tutorial.
 Write about the patterns you see. You could also do things like make
 scatterplots between two of your variables (using plotly if you want to
-go interactive).</li>
-</ul>
+go interactive).</p>
 <p><br><br></p>
 </div>
 </div>
@@ -824,8 +846,8 @@ are in your library code chunk that that it has run
 successfully.</p></li>
 </ul>
 <p><br></p>
-<div id="code-to-read-in-the-data-1" class="section level4">
-<h4><strong>Code to read in the data</strong></h4>
+<div id="read-in-the-data-1" class="section level4">
+<h4><strong>Read in the data</strong></h4>
 <p>This is fancy code that will get the SOVI data directly from the
 internet at census tract and county level. All you need to do is to
 change California to the US State of your choice and at the end, change
@@ -836,14 +858,14 @@ and why I’m doing it.</p>
 <p><br></p>
 <p><br></p>
 </div>
-<div id="code-to-merge-the-data-with-your-point-data-1"
-class="section level4">
-<h4><strong>Code to merge the data with your point data</strong></h4>
+<div id="merge-with-your-point-data-1" class="section level4">
+<h4><strong>Merge with your point data</strong></h4>
 <p>Follow this tutorial to merge your SOVI polygon data with your UTM
 point data. <a
 href="https://psu-spatial.github.io/Geog364-2021/364Data_TutorialWranglePoint.html#Extracting_point_values_from_polygons"
 class="uri">https://psu-spatial.github.io/Geog364-2021/364Data_TutorialWranglePoint.html#Extracting_point_values_from_polygons</a>
-.Or look up internet tutorials on the st_join command. Its important
+.</p>
+<p>Or look up internet tutorials on the st_join command. Its important
 that you are trying to join data in the same map projection.</p>
 <p><br></p>
 </div>
@@ -867,10 +889,10 @@ might make your maps look better.</p></li>
 in your library code chunk that that it has run successfully</p></li>
 </ul>
 <p><br></p>
-<div id="code-to-read-in-the-data-2" class="section level4">
-<h4>Code to read in the data</h4>
+<div id="read-in-the-data-2" class="section level4">
+<h4><strong>Read in the data</strong></h4>
 <p>This data comes from the <code>rnaturalearth</code> package, which
-links automatically with the "Natural Earth" dataset, found here: <a
+links automatically with the “Natural Earth” dataset, found here: <a
 href="https://www.naturalearthdata.com/features/"
 class="uri">https://www.naturalearthdata.com/features/</a> First,
 download the high-resolution data in rnaturalearth by running this
@@ -888,9 +910,8 @@ reef borders</p>
 <span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">st_geometry</span>(coast.world.sf),<span class="at">add=</span><span class="cn">TRUE</span>)</span></code></pre></div>
 <p><br></p>
 </div>
-<div id="code-to-merge-the-data-with-your-point-data-2"
-class="section level4">
-<h4>Code to merge the data with your point data</h4>
+<div id="merge-with-your-point-data-2" class="section level4">
+<h4><strong>Merge with your point data</strong></h4>
 <p>You can then use st_transform to convert it to your particular map
 projection and see my tutorials below for how I use this to add to maps
 of the data</p>
@@ -899,7 +920,6 @@ of the data</p>
 </div>
 <div id="idea-4-ocean-ocean-depth" class="section level3">
 <h3><u><strong>Idea 4: OCEAN Ocean depth</strong></u></h3>
-<p><br></p>
 <ul>
 <li><p>Suitable for OCEAN projects</p></li>
 <li><p>Requires the <code>marmap</code> and <code>rnaturalearth</code>
@@ -907,24 +927,26 @@ packages. Make sure they are in your library code chunk that that it has
 run successfully</p></li>
 </ul>
 <p><br></p>
-<div id="code-to-read-in-the-data-and-merge-with-your-dataset."
-class="section level4">
-<h4>Code to read in the data AND merge with your dataset.</h4>
+<div id="all-the-code" class="section level4">
+<h4><strong>ALL THE CODE</strong></h4>
 <p>Follow this tutorial - <a
 href="https://psu-spatial.github.io/Geog364-2021/364Data_TutorialDownload.html#Ocean_floor_depth"
 class="uri">https://psu-spatial.github.io/Geog364-2021/364Data_TutorialDownload.html#Ocean_floor_depth</a>
 <em>note this link takes you to the 2021 lab tutorial, it will be
 updated ASAP, but remember come back to the 2023 page for
 instructions</em></p>
+<p>Also note, this might require variables created higher up in the
+tutorial, like border files. So if you get a “this variable doesn’t
+exist error, use control-F to search the tutorial for that variable name
+and follow that earlier tutorial to create it.</p>
+<p><br></p>
 </div>
 <div id="update-your-report-2" class="section level4">
-<h4>Update your report</h4>
-<ul>
-<li>Make some plots and maps! You can see my examples in the tutorial.
+<h4><strong>Update your report</strong></h4>
+<p>Make some plots and maps! You can see my examples in the tutorial.
 Write about the patterns you see. You could also do things like make
 scatterplots between two of your variables (using plotly if you want to
-go interactive).</li>
-</ul>
+go interactive).</p>
 <p><br><br></p>
 </div>
 </div>
@@ -939,24 +961,25 @@ change</strong></u></h3>
 library code chunk that that it has run successfully</p></li>
 </ul>
 <p><br></p>
-<div id="code-to-read-in-the-data-and-merge-with-your-dataset.-1"
-class="section level4">
-<h4>Code to read in the data AND merge with your dataset.</h4>
+<div id="all-the-code-1" class="section level4">
+<h4><strong>ALL THE CODE</strong></h4>
 <p>Follow this tutorial - <a
 href="https://psu-spatial.github.io/Geog364-2021/364Data_TutorialDownload.html#Sea_Surface_Temperature_CHANGE"
 class="uri">https://psu-spatial.github.io/Geog364-2021/364Data_TutorialDownload.html#Sea_Surface_Temperature_CHANGE</a>
 <em>note this link takes you to the 2021 lab tutorial, it will be
 updated ASAP, but remember come back to the 2023 page for
 instructions</em></p>
+<p>Also note, this might require variables created higher up in the
+tutorial, like border files. So if you get a “this variable doesn’t
+exist error, use control-F to search the tutorial for that variable name
+and follow that earlier tutorial to create it.</p>
 </div>
 <div id="update-your-report-3" class="section level4">
-<h4>Update your report</h4>
-<ul>
-<li>Make some plots and maps! You can see my examples in the tutorial.
+<h4><strong>Update your report</strong></h4>
+<p>Make some plots and maps! You can see my examples in the tutorial.
 Write about the patterns you see. You could also do things like make
 scatterplots between two of your variables (using plotly if you want to
-go interactive).</li>
-</ul>
+go interactive).</p>
 <p><br><br></p>
 </div>
 </div>
