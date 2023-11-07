@@ -308,7 +308,9 @@ should only be placed at high elevations so you want to test this..).
 
 ### Index of tutorials
 
-First, you might have good luck asking ChatGPT!
+First, you might have good luck asking ChatGPT! See the first tutorial
+below on how I do this. Brainstorm things that your reader might be
+interested in looking at.
 
 Here's the current index of my tutorials or scroll down
 
@@ -325,6 +327,52 @@ Here's the current index of my tutorials or scroll down
 <br><br>
 
 ## Secondary data tutorials
+
+### [Idea 0: Ask ChatGPT!]{.underline}
+
+Here's how I ask ChatGPT to do things. It's not always right and you can
+rarely copy/paste, but it often provides a good guide on how to proceed.
+
+> *In R, I have point based sf data on farmers markets in iowa. I
+> converted to utm projection using this code
+>
+> IA_market.sf.utm \<- st_transform(IA_market.sf,3744)
+>
+> How could I automatically download elevation data for those point
+> locations \
+> and merge with IA_market.sf.utm? Making sure to convert everything at
+> the end to EPSG:3744*
+
+<br>
+
+Or
+
+> *In R, I have point based sf data on farmers markets in iowa. I
+> converted to utm projection using this code
+>
+> IA_market.sf.utm \<- st_transform(IA_market.sf,3744)
+>
+> How could I automatically download land-cover data for those point
+> locations \
+> and merge with IA_market.sf.utm? Making sure to convert everything at
+> the end to EPSG:3744*
+
+If you find a package/approach no longer exists, you can repeat the
+request, but add "not using the XXX package" e.g. \
+\
+Or
+
+> *In R, I have point based sf data on farmers markets in iowa. I
+> converted to utm projection using this code
+>
+> IA_market.sf.utm \<- st_transform(IA_market.sf,3744)
+>
+> How could I automatically download land-cover data for those point
+> locations NOT using the spData package, \
+> and merge with IA_market.sf.utm? Making sure to convert everything at
+> the end to EPSG:3744*
+
+<br>
 
 ### [**Idea 1: Elevation**]{.underline}
 

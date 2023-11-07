@@ -770,7 +770,9 @@ stadium locations for this part.</p></li>
 <p><br><br></p>
 <div id="index-of-tutorials" class="section level3">
 <h3>Index of tutorials</h3>
-<p>First, you might have good luck asking ChatGPT!</p>
+<p>First, you might have good luck asking ChatGPT! See the first
+tutorial below on how I do this. Brainstorm things that your reader
+might be interested in looking at.</p>
 <p>Here’s the current index of my tutorials or scroll down</p>
 <ol style="list-style-type: decimal">
 <li><p>Global land - Elevation:</p></li>
@@ -784,6 +786,46 @@ stadium locations for this part.</p></li>
 </div>
 <div id="secondary-data-tutorials" class="section level2">
 <h2>Secondary data tutorials</h2>
+<div id="idea-0-ask-chatgpt" class="section level3">
+<h3><u>Idea 0: Ask ChatGPT!</u></h3>
+<p>Here’s how I ask ChatGPT to do things. It’s not always right and you
+can rarely copy/paste, but it often provides a good guide on how to
+proceed.</p>
+<blockquote>
+<p>*In R, I have point based sf data on farmers markets in iowa. I
+converted to utm projection using this code</p>
+<p>IA_market.sf.utm &lt;- st_transform(IA_market.sf,3744)</p>
+<p>How could I automatically download elevation data for those point
+locations<br />
+and merge with IA_market.sf.utm? Making sure to convert everything at
+the end to EPSG:3744*</p>
+</blockquote>
+<p><br></p>
+<p>Or</p>
+<blockquote>
+<p>*In R, I have point based sf data on farmers markets in iowa. I
+converted to utm projection using this code</p>
+<p>IA_market.sf.utm &lt;- st_transform(IA_market.sf,3744)</p>
+<p>How could I automatically download land-cover data for those point
+locations<br />
+and merge with IA_market.sf.utm? Making sure to convert everything at
+the end to EPSG:3744*</p>
+</blockquote>
+<p>If you find a package/approach no longer exists, you can repeat the
+request, but add “not using the XXX package” e.g. <br />
+<br />
+Or</p>
+<blockquote>
+<p>*In R, I have point based sf data on farmers markets in iowa. I
+converted to utm projection using this code</p>
+<p>IA_market.sf.utm &lt;- st_transform(IA_market.sf,3744)</p>
+<p>How could I automatically download land-cover data for those point
+locations NOT using the spData package,<br />
+and merge with IA_market.sf.utm? Making sure to convert everything at
+the end to EPSG:3744*</p>
+</blockquote>
+<p><br></p>
+</div>
 <div id="idea-1-elevation" class="section level3">
 <h3><u><strong>Idea 1: Elevation</strong></u></h3>
 <p><br></p>
