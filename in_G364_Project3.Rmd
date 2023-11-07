@@ -254,7 +254,7 @@ reader so that they really care about one individual place..
 
 <br><br>
 
-## Step 4B - Reading in/merging new data
+## Step 4B - Read this first.
 
 <br>
 
@@ -341,9 +341,42 @@ Here's the current index of my tutorials or scroll down
 
 <br><br>
 
-## Secondary data tutorials
+## Step 4C. Secondary data tutorials
 
-### [Idea 0: Ask ChatGPT!]{.underline}
+<br>
+
+### Index of tutorials
+
+0.  [Ask
+    ChatGPT](https://psu-spatial.github.io/Geog364-2023/in_G364_Project3.html#Idea_0:_Ask_ChatGPT)
+
+```{=html}
+<!-- -->
+```
+1.  Global land -
+    [Elevation](https://psu-spatial.github.io/Geog364-2023/in_G364_Project3.html#Idea_1:_Elevation)
+
+2.  USA social data - [SOVI and census
+    data](https://psu-spatial.github.io/Geog364-2023/in_G364_Project3.html#Idea_2:_SOVI_(from_Lab_4))
+
+3.  Ocean data - [Coastline and reef
+    borders](https://psu-spatial.github.io/Geog364-2023/in_G364_Project3.html#Idea_3:_OCEAN_-_coastline_and_reef_border_data)
+
+4.  Ocean data  - [Ocean
+    Depth](https://psu-spatial.github.io/Geog364-2023/in_G364_Project3.html#Idea_4:_OCEAN_Ocean_depth)
+
+5.  Ocean data - [Sea surface temperature
+    change](https://psu-spatial.github.io/Geog364-2023/in_G364_Project3.html#Idea_5:_OCEAN_Sea_surface_temperature_change)
+
+6.  USA land - [Land cover/forest cover/concrete
+    cover](https://psu-spatial.github.io/Geog364-2023/in_G364_Project3.html#Idea_6:_Land_CoverForest_canopyConcrete)
+
+7.  Global - [Weather
+    data](https://psu-spatial.github.io/Geog364-2023/in_G364_Project3.html#Idea_7:_Weather_data)
+
+<br><br>
+
+### [**Idea 0: Ask ChatGPT!**]{.underline}
 
 Here's how I ask ChatGPT to do things. It's not always right and you can
 rarely copy/paste, but it often provides a good guide on how to proceed.
@@ -719,3 +752,9 @@ scatterplots between two of your variables (using plotly if you want to
 go interactive).
 
 <br><br>
+
+# Submitting your report
+
+For project three you will be graded on progress. For example, have you
+gotten your report closer to the final rubric, have you downloaded and
+merged in additional data files?
