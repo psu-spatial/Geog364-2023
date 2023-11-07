@@ -314,15 +314,30 @@ interested in looking at.
 
 Here's the current index of my tutorials or scroll down
 
-1.  Global land - Elevation:
+0.  [Ask
+    ChatGPT](https://psu-spatial.github.io/Geog364-2023/in_G364_Project3.html#Idea_0:_Ask_ChatGPT)
 
-2.  USA social data - SOVI
+```{=html}
+<!-- -->
+```
+1.  Global land -
+    [Elevation](https://psu-spatial.github.io/Geog364-2023/in_G364_Project3.html#Idea_1:_Elevation)
 
-3.  Ocean data - borders
+2.  USA social data - [SOVI and census
+    data](https://psu-spatial.github.io/Geog364-2023/in_G364_Project3.html#Idea_2:_SOVI_(from_Lab_4))
 
-4.  Ocean data  - depth
+3.  Ocean data - [Coastline and reef
+    borders](https://psu-spatial.github.io/Geog364-2023/in_G364_Project3.html#Idea_3:_OCEAN_-_coastline_and_reef_border_data)
 
-5.  Ocean data - sea surface temperature
+4.  Ocean data  - [Ocean
+    Depth](https://psu-spatial.github.io/Geog364-2023/in_G364_Project3.html#Idea_4:_OCEAN_Ocean_depth)
+
+5.  Ocean data - [Sea surface temperature
+    change](https://psu-spatial.github.io/Geog364-2023/in_G364_Project3.html#Idea_5:_OCEAN_Sea_surface_temperature_change)
+
+6.  USA land - Land cover/forest cover/concrete cover
+
+7.  Global - Weather data
 
 <br><br>
 
@@ -426,7 +441,11 @@ go interactive).
 
 <br><br>
 
-### [**Idea 2: SOVI (from Lab 4)**]{.underline}
+### [**Idea 2: SOVI (from Lab 4)**]{.underline} 
+
+Note, this also includes US Census data. There is another census package
+we might use later on (see here for tutorials
+<https://crd150.github.io/lab3.html>)
 
 -   Suitable for any dataset in the USA which has been filtered to a
     single state
@@ -642,7 +661,61 @@ go interactive).
 -   Requires the tigris and feddata packages. Make sure they are in your
     library code chunk that that it has run successfully
 
+#### **ALL THE CODE**
+
 <https://psu-spatial.github.io/Geog364-2021/364Data_TutorialDownload.html#Land_Cover,_forest_canopy_or_concrete>
 
 Note, this is going to break due to the sf/sp transfer. Getting it
 working now, but you can always look for feddata tutorials online.
+
+<br><br>
+
+### [**Idea 7: Weather data**]{.underline}
+
+<br>
+
+-   Suitable for any dataset on globally. Contains global
+    temperature/rainfall files etc.
+
+-   Requires the `raster` package. Make sure they it is in your library
+    code chunk that that it has run successfully
+
+<br>
+
+#### **Read in the data**
+
+Follow this tutorial for getting it read into R.
+
+<https://psu-spatial.github.io/Geog364-2021/364Data_TutorialDownload.html#Weather_data>
+*note this link takes you to the 2021 lab tutorial, it will be updated
+ASAP, but remember come back to the 2023 page for instructions*
+
+Also note, this might require variables created higher up in the
+tutorial, like border files. So if you get a "this variable doesn't
+exist error, use control-F to search the tutorial for that variable name
+and follow that earlier tutorial to create it.
+
+<br>
+
+#### **Merge with your point data**
+
+Follow this tutorial for merging with your point data
+<https://psu-spatial.github.io/Geog364-2021/364Data_TutorialDownload.html#Adding_WorldClim_to_your_datasets>
+*Note this link takes you to the 2021 lab tutorial, it will be updated
+ASAP, but remember come back to the 2023 page for instructions.*
+
+Also note, this might require variables created higher up in the
+tutorial, like border files. So if you get a "this variable doesn't
+exist error, use control-F to search the tutorial for that variable name
+and follow that earlier tutorial to create it.
+
+<br>
+
+#### **Update your report**
+
+Make some plots and maps! You can see my examples in the tutorial. Write
+about the patterns you see. You could also do things like make
+scatterplots between two of your variables (using plotly if you want to
+go interactive).
+
+<br><br>

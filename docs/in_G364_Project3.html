@@ -774,12 +774,29 @@ stadium locations for this part.</p></li>
 tutorial below on how I do this. Brainstorm things that your reader
 might be interested in looking at.</p>
 <p>Here’s the current index of my tutorials or scroll down</p>
+<ol start="0" style="list-style-type: decimal">
+<li><a
+href="https://psu-spatial.github.io/Geog364-2023/in_G364_Project3.html#Idea_0:_Ask_ChatGPT">Ask
+ChatGPT</a></li>
+</ol>
+<!-- -->
 <ol style="list-style-type: decimal">
-<li><p>Global land - Elevation:</p></li>
-<li><p>USA social data - SOVI</p></li>
-<li><p>Ocean data - borders</p></li>
-<li><p>Ocean data - depth</p></li>
-<li><p>Ocean data - sea surface temperature</p></li>
+<li><p>Global land - <a
+href="https://psu-spatial.github.io/Geog364-2023/in_G364_Project3.html#Idea_1:_Elevation">Elevation</a></p></li>
+<li><p>USA social data - <a
+href="https://psu-spatial.github.io/Geog364-2023/in_G364_Project3.html#Idea_2:_SOVI_(from_Lab_4)">SOVI
+and census data</a></p></li>
+<li><p>Ocean data - <a
+href="https://psu-spatial.github.io/Geog364-2023/in_G364_Project3.html#Idea_3:_OCEAN_-_coastline_and_reef_border_data">Coastline
+and reef borders</a></p></li>
+<li><p>Ocean data - <a
+href="https://psu-spatial.github.io/Geog364-2023/in_G364_Project3.html#Idea_4:_OCEAN_Ocean_depth">Ocean
+Depth</a></p></li>
+<li><p>Ocean data - <a
+href="https://psu-spatial.github.io/Geog364-2023/in_G364_Project3.html#Idea_5:_OCEAN_Sea_surface_temperature_change">Sea
+surface temperature change</a></p></li>
+<li><p>USA land - Land cover/forest cover/concrete cover</p></li>
+<li><p>Global - Weather data</p></li>
 </ol>
 <p><br><br></p>
 </div>
@@ -879,6 +896,10 @@ go interactive).</p>
 </div>
 <div id="idea-2-sovi-from-lab-4" class="section level3">
 <h3><u><strong>Idea 2: SOVI (from Lab 4)</strong></u></h3>
+<p>Note, this also includes US Census data. There is another census
+package we might use later on (see here for tutorials <a
+href="https://crd150.github.io/lab3.html"
+class="uri">https://crd150.github.io/lab3.html</a>)</p>
 <ul>
 <li><p>Suitable for any dataset in the USA which has been filtered to a
 single state</p></li>
@@ -1034,11 +1055,63 @@ canopy/Concrete</strong></u></h3>
 <li><p>Requires the tigris and feddata packages. Make sure they are in
 your library code chunk that that it has run successfully</p></li>
 </ul>
+<div id="all-the-code-2" class="section level4">
+<h4><strong>ALL THE CODE</strong></h4>
 <p><a
 href="https://psu-spatial.github.io/Geog364-2021/364Data_TutorialDownload.html#Land_Cover,_forest_canopy_or_concrete"
 class="uri">https://psu-spatial.github.io/Geog364-2021/364Data_TutorialDownload.html#Land_Cover,_forest_canopy_or_concrete</a></p>
 <p>Note, this is going to break due to the sf/sp transfer. Getting it
 working now, but you can always look for feddata tutorials online.</p>
+<p><br><br></p>
+</div>
+</div>
+<div id="idea-7-weather-data" class="section level3">
+<h3><u><strong>Idea 7: Weather data</strong></u></h3>
+<p><br></p>
+<ul>
+<li><p>Suitable for any dataset on globally. Contains global
+temperature/rainfall files etc.</p></li>
+<li><p>Requires the <code>raster</code> package. Make sure they it is in
+your library code chunk that that it has run successfully</p></li>
+</ul>
+<p><br></p>
+<div id="read-in-the-data-3" class="section level4">
+<h4><strong>Read in the data</strong></h4>
+<p>Follow this tutorial for getting it read into R.</p>
+<p><a
+href="https://psu-spatial.github.io/Geog364-2021/364Data_TutorialDownload.html#Weather_data"
+class="uri">https://psu-spatial.github.io/Geog364-2021/364Data_TutorialDownload.html#Weather_data</a>
+<em>note this link takes you to the 2021 lab tutorial, it will be
+updated ASAP, but remember come back to the 2023 page for
+instructions</em></p>
+<p>Also note, this might require variables created higher up in the
+tutorial, like border files. So if you get a “this variable doesn’t
+exist error, use control-F to search the tutorial for that variable name
+and follow that earlier tutorial to create it.</p>
+<p><br></p>
+</div>
+<div id="merge-with-your-point-data-3" class="section level4">
+<h4><strong>Merge with your point data</strong></h4>
+<p>Follow this tutorial for merging with your point data <a
+href="https://psu-spatial.github.io/Geog364-2021/364Data_TutorialDownload.html#Adding_WorldClim_to_your_datasets"
+class="uri">https://psu-spatial.github.io/Geog364-2021/364Data_TutorialDownload.html#Adding_WorldClim_to_your_datasets</a>
+<em>Note this link takes you to the 2021 lab tutorial, it will be
+updated ASAP, but remember come back to the 2023 page for
+instructions.</em></p>
+<p>Also note, this might require variables created higher up in the
+tutorial, like border files. So if you get a “this variable doesn’t
+exist error, use control-F to search the tutorial for that variable name
+and follow that earlier tutorial to create it.</p>
+<p><br></p>
+</div>
+<div id="update-your-report-4" class="section level4">
+<h4><strong>Update your report</strong></h4>
+<p>Make some plots and maps! You can see my examples in the tutorial.
+Write about the patterns you see. You could also do things like make
+scatterplots between two of your variables (using plotly if you want to
+go interactive).</p>
+<p><br><br></p>
+</div>
 </div>
 </div>
 </div>
