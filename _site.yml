@@ -45,7 +45,9 @@ navbar:
     - text: "Lab 3B"
       href: in_G364_Lab3B_PointPatternDist.html 
     - text: "Lab 4"
-      href: in_G364_Lab4_Ozone.html         
+      href: in_G364_Lab4_Ozone.html   
+    - text: "Lab 5"
+      href: in_G364_Lab5_MoranLisa.html       
   - text: "Project instructions"  
     menu: 
     - text: "Project 2"

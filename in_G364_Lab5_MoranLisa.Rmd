@@ -1,0 +1,258 @@
+---
+title: "Lab 5: Moran and Lisa"
+subtitle: <h4 style="font-style:normal">One week lab!</h4>
+output:
+  html_document:
+    toc: true
+    toc_float: yes
+    toc_depth: 4
+    df_print: paged
+    theme: flatly
+    highlight: tango
+---
+
+```{=html}
+<style>
+p.comment {
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 0px;
+border-radius: 5px;
+font-style: normal;
+}
+
+h1.title {
+  font-weight: bold;
+  font-family: Arial;  
+}
+
+h2.title {
+  font-family: Arial;  
+}
+
+</style>
+```
+```{=html}
+<style type="text/css">
+#TOC {
+  font-size: 12px;
+  font-family: Arial;
+}
+
+pre code {
+  font-size: 13px; /* Adjust the font size as needed */
+  white-space: pre-wrap;
+}
+</style>
+```
+\
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, warning=FALSE, message = FALSE)
+```
+
+# 1. **Welcome to Lab 5**
+
+The objective of this lab is to introduce you to the concept of Moran's
+I and LISA.
+
+**This is due by 23:59pm Sunday 10th December.**
+
+See the rubric on canvas for how it will be graded and the checklist at
+the end for what you need for 100%. <br>
+
+<br><br>
+
+```{r,include=FALSE,echo=FALSE}
+# invisible data read
+library(tidyverse)
+library(sp)
+library(sf)
+library(readxl)
+library(skimr)
+library(tmap)
+library(viridis)
+library(kableExtra)
+library(spatstat)
+library(spatstat.data)
+library(car)
+```
+
+# 2. Important (please read!)
+
+<br>
+
+We are continuing to focus on air pollution in California and build on
+Lab 4.
+
+**You can read about the data and remind yourself of things like column
+names from the description of Lab 4.**
+
+But! Due to the challenges facing those using R studio cloud, I have
+created spatial data files of all the processed data from lab 4 and I
+have included much of the code for lab 5.
+
+**THIS MEANS WE WILL BE CREATING A COMPLETELY NEW LAB PROJECT AS THOUGH
+IT WAS A NEW TOPIC (See below for instructions).**
+
+<br><br>
+
+# 3. Getting started.
+
+## A. Create your project
+
+In Desktop R, select your 364 directory, create a new project, then name
+the project Lab 5. If you are stuck on this process, see these tutorials
+
+-   For R-Desktop, see [Tutorial
+    3B](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Projects_using_Desktop)
+
+-   For Posit Cloud, see [Tutorial
+    3C](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Projects_using_Rstudioposit_Cloud)
+    <br>
+
+You can check this has worked by looking on the file explorer on your
+computer, then selecting your GEOG364 folder and checking that a Lab 5
+folder has appeared with your `.Proj` file inside it. This is what you
+double click to access this lab in R.
+
+<br><br>
+
+# 4. Get the lab report template and data
+
+Go to CANVAS LAB 5, download the lab report template and all the data
+sets. If you are on the cloud, ignore the census tract dataset. Rename
+the lab report (the .RmD file) to include your email ID and place
+EVERYTHING in your Lab 5 folder.
+
+Now open your project and your lab report template (the .RmD file).
+
+<br>
+
+# 5. Complete the lab report
+
+<br>
+
+I have included all of these instructions in the lab report itself, but
+it will make life easier to read them first here so you know what you
+are doing.
+
+<br>
+
+## A. Read in the data
+
+Get Section A of your lab script running and make sure it has read in
+the data without error. Talk to a teacher if you have any issues (and
+make sure the data is in the same folder as your .proj file and not
+accidentally in a sub-folder or a different place)
+
+<br>
+
+## B. Voronoi polygons
+
+In Section B of your report, I have provided some code which summarizes
+and maps the ozone data by counties and voronoi polygons. You should be
+able to just run the code and it will make the plots
+
+In your report, below the code: <br>
+
+-   Describe what each map is showing and what voronoi polygons are.
+    <br>
+
+-   Compare and contrast the three maps. <br>
+
+-   For each map, explain the advantages and disadvantages of using this
+    way to summarize & visualize the ozone data.<br>
+
+<br><br>
+
+## C. Moran's I tutorial
+
+There is an excellent tutorial on Moran's I created by Dr Manny Gimond
+here on incomes in Maine. We will also be working through this in class.
+
+<https://mgimond.github.io/simple_moransI_example/>
+
+In Section C ('Maine Tutorial') of your lab report, I want you to work
+through the tutorial. (You do not have to do the Florida homicides bit).
+<br>
+
+-   I want the code working in your lab report, <br>
+-   I also want as many comments as you can following along in the text,
+    e.g. make yourself a tutorial IN YOUR OWN WORDS <br>
+
+<br> <br>
+
+## D. Moran's I of the California data
+
+In Section D of your lab report, I provided a shortened version of the
+code in Dr Gimond's tutorial. My code is set to look at the ozone
+levels. Get it running, then in your report under my code, interpret
+what I found in your own words.
+
+<br>
+
+Then, copy and edit my code to conduct a Moran's I analysis of a
+variable (column) of your choice and interpret your findings in the
+text.
+
+<br><br>
+
+## E. LISA analysis
+
+Finally, my code for the LISA analysis should just run. Using the
+lecture notes and readings interpret what the maps are showing you. Your
+write up should include
+
+-   What do each of the four colors/quadrants mean <br>
+-   How do they link to the Moran scatterplot <br>
+-   Change the critical value to 0.01, and to 0.1 and to 0.5 - and each
+    time, re-run the LISA code (everything below the critical value).
+    Explain what is happening in terms of ozone pollution in California.
+    <br>
+
+<br><br>
+
+# 6. Submitting your work
+
+Remember to save your work throughout and to spell check! (next to the
+save button). Now, press the knit button one final time.
+
+On R-Desktop
+
+-   If you have not made any mistakes in the code then R should create a
+    html file in your lab 5 folder which includes your answers.
+
+-   If you look at your lab 5 folder on your computer, you should see
+    the html there - complete with a very recent time-stamp. Double
+    click on the html file. This will open it in your web-browser.\
+    CHECK THAT THIS IS WHAT YOU WANT TO SUBMIT.<br>
+
+On Rstudio cloud,
+
+-   See [TUTORIAL 3 Cloud - LINK
+    FIXED](https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Projects_using_Rstudioposit_Cloud)
+    for how to download your files <br>
+
+Finally, go to Canvas and submit BOTH your html and your .Rmd file in
+Lab 3.
+
+```{r, echo=FALSE}
+knitr::include_graphics("./Figures/LabFig_WhatToSubmit.png")
+```
+
+<br><br>
+
+## How am I graded?
+
+Overall, here is what your lab should correspond to:
+
+```{r, echo=FALSE}
+rubric <- readxl::read_excel("in_G364_Lab0Rubric.xlsx")
+knitr::kable(rubric) %>%   
+  kable_classic_2() %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "responsive"))
+
+
+```

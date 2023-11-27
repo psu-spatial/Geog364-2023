@@ -1,0 +1,269 @@
+---
+title: "Lab 4: Using Voronoi Polygons for Air Quality Monitoring Network Design"
+author: "ckm5699"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    theme: darkly
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE,warning=FALSE,message=FALSE)
+```
+
+# Introduction
+
+The objective of this lab is to introduce you to the concept of Voronoi polygons and demonstrate their practical application in designing an air quality monitoring network for California. You will learn how to create Voronoi polygons from ozone measurement data, identify suitable monitoring station locations, and explore the significance of such a network in air quality management. You will also compare this with spatial demographic data from the CDC/ATSDR Social Vulnerability Index.
+
+## Libraries
+
+Feel free to add any additional libraries you need
+
+```{r}
+library(tmap)
+library(raster)
+library(gstat)
+library(sf)
+library(tidyverse)
+library(tigris)
+library(plotly)
+```
+
+## Dr G's Set-Up Code
+
+You do not need to edit the code chunk below, It should run and be invisible when you knit. I did this because I couldn't suppress the loading messages in any other way. Dr G: My code does several things
+
+1.  I use the Tigris package to read in the census tract and county borders for California
+2.  I then directly download the SOVI data from a government portal. If you put the url into an internet browser it will also directly download.
+3.  The SOVI files are huge. This is a one week lab, so I tidied up
+4.  I switched all the -999s to NA using the mutate command
+5.  Then I joined the SOVI data with the spatial census tract/county borders - to make
+    1.  tract.sovi.sf - the sovi data at census tract level
+    2.  county.sovi.sf - the sovi data at county level
+6.  Finally I changed the map projection to the North American Albers Equal Area Conic projection (AEA)
+
+You do not need to edit this code chunk, It should run and be invisible when you knit. I did this because it kept messing up my output when I knit.
+
+```{r,message=FALSE,warning=FALSE,echo=FALSE,include=FALSE echo=FALSE, warning=FALSE, include=FALSE, r,message=FALSE}
+# DO NOT TOUCH!
+rm(list=ls())
+
+
+# Read in the California county & census tract boundaries from Tigris
+county.border      <- counties("CA", cb = TRUE, resolution = "20m")
+county.border <- county.border[,which(names(county.border) %in%  c("GEOID",
+                                                                   "geometry"))]
+tract.border <- tracts("CA", cb = TRUE)
+tract.border <- tract.border[,which(names(tract.border) %in%  c("GEOID","geometry"))]
+
+# Download the California SOVI county data from the internet and tidy up
+download.file("https://svi.cdc.gov/Documents/Data/2020/csv/states/California.csv", destfile="SOVI2020_CA_Tract.csv")
+tract.sovi     <- read.csv("SOVI2020_CA_Tract.csv")
+tract.sovi$FIPS <- paste("0",tract.sovi$FIPS,sep="")
+names(tract.sovi)[which(names(tract.sovi) %in% "FIPS")] <- "GEOID"
+tract.sovi <- tract.sovi[,-grep("M_",names(tract.sovi))]
+tract.sovi <- tract.sovi[,-grep("MP_",names(tract.sovi))]
+tract.sovi <- tract.sovi[,-grep("SPL_",names(tract.sovi))]
+tract.sovi <- tract.sovi[,-grep("EPL_",names(tract.sovi))]
+tract.sovi <- tract.sovi[,c(1:49,69)]
+tract.sovi <- tract.sovi %>% mutate_all(~ ifelse(. == -999, NA, .))
+
+
+# Download the California SOVI tract data from the internet and tidy up
+download.file("https://svi.cdc.gov/Documents/Data/2020/csv/states_counties/California_county.csv", destfile="SOVI2020_CA_County.csv")
+county.sovi     <- read.csv("SOVI2020_CA_County.csv")
+county.sovi$FIPS <- paste("0",county.sovi$FIPS,sep="")
+names(county.sovi)[which(names(county.sovi) %in% "FIPS")] <- "GEOID"
+county.sovi <- county.sovi[,-grep("M_",names(county.sovi))]
+county.sovi <- county.sovi[,-grep("MP_",names(county.sovi))]
+county.sovi <- county.sovi[,-grep("SPL_",names(county.sovi))]
+county.sovi <- county.sovi[,-grep("EPL_",names(county.sovi))]
+county.sovi <- county.sovi[,c(1:48,69)]
+county.sovi <- county.sovi %>% mutate_all(~ ifelse(. == -999, NA, .))
+
+
+# IGNORE THE WARNING!
+# Merge the sovi data and the census tract borders
+tract.sovi.sf  <- geo_join(tract.border ,tract.sovi ,by="GEOID")
+county.sovi.sf <- geo_join(county.border,county.sovi,by="GEOID")
+
+# Finally change the map projection to 
+# the the North American Albers Equal Area Conic projection (AEA)
+tract.sovi.sf  <- st_transform(tract.sovi.sf,3310)
+county.sovi.sf <- st_transform(county.sovi.sf,3310)
+
+```
+
+<br>
+
+------------------------------------------------------------------------
+
+# Challenge 1. Comprehension
+
+### Qu. 1A
+
+**Describe what census tracts are and why they are commonly used as a spatial unit.**
+
+A census typically tracks the population of an area. Where they live, what their job is, how many people in their household, how hold they are, basically noting their demographics and location. They are commonly used as a spatial unit because they give good data on the population in an certain location.
+
+### Qu. 1B
+
+**In my code, I change the data to the** **North American Albers Equal Area Conic projection (AEA). Explain what this is and how it's different to lat/long or UTM data.**
+
+From what I understand, the AEA is a two standard parallels that are good for measuring points from East to West. I think it may be different from UTM and Lat and Long measurements in that it is specifically for measuring East to West one a single land mass instead of the whole globe.
+
+### Qu. 1C
+
+**In my code, I use the command `rm(list=ls())`.\
+What does this do? Remember google/chatGPT in helping you answer this.**
+
+The rm() removes objects in your work space. The ls() lists all the objects in your work space.
+
+### Qu. 1D
+
+**You will find the reference for SOVI here.** <https://www.atsdr.cdc.gov/placeandhealth/svi/data_documentation_download.html>
+
+**Edit for CA, then write a sentence explaining where the data is from and add a footnote with your reference. To do this, click the visual button at the top, then go to Insert/Footnote. (HINT FOR PROJECTS)**
+
+This is data is from a Census, specifically from Alameda county California.[^1]
+
+[^1]: <https://www.atsdr.cdc.gov/placeandhealth/svi/data_documentation_download.html>
+
+### Qu. 1E
+
+**How did I make my set-up code chunk invisible when this file knits? Hint look at the code chunk options.**
+
+If I understand correctly, the code chunk was made invisible by starting with the code rm(list=ls()), which lists and removes objects.
+
+<br>
+
+------------------------------------------------------------------------
+
+# Challenge 2. SOVI
+
+### Qu. 2A. SOVI Basics
+
+**Explain what SOVI is in your own words, using the lab instruction resources as a guide**
+
+The SOVI is used to figure out how resilient and/or susceptible certain communities are to various types of issues, from things like natural disasters to public health crises. It does this through the use of factors like socioeconomic status, access to resources, and community infrastructure.
+
+### Qu. 2B: Themes
+
+**In the sovi dataset, you should see these columns ("RPL_THEME1" "RPL_THEME2" "RPL_THEME3" "RPL_THEME4" "RPL_THEMES"). They are described here: [Sovi documentation](https://www.atsdr.cdc.gov/placeandhealth/svi/documentation/pdf/SVI2020Documentation_08.05.22.pdf) and in the SOVI recipe in the lab book.**
+
+**Describe what each of these columns represents. If you talked about this in above, you can refer to your answer.**
+
+RPL_THEME1 represents Socioeconomic Status. RPL_THEME2 represents Household Characteristics. RPL_THEME3 represents Racial and Ethnic Minority Status. RPL_THEME4 represents Housing Type and Transportation. RPL_THEMES all of them averages.
+
+### Qu. 2C: SOVI theme maps
+
+[**YOU HAVE A CHOICE.**]{.underline}
+
+**If you're interested and your computer is powerful, use the census-tract sovi sf data at any time. If your computer struggles/you use the cloud or you want it to run fast, use the county level sovi sf data.\
+\
+Create four professional maps showing the SOVI Themes 1-4 for California.**
+
+*\
+Tmap is a little different with polygon data, so here's some example code also showing how to do subplots*
+
+-   *When you have edited it and are ready, remove the \# at the front of each line you want to run. Or you're welcome to delve into the more complex tmap packages if you like - <https://bookdown.org/nicohahn/making_maps_with_r5/docs/tmap.html>*
+
+-   *For MANY color options, see* <https://www.nceas.ucsb.edu/sites/default/files/2020-04/colorPaletteCheatsheet.pdf>
+
+```{r}
+#testdata is the name of my variable. Yours will be the census tract or county sovi sf data.  ColumnName is the name of the column you want to color
+map1 <- qtm(tract.sovi.sf,fill="RPL_THEME1",fill.palette="Greens")
+map2 <- qtm(tract.sovi.sf,fill="RPL_THEME2",fill.palette="Blues")
+map3 <- qtm(tract.sovi.sf,fill="RPL_THEME3",fill.palette="Purples")
+map4 <- qtm(tract.sovi.sf,fill="RPL_THEME4",fill.palette="Reds")
+
+tmap_arrange(map1,map2,map3,map4)
+```
+
+### Qu. 2D: Map interpretation
+
+**Tell me what patterns and processes you see in your maps. [Referring to your maps]{.underline}, which areas of California do you think might struggle with the social impact of air pollution and why.**
+
+In the THEME1 map parts of northern California had the darkest shade of green, implying that those are the areas that could be flagged for being considered highly vulnerable. For THEME2 areas closer to running down the inner middle portion of the state have the darkest shade of blue, indicating that they would be flagged for being highly vulnerable. THEME3 had the lower middle part of the state with the darkest shade of purple, flagging it for high vulnerability. Finally, THEME4 had the darkest shades of red spread out throughout the state, seeming to be more present along some of the state's northeastern boarder, the darkest shades of red would indicate areas that have been flagged for high vulnerability.
+
+<br>
+
+### Qu. 2E: MAUP
+
+**Think about MAUP and gerrymandering. Explain why is it important to think hard about choosing between the county or census level SOVI data.**
+
+I'm not positive but I believe counties tend to be susceptible gerrymandering.
+
+------------------------------------------------------------------------
+
+# Challenge 3. Ozone data
+
+### Qu. 3A. Ozone summary
+
+We will now read in some data on Ozone. You can read about it in the lab book. Summarise what the data is showing.
+
+The data is comprised of ozone measurements that were taken across the state of California, with population density also being recorded at each measurement site. The ozone is measured in units of "1000 parts per billion" and the population density is measured in units of people per square km. The data is specifically showing the ozone and population density of each measureing site.
+
+### Qu. 3B. Ozone read-in
+
+Replace the XXXXXs with the correct values to get this to run. Your data should already be in your project file. Hint, not all the XXXXXs are the same!
+
+```{r}
+
+# Read in Ozone Data
+#point.ozone     <- read.csv("xxxxxx")
+#point.ozone.sf  <- st_as_sf(xxxxx, coords=c("xxxxx","xxxxx"),crs=4326)
+
+# Transform to projection 3310 - hint look at my set-up code chunk.
+# I'm simply overwriting my sf data as my answer
+#point.ozone.sf <- XXXXXX(point.ozone.sf,XXXXXX)
+
+```
+
+I can't get the code chunk to run. Sorry.
+
+### Qu. 3C. Ozone summary
+
+**Use R to summarise the ozone data, then answer these Qu.s in the text**
+
+-   How many monitoring stations are there in the dataset?
+
+-   What is the Ozone at site name: Beverly Hills-Franklin? Remember units!
+
+-   What is the maximum population density?
+
+    I couldn't get the code chunk to run so I couldn't answer this one either, sorry.
+
+### Qu. 3D. Ozone vs Population density.
+
+**Using the plotly command, use this tutorial to make a map of ozone values vs population density at each location.**
+
+[**https://plotly.com/r/line-and-scatter/**](https://plotly.com/r/line-and-scatter/){.uri}
+
+[**https://psu-spatial.github.io/Geog364-2023/in_Tutorial08Plots.html#Interactive**](https://psu-spatial.github.io/Geog364-2023/in_Tutorial08Plots.html#Interactive){.uri}
+
+**Explain do you see - is it what you expect given the sources of ozone data?**
+
+Your answer and code
+
+### Qu. 3E. Ozone maps
+
+**Make two map showing the Ozone levels and the population density across California at the measuring sites. Hint (lab 3/reports etc). Bonus if you want to explore leaflet**
+
+**Compare the maps visually. Is the ozone where you expect it to be? What might be happening? (hint, ozone is VERY light and CA is coastal)**
+
+Your answer and code
+
+Once again, I couldn't get the code chunk to run, so I cant answer questions 3B through 3E.
+
+------------------------------------------------------------------------
+
+# Challenge 4: Voronoi Data
+
+This week R is undergoing a HUGE spatial update where some of the packages are being retired that are key for voronoi data. So we are going to approach this in lab 5
+
+**So for this week, you are done!**
+
+### GO AND DO THE VORONOI HOMEWORK AND READING

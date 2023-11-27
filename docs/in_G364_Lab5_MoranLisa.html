@@ -11,7 +11,7 @@
 
 
 
-<title>Tutorial 2: Main set-up for the entire semester</title>
+<title>Lab 5: Moran and Lisa</title>
 
 <script src="site_libs/header-attrs-2.25/header-attrs.js"></script>
 <script src="site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
@@ -35,6 +35,8 @@
 <script src="site_libs/navigation-1.1/tabsets.js"></script>
 <link href="site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script>
+<script src="site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="site_libs/lightable-0.0.1/lightable.css" rel="stylesheet" />
 
 <style type="text/css">
   code{white-space: pre-wrap;}
@@ -419,206 +421,314 @@ div.tocify {
 
 
 
-<h1 class="title toc-ignore">Tutorial 2: Main set-up for the entire
-semester</h1>
+<h1 class="title toc-ignore">Lab 5: Moran and Lisa</h1>
+<h3 class="subtitle"><h4 style="font-style:normal"><br />
+One week lab!<br />
+</h4></h3>
 
 </div>
 
 
+<style>
+p.comment {
+background-color: #DBDBDB;
+padding: 10px;
+border: 1px solid black;
+margin-left: 0px;
+border-radius: 5px;
+font-style: normal;
+}
+
+h1.title {
+  font-weight: bold;
+  font-family: Arial;  
+}
+
+h2.title {
+  font-family: Arial;  
+}
+
+</style>
+<style type="text/css">
+#TOC {
+  font-size: 12px;
+  font-family: Arial;
+}
+
+pre code {
+  font-size: 13px; /* Adjust the font size as needed */
+  white-space: pre-wrap;
+}
+</style>
+<p><br />
+</p>
+<div id="welcome-to-lab-5" class="section level1">
+<h1>1. <strong>Welcome to Lab 5</strong></h1>
+<p>The objective of this lab is to introduce you to the concept of
+Moran’s I and LISA.</p>
+<p><strong>This is due by 23:59pm Sunday 10th December.</strong></p>
+<p>See the rubric on canvas for how it will be graded and the checklist
+at the end for what you need for 100%. <br></p>
 <p><br><br></p>
-<div id="overview" class="section level1">
-<h1>Overview</h1>
-<p>There are a number of software and internet accounts you will need.
-This tutorial takes you through them. DO NOT SKIP</p>
+</div>
+<div id="important-please-read" class="section level1">
+<h1>2. Important (please read!)</h1>
+<p><br></p>
+<p>We are continuing to focus on air pollution in California and build
+on Lab 4.</p>
+<p><strong>You can read about the data and remind yourself of things
+like column names from the description of Lab 4.</strong></p>
+<p>But! Due to the challenges facing those using R studio cloud, I have
+created spatial data files of all the processed data from lab 4 and I
+have included much of the code for lab 5.</p>
+<p><strong>THIS MEANS WE WILL BE CREATING A COMPLETELY NEW LAB PROJECT
+AS THOUGH IT WAS A NEW TOPIC (See below for instructions).</strong></p>
+<p><br><br></p>
+</div>
+<div id="getting-started." class="section level1">
+<h1>3. Getting started.</h1>
+<div id="a.-create-your-project" class="section level2">
+<h2>A. Create your project</h2>
+<p>In Desktop R, select your 364 directory, create a new project, then
+name the project Lab 5. If you are stuck on this process, see these
+tutorials</p>
+<ul>
+<li><p>For R-Desktop, see <a
+href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Projects_using_Desktop">Tutorial
+3B</a></p></li>
+<li><p>For Posit Cloud, see <a
+href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Projects_using_Rstudioposit_Cloud">Tutorial
+3C</a> <br></p></li>
+</ul>
+<p>You can check this has worked by looking on the file explorer on your
+computer, then selecting your GEOG364 folder and checking that a Lab 5
+folder has appeared with your <code>.Proj</code> file inside it. This is
+what you double click to access this lab in R.</p>
+<p><br><br></p>
+</div>
+<div id="b.-get-the-lab-script-and-data" class="section level2">
+<h2>B. Get the lab script and data</h2>
+<p>Go to CANVAS LAB 5, download the lab report template and all the data
+sets. If you are on the cloud, ignore the census tract dataset. Rename
+the lab report (the .RmD file) to include your email ID and place
+EVERYTHING in your Lab 5 folder.</p>
+<p>Now open your project and your lab report template (the .RmD
+file).</p>
 <p><br></p>
 </div>
-<div id="github" class="section level1">
-<h1>GitHub</h1>
-<p>We will likely be using github for downloading labs. Please make an
-account here: <a href="https://github.com/"
-class="uri">https://github.com/</a>.</p>
-<ul>
-<li><p>This might be something you keep for your career, so choose a
-professional username. For example, mine is hgreatrex: <a
-href="https://github.com/hgreatrex"
-class="uri">https://github.com/hgreatrex</a>.</p></li>
-<li><p><em>As a sidenote, you can easily make a quick website/CV using
-github! Here’s one of many examples and we will do this together later
-in the semester: <a
-href="https://github.com/EmilyMarkowitz-NOAA/template_website_cv"
-class="uri">https://github.com/EmilyMarkowitz-NOAA/template_website_cv</a>)</em></p></li>
-</ul>
-<p><br><br></p>
 </div>
-<div id="datacamp" class="section level1">
-<h1>DataCamp</h1>
-<p>I will get you free access to coding support in DataCamp. For now,
-please sign up here using your PSU ADDRESS : <a
-href="https://www.datacamp.com/"
-class="uri">https://www.datacamp.com/</a></p>
-<p><br><br></p>
-</div>
-<div id="khan-academy" class="section level1">
-<h1>Khan Academy</h1>
-<p>We will also use Khan Academy for code support. Please make an
-account here, again using your PSU address. <a
-href="https://www.khanacademy.org/signup"
-class="uri">https://www.khanacademy.org/signup</a></p>
-<p><br> <br></p>
-</div>
-<div id="r-and-r-studio" class="section level1">
-<h1>R and R-Studio</h1>
-<p>There are two ways to do the labs, either on your own computer or on
-the R studio Cloud website. You can switch between them easily as you
-need.</p>
-<ul>
-<li>DESKTOP: Means do this if you are using your own computer or
-laptop</li>
-<li>CLOUD: Means do this if you are using the website</li>
-</ul>
-<p>PSU computers are so out of date that we will NOT be using the
-versions of R installed on the PSU computers (instead you will use the
-website/cloud)</p>
-<p><strong>EVERYONE SHOULD MAKE A CLOUD ACCOUNT (see below)</strong></p>
+<div id="complete-the-lab-report" class="section level1">
+<h1>5. Complete the lab report</h1>
 <p><br></p>
-<div id="i-already-have-r-and-r-studio-on-my-laptop"
-class="section level4">
-<h4><u>“I already have R and R studio on my laptop”</u></h4>
+<p>I have included all of these instructions in the lab report itself,
+but it will make life easier to read them first here so you know what
+you are doing.</p>
+<p><br></p>
+<div id="a.-read-in-the-data" class="section level2">
+<h2>A. Read in the data</h2>
+<p>Get Section A of your lab script running and make sure it has read in
+the data without error. Talk to a teacher if you have any issues (and
+make sure the data is in the same folder as your .proj file and not
+accidentally in a sub-folder or a different place)</p>
+<p><br></p>
+</div>
+<div id="b.-voronoi-polygons" class="section level2">
+<h2>B. Voronoi polygons</h2>
+<p>In Section B of your report, I have provided some code which
+summarizes and maps the ozone data by counties and voronoi polygons. You
+should be able to just run the code and it will make the plots</p>
+<p>In your report, below the code: <br></p>
 <ul>
-<li><p>IT IS VERY IMPORTANT THAT EVERYONE IS RUNNING THE MOST UP-TO-DATE
-VERSION OF R AND RStudio. <br></p></li>
-<li><p>The easiest way to update is to re install. You will not lose
-access to old work. Follow these instructions verbatim.</p></li>
+<li><p>Describe what each map is showing and what voronoi polygons are.
+<br></p></li>
+<li><p>Compare and contrast the three maps. <br></p></li>
+<li><p>For each map, explain the advantages and disadvantages of using
+this way to summarize &amp; visualize the ozone data.<br></p></li>
 </ul>
 <p><br><br></p>
 </div>
-<div id="positr-studio-cloud-website" class="section level2">
-<h2>Posit/R-Studio Cloud Website</h2>
-<p>This is an website based version of R-Studio. <br><br></p>
-<div id="everyone-should-sign-up-for-an-account-here-httpsposit.cloud"
-class="section level4">
-<h4><u>EVERYONE</u> SHOULD SIGN UP FOR AN ACCOUNT HERE: <a
-href="https://posit.cloud/" class="uri">https://posit.cloud/</a></h4>
-<p>I believe it’s free for the first 25hrs each month then a few dollars
-a month. Sadly there is no student pricing right now. If you run out of
-free time, you can make a new account, or pay for one month, or move to
-your desktop.</p>
+<div id="c.-morans-i-tutorial" class="section level2">
+<h2>C. Moran’s I tutorial</h2>
+<p>There is an excellent tutorial on Moran’s I created by Dr Manny
+Gimond here on incomes in Maine. We will also be working through this in
+class.</p>
+<p><a href="https://mgimond.github.io/simple_moransI_example/"
+class="uri">https://mgimond.github.io/simple_moransI_example/</a></p>
+<p>In Section C (‘Maine Tutorial’) of your lab report, I want you to
+work through the tutorial. (You do not have to do the Florida homicides
+bit). <br></p>
 <ul>
-<li>Advantages:
+<li>I want the code working in your lab report, <br></li>
+<li>I also want as many comments as you can following along in the text,
+e.g. make yourself a tutorial IN YOUR OWN WORDS <br></li>
+</ul>
+<p><br> <br></p>
+</div>
+<div id="d.-morans-i-of-the-california-data" class="section level2">
+<h2>D. Moran’s I of the California data</h2>
+<p>In Section D of your lab report, I provided a shortened version of
+the code in Dr Gimond’s tutorial. My code is set to look at the ozone
+levels. Get it running, then in your report under my code, interpret
+what I found in your own words.</p>
+<p><br></p>
+<p>Then, copy and edit my code to conduct a Moran’s I analysis of a
+variable (column) of your choice and interpret your findings in the
+text.</p>
+<p><br><br></p>
+</div>
+<div id="e.-lisa-analysis" class="section level2">
+<h2>E. LISA analysis</h2>
+<p>Finally, my code for the LISA analysis should just run. Using the
+lecture notes and readings interpret what the maps are showing you. Your
+write up should include</p>
 <ul>
-<li>It’s always up to date</li>
-<li>You can do your labs anywhere you have access to a webpage <br></li>
-</ul></li>
-<li>Disadvantages:
-<ul>
-<li>It’s not as powerful, you won’t be able to play will millions of
-data points</li>
-<li>You have to be online; bad internet connections make it harder</li>
-<li>It’s weirdly ‘buggy’. Things like you will need to install packages
-every lab</li>
-</ul></li>
+<li>What do each of the four colors/quadrants mean <br></li>
+<li>How do they link to the Moran scatterplot <br></li>
+<li>Change the critical value to 0.01, and to 0.1 and to 0.5 - and each
+time, re-run the LISA code (everything below the critical value).
+Explain what is happening in terms of ozone pollution in California.
+<br></li>
 </ul>
 <p><br><br></p>
 </div>
 </div>
-<div id="rstudio-desktop" class="section level2">
-<h2>RStudio Desktop</h2>
-<p>Here need to do two things. <br></p>
+<div id="submitting-your-work" class="section level1">
+<h1>6. Submitting your work</h1>
+<p>Remember to save your work throughout and to spell check! (next to
+the save button). Now, press the knit button one final time.</p>
+<p>On R-Desktop</p>
 <ul>
-<li><p>First, teach the computer to ‘speak R’.</p></li>
-<li><p>Secondly download the RStudio software.<br><br></p></li>
+<li><p>If you have not made any mistakes in the code then R should
+create a html file in your lab 5 folder which includes your
+answers.</p></li>
+<li><p>If you look at your lab 5 folder on your computer, you should see
+the html there - complete with a very recent time-stamp. Double click on
+the html file. This will open it in your web-browser.<br />
+CHECK THAT THIS IS WHAT YOU WANT TO SUBMIT.<br></p></li>
 </ul>
-<p><strong>The version number matters.</strong></p>
-<p><strong>Follow these instructions exactly, even if you already have
-R/Rstudio on your computer.</strong><br><br></p>
-<div id="installing-r." class="section level3">
-<h3>1. Installing R.</h3>
-<p>First, we teach the computer to ‘speak R’.</p>
-<p>Go here: <a href="https://posit.co/download/rstudio-desktop/"
-class="uri">https://posit.co/download/rstudio-desktop/</a>. Click the
-Install R button <br></p>
-<div class="figure" style="text-align: center">
-<img src="Figures/fig3_InstallR.png" alt="Click here!" width="698" />
-<p class="caption">
-Click here!
-</p>
-</div>
-<p><br><br></p>
-<p>Click the link and you will go to a terrifying website called CRAN
-R.</p>
-<div class="figure" style="text-align: center">
-<img src="Figures/fig4_CranR.png" alt="*Choose your computer type*" width="1025" />
-<p class="caption">
-<em>Choose your computer type</em>
-</p>
-</div>
-<p><br><br></p>
-<div id="if-you-are-on-a-windowspc-computer" class="section level4">
-<h4>If you are on a WINDOWS/PC computer</h4>
-<div class="figure" style="text-align: center">
-<img src="Figures/fig4a_InstallR%20WINDOWS.png" alt="*Choose your computer type*" width="1128" />
-<p class="caption">
-<em>Choose your computer type</em>
-</p>
-</div>
-<p>Click the “install for the first time” link and follow through to
-install R - EVEN IF YOU ALREADY HAVE R AND R STUDIO INSTALLED.
-<br><br></p>
-<p>Say yes to all the default options. Harman is an R Windows user if
-you need help. <br> <strong>Now, move to part 4 to install R
-studio.</strong></p>
-<p><br> <br></p>
-</div>
-<div id="if-you-are-on-a-macapplemac" class="section level4">
-<h4>If you are on a MAC/AppleMac</h4>
-<p>If you are a MAC user, you will need <u>EITHER</u> one of these two
-files. If your computer is new, try the top one, if it’s older try the
-second - the wrong one simply won’t work.</p>
-<div class="figure" style="text-align: center">
-<img src="Figures/fig4b_InstallR%20MAC.png" alt="*Choose your computer type*" width="1437" />
-<p class="caption">
-<em>Choose your computer type</em>
-</p>
-</div>
-<ol style="list-style-type: decimal">
-<li>Click the filename to download <br><br></li>
-<li>MOVE THE DOWNLOAD OUTSIDE YOUR DOWNLOAD FOLDER (they have a weird
-bug.) Put it on your desktop <br><br></li>
-<li>Open the download and follow the instructions. <br><br></li>
-<li><strong>Now, move to part 4 to install R studio.</strong></li>
-</ol>
-<p><br> <br></p>
-</div>
-</div>
-<div id="installing-r-studio" class="section level3">
-<h3>2. Installing R studio</h3>
-<p>Go back here: <a href="https://posit.co/download/rstudio-desktop/"
-class="uri">https://posit.co/download/rstudio-desktop/</a>. Click the
-Install R-Studio button</p>
-<p><img src="Figures/fig5_InstallRstudio.png" width="739" style="display: block; margin: auto;" /></p>
-<p><br> <br></p>
-<p><strong>If you are on a WINDOWS computer</strong>, install the same
-way you install any new software</p>
-<p><br> <br></p>
-<p>If you are on a MAC:</p>
+<p>On Rstudio cloud,</p>
 <ul>
-<li><p>Download the dmg file, click to open, then DRAG it over to
-applications.</p></li>
-<li><p>If it asks to overwrite, say yes.</p></li>
-<li><p>It might get angry at this stage if your mac is very out of
-date.</p></li>
+<li>See <a
+href="https://psu-spatial.github.io/Geog364-2023/in_Tutorial03LabSetUp.html#Projects_using_Rstudioposit_Cloud">TUTORIAL
+3 Cloud - LINK FIXED</a> for how to download your files <br></li>
 </ul>
-<div class="figure" style="text-align: center">
-<img src="Figures/fig5b_RstudioMacinstall.png" alt="*Will look different for windows*" width="428" />
-<p class="caption">
-<em>Will look different for windows</em>
-</p>
-</div>
-</div>
-<div id="congrats-you-have-all-the-software-needed"
-class="section level3">
-<h3>Congrats! You have all the software needed</h3>
-</div>
+<p>Finally, go to Canvas and submit BOTH your html and your .Rmd file in
+Lab 3.</p>
+<p><img src="Figures/LabFig_WhatToSubmit.png" width="1673" /></p>
+<p><br><br></p>
+<div id="how-am-i-graded" class="section level2">
+<h2>How am I graded?</h2>
+<p>Overall, here is what your lab should correspond to:</p>
+<table class=" lightable-classic-2 table table-striped table-hover table-responsive" style="font-family: &quot;Arial Narrow&quot;, &quot;Source Sans Pro&quot;, sans-serif; margin-left: auto; margin-right: auto; margin-left: auto; margin-right: auto;">
+<thead>
+<tr>
+<th style="text-align:left;">
+POINTS
+</th>
+<th style="text-align:left;">
+Approx grade
+</th>
+<th style="text-align:left;">
+What it means
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+98-100
+</td>
+<td style="text-align:left;">
+A*
+</td>
+<td style="text-align:left;">
+Exceptional.  Above and beyond.  THIS IS HARD TO GET.
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+93-98
+</td>
+<td style="text-align:left;">
+A
+</td>
+<td style="text-align:left;">
+Everything asked for with high quality.   Class example
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+85-93
+</td>
+<td style="text-align:left;">
+B+/A-
+</td>
+<td style="text-align:left;">
+Solid work but the odd mistake or missing answer in either the code or
+interpretation
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+70-85
+</td>
+<td style="text-align:left;">
+B-/B
+</td>
+<td style="text-align:left;">
+Starting to miss entire/questions sections, or multiple larger mistakes.
+Still a solid attempt. 
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+60-70
+</td>
+<td style="text-align:left;">
+C/C+
+</td>
+<td style="text-align:left;">
+It’s clear you tried and learned something.  Just attending labs will
+get you this much as we can help you get to this stage
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+40-60
+</td>
+<td style="text-align:left;">
+D
+</td>
+<td style="text-align:left;">
+You submit a single word AND have reached out to Dr G or Aish for help
+before the deadline (make sure to comment you did this so we can check)
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+30-40
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+You submit a single word……. ANYTHING.. Think, that’s 30-40 marks towards
+your total….
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+0+
+</td>
+<td style="text-align:left;">
+F
+</td>
+<td style="text-align:left;">
+Didn’t submit, or incredibly limited attempt. 
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 
