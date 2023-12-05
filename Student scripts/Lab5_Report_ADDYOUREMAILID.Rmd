@@ -21,7 +21,7 @@ in California.
 
 ## Libraries
 
-Feel free to install any additional libraries you need
+Make sure to install any additional libraries you need
 
 ```{r}
 library(tmap)
@@ -46,8 +46,10 @@ run
 # DO NOT TOUCH!
 rm(list=ls())
 
-ozone.sf <- st_read("./Data/point.ozone.AEA.geojson")
-county.data.sf <- st_read("./Data/county.AllData.AEA.geojson")
+# THIS WON'T READ IN UNLESS YOU HAVE A PROJECT RUNNING AND YOUR DATA IN YOUR PROJECT FOLDER.
+# SEE LAB 2 IF YOU ARE CONFUSED
+ozone.sf <- st_read("point.ozone.AEA.geojson")
+county.data.sf <- st_read("county.AllData.AEA.geojson")
 
 state.border.sf  <- states(cb = TRUE) %>%  
   select(NAME, geometry) %>% 
@@ -67,6 +69,8 @@ state.border.terra <- vect(state.border.sf)
 ------------------------------------------------------------------------
 
 # Section B - Voronoi Polygons
+
+You should be able to simply run this code. If not, ask Harman or Dr G.
 
 ```{r}
 
@@ -169,7 +173,8 @@ interpretation)
 
 ## Monte Carlo
 
-In your own words, explain the difference between a Monte Carlo approach and a theoretical approach to the hypothesis test.
+In your own words, explain the difference between a Monte Carlo approach
+and a theoretical approach to the hypothesis test.
 
 ## A different variable
 
@@ -183,7 +188,9 @@ column names.
 
 # Section E. LISA
 
-My code for the LISA analysis should just run. I have split it into several code chunks to make it easier for the cloud and to explain what is happening. Get them all running then see below for questions.
+My code for the LISA analysis should just run. I have split it into
+several code chunks to make it easier for the cloud and to explain what
+is happening. Get them all running then see below for questions.
 
 ```{r}
 #---------------------------------------------------
@@ -200,7 +207,6 @@ LocalMoran_Output <- localmoran_perm(x = moran.data$OZONE_1000PPB,
                                      adjust.x = TRUE,
                                      zero.policy = T)
 ```
-
 
 ```{r}
 #---------------------------------------------------
@@ -226,7 +232,6 @@ moran.data <- cbind(moran.data,LocalMoran_Table[,4:6])
 moran.data$LISA_Quadrant <- attr(LocalMoran_Output,"quadr")$mean
 ```
 
-
 ```{r}
 #---------------------------------------------------
 # Remove polygons that are unlikely to be significant
@@ -245,7 +250,6 @@ moran.data$LISA_Quadrant_Plot <- as.character(moran.data$LISA_Quadrant)
 moran.data$LISA_Quadrant_Plot[RowsOverThreshold] <- paste("P>",critical_threshold,sep="")
 ```
 
-
 ```{r}
 #---------------------------------------------------
 # Make a factor again
@@ -255,7 +259,6 @@ moran.data$LISA_Quadrant_Plot <- factor(moran.data$LISA_Quadrant_Plot,
                                          "Low-High", "Low-Low",
                                          paste("P>",critical_threshold,sep="")))
 ```
-
 
 ```{r}
 #---------------------------------------------------
@@ -292,14 +295,16 @@ tmap_arrange(mapRaw,mapLISA)
 
 ## Interpretation
 
-Using the lecture notes and readings interpret what the maps are showing you. Your write up should include
+Using the lecture notes and readings interpret what the maps are showing
+you. Your write up should include
 
- - What do each of the four colors/quadrants mean <br>
+-   What do each of the four colors/quadrants mean <br>
 
- - How do they link to the Moran scatterplot <br>
+-   How do they link to the Moran scatterplot <br>
 
 ## P values
 
-Change the critical threshold to 0.01, and to 0.1 and to 0.5.  Each time, re-run the LISA code (everything including and below the critical code chunk, or run-all). Explain what is happening in terms of ozone pollution in California. <br>
-
-
+Change the critical threshold to 0.01, and to 0.1 and to 0.5. Each time,
+re-run the LISA code (everything including and below the critical code
+chunk, or run-all). Explain what is happening in terms of ozone
+pollution in California. <br>

@@ -8,6 +8,7 @@ library(tigris)
 library(plotly)
 library(terra)
 library(spdep)
+library(sfdep)
 rm(list=ls())
 
 #--------------------------------------------------
@@ -164,20 +165,27 @@ hist(s$OZONE_1000PPB, main=NULL)
 boxplot(s$OZONE_1000PPB, horizontal = TRUE)
 tm_shape(s) + tm_fill(col="OZONE_1000PPB", style="quantile", n=8, palette="Greens") +
   tm_legend(outside=TRUE)
+
+
 nb <- poly2nb(s, queen=TRUE)
 nb[1]
 lw <- nb2listw(nb, style="W", zero.policy=TRUE)
 lw$weights[1]
-inc.lag <- lag.listw(lw, s$OZONE_1000PPB)
+inc.lag <- lag.listw(lw, s$Income)
 inc.lag
 
-plot(inc.lag ~ s$OZONE_1000PPB, pch=16, asp=1)
-M1 <- lm(inc.lag ~ s$OZONE_1000PPB)
+
+# try adding in scale
+plot(inc.lag ~ s$Income, pch=16, asp=1)
+M1 <- lm((inc.lag) ~ (s$Income))
 abline(M1, col="blue")
 coef(M1)[2]
 I <- moran(s$OZONE_1000PPB, lw, length(nb), Szero(lw))[1]
 I
-moran.test(s$OZONE_1000PPB,lw, alternative="greater")
+moran.test(s$Income,lw, alternative="greater")
+
+
+
 MC<- moran.mc(s$OZONE_1000PPB, lw, nsim=999, alternative="greater")
 MC
 plot(MC)
@@ -299,4 +307,55 @@ mapRaw <- tm_shape(s) +
 tmap_options(check.and.fix = TRUE)
 tmap_mode("plot")
 tmap_arrange(mapRaw,mapLISA)
+
+
+
+list_nb <- poly2nb(s, queen = TRUE)
+empty_nb <- which(card(list_nb) == 0)
+empty_nb 
+tes_subset <- s[-empty_nb, ]
+empty_polygons <- s[empty_nb, ]
+empty_polygons$nghbrhd  # print neighborhood names
+
+tes_subset <- s
+
+# Now that we removed empty neighbor sets (tes_subset)
+# Identify neighbors with queen contiguity (edge/vertex touching)
+tes_nb <- poly2nb(tes_subset, queen = TRUE)
+
+# Binary weighting assigns a weight of 1 to all neighboring features 
+# and a weight of 0 to all other features
+tes_w_binary <- nb2listw(tes_nb, style="B")
+
+# Calculate spatial lag of TreEqty
+tes_lag <- lag.listw(tes_w_binary, tes_subset$OZONE_1000PPB)
+
+
+globalG.test(tes_subset$OZONE_1000PPB, tes_w_binary)
+
+# Identify neighbors, create weights, calculate spatial lag
+tes_nbs <- s |> 
+  mutate(
+    nb = st_contiguity(geometry),        # neighbors share border/vertex
+    wt = st_weights(nb),                 # row-standardized weights
+    tes_lag = st_lag(OZONE_1000PPB, nb, wt)    # calculate spatial lag of TreEqty
+  ) 
+
+# Calculate the Gi using local_g_perm
+tes_hot_spots <- tes_nbs |> 
+  mutate(
+    Gi = local_g_perm(OZONE_1000PPB, nb, wt, nsim = 999)
+    # nsim = number of Monte Carlo simulations (999 is default)
+  ) |> 
+  # The new 'Gi' column itself contains a dataframe 
+  # We can't work with that, so we need to 'unnest' it
+  unnest(Gi) 
+
+
+# Cursory visualization
+# Plot looks at gi values for all locations
+tes_hot_spots |> 
+  ggplot((aes(fill = gi))) +
+  geom_sf(color = "black", lwd = 0.15) +
+  scale_fill_gradient2() # makes the value 0 (random) be the middle
 

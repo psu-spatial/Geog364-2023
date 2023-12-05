@@ -53,8 +53,10 @@ navbar:
     - text: "Project 2"
       href: in_G364_Project2.html
     - text: "Project 3"
-      href: in_G364_Project3.html      
-    - text: "FINAL PROJECT RUBRIC"
+      href: in_G364_Project3.html
+    - text: "Project Final"
+      href: in_G364_Project4.html
+    - text: "CHECK YOUR PROJECT HAS EVERYTHING"
       href: in_G364_Project_FINALRUBRIC.html         
   - text: "Project WORKED EXAMPLE"  
     menu: 
